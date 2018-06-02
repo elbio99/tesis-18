@@ -1,0 +1,144 @@
+\chapter{Introducción}\label{chap:introduccion}
+
+En este capítulo se aborda el marco en el que se realizo el trabajo de tesis; empezando con una breve introducción de los temas a desarrollar; partiendo principalmente del objetivo primario en conjunto con los objetivos específicos, además se pondrá a disposición del lector los fundamentos que llevaron a realizar este trabajo de investigación. Para finalizar este capítulo se describirán cada capítulo posterior que darán al lector una guía del trabajo realizado de la tesis de investigación.
+
+
+\section{Contexto de la Tesis}\label{sec:contexto}
+El presente trabajo se realizó para recibir el grado de\textbf{ \textit{Maestría en desarrollos informáticos de aplicación espacial}}. El mismo se encuadra dentro del Plan Nacional Espacial Argentino vigente (2004-2015), a través de \ac{conae} en conjunto con la unidad académica \ac{unlam} y la unidad de desarrollo \ac{sur}.
+
+Esta investigación se centra en aplicar  algoritmos de visión artificial y aprendizaje automático para el \textit{Reconocimiento de patrones} aplicados sobre imágenes satelitales.
+
+\section{Reconocimiento de Patrones}\label{sec:introreconocimiento}
+Desde hace muchos años las imágenes satelitales constituyen una fuente de información de gran relevancia para el estudio y evaluación de recursos terrestres. Esta  información contenida en las imágenes están dada por patrones, es decir, características que los diferencian del resto de los objetos; estas características pueden estar agrupadas  de acuerdo a su forma, color e incluso textura en la imagen.
+
+El \textit{reconocimiento de patrones} también conocido en la literatura como \textit{detección de patrones} consiste en detectar-reconocer un patrón de interés en una imagen utilizando información de los datos contenidos en los píxeles y las correlaciones que pueden llegar a existir entre ellos. El objetivo principal es la clasificación  en categorías o clases que agrupe alguna de las características como las que mencionamos anteriormente, color, forma, textura, etc. Es por esto que son numerosos campos que en la actualidad hacen uso de esta tecnología; algunos de los que podemos nombrar de los encontrado en la actualidad son:
+
+\begin{itemize}
+	\item Medicina
+	\item Robótica
+	\item Biología
+	\item Geología 
+	\item Meteorología
+	\item Construcción 
+	\item Inspección y control de Calidad
+	\item Cartografía
+	\item entre muchos otros..
+\end{itemize}
+
+Una imagen satelital posee una fuente de información muy relevante, es por ello que es posible aplicar técnicas de reconocimiento de patrones para extraer esta información relevante.En la actualidad en el área espacial se empleo el \textit{reconocimiento de patrones} mayormente sobre en imágenes satelitales; existen también algunas aplicaciones y estudios realizado para su uso en vuelo, es decir en tiempo real a bordo de un satélite en órbita. 
+
+Como se menciono en el párrafo anterior la mayoría de aplicaciones en reconocimiento de patrones  se realizaron en imágenes satelitales terrestres; algunos de los ejemplos que podemos mencionar son: clasificación de vegetación en determinada área geográfica, determinación de regiones afectadas por incendios; en la  mayoría de estas aplicaciones se utilizaron redes neuronales 
+para su reconocimiento. En vuelo estas técnicas de reconocimiento son cada ves mas numerosas, el estudio mas relevante de uso de técnicas de reconocimiento de patrones es el que se usó en vehículos \textit{Rovers} utilizado por la \ac{nasa} para la exploración del espacio. Otro trabajo que significativo que se halló en la bibliografía es la aplicación en determinación de una área geográfica utilizando algoritmos genéticos, aplicados al reconocimiento. 
+
+Como podemos ver el campo de \textit{reconocimiento de patrones} es un área moderna y en gran crecimiento en el campo espacial ya sea para su utilización en tierra como a bordo del satélite en tiempo real.
+
+
+\subsection{Visión Artificial}\label{sub:introva}
+En la ciencia de \textit{reconocimiento de patrones} coexisten varias ramas de la ciencia de la computación que nos ayudan a extraer la información existente en las imágenes. Una  ella es la \ac{va}, su nombre en ingles \textit{computer vision}.  \ac{va} es una rama dentro de la \ac{ia} que a través de determinadas técnicas permite procesar la información contenida en la imagen. Los datos de entrada en un sistema de \ac{va} son imágenes obtenidas por una cámara que a través de diferentes procesos obtenemos una descripción en escena de la imagen adquirida.
+ 
+Estas aplicaciones son un desafío para la ciencia actual; en los últimos años se han producido grandes avances gracias al el poder de cómputo que nos permite resolver problemas muchos mas realistas. En la literatura existen diferentes definiciones sobre que es \ac{va}, una de las mas completa es:
+ \begin{center}
+\begin{minipage}{0.8\linewidth}  \vspace{5pt}{\small \ac{va} es un campo que incluye métodos para adquirir, procesar, analizar y comprender imágenes, en general, datos de grandes dimensiones del mundo real con el fin de producir información numérica o simbólica en forma de decisiones.}
+\begin{flushright}
+ \citep{Reinhard}
+\end{flushright}
+\vspace{5pt}
+\end{minipage}
+\end{center}
+ 
+La transformación de las imágenes de entrada en descripciones del mundo es lo que nos permite realizar una clasificación y así poder reconocer los patrones buscados. 
+Como una disciplina tecnológica la \ac{va} busca aplicar sus teorías y modelos a la construcción de sistemas computarizados.
+ 
+ 
+\subsection{Aprendizaje automático}\label{sub:introml}
+El \ac{ml}, su nombre en ingles \textit{Machine Learning}, forma parte de una de las ramas de reconocimiento de patrones. El objetivo de \ac{ml} es la construcción de programas capaces de aprender un comportamiento determinado a partir de información ingresada como ejemplo.
+
+El autor \citep{murphy} definió al campo de  \ac{ml} como:
+\begin{center}
+\begin{minipage}{0.8\linewidth}  \vspace{5pt}{\small Conjunto de métodos que pueden automáticamente detectar patrones en datos y entonces usar estos patrones para predecir el futuro o realizar alguna toma de decisiones bajo condiciones de incertidumbre}.
+\begin{flushright}
+ \citep{murphy}
+\end{flushright}
+\vspace{5pt}
+\end{minipage}
+\end{center}
+
+La ultima década las aplicaciones en \ac{ml} dieron  saltos significativos debido a los nuevos enfoques y algoritmos desarrollados. Los algoritmos desarrollados en \ac{ml} se agrupan  en dos áreas principales; por un lado tenemos  el \textbf{\textit{aprendizaje supervisado}}, estos tipos de algoritmos se enfocan en realizar predicciones futuras basadas en el comportamiento o característica de los datos buscando los patrones relacionados; es decir identificar un modelo a partir de datos de entrenamiento en el cual se conoce su valor de salida y usarlos para predecir datos futuros o desconocidos. La \textbf{\textit{clasificación}} es una sub-categoría del \textit{aprendizaje supervisado} donde el objetivo es predecir etiquetas o clase.
+
+El segundo enfoque es el \textbf{ \textit{aprendizaje no supervisado}}, usa datos no etiquetados y trata de encontrar alguna estructura y forma de organizarlo. El aprendizaje no supervisado nos entrega herramientas para explorar y extraer información relevante de la estructura sin tener conocimiento previo. 
+
+En este trabajo de investigación se centrara en el primer modelo de \ac{ml} aplicados al reconocimiento de patrones el  \textit{aprendizaje supervisado}.
+
+
+\section{Objetivo principal de la tesis}\label{sec:ObjGral}
+
+El objetivo principal de este trabajo de tesis es, analizar y utilizar algoritmos para el  reconocimiento de patrones sobre imágenes satelitales de la superficie terrestre haciendo uso de metodologías de \ac{va} y \ac{ml}; buscando realizar una prototipo experimental de estas técnicas computacionales.
+
+
+\subsection{Objetivos específicos }\label{sub:ObjEspecif}
+A continuación se expondrá los objetivos específicos que permiten en su conjunto establecer los pasos a seguir para  cumplir con el objetivo general:
+\begin{itemize}
+ \item Investigar técnicas de \ac{va} y \ac{ml} aplicadas al reconocimiento de patrones.
+ \item Evaluar la factibilidad de ser implementadas sobre imágenes satelitales.
+ \item Desarrollar un prototipo de software que permita detectar patrones utilizando diferentes técnicas computacionales de \ac{va} y \ac{ml}.
+ \item Validación de los resultados obtenidos.
+\end{itemize}
+
+
+\section{Fundamentación}\label{sec:fundamentacion}
+Partiendo del objetivo principal, la presente investigación se enfoca en probar diversas técnicas de reconocimiento de patrones aplicadas a imágenes satelitales terrestres.  
+
+Los patrones-áreas de interés que se aborda en esta tesis son:
+\begin{itemize}
+	\item Golfo San Matías (Rio Negro-Argentina).
+	\item Laguna Mar Chiquita (Córdoba-Argentina).
+\end{itemize}
+
+%ESTE PARRAFO CUIDADO (PREGUNTAR A JORGE SI ES CONVENIENTE PONER MODIS)
+
+\textcolor{red}{Las imágenes que se utilizaron para el desarrollo fueron obtenidas de los instrumento  VIIRS. Estas imágenes se asemejan a las características de la camara NIR/SWIR del SABIA-MAR(Satélite Argentino Brasileño para Información del Mar); cuya factibilidad de ser usada en un CubeSat fue evaluada en el marco del proyecto integrador \textit{Formador Satelital 2017} (FS2017) de \ac{conae}.}
+%-------------------------------------------------------------
+
+El reconocimiento de patrones en imágenes es un área que en la actualidad se incremento con la aparición de nuevas técnicas y de los avances de poder de cómputo. La aplicación de técnicas computacionales tanto de  \ac{va} y \ac{ml} en reconocimiento de patrones  en tierra y en vuelo, nos permite aprovechar la información contenida en la imagen  automatizando el proceso de extracción de los datos.
+
+Diversas son las ventajas que nos permitirán realizar estos nuevos enfoques computacionales en el área espacial. Los principales beneficios al aplicar técnicas de reconocimiento de patrones son: 
+\begin{itemize}
+\item \textbf{Calibración y apuntamiento}: brindar un mecanismo de apoyo para colaborar con el apuntamiento y la calibración óptica del satélite; mayormente para CubeSat, satélites de menor tamaño, que no poseen un mecanismo eficiente de determinación orbital como un Star-tracker o GPS debido a que son satélites de bajo costo además con relación al tamaño del mismo; con esto se podrá mejorar el apuntamiento detectando las regiones y comparando con los planes de pasadas  establecidos, a la vez dar soporte para poder calibrar la camara óptica de acuerdo a la región.
+\item \textbf{Almacenamiento en memoria}: una de las grandes desventajas que tienen los satélites, es la escasez de recursos en vuelo, teniendo un mecanismo de reconocimiento de patrones se podrá almacenar aquellas imágenes de interés minimizando y optimizando  así el uso de la memoria.
+\item \textbf{Exploración del espacio profundo}: ya existe en la actualidad ejemplos de técnicas de reconocimiento aplicadas al análisis de datos en tiempo real, esto es necesario  porque el tiempo de transmisión de información a grandes distancias es alto, es por ello que es necesario poder procesar la información en tiempo real y realizar una predicción automática de los datos obtenidos.
+\item \textbf{Predicción de coaliciones:} por medio de \ac{va} nos permitirá prevenir las posibles coaliciones a causa de la chatarra espacial. 
+\item \textbf{Detecciones de catástrofes naturales}: a través de diferentes algoritmos de reconocimiento de patrones en vuelo nos permitirá realizar una alerta temprana en situaciones de desastre detectando por ejemplo focos de incendios, inundaciones, derrames de petroleo, etc.
+\item \textbf{Monitoréo del territorio nacional}: evaluando a través de imágenes satelitales las frontera nacional.
+\end{itemize}
+
+
+\textcolor{red}{
+\section{Estructura General de la Tesis }\label{sec:estructura}}
+
+La tesis se estructura de acuerdo a los siguientes capítulos: Introducción, Marco Teórico, Estado del Arte, Metodologías, Desarrollo del Software, 
+Evaluación experimental , Conclusiones y trabajos a futuro, Bibliografía y Apendice :
+
+En el \textit{Capítulo \ref{chap:marcoteorico} Marco Teórico}: plantea los fundamentos e investigación que se realizaron con el fin de situar el problema dentro de limites 
+teóricos. En este capitulo se desarrolla los conceptos claves como: ¿que es visión artificial?, los métodos que existen, diferentes algoritmos de detección que encontramos en la 
+literatura, ¿ que entendemos por aprendizaje automático?, los campos que hacen uso de esta metodología, nombrando la importancia de las redes neuronales en el campo de 
+reconocimiento de patrones.
+
+En el \textit{Capítulo \ref{chap:estadodelarte} Estado del Arte}: En este capítulo se explicara los antecedentes encontrados en el ámbito espacial en 
+el reconocimiento de patrones.
+
+El \textit{Capítulo \ref{chap:metodologia} Metodología}: explica las diferentes fases de desarrollo que se siguió para lograr el objetivo primario.
+
+El \textit{Capítulo \ref{chap:Desarrollo} Desarrollo del Software}: En este capítulo se evalúan las diferentes herramientas utilizadas, junto con la 
+estructura del código realizado.
+
+El \textit{Capítulo \ref{chap:evaluacion} Evaluación Experimental}: se va a dividir en dos secciones. Por una lado se describe los procesos realizados 
+para la recolección de los datos y el posterior tratamiento; por otro se expondrá los diferentes resultados obtenidos en el reconocimiento de 
+patrones.
+
+En el \textit{Capítulo \ref{chap:conclusiones} Conclusiones y Trabajo a Futuro}: se plantea las conclusiones sacadas del desarrollo además de los 
+posibles trabajo a futuro partiendo de lo realizado.
+
+\textit{Capítulo Bibliografía}: Se enuncian las diferentes fuentes consultadas para el desarrollo de la tesis.
+
+Para finalizar tenemos el \textit{Capítulo \ref{chap:anexo} Apéndice}: describe algunos procesos realizados para esta tesis como por ejemplo, la 
+instalación de librerías usadas, códigos utilizados y diagramas.

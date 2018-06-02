@@ -1,0 +1,137 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ana(2015)]{inteligenciaACasali}
+Casali Ana.
+\newblock ¿qué es la inteligencia artificial?
+\newblock 2015.
+\newblock URL \url{https://www.researchgate.net/}.
+
+\bibitem[Bishop(2006)]{bishop}
+Christoper Bishop.
+\newblock \emph{Pattern Recognition and Machine Learning}.
+\newblock Springer., 2006.
+\newblock ISBN 0-387-31073-8.
+
+\bibitem[Cheng et~al.(2014)Cheng, Zhang, Lin, y Torr]{bing}
+Ming-Ming Cheng, Ziming Zhang, Wen-Yan Lin, y Philip H.~S. Torr.
+\newblock Bing: Binarized normed gradients for objectness estimation at 300fps.
+\newblock 2014.
+
+\bibitem[Cid(2016)]{areascv}
+Yolanda~González Cid.
+\newblock Aplicaciones de la visión artificial, 2016.
+\newblock URL
+  \url{http://dmi.uib.es/~ygonzalez/VI/Material_del_Curso/Teoria/Aplicaciones_VC.PDF}.
+\newblock [Accedido 16-Junio-2017].
+
+\bibitem[Duan et~al.(2015)Duan, Miao, y Wang]{bing2}
+Z.~Duan, L.~Miao, y H.~Wang.
+\newblock Binarized normed gradients for object detection.
+\newblock páginas 1064--1068, 2015.
+\newblock \doi{10.1109/IAEAC.2015.7428721}.
+
+\bibitem[Garcia(2015)]{percepcion}
+Alberto~Ruiz Garcia.
+\newblock Sistema de percepción y visión por computador.
+\newblock Tesis de Maestría, Universidad de Murcia, Febrero 2015.
+
+\bibitem[Hosang et~al.(2015)Hosang, Benenson.R, Dollár.P, y B.]{proposal}
+J~Hosang, Benenson.R, Dollár.P, y Schiele B.
+\newblock What make for effective detection proposal?
+\newblock \emph{CoRR}, abs/1502.05082, 2015.
+\newblock URL \url{http://arxiv.org/abs/1502.05082}.
+
+\bibitem[Hosang et~al.(2017)Hosang, Benenson, y Schiele]{nms2}
+Jan~Hendrik Hosang, Rodrigo Benenson, y Bernt Schiele.
+\newblock Learning non-maximum suppression.
+\newblock \emph{CoRR}, abs/1705.02950, 2017.
+\newblock URL \url{http://arxiv.org/abs/1705.02950}.
+
+\bibitem[Jahne(1999)]{bernd}
+Bernd Jahne.
+\newblock \emph{Handbook of Computer Vision and Applications}.
+\newblock University of California, San Diego, 1999.
+\newblock ISBN 0–12–379770–5.
+
+\bibitem[Karn(2016)]{cnnsarticle}
+Ujjwal Karn.
+\newblock An intuitive explanation of convolutional neural networks, 2016.
+\newblock URL
+  \url{https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/}.
+\newblock [Accedido 15-Junio-2017].
+
+\bibitem[Klette(2014)]{Reinhard}
+Reinhard Klette.
+\newblock \emph{Concice Computer Vision: An Introduction into Theory and
+  Algorithms}.
+\newblock Springer, 2014.
+\newblock ISBN 9781447163190.
+
+\bibitem[Larcher et~al.(2011)Larcher, Biasoni, Cattaneo, Ruggeri, y
+  Herrera]{Ledda}
+Ledda Larcher, Enrique Biasoni, Carlos Cattaneo, Ana Ruggeri, y Cecilia
+  Herrera.
+\newblock Algoritmo para la deteccion de bordes y ulterior determinacion de
+  objetos en imagenes digitales.
+\newblock \emph{Asociacion de Mecanica Computacional}, XXX:\penalty0
+  2841--2852, Noviembre 2011.
+
+\bibitem[Leal y Branch(2010)]{Naill}
+Nallig Leal y John~Willam Branch.
+\newblock Traffic surveillance system base in image segmentation techniques.
+\newblock Noviembre 2010.
+
+\bibitem[Lecun et~al.(1998)Lecun, Bottou, Bengio, y Haffner]{cnns}
+Y.~Lecun, L.~Bottou, Y.~Bengio, y P.~Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock \emph{Proceedings of the IEEE}, 86\penalty0 (11), 11 1998.
+\newblock ISSN 0018-9219.
+
+\bibitem[Mitchell(1997)]{Mitchell}
+Thomas~M. Mitchell.
+\newblock \emph{Machine Learning}.
+\newblock McGraw-Hill, Inc., New York, NY, USA, 1 edition, 1997.
+\newblock ISBN 0070428077, 9780070428072.
+
+\bibitem[Murphy(2012)]{murphy}
+Kevin Murphy.
+\newblock \emph{Machine Learning: A Probabilistic Perspective}.
+\newblock Massachusetts Institute of Technology, 2012.
+\newblock ISBN 978-0-262-01802-9.
+
+\bibitem[Neubeck y Gool(2006)]{nms}
+A.~Neubeck y L.~Van Gool.
+\newblock Efficient non-maximum suppression.
+\newblock 3:\penalty0 850--855, 2006.
+\newblock ISSN 1051-4651.
+\newblock \doi{10.1109/ICPR.2006.479}.
+
+\bibitem[Russell y Peter(2004)]{inteligenciaA}
+Stuart~J Russell y Norving Peter.
+\newblock \emph{Inteligencia Artificial:Un Enfoque moderno}.
+\newblock Pearson., 2004.
+\newblock ISBN 8420054003.
+
+\bibitem[Szeliski(2011)]{Szeliski}
+Richard Szeliski.
+\newblock \emph{Computer Vision:Algorithms and Applications}.
+\newblock Springer, 2011.
+\newblock ISBN 978-1-84882-935-0.
+
+\bibitem[Uijlings et~al.(2014)Uijlings, van~de Sande, Gevers, y
+  Smeulders]{selectivesearch}
+J.R.R Uijlings, K.E.A van~de Sande, T~Gevers, y A.W.M Smeulders.
+\newblock Selective search for object recognition.
+\newblock 2014.
+
+\bibitem[Zitnick y Doll\'ar(2014)]{edges}
+C.~Lawrence Zitnick y Piotr Doll\'ar.
+\newblock Edge boxes: Locating object proposals from edges.
+\newblock 2014.
+
+\end{thebibliography}

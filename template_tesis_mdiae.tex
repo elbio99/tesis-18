@@ -1,0 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Descripción: Template para la generación de la tesis de la MDIAE
+% Autor: 
+% Fecha: 20/05/2016
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	PARA INSERTAR FIGURAS USAR LA FUNCION PREDEFINIDA \imagen
+%%
+%%      \imagen{escala}{path imagen}{caption}{referencia}
+%%
+%% donde:
+%% 	* escala: es un valor numérico. Preferentemente usar valores entre 0 y 1.
+%%		(ejemplo: 0.2)
+%% 	* path: imagen es el directorio relativo donde se encuentra la imagen
+%%		(ejemplo: Figures/Logos/conae-logo.png)
+%%	* caption: texto de pie de figura.
+%%	* referencia: texto que sirve para citar la figura. 
+%%		(ejemplo: fig:conaelogo) luego se podrá hacer referencia \ref{fig:conaelogo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------------
+% Formato del documento
+\documentclass[11pt, a4paper, twoside]{report}
+
+%------------------------------------------------------------------------------
+% TEMPLATE MDIAE (ACÁ SE ENCUETRAN LAS CUSTOMIZACIONES)
+% Remitirse al archivo mdiaedoc.sty
+\usepackage{mdiaedoc}
+
+%Configuración de los márgenes
+\usepackage[top=3cm, bottom=3cm, left=2.5cm, right=1.5cm]{geometry}
+
+\usepackage{color}
+%------------------------------------------------------------------------------
+% Esto no se usa (YA ESTA DEFINIDO EN EL TEMPLATE)
+%\usepackage{setspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMIENZO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\makeatletter
+\author{Elbio Enrique Zapata}
+\makeatother
+
+%------------------------------------------------------------------------------
+% PORTADA
+\portadatesis{Detección de Patrones en imágenes satelitales utilizando Metodologías de Visión Artificial}{Elbio E. Zapata}{UNIVERSIDAD NACIONAL DE LA MATANZA}{TBD, 
+2018}{2017}{Dr.Jorge Sánchez}{FaMAF, Cordoba, Argentina}
+
+
+\pagenumbering{gobble}
+
+%\include{secciones/Abstract}
+%\include{secciones/Resumen}
+%\include{secciones/Agradecimientos} %% OPCIONAL
+
+\tabladecontenidos
+
+\include{secciones/Acronimos}
+%------------------------------------------------------------------------------
+% Numeración arábiga a partir de este punto
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%\include{secciones/Introduccion}
+\include{secciones/MarcoTeorico}
+%\include{secciones/EstadodelArte}
+%\include{secciones/Metodologia}
+%\include{secciones/Desarrollo}
+%\include{secciones/Recolecciondedatos}
+%\include{secciones/EvaluacionExperimental}
+%\include{secciones/Discusion}
+
+\bibliografia{template_tesis_mdiae.bib}
+%\bibliographystyle{apalike}
+\bibliographystyle{apa}
+%\bibliography{#1}
+%\nocite{*}
+%------------------------------------------------------------------------------
+% EN CASO DE TENER APÉNDICES, DESCOMENTAR A CONTINUACIÓN
+\appendix
+\include{secciones/appendix}
+
+\newpage
+$\ $
+\thispagestyle{empty} % para que no se numere esta pagina
+%\newpage
+%$\ $
+%\thispagestyle{empty}
+ 
+\end{document}
+

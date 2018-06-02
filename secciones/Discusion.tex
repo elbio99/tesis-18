@@ -1,0 +1,30 @@
+\chapter{Conclusiones y lineamientos futuros}\label{chap:conclusiones}
+Es este capítulo se van a exponer, desde un punto de vista personal y subjetivo, las lecciones aprendidas durante
+la realización de este trabajo final. Además se propondrán posibles evoluciones o mejoras que se podrían aplicar sobre los
+desarrollos realizados.
+
+\section{Conclusiones}
+En base a la investigación y el desarrollo que se realizo podemos exponer lo siguientes items:
+\begin{enumerate}
+\item Para realizar un reconocimiento óptimo de patrones se necesita un datasets representativo de las regiones que se desea detectar.
+\item Debido al tamaño de las imágenes y que las regiones buscadas eran muy pequeña en proporción a la misma, se demostró que para obtener regiones candidatas a partir de \textit{regions proposal} se debe realizar recortes (crops) de acuerdo al tamaño de la región buscada.
+\item Se observo que a causa de que  la mayoría de los \textit{feature vector} calculados son de etiquetas negativas, es decir que no caen en la 
+región buscada, al realizar el entrenamiento de los datos se obtenía un modelo con overfitting. A continuación se empleo la siguiente regla 3 
+negativos cada 1 positivo; con esto no solo evitamos el overfitting del modelo sino también mejoramos el tiempo de computo en el procesamiento. 
+\item Se emplearon diferentes algoritmos de búsqueda de parámetros \textit{GridSearch} y \textit{RamdomizeSeach}, el tiempo observado de procesamiento mas óptimo fue por medio de \textit{RamdomizeSeach}.
+\item Se demostró experimentalmente que es posible reconocer patrones en una imagen satelital por medio de técnicas de \ac{va} y \ac{ml}.
+\item Se demostró que las redes neuronales profundas obtienen una buena generalización de la imagen para problemas en reconocimiento de patrones.
+\end{enumerate}
+
+
+\section{Lineamientos futuros} 
+Tomando como base las lecciones aprendidas en el desarrollo de la tesis; las posibles lineas de trabajo a futuro que se podrían seguir son:
+\begin{enumerate}
+ \item A partir del bajo rendimiento en el calculo de los datos surge la posibilidad de implementar procesamiento en base a GPU para el cómputo 
+en paralelo de los datos.
+ \item Es posible aplicar diferentes arquitectura de las redes neuronales para la extracción de los vectores de característica; de esta manera 
+determinar cual de las redes tiene mayor generalización en los datos para el tipo de problemática que estamos tratando.
+ \item Para el cálculo de regiones propuestas es posible realizar \textit{custom regions proposal} para lograr reconocer regiones específicas de una 
+imagen sin realizar recortes en la misma.
+ \item Conseguir implementar el modelo un una placa de vuelo para determinar el rendimiento y consumo.
+\end{enumerate}
