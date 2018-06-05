@@ -1,14 +1,25 @@
 \chapter{Estado del Arte} \label{chap:estadodelarte}
-En el siguiente capítulo se  expondrá las diversas investigaciones realizadas en el ámbito espacial aplicando técnicas de visión artificial para el reconocimiento de patrones. En primer lugar se van a explorar los trabajos que que se realizaron sobre imágenes  satelitales; por ultimo vamos a detallar las investigaciones y trabajos llevados a cabo en vuelo.
+
+
+En este capítulo vamos a describir las diversas investigaciones y trabajos realizados con imágenes satelitales hasta la fecha. Se pondrá a dispocisión del lector numerosos uso de Computer Vision y Machine Learning, partiendo desde un estudio de un area determinada  hasta las implementaciones utilizadas a bordo de un satelite artificial.
+
 
 \section{Aplicaciones en el ámbito espacial}\label{sec:estadodelacuestion}
 
-Las aplicaciones de visión artificial en el ámbito espacial son cada ves mas utilizadas, esto se debe principalmente a dos factores muy importantes; como primer lugar la creciente capacidad de computo de procesamiento con procesadores de mayor capacidad y el auge de las GPU, unidad de procesamiento gráfico. En segundo lugar la aparición de algoritmos y frameworks mas eficiente para el uso en reconocimiento de patrones; de los que podemos nombrar el uso de \ac{cnn}. Otro tema no menos importante son la aparición de UAVs usados para el reconocimiento de patrones. La presencia en el mercado de pequeños UAVs de bajo costo con capacidad para portar pequeñas cámaras de vídeo de alta resolución y de realizar despegue vertical con posibilidad de 
-movimiento en cualquier dirección del espacio, hace posible abordar nuevos retos en el campo de la detección y seguimiento de determinadas situaciones de la realidad \citep{Lanillos}.
+Las aplicaciones de visión artificial en el ámbito espacial son cada ves mas utilizadas, esto se debe principalmente a dos factores muy importantes; como primer lugar la creciente capacidad de computo, con procesadores de mayor rendimietno y el auge de las GPU (unidad de procesamiento grafico). En segundo lugar la aparición de algoritmos y frameworks mas eficiente en el uso de reconocimiento de patrones; de los que podemos nombrar el uso de \ac{cnn}. 
 
-Actualmente en el campo de reconocimiento de patrones la mayoría de los trabajos que se realizaron en el área espacial han sido aplicado en tierra utilizando para estos imágenes satelitales en los diversos estudios sobre las característica del terreno. Estas aplicaciones son cada vez mas explotada no solo por agencias espaciales sino en entidades educativas, publicas o privadas. 
 
-Como se mencionó previamente esta sección se dividirá en dos partes; por un lado los trabajos realizados en tierra, de mayor uso, y por otro las investigaciones y trabajos realizados en vuelo.
+Con el auge de estos puntos desarrollado anteriormente y ademas la aparición de UAVs se dio un salto al uso de computer vision sobre imagenes de mayor tamaño. La presencia en el mercado de pequeños UAVs de bajo costo con capacidad para portar pequeñas cámaras de vídeo de alta resolución y de realizar despegue vertical con posibilidad de movimiento en cualquier dirección del espacio, hace posible abordar nuevos retos en el campo de la detección y seguimiento de determinadas situaciones de la realidad \citep{Lanillos}.
+
+Actualmente en el campo de reconocimiento de patrones sobre imágenes satelitales se pude ver que la mayoría de los trabajos que se realizaron en el área espacial han sido aplicado en tierra, gran parte de estos trabajos se basan en estudiar las característica del terreno. Estas aplicaciones son cada vez mas explotada no solo por agencias espaciales sino en entidades educativas, publicas o privadas. 
+
+
+Vamos a dividir en dos partes este estado del arte: por un lado mencionaremos los trabajos realizados en tierra, es decir aquellos que se procesaron las imagenes en estaciones terrenas, estos trabajos son los que mayormente encontraremos en la literatura; en segundo lugar se expondrá aquellas invesitgaciones y/o trabajos realizas a bordo de un satelite o UAVs, es decir en vuelo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TBD
+
+
+
 
 Para empezar vamos a comenzar citando el siguiente trabajo realizado por \citep{Cheang}; en este articulo se describe el uso de técnicas de reconocimiento de patrones usando aprendizaje supervisado. El método para la extracción y clasificación de los datos utilizado se baso en dos enfoques; por una parte utilizaron técnicas de \textit{sliding window} para la obtención de regiones candidatas, por otro se aplicaron redes neuronales profundas, \ac{dl}, método muy utilizado en estos trabajos, para el reconocimiento del objeto. Otro ejemplo encontrado en la literatura aplicando  \textit{aprendizaje no supervisado} para la clasificación del uso de la tierra a partir de imágenes satelitales multi-temporales, en este paper \citep{pnn}, se utilizo imágenes del satélite LANSAT y SPOT usando redes neuronales probabilística, estas técnicas realizan un agrupamiento de datos, \textit{clusters}, y realizan la clasificación creando las fronteras entre los diferentes \textit{clusters} de datos para su posterior reconocimiento.
 
