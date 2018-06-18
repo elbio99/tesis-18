@@ -18,7 +18,7 @@ El uso de imágenes satelitales constituye una excelente herramienta para el con
 \end{itemize}
 
 \subsection{Niveles de procesamiento}\label{sub:nivelesdeprocesamiento}
-Dependiendo de la agencia espacial existe una nomenclatura para determinar los niveles de procesamiento que se aplica a las imágenes satelitales. En nuestro caso vamos a utilizar las siguiente nomenclatura impuesta por la \ac{nasa}:
+Dependiendo de la agencia espacial existe una nomenclatura para determinar los niveles de procesamiento que se aplica a las imágenes satelitales. En nuestro caso vamos a utilizar las siguiente nomenclatura propuesta por la \ac{nasa}:
 \begin{itemize}
 	\item \textbf{Nivel 0}: La información científica recogida está a máxima resolución, ordenada temporalmente y con errores de transmisión, artefactos y duplicados eliminados.
  	\item \textbf{Nivel 1a}: La información esta ordenada cronológicamente y datos auxiliares como coeficientes de calibración y parámetros de referencia.
@@ -31,9 +31,11 @@ Dependiendo de la agencia espacial existe una nomenclatura para determinar los n
 
 \section{Datos utilizdos}\label{sec:datosutilizados}
 
-En base a lo mencionado en la sección \ref{sec:funcamentacion}, las imágenes que se utilizaron para el desarrollo de esta tesis fueron seleccionadas a partir de los requerimientos impuesto por el \ac{FS} \ac{conae}. Estas imágenes se asemejan a la cámara que será utilizada en el proyecto mencionado anteriormente. Las imágenes escogidas que se asemejan a las características impuestas por los requerimientos expuestos fueron adquiridas por el instrumento \ac{viirs} a bordo del satélite Suomi-NPP \ref{sub:viirs}.
+En base a lo mencionado en la sección \ref{sec:funcamentacion}, las imágenes que se utilizaron para el desarrollo de esta tesis fueron seleccionadas a partir de los requerimientos del \ac{FS} \ac{conae}. Las imágenes escogidas se asemejan a las características del \ac{FS} \ac{conae} detalladas en los requerimientos formales del mismo; estas imágenes fueron adquiridas por el instrumento \ac{viirs} a bordo del satélite Suomi-NPP \ref{sub:viirs}.
 
 Las imágenes fueron descargadas por medio del catalogo  publicado en el sitio oficial de \ac{conae} \footnote{Fuente: http://catalogos.conae.gov.ar/catalogo/catalogo-de-imagenes.html} de acceso gratuito para el publico. Se debe señalar ademas que se trabajó con imágenes correspondiente a los años 2017 y 2018 en una ventana de tiempo desde Abril del 2017 a Marzo del 2018; estas imágenes son de naturaleza óptica con un nivel de procesamiento 1a, de acuerdo a las nomenclaturas utilizadas en la sección \ref{sub:nivelesdeprocesamiento}.
+
+En total se utilizaron 29 combinaciones de bandas ,ver: \ref{tab:combinacion_banda}, con 50 imágenes por cada combinación para realizar los diferentes experimentos.
 
 
 
@@ -71,7 +73,7 @@ En el siguiente cuadro se detallan las diferentes longitudes de onda y los rango
 \end{table}
 
 
-En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las características de utilizadas; en este caso una imagen correspondiente a la combinaciones de bandas M5, M4, M3 conocidas como (\textit{True Color}), color verdadero.
+En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las imágenes que se utilizo; en este caso corresponde  a las combinaciones de bandas M5, M4, M3 conocidas como (\textit{True Color}), color verdadero.
 
 \begin{figure}[H]
  \centering
@@ -85,49 +87,56 @@ En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las carac
 
 Las bandas  utilizadas para este trabajo de tesis  son las  de resolución moderada (M-bands) vistas en \ref{tab:viirs} , que posee una resolución espacial a nadir de 750 metros.
 
-En el siguiente cuadro se detalla las diferentes combinaciones de bandas utilizadas para este trabajo.
+En el siguiente cuadro se detalla las diferentes combinaciones de bandas utilizadas para realizar los experimentos.
 
-
-% ACA FALTA PONER TODAS LAS BANDAS QUE SE USO EN EL TRABAJO
 \begin{table}[H] \begin{center}
 \begin{tabular}{c|c}
 Num & Combinación de banda\\ \hline 
-		1  & a \\ 					 \hline
-		2  & a \\ 					 \hline
-    	3  & a \\ 					 \hline
-		4  & a \\ 					 \hline
-		5  & a \\ 					 \hline
-    	6  & a \\ 					 \hline
-		7  & a \\ 					 \hline
-		8  & a \\ 					 \hline
-    	9  & a \\ 					 \hline
-		10 & a \\ 					 \hline
-		11 & a \\ 					 \hline
-    	12 & a \\ 					 \hline
-		13 & a \\ 					 \hline
-		14 & a \\ 					 \hline
-    	15 & a \\ 					 \hline
-		16 & a \\ 					 \hline
-		17 & a \\ 					 \hline
-    	18 & a \\ 					 \hline
-		19 & a \\ 					 \hline
-		20 & a \\ 					 \hline
-    	21 & a \\ 					 \hline    	
+1  	& 	M1-M1-M1 	\\ \hline
+2  	&   M1-M3-M5	\\  \hline
+3  	& 	M1-M5-M3	\\ \hline
+4  	&   M3-M1-M5 	\\ \hline
+5   & 	M3-M3-M3 	\\ \hline
+6   & 	M3-M5-M1 	\\ \hline
+7   & 	M5-M1-M3 	\\ \hline
+8   & 	M5-M3-M1 	\\ \hline
+9   &   M5-M5-M5  	\\ \hline
+10  &	M7-M7-M7   	\\ \hline
+11  & 	M9-M9-M9   	\\ \hline
+12  & 	M11-M7-M9  	\\ \hline
+13  & 	M11-M9-M7  	\\ \hline
+14  &  	M7-M11-M9  	\\ \hline
+15  & 	M7-M9-M11  	\\ \hline
+16  & 	M9-M11-M7  	\\ \hline
+17  & 	M9-M7-M11  	\\ \hline
+18  & 	M11-M11-M11	\\ \hline
+19  & 	M11-M13-M15 \\ \hline
+20  & 	M11-M15-M13 \\ \hline
+21  & 	M13-M11-M15 \\ \hline
+22  & 	M13-M13-M13	\\ \hline
+23  & 	M13-M15-M11 \\ \hline
+24  & 	M15-M11-M13	\\ \hline
+25  & 	M15-M13-M11	\\ \hline
+26  & 	M15-M15-M15 \\ \hline
+27  & 	M5-M4-M3 	\\ \hline
+28  & 	M10-M7-M5 	\\ \hline   
+29  & 	M11-M12.M13	\\ \hline        	
 \end{tabular}
 \end{center}\caption{Combinaciones de bandas utilizadas \label{tab:combinacion_banda}}
 \end{table}
 \section{Recolección de Imágenes}\label{sub:recolecciondeimagen}
 
-Para recolectar las imágenes mencionadas en la sección anterior: \ref{sub:datosutilizados}, se debió realizar diversos pasos para obtener una imagen que luego serán utilizadas en los experimentos. Los pasos que se llevaron a cabo podemos enumerar  en:
+Para recolectar las imágenes mencionadas en la sección anterior: \ref{sec:datosutilizados}, se debió realizar diversos pasos para obtener una imagen que luego serán utilizadas en los experimentos. Las tareas que se llevaron a cabo se las puede enumerar en:
 \begin{enumerate}
 	\item Descarga de imágenes.
 	\item Pre-procesamiento.
 \end{enumerate}
 
-El primer punto se hace referencia a la descarga manual de los datos por medio del sitio oficial de \ac{conae}; ademas de realizo un pedido para poder obtener una ventana temporal de imágenes mas amplia ya que en la pagina oficial solo están imágenes que poseen una ventana de tiempo de dos meses.
+El primer punto hace referencia a la descarga manual de los datos por medio del sitio oficial de \ac{conae}; ademas de realizo un pedido para poder obtener una ventana temporal de imágenes mas amplia ya que en la pagina oficial solo contiene imágenes con dos meses de anterioridad respecto a la fecha que se visita.
 
-El segundo y ultimo punto es el que llamamos pre-procesamiento, en el las tareas que se realizaron fueron para obtener la imagen final a ser utilizada para la investigación.
-Partiendo de la imagen obtenida en el punto uno se utilizo la herramienta de procesamiento de imágenes ENVI \ref{sub:enviSoft}, software para el análisis de imágenes. Este software nos proporciona diferentes herramientas para la manipulación y procesamiento  de  una imagen satelital, de las cuales podemos mencionar la \textit{VIIRS Conversion Toolkit}; herramienta nos permite trabajar con productos \ac{viirs}, pudiendo aplicar a las imágenes correcciones geométricas, geo-referenciacion y re-proyecciones entre las diferentes funcionalidades que nos brinda. En este proceso de conversión de imágenes se realizaron diversos pasos para la obtención de las imágenes finales. Los pasos llevados a cabos a través del sofware \textit{ENVI} fueron los siguientes:
+El segundo y ultimo punto es el que llamamos pre-procesamiento, en este punto se realizaron tareas para obtener la imagen final a ser utilizada para la investigación.
+Partiendo de la imagen obtenida en el punto uno se utilizo la herramienta de procesamiento de imágenes ENVI \ref{sub:enviSoft}, software para el análisis de imágenes. Este software nos proporciona diferentes herramientas para la manipulación y procesamiento  de  una imagen satelital, de las cuales podemos mencionar la \textit{VIIRS Conversion Toolkit}; herramienta nos permite trabajar con productos \ac{viirs}, pudiendo aplicar a las imágenes correcciones geométricas, geo-referenciacion y re-proyecciones entre las diferentes funcionalidades que nos brinda. En este proceso de conversión de imágenes se realizaron diversos pasos para la obtención de las imágenes finales de los cuales se nombran a continuación:
+
 
 \begin{enumerate}
 
