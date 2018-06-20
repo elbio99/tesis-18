@@ -1,12 +1,12 @@
 \chapter{Recolección de Datos}\label{chap:recoleccion}
 
-El presente capitulo es de gran importancia para el desarrollo de esta investigación ya que se describe como se llevo a cabo la recolección de los datos necesarios para alcanzar los objetivos planteados. Se presenta al lector los diversos pasos para la obtención de las imágenes, ademas de las diversas configuraciones realizadas para la ejecución de los experimentos.
+El presente capitulo es de gran importancia para el desarrollo de esta investigación ya que se describe como se llevo a cabo la recolección de los datos necesarios para alcanzar los objetivos planteados. Se presenta al lector los diversos pasos para la obtención de las imágenes utilizada y  las configuraciones realizadas para la ejecución de los experimentos.
 
 \section{Imágenes Satelitales}\label{sec:imagen_satelitales}
 
 Una imagen satelital se la puede definir como la representación visual de información capturada por un sensor montado en un satélite artificial. Estos sensores recogen la información reflejada por la superficie de la tierra que luego es enviada para su posterior procesamiento.
 
-El uso de imágenes satelitales constituye una excelente herramienta para el conocimiento y monitoreo de los territorios y recursos; hoy en día disfrutamos de la oportunidad de aprovechar de imágenes satelitales para una gran variedad de aplicaciones:
+El uso de imágenes satelitales constituye una excelente herramienta para el conocimiento y monitoreo de los territorios y recursos; hoy en día disfrutamos de la oportunidad de aprovechar estas imágenes satelitales para una gran variedad de aplicaciones:
 \begin{itemize}
 	\item Desarrollo y planificación urbana.
 	\item Infraestructura, carreteras, canales, tuberías etc.
@@ -18,7 +18,7 @@ El uso de imágenes satelitales constituye una excelente herramienta para el con
 \end{itemize}
 
 \subsection{Niveles de procesamiento}\label{sub:nivelesdeprocesamiento}
-Dependiendo de la agencia espacial existe una nomenclatura para determinar los niveles de procesamiento que se aplica a las imágenes satelitales. En nuestro caso vamos a utilizar las siguiente nomenclatura propuesta por la \ac{nasa}:
+Dependiendo de la agencia espacial existe una nomenclatura para determinar los niveles de procesamiento que se aplica a las imágenes satelitales. En nuestro caso vamos a utilizar la nomenclatura propuesta por la \ac{nasa}:
 \begin{itemize}
 	\item \textbf{Nivel 0}: La información científica recogida está a máxima resolución, ordenada temporalmente y con errores de transmisión, artefactos y duplicados eliminados.
  	\item \textbf{Nivel 1a}: La información esta ordenada cronológicamente y datos auxiliares como coeficientes de calibración y parámetros de referencia.
@@ -39,7 +39,7 @@ En total se utilizaron 29 combinaciones de bandas ,ver: \ref{tab:combinacion_ban
 
 
 
-\subsection{VIIRS}\label{sub:viirs}
+\subsection{Instrumento VIIRS}\label{sub:viirs}
 El instrumento \ac{viirs} fue lanzado a bordo del satélite Suomi-NPP el 28 de octubre de 2011. Este instrumento posee 5 canales de alta resolución (I-bands), 16 canales de resolución moderada (M-bands) y un canal de baja luz (Day/Night Band, DNB). 
 
 En el siguiente cuadro se detallan las diferentes longitudes de onda y los rangos de onda de las bandas, junto con resolución geométrica apuntando a Nadir (ver tabla: \ref{tab:viirs}).
@@ -165,5 +165,4 @@ Partiendo de la imagen obtenida en el punto uno se utilizo la herramienta de pro
 
 \end{enumerate}
 
-
-Cada imagen obtenida a partir del proceso mencionado anteriormente se almaceno en formato \textit{.tiff} para su posterior procesamiento de experimentos.
+La imagen resultante de esta serie de pasos mencionados son las que se mostró en la figura \ref{Fig: bandas543}, cada imagen obtenida se almaceno en formato \textit{.tiff} para su posterior uso en los experimentos.
