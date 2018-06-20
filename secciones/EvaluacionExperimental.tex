@@ -1,12 +1,24 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En este  capítulo se va a  exponer los resultados obtenidos a partir del prototipo experimental realizado en el reconocimiento de 
-patrones sobre una imagen satelital. Esta evaluación experimental siguió el \textit{pipeline} de trabajo expuesto en el capitulo \ref{sec:pipeline}. El presente capítulo se dividirá en tres secciones: pre-procesamiento de las imágenes recolectadas, extracción de características en la imagen y por ultimo la validación experimental de los resultados obtenidos por medio diferentes métodos empleados en desarrollo.
+En este capitulo de expondrá los resultados que se obtuvieron por medio de los experimentos realizadas. Los pasos seguidos serán presentados dividiendo en diferentes secciones para lograr una mayor comprensión en el trabajo realizado.
+
+La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}}, se muestran cuales fueron los datos finales para realizar los experimentos.
+
+La segunda parte  \textit{Selección de modelos y Clasificación}, se detallan los modelos y clasificadores utilizados en la experimentación.
+
+Para finalizar  la sección \textit{validación} detallamos los resultados finales obtenidos.
 
 
-\section{Pre-procesamiento}\label{sec:preprocesamiento}
+\section{Preparación de Datos}\label{sec:preparacion_de_datos}
+
+Vamos a partir de las imágenes obtenidas en el capitulo \ref{chap:recoleccion} donde se puso en detalle los tipos de imágenes que serán utilizadas. En esta sección hablaremos de cual es el \textit{ground truth}, región verdadera, utilizado; como se realizo la extracción de característica de cada imagen, y que criterio de selección de candidatos para el entrenamiento se utilizo.
 
 \subsection{Ground truth}\label{sub:groundtruth}
+
+
+
+
+
 
 El problema abordado es un problema de clasificación supervisada, es por esto que debemos saber anticipadamente donde se encuentra el objeto de interés que deseamos detectar. En \ac{ml} el termino \textit{ground truth} hace referencia a la información provenida desde la observación; \textit{ground truth} involucra a un conjunto de imágenes y un conjunto de etiquetas en las imágenes que incluye la locación y las características claves en la imagen.
 
