@@ -1,8 +1,8 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En este capitulo de expondrá los resultados que se obtuvieron por medio de los experimentos realizadas. Los pasos seguidos serán presentados dividiendo en diferentes secciones para lograr una mayor comprensión en el trabajo realizado.
+En este capitulo de expondrá los resultados que se obtuvieron por medio de los experimentos realizados. Los pasos seguidos serán presentados dividiendo en diferentes secciones para lograr una mayor comprensión en el trabajo.
 
-La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}}, se muestran cuales fueron los datos finales para realizar los experimentos.
+La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}, se muestran cuales fueron los datos finales para realizar los experimentos.
 
 La segunda parte  \textit{Selección de modelos y Clasificación}, se detallan los modelos y clasificadores utilizados en la experimentación.
 
@@ -11,20 +11,13 @@ Para finalizar  la sección \textit{validación} detallamos los resultados final
 
 \section{Preparación de Datos}\label{sec:preparacion_de_datos}
 
-Vamos a partir de las imágenes obtenidas en el capitulo \ref{chap:recoleccion} donde se puso en detalle los tipos de imágenes que serán utilizadas. En esta sección hablaremos de cual es el \textit{ground truth}, región verdadera, utilizado; como se realizo la extracción de característica de cada imagen, y que criterio de selección de candidatos para el entrenamiento se utilizo.
+Vamos a partir de las imágenes obtenidas en el capitulo \ref{chap:recoleccion} donde se puso en detalle los tipos de imágenes que serán utilizadas. En esta sección hablaremos de cual es el \textit{ground truth}, región verdadera, utilizada; como se realizo la extracción de característica de cada imagen, y que criterio de selección de candidatos se utilizo para el entrenamiento.
 
 \subsection{Ground truth}\label{sub:groundtruth}
 
-
-
-
-
-
 El problema abordado es un problema de clasificación supervisada, es por esto que debemos saber anticipadamente donde se encuentra el objeto de interés que deseamos detectar. En \ac{ml} el termino \textit{ground truth} hace referencia a la información provenida desde la observación; \textit{ground truth} involucra a un conjunto de imágenes y un conjunto de etiquetas en las imágenes que incluye la locación y las características claves en la imagen.
 
-Las etiquetas son añadidas manualmente o automáticamente por análisis de imagen, dependiendo de la complejidad del problema. La colección de etiquetas, tales como puntos de interés, esquinas, descriptores de características, formas e histogramas, forman un modelo.
-
-Para poder obtener el \textit{ground truth} de entrenamiento se utilizo el software \textit{labelme}\footnote{Fuente: 
+Las etiquetas se añadieron manualmente utilizando una librería desarrollada en python llamada \textit{labelme}\footnote{Fuente: 
 https://github.com/wkentaro/labelme}; que nos permite realizar las anotaciones de las zonas de interés sobre la imagen.
 
 \begin{figure}[h]
@@ -34,7 +27,7 @@ https://github.com/wkentaro/labelme}; que nos permite realizar las anotaciones d
 	\label{Fig: labelme}
 \end{figure}
 
-En las imágenes siguientes se muestra el proceso de anotación que se llevo a cabo mediante el software \textit{labelme}, para detalles de la instalación ir a: \ref{sec:instalacionlabelme}.
+En las imágenes siguientes se muestra el proceso de anotación que se llevo a cabo mediante \textit{labelme}, para detalles de la instalación ir a: \ref{sec:instalacionlabelme}.
 
 Cada anotación se almacena en un archivo .json que luego es transformado y almacenado en una tabla como vemos en \ref{tab:ejemGT}
 \begin{figure}[h]
@@ -76,9 +69,12 @@ Imagen03 & 543 & Golfo & 44,300,500,900 \\ \hline
 
 \subsection{Selección de Metodos Proposal}\label{sub:proposal}
 
-Para cada una de las imágenes obtenidas (ver: \ref{chap:recoleccion}), se utilizo técnicas de \textit{Regions Proposal}, desarrollado en la sección (ver: \ref{sub: regionespropuesta}), para la extracción de regiones candidatas.
+Cada una de las imágenes obtenidas (ver: \ref{chap:recoleccion}), se aplico técnicas de selección de regiones candidatas para luego ser analizada y clasificada; para esta fase aplicamos métodos de \textit{Regions Proposal} visto en el capitulo \ref{chap:marcoteorico}.
 
-La primera  consideración tomada fue analizar y seleccionar que método de regiones propuesta se utilizaría. Se realizaron pruebas con los métodos \ac{bing}, Selective Search y Edge Boxes (ver: \ref{tabla:comparacionregiones}).
+
+
+
+La primera  consideración tomada fue analizar que método de \textit{Regions Proposal} se utilizaría. Se realizaron pruebas con los métodos \ac{bing}, Selective Search y Edge Boxes; donde podemos detallar lo siguiente: \ref{tabla:comparacionregiones}.
 
 \begin{table}[H]
 \centering
@@ -113,32 +109,26 @@ La primera  consideración tomada fue analizar y seleccionar que método de regi
 \label{tabla:comparacionregiones}
 \end{table}
 
-El método escogido en base a evaluaciones experimentales para la detección fue \textit{Edges Boxes}. 
-
-Debido a que las regiones buscadas son mas pequeñas en proporción a las imagen utilizada se procedió a realizar recortes para lograr una mayor detección de zonas candidatas de pequeño tamaño en la imagen; el proceso llevado a cabo fue el siguiente:
-
+Unos de los principales inconvenientes a la hora del desarrollo de la tesis fue el tamaño de las imágenes. Las regiones de interés son mas pequeñas en proporción a la escala y tamaño de la imagen utilizada, por este motivo al aplicar técnicas de selección de candidatos no generalizaba de manera correcta las regiones que deseamos captar. Para eliminar este problema se procedió a realizar los siguientes pasos: 
 \begin{enumerate}
  \item Para cada imagen original se corto en regiones de 256px de alto por el ancho total de la imagen (ver: \ref{Fig: cropimagen}), donde \textit{w} es el ancho de la imagen y \textit{h} alto de la imagen
- \item Se aplico para cada recorte obtenido el método \textit{Edges Boxes} para la obtención de regiones candidatas.
-\end{enumerate}
+ \item Se aplico para cada recorte obtenido el método \textit{Edges Boxes} para la obtención de regiones candidatas (ver: \ref{Fig: cropproposal}).
 
-\begin{figure}[h]
+\begin{figure}[H]
  \centering
   \includegraphics[height=1.2cm,keepaspectratio=true,clip=true]{imagenes/Logos/cropimagen.png}
   \caption{Crop de Imagen Satelital (4833\textit{w} X 256\textit{h})}
 	\label{Fig: cropimagen}
 \end{figure}
 
-Luego de realizar proceso de recorte de las imágenes, se aplicó el método \textit{Edges Boxes} a cada recorte (crops)(ver: \ref{Fig: cropproposal}).
-
-\begin{figure}[h]
+\begin{figure}[H]
  \centering
   \includegraphics[height=1.1cm,keepaspectratio=true,clip=true]{imagenes/Logos/cropproposal.png}
   \caption{Aplicación de Edges Boxes a un recorte de la imagen.}
 	\label{Fig: cropproposal}
 \end{figure}
 
-Se obtuvo en promedio 26 recortes por imagen; aplicando a cada imagen \textit{Edges boxes} se obtuvo el siguiente resultado (ver:\ref{Fig: proposal}).
+\item Para cada imagen se obtuvo 26 recortes en total, obteniendo el siguiente resultado en la imagen completa \ref{Fig: proposal}.
 
 \begin{figure}[H]
  \centering
@@ -147,9 +137,13 @@ Se obtuvo en promedio 26 recortes por imagen; aplicando a cada imagen \textit{Ed
 	\label{Fig: proposal}
 \end{figure}
 
-Para la imagen anterior (\ref{Fig: proposal}) se obtuvo 53.815 regiones por el método \textit{Edges Boxes}. Procesar estas 53.815 regiones candidatas consumirá mucho tiempo de computo, además podemos visualizar que existen regiones solapadas (overlapping). 
+\end{enumerate}
+La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Edges Boxes} de selección de candidatos. Procesar estas 53.815 regiones candidatas consumirá mucho tiempo de computo, además podemos visualizar que existen regiones solapadas (overlapping); estas regiones representan información duplicada que debemos eliminar. 
 
-Para solucionar el problema del \textit{overlapping}  aplicamos \ac{nms}\ref{sec:nonmaximumsuppression}, para disminuir la cantidad de regiones candidatas duplicadas que existe en la imagen.El valor que utilizado para disminuir el overlapping fue de \textbf{0.8} como parámetro de solapamiento.
+Para solucionar el problema del \textit{overlapping}  aplicamos \ac{nms} visto en la sección \ref{sec:nonmaximumsuppression}. 
+El valor usado para la eliminación de regiones candidatas duplicadas fue de 0.8 como valor de solapamiento entre regiones candidatas detectadas.
+
+En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un valor 0.8 de \textit{overlapping} aplicando \ac{nms} obtenemos un 90\% aproximadamente de optimización en la eliminación de regiones candidatas duplicada, es decir se paso de 53.815 a 1.560 regiones candidatas por imagen para el entrenamiento.
 
 \begin{figure}[H]
  \centering
@@ -158,10 +152,8 @@ Para solucionar el problema del \textit{overlapping}  aplicamos \ac{nms}\ref{sec
 	\label{Fig: proposalnms}
 \end{figure}
 
-Vemos que con un valor 0.8 de \textit{overlapping} aplicando \ac{nms} obtenemos un 90\% de optimización en las regiones propuesta, pasando de un rango de  53.815 a 1.560 regiones candidatas por imagen.
 
-
-\subsection{Etiquetado de Datos}\label{sub:etiquetado}
+\subsection{Etiquetado de Regiones Candidatas}\label{sub:etiquetado}
 
 Para realizar el etiquetado de los datos se utilizo el \textit{ground truth} (ver: \ref{sub:groundtruth}). En base a los resultados obtenidos por medio de (\ref{sec:proposal}); se comparo las anotaciones del \textit{ground truth} con los valores de \textit{regiones propuestas} calculando el \textit{overlapping} entre las regiones y las anotaciones.
 
@@ -190,6 +182,8 @@ Los datos se almacenaron en un archivo de extensión \textit{.mat}; que contiene
  \item El \textit{feature vector} de 2048 elementos que corresponde a cada región. 
  \item Las etiquetas que indica a que clase pertenece la región; en este caso clasificación binaria (0 ó 1).
 \end{itemize}
+
+
 
 
 
