@@ -71,9 +71,6 @@ Imagen03 & 543 & Golfo & 44,300,500,900 \\ \hline
 
 Cada una de las imágenes obtenidas (ver: \ref{chap:recoleccion}), se aplico técnicas de selección de regiones candidatas para luego ser analizada y clasificada; para esta fase aplicamos métodos de \textit{Regions Proposal} visto en el capitulo \ref{chap:marcoteorico}.
 
-
-
-
 La primera  consideración tomada fue analizar que método de \textit{Regions Proposal} se utilizaría. Se realizaron pruebas con los métodos \ac{bing}, Selective Search y Edge Boxes; donde podemos detallar lo siguiente: \ref{tabla:comparacionregiones}.
 
 \begin{table}[H]
@@ -155,9 +152,16 @@ En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un valor 
 
 \subsection{Etiquetado de Regiones Candidatas}\label{sub:etiquetado}
 
-Para realizar el etiquetado de los datos se utilizo el \textit{ground truth} (ver: \ref{sub:groundtruth}). En base a los resultados obtenidos por medio de (\ref{sec:proposal}); se comparo las anotaciones del \textit{ground truth} con los valores de \textit{regiones propuestas} calculando el \textit{overlapping} entre las regiones y las anotaciones.
+Los datos obtenidos de la recolección de regiones candidatas a partir de los métodos \textit{Proposal} debe ser etiquetados para su entrenamiento. Para realizar el etiquetado se utilizo el \textit{ground truth} \ref{sub:groundtruth} que serán comparados con las regiones candidatas calculando el \textit{overlapping} entre estas.
 
-Se etiqueto las regiones con valores de \textbf{0 y 1}; 0 correspondiente a una región que no contiene el elemento buscado y 1 correspondiente a una región  que contiene el objeto de interés. El valor de \textit{overlapping} utilizado para seleccionar que etiqueta usar fue de \textbf{0.2} como valor de  solapamiento.
+El criterio utilizado en el etiquetado de datos es el siguiente:
+\begin{enumerate}
+	\item 0: NO contiene el patrón de interés en la región candidata.
+	\item 1: Existencia del patrón en la región candidata.
+\end{enumerate}
+
+Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de 0.5 como valor de \textit{overlapping}, es decir el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
+
 
 \section{Extracción de Características}\label{sec:extracciondecaracteristica}
 
