@@ -163,9 +163,9 @@ El criterio utilizado en el etiquetado de datos es el siguiente:
 Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de 0.5 como valor de \textit{overlapping}, es decir el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
 
 
-\section{Extracción de Características}\label{sec:extracciondecaracteristica}
+\subsection{Extracción de Características}\label{sec:extracciondecaracteristica}
 
-En esta sección vamos a especificar el proceso de extracción  de característica realizado sobre una región. Para esto partiremos del los pasos desarrollados previamente \ref{sec:preprocesamiento}.
+El proceso de extracción de caracteristica se realiza sobre la regiones candidatas obtenidas, es decir vamos a partir de los pasos desarrollados en \ref{sub:proposal}.
 
 Calculando el método Edges Boxes y aplicando \ac{nms} vimos que obtuvimos aproximadamente 1560 regiones por imagen. A partir de estos datos calculamos el \textbf{\textit{feature vector}} que caracterice esa región; es decir para cada región encontrada debemos obtener un vector que represente de manera única esa región. Para la obtención del vector de característica se utilizo una \ac{cnn}. 
 
