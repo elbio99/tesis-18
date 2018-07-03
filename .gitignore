@@ -6,3 +6,5 @@
 *.aux
 *.out
 *.gz
+*.dvi
+template_tesis_mdiae.blg

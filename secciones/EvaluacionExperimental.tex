@@ -184,7 +184,7 @@ Los vectores obtenidos se almacenaron en un archivo de extensión \textit{.mat};
 
 \section{Entrenamiento}\label{sec:entrenamiento}
 
-En esta sección se comparte como se realizo el proceso de aprendizaje automático \ac{ml} con los datos obtenidos de la sección anterior \ref{sec:preparacion_de_datos}. El conjunto de imágenes finales usado para el entrenamiento se detalla en \ref{sec:datosutilizados}.
+En esta sección se comparte como se realizo el proceso de aprendizaje automático \ac{ml} con los datos obtenidos de la sección anterior \ref{sec:preparacion_de_datos}. El conjunto de imágenes finales utilizado para el entrenamiento se detalla en \ref{sec:datosutilizados}.
 
 El datasets final se dividió en tres conjuntos:
 \begin{itemize}
@@ -195,29 +195,32 @@ El datasets final se dividió en tres conjuntos:
 
 El total de la muestra de datos para la experimentación fue de 650.000 \textit{feature vector}.
 
+\subsection{Hiper-parametros}\label{sub:hiperparametro}
 
 
-\subsection{Entrenamiento}\label{sub:entrenamiento}
+Para obtener una predicción correcta se debe realizar la optimización de parámetros que afectan a la clasificación. El método utillizado para poder realizar la optimización de estos parametros fue \textit{grid search}\footnote{Fuente: https://goo.gl/koWr74}.  Grid search busca por fuerza bruta los parametros a optimizar quedandose con aquel que logre un mayor \textit{accuracy} en las evaluaciones; en cada iteracion se utiliza \textit{cross-validation} con 5 folds en el entrenamiento para evitar el \textit{overfitting}.
 
-Para realizar el entrenamiento de los datos se utilizo un clasificador \ac{svm} con kernel: \textit{linear y gaussiano \"RBF\"}. Como mencionamos previamente se dividió los datos en \textit{entrenamiento}, \textit{validación} y \textit{test}; para validar los datos de entrenamiento se uso \textit{cross-validation}, validación cruzada, dividiendo los datos de entrenamiento y validación en 5 conjuntos usando el algoritmo \textit{K-Folds}. 
-
-
-\subsubsection{Parámetros}\label{sub:parametros}
-
-
-Para obtener una predicción  correcta se debe optimizar algunos parámetros en el entrenamiento; para buscar los parámetros óptimos para la creación del modelo se realizaron pruebas con el algoritmo  \textit{\textbf{GridSearch}} y \textit{\textbf{RandomizeSearch}} \footnote{Fuente: https://goo.gl/koWr74} con \textit{k-folds}, contenido en la librería de \textit{Sklearn}\ref{sub:sklearn}, algoritmo que usa validación cruzada para la búsqueda. 
-
-
-Los parámetros que permiten al clasificador minimizar el error en la predicción  son:
+Los parametros son:
 \begin{enumerate}
 	\item \textbf{Parámetro C}: Controla el costo de la mala clasificación, \textit{misclassification}, en los datos de entrenamiento. Con un valor de C pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos. Para valores muy pequeños de C, debe obtener ejemplos mal clasificados, a menudo incluso si sus datos de entrenamiento son linealmente separables. Para valores grandes de C,  elegirá un hiperplano de menor margen si ese hiperplano hace un mejor trabajo de conseguir que todos los puntos de entrenamiento estén clasificados correctamente. El objetivo es encontrar el equilibrio entre "no demasiado estricto" y "no demasiado relajado". La validación cruzada  son buenas maneras de encontrar el mejor C.
-
-	\item \textbf{Parámetro gamma}: Es la inversa de la desviación estándar del kernel RBF (función gaussiana), que se utiliza como medida de similitud entre dos puntos. 
+	\item \textbf{Parámetro gamma}: Es la inversa de la desviación estándar del kernel RBF (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
 \end{enumerate}
+	
 
-Además de la optimización de los parámetros mencionados previamente, \textbf{C y gamma}, se  debe tener en cuenta las siguientes variables a la hora de evaluar un modelo: \textit{Accuracy, Precisión y Recall}. 
+El rango de parámetros usados para el entrenamiento y validación de datos fueron los siguientes:
 
-Las variables que intervienen en el calculo de \textit{Accuracy, Precisión y Recall} son:
+\begin{itemize}
+ \item \textbf{Valor de C}: 1000,100,10,1, 0.1,0.01,0.001,0.0001
+ \item \textbf{Valor de Gamma}: 1,0,1,0,01,0,001,0,0001,0,00001
+\end{itemize}
+
+
+
+
+\subsection{Metricas}\label{sub:metricas}
+
+Además de la optimización de los parámetros mencionados \ref{sub:hiperparametro}, la validacion de los resultados se usaron las siguientes metricas: \textit{Accuracy, Precisión y Recall}.
+
 \begin{itemize}
 	\item Positivos (P): Observación positiva (valor etiquetado).
 	\item Verdadero Positivo (TP): La observación es positiva y la predicción también.
@@ -240,12 +243,6 @@ precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\
 recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} 
 \end{equation}
 
-El rango de parámetros usados para el entrenamiento y validación de datos fueron los siguientes:
-
-\begin{itemize}
- \item \textbf{Valor de C}: 1000,100,10,1, 0.1,0.01,0.001,0.0001
- \item \textbf{Valor de Gamma}: 1,0,1,0,01,0,001,0,0001,0,00001
-\end{itemize}
 
 
 
