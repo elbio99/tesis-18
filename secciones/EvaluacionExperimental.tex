@@ -229,212 +229,30 @@ Además de la optimización de los parámetros mencionados \ref{sub:hiperparamet
 	\item Verdadero Negativo (TN) :  La observación es negativa y también la predicción negativa.
 \end{itemize}
 
-\textbf{Accuracy:} Proporción de todas las predicciones que son correctas; da una medida de que tan bueno es el modelo.
+\begin{enumerate}
+\item \textbf{Accuracy:} Proporción de todas las predicciones que son correctas; da una medida de que tan bueno es el modelo.
 \begin{equation}
 accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}
-\end	{equation}
-\textbf{Precisión:} Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
+\end{equation}
+
+\item \textbf{Precisión:} Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
 \begin{equation}
 precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}
 \end{equation}
 
-\textbf{Recall:} Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
+\item \textbf{Recall:} Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
 \begin{equation}
 recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} 
 \end{equation}
 
+\item \textbf{Overlapping Mean:} Métrica obtenida a partir de la intersección del ground truth y el bounding box de la predicción obtenida.
+
+\end{enumerate}
 
 
+\subsection{Resultados obtenidos}\label{sub:resultados}
 
-\subsection{Entrenamiento de Imágenes Bandas 5, 4 y 3 (True color)}\label{sub:entrenamiento_bandas543}
-
-Cantidad de imágenes Train-val: 46 
-Cantidad de imágenes Test : 16  
-
-El total de feature vector para el entrenamiento:
-\begin{itemize}
-\item Tamaño del Train-val: 1361
-\item Tamaño del Test: 356
-\end{itemize}
-
-Prueba con GridSearch conjunto Train-val, con validacion cruzada en 5 folds:
-
-\begin{itemize}
-\item Valores de \textit{Accuracy} (exactitud) optimo: \textbf{0.88221884498}
-\item Valores de \textit{Kernel} optimo: \textbf{RBF}
-\item Valores de \textit{C} optimo: \textbf{1000}
-\item Valores de \textit{Gamma} optimo: \textbf{1}
-
-\end{itemize}
-
-Luego de obtener el modelo se realizo el test correspondiente obteniendo los siguientes valores:
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline \multicolumn{5}{|c|}{Reporte Test Entrenamiento} \\ \hline
-\hline \textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} & \textbf{Support}\\ \hline 
-				 0   & 0.88 & 0.96 & 0.92  & 267	\\ \hline 
-				 1   & 0.82 & 0.61 & 0.70  & 89 \\ \hline 
-\textbf{avg / total} & 0.86 & 0.87 & 0.86  & 356 \\ \hline
-\end{tabular}
-\end{center} \caption{Test Entrenamiento bandas 5, 4, 3 con GridSearch}\label{tab:gridsearchtest543}
-\end{table}
-
-
-Prueba con RandomizeSearch conjunto Train-val, con validacion cruzada en 5 folds:
-
-\begin{itemize}
-\item Valores de \textit{Accuracy} (exactitud) optimo: \textbf{0.882218844985}
-\item Valores de \textit{Kernel} optimo: \textbf{RBF}
-\item Valores de \textit{C} optimo: \textbf{100}
-\item Valores de \textit{Gamma} optimo: \textbf{1}
-
-\end{itemize}
-
-Luego de obtener el modelo se realizo el test correspondiente obteniendo los siguientes valores:
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline \multicolumn{5}{|c|}{Reporte Test Entrenamiento} \\ \hline
-\hline \textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} & \textbf{Support}\\ \hline 
-				 0   & 0.88 & 0.96 & 0.92  & 267	\\ \hline 
-				 1   & 0.82 & 0.61 & 0.70  & 89 \\ \hline 
-\textbf{avg / total} & 0.86 & 0.87 & 0.86  & 356 \\ \hline
-\end{tabular}
-\end{center} \caption{Test Entrenamiento bandas 5, 4, 3 con RandomizeSearch}\label{tab:RandomTest543}
-\end{table}
-
-
-Prueba con Hard Negative Minning
-Mejora en la exactitud, Accuracy: 0.884831460674
-
-
-
-\subsection{Entrenamiento de Imágenes Bandas 10, 7 y 5}\label{sub:entrenamiento_bandas1075}
-
-Cantidad de imágenes Train-val: 46 
-Cantidad de imágenes Test : 16  
-
-El total de feature vector para el entrenamiento:
-\begin{itemize}
-\item Tamaño del Train-val: 1584
-\item Tamaño del Test: 536
-\end{itemize}
-
-Prueba con GridSearch conjunto Train-val, con validacion cruzada en 5 folds:
-
-\begin{itemize}
-\item Valores de \textit{Accuracy} (exactitud) optimo: \textbf{0.919823232323}
-\item Valores de \textit{Kernel} optimo: \textbf{RBF}
-\item Valores de \textit{C} optimo: \textbf{1000}
-\item Valores de \textit{Gamma} optimo: \textbf{0.001}
-\end{itemize}
-
-Luego de obtener el modelo se realizo el test correspondiente obteniendo los siguientes valores:
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline \multicolumn{5}{|c|}{Reporte Test Entrenamiento} \\ \hline
-\hline \textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} & \textbf{Support}\\ \hline 
-				 0   & 0.96 & 0.98 & 0.97  & 402	\\ \hline 
-				 1   & 0.94 & 0.89 & 0.92  & 134 \\ \hline 
-\textbf{avg / total} & 0.96 & 0.96 & 0.96  & 536 \\ \hline
-\end{tabular}
-\end{center} \caption{Test Entrenamiento bandas 10, 7, 5 con GridSearch}\label{tab:gridsearchtest1075}
-\end{table}
-
-
-Prueba con RandomizeSearch conjunto Train-val, con validacion cruzada en 5 folds cada 10 candidatos:
-
-\begin{itemize}
-\item Valores de \textit{Accuracy} (exactitud) optimo: \textbf{0.919823232323}
-\item Valores de \textit{Kernel} optimo: \textbf{RBF}
-\item Valores de \textit{C} optimo: \textbf{10} 	
-\item Valores de \textit{Gamma} optimo: \textbf{0.1}
-
-\end{itemize}
-
-Luego de obtener el modelo se realizo el test correspondiente obteniendo los siguientes valores:
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline \multicolumn{5}{|c|}{Reporte Test Entrenamiento} \\ \hline
-\hline \textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} & \textbf{Support}\\ \hline 
-				 0   & 0.96 & 0.98 & 0.97  & 402	\\ \hline 
-				 1   & 0.94 & 0.88  & 0.91 & 134 \\ \hline 
-\textbf{avg / total} & 0.96 & 0.96 & 0.96  & 536 \\ \hline
-\end{tabular}
-\end{center} \caption{Test Entrenamiento bandas 5, 4, 3 con RandomizeSearch}\label{tab:RandomTest1075}
-\end{table}
-
-
-Prueba con Hard Negative Minning
-Mejora en la exactitud, Accuracy: 0.960820895522
-
-
-
-\subsection{Entrenamiento de Imágenes Bandas 11, 12 y 13}\label{sub:entrenamiento_bandas1111213}
-
-Cantidad de imágenes Train-val: 46 
-Cantidad de imágenes Test : 16  
-
-El total de feature vector para el entrenamiento:
-\begin{itemize}
-\item Tamaño del Train-val: 1744
-\item Tamaño del Test: 556
-\end{itemize}
-
-Prueba con GridSearch conjunto Train-val, con validacion cruzada en 5 folds:
-
-\begin{itemize}
-\item Valores de \textit{Accuracy} (exactitud) optimo: \textbf{0.872133027523}
-\item Valores de \textit{Kernel} optimo: \textbf{RBF}
-\item Valores de \textit{C} optimo: \textbf{1000}
-\item Valores de \textit{Gamma} optimo: \textbf{1}
-\end{itemize}
-
-Luego de obtener el modelo se realizo el test correspondiente obteniendo los siguientes valores:
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline \multicolumn{5}{|c|}{Reporte Test Entrenamiento} \\ \hline
-\hline \textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} & \textbf{Support}\\ \hline 
-				 0   & 0.90 & 0.99 & 0.94  & 417	\\ \hline 
-				 1   & 0.95 & 0.68 & 0.79  & 139 \\ \hline 
-\textbf{avg / total} & 0.92 & 0.91 & 0.91  & 556 \\ \hline
-\end{tabular}
-\end{center} \caption{Test Entrenamiento bandas 11, 12,13 con GridSearch}\label{tab:gridsearchtest111213}
-\end{table}
-
-
-Prueba con RandomizeSearch conjunto Train-val, con validacion cruzada en 5 folds cada 10 candidatos:
-
-\begin{itemize}
-\item Valores de \textit{Accuracy} (exactitud) optimo: \textbf{0.860091743119}
-\item Valores de \textit{Kernel} optimo: \textbf{RBF}
-\item Valores de \textit{C} optimo: \textbf{1000} 	
-\item Valores de \textit{Gamma} optimo: \textbf{0.1}
-
-\end{itemize}
-
-Luego de obtener el modelo se realizo el test correspondiente obteniendo los siguientes valores:
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline \multicolumn{5}{|c|}{Reporte Test Entrenamiento} \\ \hline
-\hline \textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} & \textbf{Support}\\ \hline 
-				 0   & 0.89 & 0.98 & 0.93  & 417	\\ \hline 
-				 1   & 0.91 & 0.64  & 0.75 & 139 \\ \hline 
-\textbf{avg / total} & 0.90 & 0.89 & 0.89  & 556 \\ \hline
-\end{tabular}
-\end{center} \caption{Test Entrenamiento bandas 11, 12, 13 con RandomizeSearch}\label{tab:RandomTest111213}
-\end{table}
-
-
-Prueba con Hard Negative Minning
-Mejora en la exactitud, Accuracy: 0.911870503597
-
-
+En el siguiente cuadro visualizamos los resultados del  los entrenamientos realizados. 
 
 
 
@@ -449,9 +267,6 @@ Un modelo RBF , \textit{Radial basis function}, es un kernel muy utilizado en la
 K(x,x')=\exp(-\frac{ \|x-x'\|^2}{2\sigma^2} )
 \end{equation}\label{ec: ecuacionrbf}
 En el cual \(\|x-x'\|\) es la distancia euclidiana cuadrada entre dos puntos de datos \(x\) y \(x'\)
-
-
-
 
 
 
