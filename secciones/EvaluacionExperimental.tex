@@ -252,9 +252,10 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 
 \subsection{Resultados obtenidos}\label{sub:resultados}
 
-En el siguiente cuadro visualizamos los resultados del  los entrenamientos realizados. 
+En la siguiente tabla \ref{tab:entrenam-result}	se expone los resultados obtenidos de los entrenamientos realizados. Como podemos ver se consideraron  diferentes conbinaciones de banda con el fin de encontrar aquella que mejoren las metricas y que resalten las zonas de interes que deseamos detectar.
 
-\begin{table}[]
+\begin{table}[H]
+\begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
  & \multicolumn{3}{c|}{Hiper - parametros} & \multicolumn{4}{c|}{Metricas} \\ \hline
@@ -288,46 +289,20 @@ Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}av
 \multicolumn{1}{|c|}{11-12-13} & 1000 & 1 & rbf & 0.87 & 0.91 & 0.62 & 0.32 \\ \hline
 \multicolumn{1}{|c|}{5-4-3} & 1000 & 1 & rbf & 0.88 & 0.87 & 0.57 & 0.27 \\ \hline
 \multicolumn{1}{|c|}{10-7-5} & 1000 & 0.001 & rbf & 0.91 & 0.96 & 0.58 & 0.36 \\ \hline
-
 \end{tabular}
+\end{center}\caption{Resultados de los entrenamientos}\label{tab:entrenam-result}
 \end{table}
 
-\textcolor{red}{\subsection{Modelos de Entrenamiento SVM}\label{sub:linealModel}}
+Cada uno de los valores encontrados de los hiper parametros se obtuvo a traves de \textit{grid search}, estos valores son los que optimizan las metricas que estamos empleando.
 
-La manera mas básica de usar un clasificador \ac{svm} es por medio de un kernel lineal, es decir crear una frontera de decisión a partir de una línea 
-recta. 
+Se evaluaron tambien las detecciones obtenidas en el conjunto de test evaluando los \textit{falsos positivos} obtenidos re entrenando nuevamente con estos valores con el fin de lograr una mejora en la deteccion y localizacion de la region de interes.
 
-%\subsection{Modelo RBF}\label{sub:RBFModel}
-Un modelo RBF , \textit{Radial basis function}, es un kernel muy utilizado en la clasificación en reconocimiento de patrones; esta dada por la siguiente ecuación:
-\begin{equation}
-K(x,x')=\exp(-\frac{ \|x-x'\|^2}{2\sigma^2} )
-\end{equation}\label{ec: ecuacionrbf}
-En el cual \(\|x-x'\|\) es la distancia euclidiana cuadrada entre dos puntos de datos \(x\) y \(x'\)
+Una de las tareas realizadas para evaluar la localizacion del objeto fue obtener el \textit{overlapping mean}; en esta metrica comparamos los \textit{bounding boxs} obtenidos en el entrenamiento realizado con el \textit{ground thruth}, region de interes, que tenemos anotado. Este valor nos da una vision de cual es la exactitud de nuestro predictor en cuanto a la localizaacion del objeto.
+
+\textcolor{red}{graficos del cuadro obtenido}
 
 
 
-\textcolor{red}{\subsection{Hard Negative Mining}\label{sub:hardnegativemining}}
-
-Luego de buscar los parámetros óptimos para el modelo, el paso siguiente es el entrenamiento nuevamente de un modelo con los parámetros previamente obtenidos a partir de \textbf{GridSearch} o \textbf{RandomizeSearch}.
-
-Para lograr una mayor precisión en el modelo de dato aplicamos la técnica \textit{hard negative mininig}, esta técnica nos permite eliminar los falsos positivos arrojados por el modelo.
-
-Los pasos que se utilizaron son los siguientes:
-\begin{enumerate}
-	\item Entreno el clasificador con los valores óptimos obtenido.
-	\item En base al conjunto de test obtengo solo los datos que tengan etiqueta negativa.
-	\item Calculo la predicción de esos datos en base al clasificador entrenado.
-	\item Si la predicción retorna algún valor = 1(\"positivo\"), guardo ese valor y lo agrego al conjunto train-val
-	\item Retorno al paso 1; esto lo realizo 5 veces.
-	\item Calculo el valor de Accuracy en base al ultimo modelo obtenido de las iteraciones.
-\end{enumerate}
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/Logos/labelme2.png}
-  \caption{Reconocimiento de Patrones (Golfo San Matias, Mar Chiquita)}
-	\label{Fig: reconocimientopatrones}
-\end{figure}
 
 
 
