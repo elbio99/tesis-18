@@ -1,19 +1,22 @@
 \chapter{Conclusiones y lineamientos futuros}\label{chap:conclusiones}
-Es este capítulo se van a exponer, desde un punto de vista personal y subjetivo, las lecciones aprendidas durante
-la realización de este trabajo final. Además se propondrán posibles evoluciones o mejoras que se podrían aplicar sobre los
-desarrollos realizados.
+En este apartado se expone las conclusiones y lineamientos futuros obtenidos a partir de la investigación realizada en la presente tesis. 
 
 \section{Conclusiones}
-En base a la investigación y el desarrollo que se realizo podemos exponer lo siguientes items:
+En el desarrollo de la presente tesis se abordo el problema del reconocimiento de patrones sobre una imagen satelitales. EL estudio derivo en evaluar diferentes bandas a utilizar, pre procesamiento de imágenes ademas de la selección de diversas herramientas informáticas para su desarrollo y conclusión.
+
+Como base de lo expresado anteriormente se expone las siguientes conclusiones obtenidas por esta investigación:
 \begin{enumerate}
-\item Para realizar un reconocimiento óptimo de patrones se necesita un datasets representativo de las regiones que se desea detectar.
-\item Debido al tamaño de las imágenes y que las regiones buscadas eran muy pequeña en proporción a la misma, se demostró que para obtener regiones candidatas a partir de \textit{regions proposal} se debe realizar recortes (crops) de acuerdo al tamaño de la región buscada.
-\item Se observo que a causa de que  la mayoría de los \textit{feature vector} calculados son de etiquetas negativas, es decir que no caen en la 
-región buscada, al realizar el entrenamiento de los datos se obtenía un modelo con overfitting. A continuación se empleo la siguiente regla 3 
-negativos cada 1 positivo; con esto no solo evitamos el overfitting del modelo sino también mejoramos el tiempo de computo en el procesamiento. 
-\item Se emplearon diferentes algoritmos de búsqueda de parámetros \textit{GridSearch} y \textit{RamdomizeSeach}, el tiempo observado de procesamiento mas óptimo fue por medio de \textit{RamdomizeSeach}.
-\item Se demostró experimentalmente que es posible reconocer patrones en una imagen satelital por medio de técnicas de \ac{va} y \ac{ml}.
-\item Se demostró que las redes neuronales profundas obtienen una buena generalización de la imagen para problemas en reconocimiento de patrones.
+\item El reconocimiento de patrones y las técnicas de aprendizaje automático nos dan diversas ventajas a la hora de optimizar nuestro procesos; en nuestro caso la detección de regiones. Para poder realizar un modelo eficiente se debe tener en cuentas numerosos factores en el cual uno de los mas importante son los datos que vamos a utilizar; estos datos deber ser representativo del modelo que deseamos crear.
+
+\item Cuando se trabaja con imágenes de gran tamaño se deben tener en cuenta el tamaño de regiones que se quiere captar ademas del hardware necesario para poder realizar el computo de los datos.
+
+\item Otras de las observaciones que se detecto es que las muestra de los datos deben estar balanceadas, es decir tener las mismas cantidad de datos tanto negativos como positivos para poder discriminar de manera adecuada las clases que deseamos detectar.
+
+\item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos; como se menciona en el punto anterior al tener clase desbalanceadas los modelos entrenados no hacian una buena generalización de los datos. Para evitar esto se trabajo con técnicas de \textit{cross validation} y resampleo de los datos.
+
+%\item Se demostró experimentalmente que es posible reconocer patrones en una imagen satelital por medio de técnicas de \ac{va} y \ac{ml}.
+\item En base a las experimentaciones realizadas podemos afirmar que aplicar redes neuronales pre entrenadas para la extracción de característica se obtiene una correcta generalización de los datos y son muy eficiente para problemas de clasificación de imágenes.
+
 \end{enumerate}
 
 
