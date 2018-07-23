@@ -1,16 +1,16 @@
 \chapter{Estado del Arte} \label{chap:estadodelarte}
 
 
-En este capítulo vamos a describir las diversas investigaciones y trabajos realizados con imágenes satelitales hasta la fecha. Se pondrá a disposición del lector como se utilizaron técnicas de  Computer Vision y Machine Learning sobre imágenes satelitales.
+En este capítulo vamos a describir las diversas investigaciones y trabajos realizados con imágenes satelitales aplicando técnicas de Computer Vision y Machine Learning describiendo además el estado actual de la tematica abordada.
 
 
 \section{Aplicaciones en el ámbito espacial}\label{sec:estadodelacuestion}
 
-Las aplicaciones de visión artificial en el ámbito espacial son cada ves mas utilizadas, desde el estudio de un área determinada hasta implementaciones echas a bordo de un satélite artificial. Este avance se dio gracias a diversos factores en el campo de la informática; en primer lugar la creciente capacidad de computo, con procesadores de mayor rendimiento y el auge de las GPU (unidad de procesamiento grafico). En segundo lugar la aparición de algoritmos y frameworks mas eficiente en el uso de reconocimiento de patrones; de los que podemos nombrar el uso de \ac{cnn}. 
+Las aplicaciones de visión artificial en el ámbito espacial son cada ves mas utilizadas, desde el estudio de un área determinada hasta implementaciones echas a bordo de un satélite artificial. Este avance se dio gracias a diversos factores en el campo de la informática; en primer lugar la creciente capacidad de computo, con procesadores de mayor rendimiento y el auge de las GPU (unidad de procesamiento grafico). En segundo lugar la aparición de algoritmos y frameworks mas eficiente en el uso de reconocimiento de patrones, de los que podemos nombrar el uso de \ac{cnn}. 
 
 Otro factor que no podemos dejar de nombrar son la aparición de UAVs, esto permitió utilizar Computer Vision sobre imágenes de mayor tamaño. La presencia en el mercado de pequeños UAVs de bajo costo con capacidad para portar pequeñas cámaras de vídeo de alta resolución y de realizar despegue vertical con posibilidad de movimiento en cualquier dirección del espacio, hace posible abordar nuevos retos en el campo de la detección y seguimiento de determinadas situaciones de la realidad \citep{Lanillos}.
 
-Actualmente en el campo de reconocimiento de patrones sobre imágenes satelitales se pude ver que la mayoría de los trabajos que se realizaron en el área espacial han sido aplicado en tierra; gran parte de estos trabajos se basan en estudiar las característica del terreno. Estas aplicaciones son cada vez mas explotada no solo por agencias espaciales sino por entidades educativas, publicas y privadas. 
+Actualmente en el campo de reconocimiento de patrones sobre imágenes satelitales se pude ver que la mayoría de los trabajos que se realizaron en el área espacial han sido aplicado en tierra, gran parte de estos trabajos se basan en estudiar las característica del terreno. Estas aplicaciones son cada vez mas explotada no solo por agencias espaciales sino por entidades educativas, publicas y privadas. 
 
 Para empezar vamos a comenzar citando el siguiente trabajo realizado por \citep{Cheang}; en este articulo se describe el uso de técnicas de reconocimiento de patrones usando aprendizaje supervisado. El método para la extracción y clasificación de los datos utilizado se baso en dos enfoques; por un lado se utilizaron técnicas de \textit{sliding window} para la obtención de regiones candidatas, por otro se aplicaron redes neuronales profundas, \ac{dl}, método muy utilizado para el reconocimiento de objeto en una imagen. Otro ejemplo encontrado en la literatura aplicando  \textit{aprendizaje no supervisado} es para la clasificación del uso de la tierra a partir de imágenes satelitales multi-temporales, en este paper \citep{pnn}, se utilizo imágenes del satélite LANSAT y SPOT usando redes neuronales probabilística, estas técnicas realizan un agrupamiento de datos, \textit{clusters}, y realizan la clasificación creando las fronteras entre los diferentes \textit{clusters} de datos para su posterior reconocimiento.
 
@@ -35,7 +35,7 @@ Usar técnicas de \ac{va} implica lograr que el satélite tenga mayor autonomía
 
 \cite{Huggins} en su trabajo titulado \textit{Computer Vision Localization Based on Pseudo-Satellites} propone usar técnicas de \ac{va} para la localización y orientación de un CubeSat para complementar la navegación, el estudio se enfoca en  aumentar la capacidad de los GPS utilizando \ac{va}. El autor siguiere crear una red de nodos en el cual un grupo de nodos poseen GPS para calcular su posición y el otro grupo a partir del uso de la posición de la cámara y usando técnicas de  \ac{va}  utilizar la posición del primer grupo para calcular la suya intercambiando información de los datos y calculando la distancia y orientación de la cámara \citep{Huggins}.
 
-Como vimos existen en la actualidad estudios y aplicaciones realizadas ya sea en vuelo o en tierra que utilizan algoritmos de reconocimiento de patrones, por lo que la tendencia vista en los últimos tiempo es muy alentadora y nos abre una nueva forma de mirar al espacio y enfocar nuestro desarrollo a esta área, como podemos ver en el gráfico siguiente \ref{Fig: scopus1}. 
+Como vimos existen en la actualidad estudios y aplicaciones realizadas ya sea en vuelo o en tierra que utilizan algoritmos de reconocimiento de patrones, por lo que la tendencia vista en los últimos tiempo es muy alentadora y nos abre una nueva forma de mirar al espacio y enfocar nuestro desarrollo a esta área, como podemos ver en el gráfico siguiente \ref{Fig: scopus1} el crecimiento de investigaciones realizadas en este campo. 
 
 \begin{figure}[h]
  \centering
