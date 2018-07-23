@@ -6,3 +6,5 @@
 *.aux
 *.out
 *.gz
+*.blg
+*.tex
