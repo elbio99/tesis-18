@@ -28,7 +28,7 @@ Esta disciplina es una las áreas de mayor interés y crecimiento de los último
 
 \section{Inteligencia Artificial}\label{sec:inteligenciaA}
 
-En la literatura existe diferentes puntos de vista sobre que es la \ac{ia}, los enfoques que podemos encontrar son aquellos que se refieren a los procesos mentales, razonamiento y la conducta; es decir sistemas: que piensan como humanos, que piensan racionalmente y que actúan como humano \citep{inteligenciaA}. 
+En la literatura existe diferentes puntos de vista sobre que es la \ac{ia}, los enfoques que podemos encontrar son aquellos que se refieren a los procesos mentales, razonamiento y la conducta, es decir sistemas que que piensan racionalmente y que actúan como seres humanos \citep{inteligenciaA}. 
 \begin{center}
 \begin{minipage}{0.8\linewidth}  \vspace{5pt}{\small La \ac{ia} es la parte de la ciencia de la computación que se ocupa del diseño de sistemas computacionales inteligente, es decir, sistemas que exhiben las características que asociamos en el comportamiento humano.}
 \begin{flushright}
@@ -66,7 +66,7 @@ Esta disciplina estudia problemas metodológicos y algorítmicos como así tambi
 
 Un sistema de \ac{va} actúa sobre una representación de una realidad que le proporciona información sobre brillo colores, formas, etcétera. Estas representaciones suelen estar en forma de imágenes estáticas, escenas tridimensionales o imágenes en movimiento \citep{Ledda}. 
 
-En \ac{va} tratamos de describir el mundo real que vemos en una o mas imágenes y reconstruir sus propiedades, tal como la forma, iluminación y distribución del color \citep{Szeliski}; con esta disciplina podemos saber en que carril se encuentra un vehículo, cuantas personas hay en una escena, reconocer a una persona en particular; así como lo mencionado, existen numerosas aplicaciones que hoy en día están en el mercado  y usan técnicas de \ac{va}. 
+En \ac{va} tratamos de describir el mundo real que vemos en una o mas imágenes y reconstruir sus propiedades, tal como la forma, iluminación y distribución del color \citep{Szeliski}; con esta disciplina podemos saber en que carril se encuentra un vehículo, cuantas personas hay en una escena, reconocer a una persona en particular. Así como lo mencionado, existen numerosas aplicaciones que hoy en día están en el mercado  y usan técnicas de \ac{va}. 
 
 Los campos de aplicación que hacen uso de \ac{va} en diferentes áreas de la ciencia y el mercado son \citep{areascv} :
 \begin{enumerate}
@@ -94,7 +94,7 @@ La evolución biológica ha producido organismos capaces de extraer un conocimie
 
 La detección de patrones consiste en el reconocimiento de datos mediante diversas técnicas computacionales. Esta es una disciplina científica que tiene como objetivo principal la clasificación de los objetos en diferentes categorías o clases.
 
-Dependiendo de la aplicación, estos patrones pueden ser imágenes, señales o cualquier tipo de medidas que puedan ser clasificadas. Por ejemplo en un sistema de inspección de manufactura, la cámara deberá detectar si el objeto analizado esta defectuoso o no; el sistema de reconocimiento debe tener dos clases que permita diferenciar si el producto esta defectuoso o no, en este caso las clases "defectuoso" y "no defectuoso".
+Dependiendo de la aplicación, estos patrones pueden ser imágenes, señales o cualquier tipo de medidas que puedan ser clasificadas. Por ejemplo en un sistema de inspección de manufactura, la cámara deberá detectar si el objeto analizado esta defectuoso o no; el sistema de reconocimiento debe tener dos clases que permita diferenciar si el producto esta defectuoso o no, en este caso las clases \textit{defectuoso} y \textit{no defectuoso}.
 
 El punto principal de la detección es poder infererir que objeto o clase pertenece la image, es decir cual es la interpretación de esa imagen. Para lograr esta interpretación necesitamos extraer las característica de la imagen, \textit{features}, estas caracteristicas pueden ser el color, área, dirección del gradiente, niveles de intensidad de gris o simplemente el tamaño de la misma. Mas adelante veremos como extraer estos \textit{features} para realizar la detección.
 
@@ -301,7 +301,7 @@ El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de c
 
 El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}:
 \begin{enumerate}
-\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución. Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser retección de bordes, color, etc
+\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución. Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
 es decir a partir de la imagen de entrada aplicar por ejemplo detección de bordes, color, etc.
 \item stride (paso): es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada. Tener un stride grande producirá mapas de características más pequeños.
 \item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
