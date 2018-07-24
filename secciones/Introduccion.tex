@@ -1,6 +1,6 @@
 \chapter{Introducción}\label{chap:introduccion}
 
-En este capítulo se aborda el marco en el que se realizo el trabajo de tesis; empezando con una breve introducción de los temas a desarrollar; partiendo principalmente del objetivo primario en conjunto con los objetivos específicos, además se pondrá a disposición del lector los fundamentos que llevaron a realizar este trabajo de investigación. Para finalizar este capítulo se describirán cada capítulo posterior que darán al lector una guía del trabajo realizado de la tesis de investigación.
+En este capítulo se aborda el marco en el cual se realizo el trabajo de tesis empezando con una breve introducción de los temas a desarrollar. Vamos a poner al alcance del lector los objetivos principales y secundarios del trabajo realizado, ademas de los fundamentos por el cual se realizo esta investigación. Para finalizar se describe los capitulos posteriores que dan al lector una guía de como esta organizado este trabajo de investigación.
 
 
 \section{Contexto de la Tesis}\label{sec:contexto}
@@ -9,7 +9,7 @@ El presente trabajo se realizó para recibir el grado de\textbf{ \textit{Maestr�
 Esta investigación se centra en aplicar  algoritmos de visión artificial y aprendizaje automático para el \textit{Reconocimiento de patrones} aplicados sobre imágenes satelitales.
 
 \section{Reconocimiento de Patrones}\label{sec:introreconocimiento}
-Desde hace muchos años las imágenes satelitales constituyen una fuente de información de gran relevancia para el estudio y evaluación de recursos terrestres. Esta  información contenida en las imágenes están dada por patrones, es decir, características que los diferencian del resto de los objetos; estas características pueden estar agrupadas  de acuerdo a su forma, color e incluso textura en la imagen.
+Desde hace muchos años las imágenes satelitales constituyen una fuente de información de gran relevancia para el estudio y evaluación de recursos terrestres. Esta  información contenida en las imágenes están dada por patrones, es decir, características que los diferencian del resto de los objetos. Estas características pueden estar agrupadas  de acuerdo a su forma, color e incluso textura en la imagen.
 
 El \textit{reconocimiento de patrones} también conocido en la literatura como \textit{detección de patrones} consiste en detectar-reconocer un patrón de interés en una imagen utilizando información de los datos contenidos en los píxeles y las correlaciones que pueden llegar a existir entre ellos. El objetivo principal es la clasificación  en categorías o clases que agrupe alguna de las características como las que mencionamos anteriormente, color, forma, textura, etc. Es por esto que son numerosos campos que en la actualidad hacen uso de esta tecnología; algunos de los que podemos nombrar de los encontrado en la actualidad son:
 
@@ -28,7 +28,7 @@ El \textit{reconocimiento de patrones} también conocido en la literatura como \
 Una imagen satelital posee una fuente de información muy relevante, es por ello que es posible aplicar técnicas de reconocimiento de patrones para extraer esta información relevante.En la actualidad en el área espacial se empleo el \textit{reconocimiento de patrones} mayormente sobre en imágenes satelitales; existen también algunas aplicaciones y estudios realizado para su uso en vuelo, es decir en tiempo real a bordo de un satélite en órbita. 
 
 Como se menciono en el párrafo anterior la mayoría de aplicaciones en reconocimiento de patrones  se realizaron en imágenes satelitales terrestres; algunos de los ejemplos que podemos mencionar son: clasificación de vegetación en determinada área geográfica, determinación de regiones afectadas por incendios; en la  mayoría de estas aplicaciones se utilizaron redes neuronales 
-para su reconocimiento. En vuelo estas técnicas de reconocimiento son cada ves mas numerosas, el estudio mas relevante de uso de técnicas de reconocimiento de patrones es el que se usó en vehículos \textit{Rovers} utilizado por la \ac{nasa} para la exploración del espacio. Otro trabajo que significativo que se halló en la bibliografía es la aplicación en determinación de una área geográfica utilizando algoritmos genéticos, aplicados al reconocimiento. 
+para su reconocimiento. En vuelo estas técnicas de reconocimiento son cada ves mas numerosas, como podemos mencionar los  vehículos \textit{Rovers} utilizado por la \ac{nasa} para la exploración del espacio. Otro trabajo que significativo que se halló en la bibliografía es la aplicación en determinación de una área geográfica utilizando algoritmos genéticos, aplicados al reconocimiento. 
 
 Como podemos ver el campo de \textit{reconocimiento de patrones} es un área moderna y en gran crecimiento en el campo espacial ya sea para su utilización en tierra como a bordo del satélite en tiempo real.
 
@@ -94,51 +94,38 @@ Los patrones-áreas de interés que se aborda en esta tesis son:
 	\item Laguna Mar Chiquita (Córdoba-Argentina).
 \end{itemize}
 
-%ESTE PARRAFO CUIDADO (PREGUNTAR A JORGE SI ES CONVENIENTE PONER MODIS)
-
-\textcolor{red}{Las imágenes que se utilizaron para el desarrollo fueron obtenidas de los instrumento  VIIRS. Estas imágenes se asemejan a las características de la camara NIR/SWIR del SABIA-MAR(Satélite Argentino Brasileño para Información del Mar); cuya factibilidad de ser usada en un CubeSat fue evaluada en el marco del proyecto integrador \textit{Formador Satelital 2017} (FS2017) de \ac{conae}.}
+Las imágenes que se utilizaron para el desarrollo fueron obtenidas de los instrumento  VIIRS. Estas imágenes se asemejan a las características de la camara NIR/SWIR del SABIA-MAR(Satélite Argentino Brasileño para Información del Mar); cuya factibilidad de ser usada en un CubeSat fue evaluada en el marco del proyecto integrador \textit{Formador Satelital 2017} (FS2017) de \ac{conae}.
 %-------------------------------------------------------------
 
 El reconocimiento de patrones en imágenes es un área que en la actualidad se incremento con la aparición de nuevas técnicas y de los avances de poder de cómputo. La aplicación de técnicas computacionales tanto de  \ac{va} y \ac{ml} en reconocimiento de patrones  en tierra y en vuelo, nos permite aprovechar la información contenida en la imagen  automatizando el proceso de extracción de los datos.
 
 Diversas son las ventajas que nos permitirán realizar estos nuevos enfoques computacionales en el área espacial. Los principales beneficios al aplicar técnicas de reconocimiento de patrones son: 
 \begin{itemize}
-\item \textbf{Calibración y apuntamiento}: brindar un mecanismo de apoyo para colaborar con el apuntamiento y la calibración óptica del satélite; mayormente para CubeSat, satélites de menor tamaño, que no poseen un mecanismo eficiente de determinación orbital como un Star-tracker o GPS debido a que son satélites de bajo costo además con relación al tamaño del mismo; con esto se podrá mejorar el apuntamiento detectando las regiones y comparando con los planes de pasadas  establecidos, a la vez dar soporte para poder calibrar la camara óptica de acuerdo a la región.
+\item \textbf{Calibración y apuntamiento}: brindar un mecanismo de apoyo para colaborar con el apuntamiento y la calibración óptica del satélite; mayormente para CubeSat, satélites de menor tamaño, que no poseen un mecanismo eficiente de determinación orbital como un Star-tracker o GPS debido a que son satélites de bajo costo además con relación al tamaño del mismo; con esto se podrá mejorar el apuntamiento detectando las regiones y comparando con los planes de pasadas  establecidos, a la vez dar soporte para poder calibrar la cámara óptica de acuerdo a la región.
 \item \textbf{Almacenamiento en memoria}: una de las grandes desventajas que tienen los satélites, es la escasez de recursos en vuelo, teniendo un mecanismo de reconocimiento de patrones se podrá almacenar aquellas imágenes de interés minimizando y optimizando  así el uso de la memoria.
 \item \textbf{Exploración del espacio profundo}: ya existe en la actualidad ejemplos de técnicas de reconocimiento aplicadas al análisis de datos en tiempo real, esto es necesario  porque el tiempo de transmisión de información a grandes distancias es alto, es por ello que es necesario poder procesar la información en tiempo real y realizar una predicción automática de los datos obtenidos.
 \item \textbf{Predicción de coaliciones:} por medio de \ac{va} nos permitirá prevenir las posibles coaliciones a causa de la chatarra espacial. 
 \item \textbf{Detecciones de catástrofes naturales}: a través de diferentes algoritmos de reconocimiento de patrones en vuelo nos permitirá realizar una alerta temprana en situaciones de desastre detectando por ejemplo focos de incendios, inundaciones, derrames de petroleo, etc.
-\item \textbf{Monitoréo del territorio nacional}: evaluando a través de imágenes satelitales las frontera nacional.
+\item \textbf{Monitoreo del territorio nacional}: evaluando a través de imágenes satelitales las frontera nacional.
 \end{itemize}
 
+%\textcolor{red}{
+\section{Estructura General de la Tesis }\label{sec:estructura}
 
-\textcolor{red}{
-\section{Estructura General de la Tesis }\label{sec:estructura}}
+La tesis se estructura de acuerdo a los siguientes capítulos: Introducción, Marco Teórico, Estado del Arte, Metodologías, Desarrollo del Software, Evaluación experimental , Conclusiones y trabajos a futuro, Bibliografía y Apendice :
 
-La tesis se estructura de acuerdo a los siguientes capítulos: Introducción, Marco Teórico, Estado del Arte, Metodologías, Desarrollo del Software, 
-Evaluación experimental , Conclusiones y trabajos a futuro, Bibliografía y Apendice :
+En el \textbf{Capítulo} \ref{chap:marcoteorico} \textit{Marco Teórico}: plantea los fundamentos e investigación que se realizaron con el fin de situar el problema dentro de limites teóricos. En este capitulo se desarrolla los conceptos claves como: ¿que es visión artificial?, los métodos que existen, diferentes algoritmos de detección que encontramos en la literatura, ¿ que entendemos por aprendizaje automático?, los campos que hacen uso de esta metodología, nombrando la importancia de las redes neuronales en el campo de reconocimiento de patrones.
 
-En el \textit{Capítulo \ref{chap:marcoteorico} Marco Teórico}: plantea los fundamentos e investigación que se realizaron con el fin de situar el problema dentro de limites 
-teóricos. En este capitulo se desarrolla los conceptos claves como: ¿que es visión artificial?, los métodos que existen, diferentes algoritmos de detección que encontramos en la 
-literatura, ¿ que entendemos por aprendizaje automático?, los campos que hacen uso de esta metodología, nombrando la importancia de las redes neuronales en el campo de 
-reconocimiento de patrones.
+En el \textbf{Capítulo} \ref{chap:estadodelarte} \textit{Estado del Arte}: En este capítulo se explicara los antecedentes encontrados en el ámbito espacial en el uso de técnicas de \ac{va} y \ac{ml}.
 
-En el \textit{Capítulo \ref{chap:estadodelarte} Estado del Arte}: En este capítulo se explicara los antecedentes encontrados en el ámbito espacial en 
-el reconocimiento de patrones.
+El \textbf{Capítulo} \ref{chap:metodologia} \textit{Metodología}: explica las diferentes fases de desarrollo que se siguió para lograr el objetivo principal.
 
-El \textit{Capítulo \ref{chap:metodologia} Metodología}: explica las diferentes fases de desarrollo que se siguió para lograr el objetivo primario.
+El \textbf{Capítulo} \ref{chap:Desarrollo} \textit{Desarrollo del Software}: En este capítulo se evalúan las diferentes herramientas utilizadas, junto con la estructura del código realizado.
 
-El \textit{Capítulo \ref{chap:Desarrollo} Desarrollo del Software}: En este capítulo se evalúan las diferentes herramientas utilizadas, junto con la 
-estructura del código realizado.
+El \textbf{Capítulo} \ref{chap:evaluacion} \textit{Evaluación Experimental}:  se  dividió en tres secciones principales. La primera hace referencia al los datos y procesos que se llevaron a cabo sobre las imágenes. La segunda parte se describe como se extrajo los datos de cada imagen para realizar el entrenamiento. En la sección final del capitulo se describen los metodos de validación utilizados y cuales fueron los resultados obtenidos.
 
-El \textit{Capítulo \ref{chap:evaluacion} Evaluación Experimental}: se va a dividir en dos secciones. Por una lado se describe los procesos realizados 
-para la recolección de los datos y el posterior tratamiento; por otro se expondrá los diferentes resultados obtenidos en el reconocimiento de 
-patrones.
+En el \textbf{Capítulo} \ref{chap:conclusiones} \textit{Conclusiones y Trabajo a Futuro}: se plantea las conclusiones sacadas de la investigación y experimentación además de los posibles trabajo a futuro partiendo de lo realizado.
 
-En el \textit{Capítulo \ref{chap:conclusiones} Conclusiones y Trabajo a Futuro}: se plantea las conclusiones sacadas del desarrollo además de los 
-posibles trabajo a futuro partiendo de lo realizado.
+\textbf{Capítulo} \textit{Bibliografía}: Se enuncian las diferentes fuentes consultadas para el desarrollo de la tesis.
 
-\textit{Capítulo Bibliografía}: Se enuncian las diferentes fuentes consultadas para el desarrollo de la tesis.
-
-Para finalizar tenemos el \textit{Capítulo \ref{chap:anexo} Apéndice}: describe algunos procesos realizados para esta tesis como por ejemplo, la 
-instalación de librerías usadas, códigos utilizados y diagramas.
+Para finalizar tenemos el \textit{Capítulo \ref{chap:anexo} Apéndice}: describe algunos procesos realizados para el desarrollo de la tesis como por ejemplo, la instalación de librerías usadas, códigos utilizados y diagramas.
