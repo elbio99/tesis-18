@@ -1,30 +1,31 @@
 \chapter{Conclusiones y lineamientos futuros}\label{chap:conclusiones}
-Es este capítulo se van a exponer, desde un punto de vista personal y subjetivo, las lecciones aprendidas durante
-la realización de este trabajo final. Además se propondrán posibles evoluciones o mejoras que se podrían aplicar sobre los
-desarrollos realizados.
+En este apartado se expone las conclusiones y lineamientos futuros obtenidos a partir de la investigación realizada en la presente tesis. 
 
 \section{Conclusiones}
-En base a la investigación y el desarrollo que se realizo podemos exponer lo siguientes items:
+En el desarrollo de la presente tesis se abordo el problema del reconocimiento de patrones sobre una imagen satelitales. EL estudio derivo en evaluar diferentes bandas a utilizar, pre procesamiento de imágenes ademas de la selección de diversas herramientas informáticas para su desarrollo y conclusión.
+
+Como base de lo expresado anteriormente se expone las siguientes conclusiones obtenidas por esta investigación:
 \begin{enumerate}
-\item Para realizar un reconocimiento óptimo de patrones se necesita un datasets representativo de las regiones que se desea detectar.
-\item Debido al tamaño de las imágenes y que las regiones buscadas eran muy pequeña en proporción a la misma, se demostró que para obtener regiones candidatas a partir de \textit{regions proposal} se debe realizar recortes (crops) de acuerdo al tamaño de la región buscada.
-\item Se observo que a causa de que  la mayoría de los \textit{feature vector} calculados son de etiquetas negativas, es decir que no caen en la 
-región buscada, al realizar el entrenamiento de los datos se obtenía un modelo con overfitting. A continuación se empleo la siguiente regla 3 
-negativos cada 1 positivo; con esto no solo evitamos el overfitting del modelo sino también mejoramos el tiempo de computo en el procesamiento. 
-\item Se emplearon diferentes algoritmos de búsqueda de parámetros \textit{GridSearch} y \textit{RamdomizeSeach}, el tiempo observado de procesamiento mas óptimo fue por medio de \textit{RamdomizeSeach}.
-\item Se demostró experimentalmente que es posible reconocer patrones en una imagen satelital por medio de técnicas de \ac{va} y \ac{ml}.
-\item Se demostró que las redes neuronales profundas obtienen una buena generalización de la imagen para problemas en reconocimiento de patrones.
+\item El reconocimiento de patrones y las técnicas de aprendizaje automático nos dan diversas ventajas a la hora de optimizar nuestro procesos; en nuestro caso la detección de regiones. Para poder realizar un modelo eficiente se debe tener en cuentas numerosos factores en el cual uno de los mas importante son los datos que vamos a utilizar; estos datos deber ser representativo del modelo que deseamos crear.
+
+\item Cuando se trabaja con imágenes de gran tamaño se deben tener en cuenta el tamaño de regiones que se quiere captar ademas del hardware necesario para poder realizar el computo de los datos.
+
+\item Otras de las observaciones que se detecto es que las muestra de los datos deben estar balanceadas, es decir tener las mismas cantidad de datos tanto negativos como positivos para poder discriminar de manera adecuada las clases que deseamos detectar.
+
+\item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos; como se menciona en el punto anterior al tener clase desbalanceadas los modelos entrenados no hacían una buena generalización de los datos. Para evitar esto se trabajo con técnicas de \textit{cross validation} y resampleo de los datos.
+
+\item En base a las experimentaciones realizadas podemos afirmar que aplicar redes neuronales pre entrenadas para la extracción de característica se obtiene una correcta generalización de los datos y son muy eficiente para problemas de clasificación de imágenes.
+
 \end{enumerate}
 
+El costo computacional en termino de capacidad de operaciones hace que aplicar técnicas de computer vision sea algo muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{va} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
 
-\section{Lineamientos futuros} 
-Tomando como base las lecciones aprendidas en el desarrollo de la tesis; las posibles lineas de trabajo a futuro que se podrían seguir son:
+
+\section{Lineamientos futuros}\label{linasfuturas}
+Tomando como base las lecciones aprendidas en el desarrollo de la tesis, las posibles lineas de trabajo e investigaciones a futuro son:
 \begin{enumerate}
- \item A partir del bajo rendimiento en el calculo de los datos surge la posibilidad de implementar procesamiento en base a GPU para el cómputo 
-en paralelo de los datos.
- \item Es posible aplicar diferentes arquitectura de las redes neuronales para la extracción de los vectores de característica; de esta manera 
-determinar cual de las redes tiene mayor generalización en los datos para el tipo de problemática que estamos tratando.
- \item Para el cálculo de regiones propuestas es posible realizar \textit{custom regions proposal} para lograr reconocer regiones específicas de una 
-imagen sin realizar recortes en la misma.
- \item Conseguir implementar el modelo un una placa de vuelo para determinar el rendimiento y consumo.
+ \item A partir del bajo rendimiento en el calculo de los datos surge la posibilidad de implementar procesamiento en base a GPU para el cómputo en paralelo de los datos.
+ \item Es posible aplicar diferentes arquitectura de las redes neuronales para la extracción de los vectores de característica; de esta manera determinar cual de las redes tiene mayor generalización en los datos para el tipo de problemática que estamos tratando.
+ \item Evaluar nuevas herramientas de extracción de caracteristicas y computar redes mucho mas livianas en términos de consumo de energía.
+\item Implementar el modelo de detección de regiones satelitales en tiempo real con el fin de poder logar una medida de tiempo, consumo de energía y viabilidad para desarrollarlo en una placa de vuelo. 
 \end{enumerate}

@@ -9,3 +9,5 @@
 *.dvi
 notebooks/.ipynb_checkpoints/
 template_tesis_mdiae.blg
+*.blg
+*.tex
