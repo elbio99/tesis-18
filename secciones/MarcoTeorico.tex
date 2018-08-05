@@ -8,9 +8,9 @@ Se tratará de dar un enfoque simplificado de temas como: ¿que es el sensado re
 
 En esta sección desarrollaremos el principal enfoque de este trabajo que son las imágenes satelitales; para esto debemos hablar de la teledetección.
 
-La teledetección o sensado remoto es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
+La teledeteccion o sensado remoto es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
 
-La teledetección no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. Los datos captados incluyen desde sensores hiperespectrales, multiespectrales, radares, infrarrojos y ópticos.
+La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. Los datos captados incluyen desde sensores hiperespectrales, multiespectrales, radares, infrarrojos y ópticos.
 
 \begin{center} \begin{minipage}{0.8\linewidth}  \vspace{5pt} {\small
 Either to supplement the capability of sensors or to effectively utilize the enormous amount of sensor data, many advances in statistical pattern recognition can be very useful in machine recognition of the data. The potentials and opportunities of using statistical pattern recognition in remote sensing are indeed unlimited.}
@@ -96,18 +96,18 @@ La detección de patrones consiste en el reconocimiento de datos mediante divers
 
 Dependiendo de la aplicación, estos patrones pueden ser imágenes, señales o cualquier tipo de medidas que puedan ser clasificadas. Por ejemplo en un sistema de inspección de manufactura, la cámara deberá detectar si el objeto analizado esta defectuoso o no; el sistema de reconocimiento debe tener dos clases que permita diferenciar si el producto esta defectuoso o no, en este caso las clases \textit{defectuoso} y \textit{no defectuoso}.
 
-El punto principal de la detección es poder infererir que objeto o clase pertenece la image, es decir cual es la interpretación de esa imagen. Para lograr esta interpretación necesitamos extraer las característica de la imagen, \textit{features}, estas caracteristicas pueden ser el color, área, dirección del gradiente, niveles de intensidad de gris o simplemente el tamaño de la misma. Mas adelante veremos como extraer estos \textit{features} para realizar la detección.
+El punto principal de la detección es poder inferir que objeto o clase pertenece la image, es decir cual es la interpretación de esa imagen. Para lograr esta interpretación necesitamos extraer las característica de la imagen, \textit{features}, estas características pueden ser el color, área, dirección del gradiente, niveles de intensidad de gris o simplemente el tamaño de la misma. Mas adelante veremos como extraer estos \textit{features} para realizar la detección.
 
 \subsection{Detección de Objeto}\label{sub: detecciondeobjeto}
-En el campo del reconocimiento de patrones, la detección eficiente del objeto de interes es muy importante. Para lograr esta detección existen diversos metodos empleados en la literatura que nos ayudan a extraer estas regiones de interes dentro de la imagen para poder realizar la clasificiación. 
+En el campo del reconocimiento de patrones, la detección eficiente del objeto de interés es muy importante. Para lograr esta detección existen diversos métodos empleados en la literatura que nos ayudan a extraer estas regiones de interés dentro de la imagen para poder realizar la clasificación. 
 
-En este trabajo se usaron diversos metodos de las cuales desarrollaremos a contunuación.
+En este trabajo se usaron diversos métodos de las cuales desarrollaremos a continuación.
 
 \subsubsection{Regiones propuestas}\label{sub: regionespropuesta}
 
-Regiones Propuesta, \textit{Regions Proposal} en su traducción al ingles, son un conjunto de metodos que permiten extraer regiones dentro de la imagen siguiendo algunas caracteristicas similares como las nombrada en la sección (ver:\ref{sub:problemadeteccion}). 
+Regiones Propuesta, \textit{Regions Proposal} en su traducción al ingles, son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como las nombrada en la sección (ver:\ref{sub:problemadeteccion}). 
 
-El proceso metodológico básico es el siguiente: dada una imagen de entrada, este método busca generar un conjunto de regiones candidatas que son localizadas en un \textit{bounding box}, un \textit{bounding box} es la región de interés, que probablemente contengan objetos de interés para la detección (ver: \ref{Fig: propsalregion}). Estos objetos de interes detectados a partir del metodo son los que posteriormente vamos a clasificar.
+El proceso metodológico básico es el siguiente: dada una imagen de entrada, este método busca generar un conjunto de regiones candidatas que son localizadas en un \textit{bounding box}, un \textit{bounding box} es la región de interés, que probablemente contengan objetos de interés para la detección (ver: \ref{Fig: propsalregion}). Estos objetos de interés detectados a partir del método son los que posteriormente vamos a clasificar.
 
 \begin{figure}[H]
  \centering
@@ -295,7 +295,7 @@ El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de c
 \begin{figure}[H]
  \centering
   \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/Logos/fmaps.png}
-  \caption{Ejemplo de mapa de caracteristicas, (Adaptado de: \citep{cnnsarticle})}
+  \caption{Ejemplo de mapa de características, (Adaptado de: \citep{cnnsarticle})}
 	\label{Fig: fmaps}
 \end{figure}
 
@@ -432,7 +432,7 @@ En \ac{ml} describimos el aprendizaje a partir de los datos de entrenamiento. El
 Este concepto en \ac{ml} hace referencia al sobreentrenamiento del modelo. El overfitting ocurre cuando un modelo aprende el detalle junto a el ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir. Esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
 
 \subsubsection{Underfitting}
-Como parte opuesta al overfitting esta el  underfitting; este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores caracteristicas de los datos para la construcción de los modelos.
+Como parte opuesta al overfitting esta el  underfitting; este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos.
 
 \begin{figure}[h]
  \centering

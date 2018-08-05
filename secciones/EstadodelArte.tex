@@ -1,7 +1,7 @@
 \chapter{Estado del Arte} \label{chap:estadodelarte}
 
 
-En este capítulo vamos a describir las diversas investigaciones y trabajos realizados con imágenes satelitales aplicando técnicas de Computer Vision y Machine Learning describiendo además el estado actual de la tematica abordada.
+En este capítulo vamos a describir las diversas investigaciones y trabajos realizados con imágenes satelitales aplicando técnicas de Computer Vision y Machine Learning describiendo además el estado actual de la temática abordada.
 
 
 \section{Aplicaciones en el ámbito espacial}\label{sec:estadodelacuestion}
@@ -14,7 +14,7 @@ Actualmente en el campo de reconocimiento de patrones sobre imágenes satelitale
 
 Para empezar vamos a comenzar citando el siguiente trabajo realizado por \citep{Cheang}; en este articulo se describe el uso de técnicas de reconocimiento de patrones usando aprendizaje supervisado. El método para la extracción y clasificación de los datos utilizado se baso en dos enfoques; por un lado se utilizaron técnicas de \textit{sliding window} para la obtención de regiones candidatas, por otro se aplicaron redes neuronales profundas, \ac{dl}, método muy utilizado para el reconocimiento de objeto en una imagen. Otro ejemplo encontrado en la literatura aplicando  \textit{aprendizaje no supervisado} es para la clasificación del uso de la tierra a partir de imágenes satelitales multi-temporales, en este paper \citep{pnn}, se utilizo imágenes del satélite LANSAT y SPOT usando redes neuronales probabilística, estas técnicas realizan un agrupamiento de datos, \textit{clusters}, y realizan la clasificación creando las fronteras entre los diferentes \textit{clusters} de datos para su posterior reconocimiento.
 
-En el blog titulado \textit{Una imagen vale más que mil palabras}, los autores destacan el beneficio de aplicar procesamiento en imágenes para la toma de decisiones que agregan valor a su negocio. En este articulo describen la posibilidad de conocer el historial de inundaciones de una region rural aplicando técnicas \ac{ml} sobre imágenes satelitales\footnote{Fuente:http://www.7puentes.com/blog/2017/12/11/agtech-imagenes-satelitales-una-imagen-vale-mas-que-mil-palabras/}.
+En el blog titulado \textit{Una imagen vale más que mil palabras}, los autores destacan el beneficio de aplicar procesamiento en imágenes para la toma de decisiones que agregan valor a su negocio. En este articulo describen la posibilidad de conocer el historial de inundaciones de una región rural aplicando técnicas \ac{ml} sobre imágenes satelitales\footnote{Fuente:http://www.7puentes.com/blog/2017/12/11/agtech-imagenes-satelitales-una-imagen-vale-mas-que-mil-palabras/}.
 
 El uso de \ac{va} permite crear mapas urbanos a partir de imágenes satelitales como menciona en el articulo \citep{detectionHOG}; en el mismo usa \ac{va} para crearon mapas urbanos que determinan cambios temporales en una determinada región geográfica. En este trabajo los autores proponen dos módulos para el desarrollo; por un lado usar \textit{HOG}, histograma de gradientes orientados, para la extracción de características en la imagen y \textit{Local binary patterns (LBP)}, patrones binarios locales, como método descriptor de característica; por ultimo para clasifica la imagen utilizaron técnicas SVM (ver:\ref{sub:svm}). 
 
