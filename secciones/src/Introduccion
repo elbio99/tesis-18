@@ -1,0 +1,63 @@
+
+
+\section{Reconocimiento de Patrones}\label{sec:introreconocimiento}
+Desde hace muchos años las imágenes satelitales constituyen una fuente de información de gran relevancia para el estudio y evaluación de recursos terrestres. Esta  información contenida en las imágenes están dada por patrones, es decir, características que los diferencian del resto de los objetos. Estas características pueden estar agrupadas  de acuerdo a su forma, color e incluso textura en la imagen.
+
+El \textit{reconocimiento de patrones} también conocido en la literatura como \textit{detección de patrones} consiste en detectar-reconocer un patrón de interés en una imagen utilizando información de los datos contenidos en los píxeles y las correlaciones que pueden llegar a existir entre ellos. El objetivo principal es la clasificación  en categorías o clases que agrupe alguna de las características como las que mencionamos anteriormente, color, forma, textura, etc. Es por esto que son numerosos campos que en la actualidad hacen uso de esta tecnología; algunos de los que podemos nombrar de los encontrado en la actualidad son:
+
+\begin{itemize}
+	\item Medicina
+	\item Robótica
+	\item Biología
+	\item Geología 
+	\item Meteorología
+	\item Construcción 
+	\item Inspección y control de Calidad
+	\item Cartografía
+	\item entre muchos otros..
+\end{itemize}
+
+Una imagen satelital posee una fuente de información muy relevante, es por ello que es posible aplicar técnicas de reconocimiento de patrones para extraer esta información relevante.En la actualidad en el área espacial se empleo el \textit{reconocimiento de patrones} mayormente sobre en imágenes satelitales; existen también algunas aplicaciones y estudios realizado para su uso en vuelo, es decir en tiempo real a bordo de un satélite en órbita. 
+
+Como se menciono en el párrafo anterior la mayoría de aplicaciones en reconocimiento de patrones  se realizaron en imágenes satelitales terrestres; algunos de los ejemplos que podemos mencionar son: clasificación de vegetación en determinada área geográfica, determinación de regiones afectadas por incendios; en la  mayoría de estas aplicaciones se utilizaron redes neuronales 
+para su reconocimiento. En vuelo estas técnicas de reconocimiento son cada ves mas numerosas, como podemos mencionar los  vehículos \textit{Rovers} utilizado por la \ac{nasa} para la exploración del espacio. Otro trabajo que significativo que se halló en la bibliografía es la aplicación en determinación de una área geográfica utilizando algoritmos genéticos, aplicados al reconocimiento. 
+
+Como podemos ver el campo de \textit{reconocimiento de patrones} es un área moderna y en gran crecimiento en el campo espacial ya sea para su utilización en tierra como a bordo del satélite en tiempo real.
+
+
+\subsection{Visión Artificial}\label{sub:introva}
+En la ciencia de \textit{reconocimiento de patrones} coexisten varias ramas de la ciencia de la computación que nos ayudan a extraer la información existente en las imágenes. Una  ella es la \ac{va}, su nombre en ingles \textit{computer vision}.  \ac{va} es una rama dentro de la \ac{ia} que a través de determinadas técnicas permite procesar la información contenida en la imagen. Los datos de entrada en un sistema de \ac{va} son imágenes obtenidas por una cámara que a través de diferentes procesos obtenemos una descripción en escena de la imagen adquirida.
+ 
+Estas aplicaciones son un desafío para la ciencia actual; en los últimos años se han producido grandes avances gracias al el poder de cómputo que nos permite resolver problemas muchos mas realistas. En la literatura existen diferentes definiciones sobre que es \ac{va}, una de las mas completa es:
+ \begin{center}
+\begin{minipage}{0.8\linewidth}  \vspace{5pt}{\small \ac{va} es un campo que incluye métodos para adquirir, procesar, analizar y comprender imágenes, en general, datos de grandes dimensiones del mundo real con el fin de producir información numérica o simbólica en forma de decisiones.}
+\begin{flushright}
+ \citep{Reinhard}
+\end{flushright}
+\vspace{5pt}
+\end{minipage}
+\end{center}
+ 
+La transformación de las imágenes de entrada en descripciones del mundo es lo que nos permite realizar una clasificación y así poder reconocer los patrones buscados. 
+Como una disciplina tecnológica la \ac{va} busca aplicar sus teorías y modelos a la construcción de sistemas computarizados.
+ 
+ 
+\subsection{Aprendizaje automático}\label{sub:introml}
+El \ac{ml}, su nombre en ingles \textit{Machine Learning}, forma parte de una de las ramas de reconocimiento de patrones. El objetivo de \ac{ml} es la construcción de programas capaces de aprender un comportamiento determinado a partir de información ingresada como ejemplo.
+
+El autor \citep{murphy} definió al campo de  \ac{ml} como:
+\begin{center}
+\begin{minipage}{0.8\linewidth}  \vspace{5pt}{\small Conjunto de métodos que pueden automáticamente detectar patrones en datos y entonces usar estos patrones para predecir el futuro o realizar alguna toma de decisiones bajo condiciones de incertidumbre}.
+\begin{flushright}
+ \citep{murphy}
+\end{flushright}
+\vspace{5pt}
+\end{minipage}
+\end{center}
+
+La ultima década las aplicaciones en \ac{ml} dieron  saltos significativos debido a los nuevos enfoques y algoritmos desarrollados. Los algoritmos desarrollados en \ac{ml} se agrupan  en dos áreas principales; por un lado tenemos  el \textbf{\textit{aprendizaje supervisado}}, estos tipos de algoritmos se enfocan en realizar predicciones futuras basadas en el comportamiento o característica de los datos buscando los patrones relacionados; es decir identificar un modelo a partir de datos de entrenamiento en el cual se conoce su valor de salida y usarlos para predecir datos futuros o desconocidos. La \textbf{\textit{clasificación}} es una sub-categoría del \textit{aprendizaje supervisado} donde el objetivo es predecir etiquetas o clase.
+
+El segundo enfoque es el \textbf{ \textit{aprendizaje no supervisado}}, usa datos no etiquetados y trata de encontrar alguna estructura y forma de organizarlo. El aprendizaje no supervisado nos entrega herramientas para explorar y extraer información relevante de la estructura sin tener conocimiento previo. 
+
+En este trabajo de investigación se centrara en el primer modelo de \ac{ml} aplicados al reconocimiento de patrones el  \textit{aprendizaje supervisado}.
+
