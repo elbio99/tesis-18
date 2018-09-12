@@ -20,38 +20,88 @@ En general la teledetección es la medición de energía emanada de la superfici
 
 Los componentes basicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
 \begin{itemize}
-\item Fuente de energia:
+\item \textit{Fuente de energia}: es la radiación electromagnética que capta el sensor; como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
 
-\item Cubierta terrestre:
+\item \textit{Cubierta terrestre}: rasgos naturales o relizados por el hombre, ejemplo construcciones, que refleja el sensor.
 
-\item Sistema Sensor:
+\item \textit{Sistema Sensor}: esta computesto por, camaras, radar, etc; y la plataforma en la que esta puesto (satelite, avion, globo);  capta la energía proveniente de la tierra y la almacena o envía al sistema de recepción.
 
-\item Sistema de Recepción:
+\item \textit{Sistema de Recepción}: sistema encargado de recibir la información proveniente del sensor y almacenar en un formato apropiado para luego ser distribuido a los usuarios.
 
-\item Interprete
+\item \textit{Interprete}: encargado de manipular los datos de acuerdo a la temática de interes (agricultura, catastro, etc), es decir aplica diferentes niveles de procesamiento sobre los datos crudos obtenidos por el sensor.
 
-\item Usuario Final
+\item \textit{Usuario Final}: es el consumidor final de la imagen adquirida.
 \end{itemize}
-
-
-
-
-
-La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. Los datos captados incluyen desde sensores hiperespectrales, multiespectrales, radares, infrarrojos y ópticos.
-
-\begin{center} \begin{minipage}{0.8\linewidth}  \vspace{5pt} {\small
-Either to supplement the capability of sensors or to effectively utilize the enormous amount of sensor data, many advances in statistical pattern recognition can be very useful in machine recognition of the data. The potentials and opportunities of using statistical pattern recognition in remote sensing are indeed unlimited.}
-\begin{flushright} (\citeauthor{Ledda})
-\end{flushright}
-\end{minipage}
-\end{center}
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
   \caption{Sensado Remoto. Navarrete, Edison, Laubacher, Gerard}\label{Fig:teledeteccion}
 \end{figure}
 
-Esta disciplina es una las áreas de mayor interés y crecimiento de los últimos años dentro de la informática en el procesamiento de imágenes. La clasificación de imágenes es una de las mayores tareas a la hora de realizar el procesamiento de  las imágenes satelitales y es donde vamos a poner nuestro mayor esfuerzo.
+\subsubsection{Tipos de Sensores}
+\begin{itemize}
+\item \textbf{sensores pasivos}: son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Estas señales son a partir de la radiación solar natural. Este tipo de sensores son  usados mayormente en apliacaciónes de evaluación de recursos naturales. Ejemplo: ASTER, MODIS, VIIRS, LandSat.
+
+\item \textbf{sensores activos}: son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta raciación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
+\end{itemize}
+
+\subsubsection{Espectro electromagnético}
+
+El espectro electromagnético se denomina al conjunto de todas las longitudes de onda \citep{chuvieco}. Las ondas electromagnéticas cubren una amplia gama de frecuencias o de longitudes de ondas y pueden clasificarse según su principal fuente de producción. 
+Las regiones utilizadas para la observación remota de la tierra son:
+\begin{itemize}
+\item Espectro visible (0.4 - 0.7 µm): rango de frecuencias del ojo humano; máxima radiación solar. Subdividido en tres bandas: Rojo (0.6 - 0.7 µm), Verde (0.5 - 0.6 µm) y Azul (0.4 - 0.5 µm).
+
+\item Infrarrojo cercano (0.7 - 1.1 µm): denominado IR fotográfico o reflejado; energía solar que reflejan los cuerpos. Comportamiento similar al espectro visible.
+
+\item Infrarrojo medio (1.1 – 8 µm): se entremezclan radiación solar y emisión; la atmósfera afecta sensiblemente: aprovechado para medir concentraciones de vapor de agua, ozono, aerosoles, etc.
+
+\item Infrarrojo térmico (8 - 14 µm): radiaciones emitidas por los propios cuerpos; se puede determinar la Temperatura de un cuerpo (IRtérmico). Se puede disponer de imágenes a cualquier hora del día.
+
+\item Microondas (1mm-1m): Interés creciente de la Teledetección en esta banda; las perturbaciones atmosféricas son menores y es transparente a las nubes. Se suelen utilizar sensores activos. 
+
+\end{itemize}
+
+\begin{figure}[H] \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
+  \caption{Espectro electromagnético \citep{https://iie.fing.edu.uy/proyectos/esopo/eem/}}\label{Fig:espectro-electromagnetico}
+\end{figure}
+
+
+\subsubsection{Resolución}
+Unas de las características de los sensores son el tipo de imagen que proporiciona; estas características vienen definidas por el timpo de resolución. Estas resoluciónes la podemos definir de la siguiente manera:
+
+\begin{itemize}
+\item \textbf{Resolución Espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel. A menor tamaño de píxel mayor sera la resolución espacial, esto quiere decir que el sensor tendrá mayor detalle de los objetos.
+
+\begin{figure}[H] \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion.png}
+  \caption{Resolución espacial \citep{https://iie.fing.edu.uy/proyectos/esopo/eem/}}\label{Fig:resolucion-esp}
+\end{figure}
+
+\item \textbf{Resolución Espectral}: la resolución espectral especifica el numero y la anchura de las badas espectrales que puede ser discrimidadas por el sensor.
+\begin{figure}[H] \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_espectral.jpg}
+  \caption{Resolución espectral \citep{http://laotraopinion.net/wp-content/uploads/poder-de-resolucion-espectral.jpg}}\label{Fig:resolucion-espectral}
+\end{figure}
+
+\item \textbf{Resolución Radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor. Mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información. Ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados.
+\begin{figure}[H] \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_radiometrica.png}
+  \caption{Resolución radiometrica}\label{Fig:resolucion-radiometrica}
+\end{figure}
+
+\item \textbf{Resolución temporal}: es el tiempo necesario que tarda el satelite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen. Este ciclo de cobertura esta en función de el tipo de orbita de la plataforma asi como del sensor. Alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días).
+
+\end{itemize}
+
+\subsubsection{Tipos de Imágenes}
+
+%https://acolita.com/wp-content/uploads/2018/01/Teledeteccion_espacial_ArcGeek.pdf
+
+
+La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. Los datos captados incluyen desde sensores hiperespectrales, multiespectrales, radares, infrarrojos y ópticos.
+
 
 
 
