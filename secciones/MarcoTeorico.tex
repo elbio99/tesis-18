@@ -16,6 +16,8 @@ Para comenzar a introducir el concepto de imagen satelital debemos saber como es
 
 La teledeteccion o sensado remoto tambien llamado es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
 
+La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. 
+
 En general la teledetección es la medición de energía emanada de la superficie terrestre. Existen diferentes fuentes de energia; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energia medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
 
 Los componentes basicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
@@ -95,12 +97,15 @@ Unas de las características de los sensores son el tipo de imagen que proporici
 
 \end{itemize}
 
-\subsubsection{Tipos de Imágenes}
+\subsubsection{Imagen Satelital}
+Una imágen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones de este depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la raciación electromagnetica proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energia electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se pondra representar depende de la resolución radiometrica.
+
+La asignación de colores más conocido por los usuarios es el \textit{falso color} (R=Red (rojo); G=Green (verde); B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. 
+
+La información obtenida de diferentes combinaciónes de bandas depende del objeto de estudio que se esta llevando a cabo.
 
 %https://acolita.com/wp-content/uploads/2018/01/Teledeteccion_espacial_ArcGeek.pdf
 
-
-La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. Los datos captados incluyen desde sensores hiperespectrales, multiespectrales, radares, infrarrojos y ópticos.
 
 
 
