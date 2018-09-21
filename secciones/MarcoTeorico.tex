@@ -146,11 +146,72 @@ poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la e
 \subsubsection{Entrenamiento del modelo}
 %https://docs.aws.amazon.com/es_es/machine-learning/latest/dg/training-ml-models.html
 %clasificación supervisada metodos deduccion matematica
+Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego relizar predicciones sobre datos que no conoce.
+
+Para poder entrenar un modelo necesitamos al menos tres cosas especificas:
+\begin{enumerate}
+\item \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo, el objetivo es crear un modelo que generalize los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imagenes que pertenezcan a las categorias mencionadas; para resolver un problema de reconomiento de voz los datos de entrada deben ser audios de personas hablando.
+
+\item \textbf{Salida esperada}: para cada valor de entrada debemos etiquetar a que clase pertenece es decir, para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la imagen; para un ejemplo de reconocimiento de voz cada audio debe tener una transcripción del mismo.
+
+\item \textbf{Evaluación de las predicciones}: calcular y evaluar metricas con los resultados de la predicciónes obtenidas por los modelo, es decir, determinar la distancia entre la salida esperada y los valores predichos.
+\end{enumerate}
+
+Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada (x) y una variable de salida (Y); que a travez de un algoritmo de aprenidaje obtenemos la siguiente relacion entre estas variables como vemos a continuación.
+
+
+\begin{eqnarray}
+ f:X \longrightarrow Y\\
+ \mbox{Training}:\qquad \{(x^i, y^i) \in X\; x\; Y \} _i=1...n\\
+ \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y
+\end{eqnarray}
+
+Considerando el siguiente ejemplo, dada las cordenadas (x,y) como se muestra en la siguiente figura \ref{Fig: ejemplo-1}, se muestran dos clases, puntos de color negro y otra blanca.
+\begin{figure}[H] \centering
+  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample.png}
+  \caption{Ejemplo entrenamiento}\label{Fig:ejemplo-1}
+\end{figure}
+
+La idea principal de desarrollar un modelo; es crear un algoritmo que a partir de datos encuentre automáticamente una frontera, clasifique, por ejemplo encuentre una frontera entre los puntos negros y los puntos blancos.
+
+Como se puede ver en la figura siguiente \ref{Fig:ejemplo-2}, se muestra la fontera de separación creada por el algoritmo entrenado.
+\begin{figure}[H] \centering
+  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample-fit-1.png}
+  \caption{Entrenamiento}\label{Fig:ejemplo-2}
+\end{figure}
+
+De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algortimo de clasificación.
+
+\subsubsection*{Ejemplo: Regresión Lineal}
+%http://www.deeplearningbook.org/contents/ml.html
+Una Regresión lineal es un claro ejemplo de un algoritmo de \ac{ml}; el objetivo es desarrollar un sitema que tome un vector x pertence a $R$**n y prediga el valor de un escalar y pertenece$R$ como salida; la salida de una regresion lineal es una función lineal de la entrada.  Vamos a tomar como Ysombrero el valor que nuestro modelo predice definido por:
+\begin{equation}
+\hat{y} = w^t * x
+\end{equation}
+donde w pertence a los Relaes, siendo un vector de parametros.
+Los parametros son valores que controlan el comportamiento del sistema,en este caso w  multiplicado por x (caracteristica de cada datos de entrada), lo podemos ver como un conjunto de pesos que determinan como cada característica afecta a la predicción.
+
+Si x esta multiplicado por un peso wsubi positivo, entonces el valor de esa característica aumenta nuestra predicción, de manera analoga si el valor wsui es negativo esa característica x decrementa mi valor de prediccion ysmbrero.
+Como siguiente medida debemos medir la performance de nuestro modelo, para realizar la medición de nuestro modelo debemos anteriormente haber separado el conjunto de datos en dos partes por un lado los datos de que se van a usar para ralizar el entrenamiento y por otro los datos que seran los que usamos para medir la performance del modelo, llamado conjuto de test.
+
+Una de las maneras de medir nuestra performance del modelo con nuestro conjunto de test es computando el error cuadrado medio, dado por la siguiente ecuación:
+\begin{equation}
+MSE_{test} = \frac{1}{n}\sum_{i}(\hat{y}^(test)- y^(test))^2
+\end{equation}
+
+Como se puede ver a partir del ccalculo anterior el error decrementa a 0 cuando ysom es igual a y
+
+
+Para entrenar un modelo de \ac{ml} necesitamos realizar un algoritmo que en cada iteracion mejore los valores de los pesos de manera de reducir el error.
+
+
+
+
 
 
 \subsubsection{Función de Costo}
 
-\subsubsection{Algoritmos de Optimización}
+\subsubsection{Algoritmos de Optimización} 
 
 \subsubsection{Validación de Modelos}
 %Validación de Modelos (overfitting, underfitting)
