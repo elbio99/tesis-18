@@ -2,13 +2,13 @@
 
 En el siguiente capitulo se pondrá al alcance del lector las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado.
 
-Se tratará de dar un enfoque simplificado de temas como: ¿que es el sensado remoto?, ¿que es el Aprendizaje Automatico?, descripción y desarrollo de Algoritmos de optimización, validación de modelos, Computer Vision.
+Se tratará de dar un enfoque simplificado de temas como: ¿que es el sensado remoto?, ¿que es el Aprendizaje Automático?, descripción y desarrollo de Algoritmos de optimización, validación de modelos, Computer Vision.
 
-Para finalizar se expondra la arquitectura, entrenamiento y reconocimiento de objetos a traves de  redes neuronales convolucionales y clasificadores.
+Para finalizar se expondrá la arquitectura, entrenamiento y reconocimiento de objetos a través de  redes neuronales convolucionales y clasificadores.
 
 \section{Sensado Remoto}\label{sec:sensadoremoto}
 
-En esta sección desarrollaremos el principal enfoque de este trabajo que son las imágenes satelitales; como se forman, rangos de bandas, instrumentos utizados y datos con los cual se trabaja.
+En esta sección desarrollaremos el principal enfoque de este trabajo que son las imágenes satelitales; como se forman, rangos de bandas, instrumentos utilizados y datos con los cual se trabaja.
 
 \subsection{Teledetección}\label{sub:teledeteccion}
 
@@ -18,15 +18,15 @@ La teledeteccion o sensado remoto tambien llamado es el proceso que nos permite 
 
 La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. 
 
-En general la teledetección es la medición de energía emanada de la superficie terrestre. Existen diferentes fuentes de energia; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energia medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
+En general la teledetección es la medición de energía emanada de la superficie terrestre. Existen diferentes fuentes de energía; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
 
-Los componentes basicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
+Los componentes básicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
 \begin{itemize}
 \item \textit{Fuente de energia}: es la radiación electromagnética que capta el sensor; como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
 
-\item \textit{Cubierta terrestre}: rasgos naturales o relizados por el hombre, ejemplo construcciones, que refleja el sensor.
+\item \textit{Cubierta terrestre}: rasgos naturales o realizados por el hombre, ejemplo construcciones, que refleja el sensor.
 
-\item \textit{Sistema Sensor}: esta computesto por, camaras, radar, etc; y la plataforma en la que esta puesto (satelite, avion, globo);  capta la energía proveniente de la tierra y la almacena o envía al sistema de recepción.
+\item \textit{Sistema Sensor}: esta compuesto por, cámaras, radar, etc; y la plataforma en la que esta puesto (satélite, avión, globo);  capta la energía proveniente de la tierra y la almacena o envía al sistema de recepción.
 
 \item \textit{Sistema de Recepción}: sistema encargado de recibir la información proveniente del sensor y almacenar en un formato apropiado para luego ser distribuido a los usuarios.
 
@@ -42,9 +42,9 @@ Los componentes basicos de un sistema de teledetección incluye lo siguiente \ci
 
 \subsubsection{Tipos de Sensores}
 \begin{itemize}
-\item \textbf{sensores pasivos}: son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Estas señales son a partir de la radiación solar natural. Este tipo de sensores son  usados mayormente en apliacaciónes de evaluación de recursos naturales. Ejemplo: ASTER, MODIS, VIIRS, LandSat.
+\item \textbf{sensores pasivos}: son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Estas señales son a partir de la radiación solar natural. Este tipo de sensores son  usados mayormente en aplicaciones de evaluación de recursos naturales. Ejemplo: ASTER, MODIS, VIIRS, LandSat.
 
-\item \textbf{sensores activos}: son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta raciación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
+\item \textbf{sensores activos}: son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 \end{itemize}
 
 \subsubsection{Espectro electromagnético}
@@ -71,7 +71,7 @@ Las regiones utilizadas para la observación remota de la tierra son:
 
 
 \subsubsection{Resolución}
-Unas de las características de los sensores son el tipo de imagen que proporiciona; estas características vienen definidas por el timpo de resolución. Estas resoluciónes la podemos definir de la siguiente manera:
+Unas de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el timpo de resolución. Estas resoluciones la podemos definir de la siguiente manera:
 
 \begin{itemize}
 \item \textbf{Resolución Espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel. A menor tamaño de píxel mayor sera la resolución espacial, esto quiere decir que el sensor tendrá mayor detalle de los objetos.
@@ -93,16 +93,16 @@ Unas de las características de los sensores son el tipo de imagen que proporici
   \caption{Resolución radiometrica}\label{Fig:resolucion-radiometrica}
 \end{figure}
 
-\item \textbf{Resolución temporal}: es el tiempo necesario que tarda el satelite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen. Este ciclo de cobertura esta en función de el tipo de orbita de la plataforma asi como del sensor. Alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días).
+\item \textbf{Resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen. Este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor. Alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días).
 
 \end{itemize}
 
 \subsubsection{Imagen Satelital}
-Una imágen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones de este depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la raciación electromagnetica proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energia electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se pondra representar depende de la resolución radiometrica.
+Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones de este depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la raciación electromagnetica proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energia electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiometrica.
 
 La asignación de colores más conocido por los usuarios es el \textit{falso color} (R=Red (rojo); G=Green (verde); B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. 
 
-La información obtenida de diferentes combinaciónes de bandas depende del objeto de estudio que se esta llevando a cabo.
+La información obtenida de diferentes combinaciones de bandas depende del objeto de estudio que se esta llevando a cabo.
 
 %https://acolita.com/wp-content/uploads/2018/01/Teledeteccion_espacial_ArcGeek.pdf
 %https://mundosigs.wordpress.com/2016/03/07/que-son-los-sensores-remotos/
@@ -111,7 +111,7 @@ La información obtenida de diferentes combinaciónes de bandas depende del obje
 \section{Aprendizaje Automático}
 
 \subsection{Machine Learning}
-\ac{ml} como se mencionó en la primera sección, es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento, generalizando, a partir de los datos de entrada. Un algoritmo de \ac{ml} es aquel que permite aprender determinado comoportamiento a partir de los datos. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
+\ac{ml} como se mencionó en la primera sección, es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento, generalizando, a partir de los datos de entrada. Un algoritmo de \ac{ml} es aquel que permite aprender determinado comportamiento a partir de los datos. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
 "Se dice que un programa de computadora aprende de la experiencia E con respecto a algun tipo de tareas T y la medida de rendimiento P, si su desempeño en tareas en T, medido por P, mejora con la experiencia E." \citep{Tom michell}
 
@@ -126,7 +126,7 @@ Existen una gran cantidad de problemas que caen dentro de este tipo de rama, de 
 \end{figure}
 
 \item \textit{Problemas de Clasificación}: En un problema de clasificación, estamos tratando de predecir los resultados en una
-salida discreta. En otras palabras, estamos tratando de asignar variables de entrada en categorías discretas. Algunos de los ejemplos son: clasificar perros o gatos determinando a que clase pertenece la imágen, evaluar si un email pertenece a la categoria "spam" o "no spam", entre otros.
+salida discreta. En otras palabras, estamos tratando de asignar variables de entrada en categorías discretas. Algunos de los ejemplos son: clasificar perros o gatos determinando a que clase pertenece la imagen, evaluar si un email pertenece a la categoría "spam" o "no spam", entre otros.
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
@@ -135,7 +135,7 @@ salida discreta. En otras palabras, estamos tratando de asignar variables de ent
 
 
 \item \textit{Problemas de Aprendizaje no supervisado}: El aprendizaje no supervisado nos permite abordar los problemas con
-poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la estructura de los datos donde no necesariamente conocemos el efecto de las variables. Podemos derivar esta estructura agrupando los datos basados en relaciones entre las variables en los datos. Con el aprendizaje no supervisado no hay una retroalimentación basada en los resultados de la predicción. El objetivo de problemas de aprendizaje no supervisados puede ser descubrir grupos de ejemplos similares dentro de los datos, donde se denomina agrupación (clustering), o determinar la distribución de datos dentro del espacio de entrada, conocida como estimación de densidad (density estimation), o proyectar los datos desde un espacio de nivel dimensional alto hasta dos o tres dimensiones con propósitos de visualización (Bishop, 2006).
+poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la estructura de los datos donde no necesariamente conocemos el efecto de las variables. Podemos derivar esta estructura agrupando los datos basados en relaciones entre las variables en los datos. Con el aprendizaje no supervisado no hay una retroalimentación basada en los resultados de la predicción. El objetivo de problemas de aprendizaje no supervisados puede ser descubrir grupos de ejemplos similares dentro de los datos, donde se denomina agrupación (clustering), o determinar la distribución de datos dentro del espacio de entrada, conocida como estimación de densidad (density estimación), o proyectar los datos desde un espacio de nivel dimensional alto hasta dos o tres dimensiones con propósitos de visualización (Bishop, 2006).
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/claustering.png}
@@ -146,18 +146,18 @@ poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la e
 \subsubsection{Entrenamiento del modelo}
 %https://docs.aws.amazon.com/es_es/machine-learning/latest/dg/training-ml-models.html
 %clasificación supervisada metodos deduccion matematica
-Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego relizar predicciones sobre datos que no conoce.
+Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego realizar predicciones sobre datos que no conoce.
 
 Para poder entrenar un modelo necesitamos al menos tres cosas especificas:
 \begin{enumerate}
-\item \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo, el objetivo es crear un modelo que generalize los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imagenes que pertenezcan a las categorias mencionadas; para resolver un problema de reconomiento de voz los datos de entrada deben ser audios de personas hablando.
+\item \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo, el objetivo es crear un modelo que generalice los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audios de personas hablando.
 
 \item \textbf{Salida esperada}: para cada valor de entrada debemos etiquetar a que clase pertenece es decir, para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la imagen; para un ejemplo de reconocimiento de voz cada audio debe tener una transcripción del mismo.
 
-\item \textbf{Evaluación de las predicciones}: calcular y evaluar metricas con los resultados de la predicciónes obtenidas por los modelo, es decir, determinar la distancia entre la salida esperada y los valores predichos.
+\item \textbf{Evaluación de las predicciones}: calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir, determinar la distancia entre la salida esperada y los valores predichos.
 \end{enumerate}
 
-Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada (x) y una variable de salida (Y); que a travez de un algoritmo de aprenidaje obtenemos la siguiente relacion entre estas variables como vemos a continuación.
+Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada (x) y una variable de salida (Y); que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
 
 
 \begin{eqnarray}
@@ -184,34 +184,64 @@ De esta manera cuando se pase un elemento que nunca vio puede determinar en cual
 
 \subsubsection*{Ejemplo: Regresión Lineal}
 %http://www.deeplearningbook.org/contents/ml.html
-Una Regresión lineal es un claro ejemplo de un algoritmo de \ac{ml}; el objetivo es desarrollar un sitema que tome un vector x pertence a $R$**n y prediga el valor de un escalar y pertenece$R$ como salida; la salida de una regresion lineal es una función lineal de la entrada.  Vamos a tomar como Ysombrero el valor que nuestro modelo predice definido por:
+Una Regresión lineal es un claro ejemplo de un algoritmo de \ac{ml}; el objetivo es desarrollar un sistema que tome un vector $x \in \; $R$^n$, prediga el valor de un escalar $y \in \; $R$ $ como salida; la salida de una regresión lineal es una función lineal de la entrada.  Vamos a tomar como $\hat{y}$ el valor que nuestro modelo predice definido por:
 \begin{equation}
 \hat{y} = w^t * x
 \end{equation}
-donde w pertence a los Relaes, siendo un vector de parametros.
-Los parametros son valores que controlan el comportamiento del sistema,en este caso w  multiplicado por x (caracteristica de cada datos de entrada), lo podemos ver como un conjunto de pesos que determinan como cada característica afecta a la predicción.
+donde $w \in \; $R$ $, siendo un vector de parámetros.
+Los parámetros son valores que controlan el comportamiento del sistema,en este caso w  multiplicado por x (característica de cada datos de entrada), lo podemos ver como un conjunto de pesos que determinan como cada característica afecta a la predicción.
 
-Si x esta multiplicado por un peso wsubi positivo, entonces el valor de esa característica aumenta nuestra predicción, de manera analoga si el valor wsui es negativo esa característica x decrementa mi valor de prediccion ysmbrero.
-Como siguiente medida debemos medir la performance de nuestro modelo, para realizar la medición de nuestro modelo debemos anteriormente haber separado el conjunto de datos en dos partes por un lado los datos de que se van a usar para ralizar el entrenamiento y por otro los datos que seran los que usamos para medir la performance del modelo, llamado conjuto de test.
+Si x esta multiplicado por un peso $w_i $ positivo, entonces el valor de esa característica aumenta nuestra predicción, de manera análoga si el valor $w_i $ es negativo esa característica x disminuye mi valor de predicción $\hat{y}$.
+Como siguiente medida debemos medir la precisión de nuestro modelo, para realizar la medición de nuestro modelo debemos anteriormente haber separado el conjunto de datos en dos partes por un lado los datos de que se van a usar para realizar el entrenamiento y por otro los datos que serán utilizados para medir la precisión del modelo, llamado conjunto de test.
 
-Una de las maneras de medir nuestra performance del modelo con nuestro conjunto de test es computando el error cuadrado medio, dado por la siguiente ecuación:
-\begin{equation}
+Una de las maneras de medir nuestra precisión del modelo con nuestro conjunto de test es computando el error cuadrado medio, dado por la siguiente ecuación:
+\begin{equation}\label{eqn:mse} 
 MSE_{test} = \frac{1}{n}\sum_{i}(\hat{y}^(test)- y^(test))^2
 \end{equation}
 
-Como se puede ver a partir del ccalculo anterior el error decrementa a 0 cuando ysom es igual a y
+Como se puede ver a partir del calculo anterior el error decremento a 0 cuando $\hat{y}$ es igual a $y$. Para entrenar un modelo de \ac{ml} necesitamos realizar un algoritmo que en cada iteración mejore los valores de los pesos de manera de reducir el error; en la sección siguiente se desarrollará mas en detalle.
 
-
-Para entrenar un modelo de \ac{ml} necesitamos realizar un algoritmo que en cada iteracion mejore los valores de los pesos de manera de reducir el error.
-
-
-
-
-
+Decimos que una hipótesis generaliza bien, cuando predice correctamente con entradas no conocidas.
 
 \subsubsection{Función de Costo}
+Existen diferentes maneras de que una algoritmo aprenda los parámetros de un modelo, este proceso de aprendizaje es posible minimizando la función de costo. Una función de costo es una medida del cuán erróneo es el modelo que estamos entrenando en términos a la capacidad de estimar la relación entre $X $ e $y $. Esto se lo puede expresar como la diferencia o distancia entre el valor predicho y el actual valor.
+
+Como se menciono anteriormente el objetivo de un modelo de \ac{ml} es encontrar los valores que minimicen la función de costo.Una función de costo toma un conjunto de datos y retorna un valor llamado error costo (\textit{loss cost} su traducción en ingles). Existen diferentes tipos de funciones de costo que podemos usar; una de las mas comunes usada es \textbf{mean square error}, MSE, visto en \ref{eqn:mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
+\begin{figure}[H] \centering
+  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
+  \caption{Mean Square Error }\label{Fig:mse}
+  %http://wiki.fast.ai/images/5/55/Linear_line_w_cost_function.png
+\end{figure}
+
+Dado un punto de datos $(x_i,y_i) $, donde $x_i $ es el conjunto de característica (por ejemplo pisos, dormitorios, etc) que el modelo usa para realizar la predicción, $y_i $ es la etiqueta del ejemplo (por ejemplo precio de la casa) e $y(x_i)$ es la la función de predicción; el error esta dado por la siguiente formula:
+\begin{equation}\label{eqn:error-mse}
+e = (y(x_i) - y_i)^2
+\end{equation} 
+A partir del calculo anterior podemos generalizar y tomar el promedio sobre todo los punto de datos de la siguiente manera:
+\begin{equation}
+MSE =  \frac{1}{n}\sum_{i}(y_i - y(x_i))^2
+\end{equation}
+% NOTA: SE DEBE PONER MAS FUNCIONES DE COSTO RMSE?
+
+Existen en la actualidad diversas funciones de costo que nos permite calcular el error del modelo por ejemplo 
+
+%https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications
+
+
 
 \subsubsection{Algoritmos de Optimización} 
+%https://hackernoon.com/gradient-descent-aynk-7cbe95a778da
+
+
+En la mayoría de las aplicaciones para algoritmos de \ac{ml} abarcan mucho más que solo uno característica, en algunos casos hasta decenas de millones de parámetros. Para encontrar el mínimo valor para grandes dimensiones de datos usamos el algoritmo llamado \textbf{Descenso de Gradiente}(\textit{gradient descent} en ingles). 
+
+El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función. Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan 	la función de costo.
+\begin{figure}[H] \centering
+  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
+  \caption{Gradient Descent }\label{Fig:gradient-descent}
+\end{figure}
+
+
 
 \subsubsection{Validación de Modelos}
 %Validación de Modelos (overfitting, underfitting)
