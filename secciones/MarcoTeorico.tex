@@ -230,19 +230,42 @@ Existen en la actualidad diversas funciones de costo que nos permite calcular el
 \subsubsection{Algoritmos de Optimización} 
 %https://hackernoon.com/gradient-descent-aynk-7cbe95a778da
 %https://stxlearning.com/2018/03/25/optimizacion-deep-learning-y-complejidad-computacional/
-En modelos de \ac{ml} debemos encontrar aquellos parámetros que minizan la función de costo como se menciono previamente, este es un poblema de optmización ya que si encontramos la solución podemos encontrar esos parámetros que minimizan el error.
+En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la función de costo como se menciono previamente, este es un problema de optimización ya que si encontramos la solución podemos encontrar esos parámetros que disminuyen el error.
 
-En la mayoría de algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros; es por esto que todos los algortimos de \ac{ml} son algoritmos de optmización ya que se busca aprender los parámetros mencionado anteriormente.
+En la mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros; es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia mas típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico y método de Newton Rawson de 2 orden.
 
-Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo mas utlizado es el llamado \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función. Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan 	la función de costo.
+\subsubsection*{Descenso de gradiente}\label{sub:gradient-desc}
+Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo mas utilizado es el llamado \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento.
+
+Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan la función de costo. $$\min_{w} f(w)$$
+
+Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
+
 \begin{figure}[H] \centering
   \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
   \caption{Gradient Descent }\label{Fig:gradient-descent}
 \end{figure}
 
-El algot
-tipos de gd
+
+%Gradiente extraido de :https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
+El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla f(w) $ vector de derivadas parciales de la función $f$ es decir:
+\begin{equation}
+\nabla f(x) = (\frac{\partial f(\textbf{w})}{\partial w[1]},....., \frac{\partial f(\textbf{w})}{\partial w[d]})
+\end{equation}
+
+Descenso de gradiente es un algoritmo iterativo; comenzamos con un valor inicial de $\textbf{w}$ (el valor 0 por ejemplo), luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual. Es decir, el paso de actualización es:
+\begin{equation}
+\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - n \nabla f(\textbf{w}^{(t)})
+\end{equation}
+En el cual $n > 0$, dado que el gradiente apunta a la dirección del mayor índice de $f$ alrededor $w^{(t)}$, el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de T iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$; la salida también puede ser el vector con mayor  $ argmin_{t \in [T]} f(w^{(t)}) $.
+
+
+En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan más al mínimo buscado, es decir que hacen que $f(w^{(t)})$ aproxime mejor a $Y$ .
+
+% PONEMOS BACKPROPAGATION, LEARNING RATE
+
 %http://ruder.io/optimizing-gradient-descent/
+%https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
 \subsubsection{Validación de Modelos}
 %Validación de Modelos (overfitting, underfitting)
