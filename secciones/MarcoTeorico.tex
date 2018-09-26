@@ -223,25 +223,26 @@ MSE =  \frac{1}{n}\sum_{i}(y_i - y(x_i))^2
 \end{equation}
 % NOTA: SE DEBE PONER MAS FUNCIONES DE COSTO RMSE?
 
-Existen en la actualidad diversas funciones de costo que nos permite calcular el error del modelo por ejemplo 
+Existen en la actualidad diversas funciones de costo que nos permite calcular el error del modelo; entre ellas estan: Quadratic cost, Cross-entropy cost, Exponentional cost, Hellinger distance, Kullback–Leibler divergence, entre otras.
 
 %https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications
 
-
-
 \subsubsection{Algoritmos de Optimización} 
 %https://hackernoon.com/gradient-descent-aynk-7cbe95a778da
+%https://stxlearning.com/2018/03/25/optimizacion-deep-learning-y-complejidad-computacional/
+En modelos de \ac{ml} debemos encontrar aquellos parámetros que minizan la función de costo como se menciono previamente, este es un poblema de optmización ya que si encontramos la solución podemos encontrar esos parámetros que minimizan el error.
 
+En la mayoría de algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros; es por esto que todos los algortimos de \ac{ml} son algoritmos de optmización ya que se busca aprender los parámetros mencionado anteriormente.
 
-En la mayoría de las aplicaciones para algoritmos de \ac{ml} abarcan mucho más que solo uno característica, en algunos casos hasta decenas de millones de parámetros. Para encontrar el mínimo valor para grandes dimensiones de datos usamos el algoritmo llamado \textbf{Descenso de Gradiente}(\textit{gradient descent} en ingles). 
-
-El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función. Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan 	la función de costo.
+Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo mas utlizado es el llamado \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función. Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan 	la función de costo.
 \begin{figure}[H] \centering
   \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
   \caption{Gradient Descent }\label{Fig:gradient-descent}
 \end{figure}
 
-
+El algot
+tipos de gd
+%http://ruder.io/optimizing-gradient-descent/
 
 \subsubsection{Validación de Modelos}
 %Validación de Modelos (overfitting, underfitting)
