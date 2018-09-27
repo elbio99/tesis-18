@@ -260,16 +260,71 @@ Descenso de gradiente es un algoritmo iterativo; comenzamos con un valor inicial
 En el cual $n > 0$, dado que el gradiente apunta a la dirección del mayor índice de $f$ alrededor $w^{(t)}$, el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de T iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$; la salida también puede ser el vector con mayor  $ argmin_{t \in [T]} f(w^{(t)}) $.
 
 
-En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan más al mínimo buscado, es decir que hacen que $f(w^{(t)})$ aproxime mejor a $Y$ .
+En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan más al mínimo buscado, es decir que hacen que $f(w^{(t)})$ aproxime mejor a $Y$ . Existen diversas variantes de descenso por gradiente como Batch gradient descent, Stochastic gradient descent y Mini-batch gradient descent.
 
 % PONEMOS BACKPROPAGATION, LEARNING RATE
-
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
 \subsubsection{Validación de Modelos}
 %Validación de Modelos (overfitting, underfitting)
+Para determinar la persición de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de validación en \ac{ml} son usadas para obtener esa tasa de error en el modelo.
 
+Antes de evaluar nuestro modelo debemos separar nuestro datos en: \textit{datos de entrenamiento} y \textit{datos de test}; en la mayoria de los casos se suele realizar una separación del conjunto de datos total en porcentajes de 60/40, 70/30 o 80/20 para entrenamiento y test.
+
+Una de las principales causas de validar nuestro modelo son obtener resultados erroneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: \textbf{ overfitting y underfitting}. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la performance del modelo. 
+
+\subsubsection*{Overfitting}
+Este concepto en \ac{ml} hace referencia al sobreentrenamiento del modelo. El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir. Esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
+
+\subsubsection*{Underfitting}
+Como parte opuesta al overfitting esta el  underfitting; este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos.
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/OverFUnderF.png}
+  \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha)}
+	\label{Fig: overUnder}
+\end{figure}
+
+
+Existen diferentes técnicas para validar la robustez de nuestro modelo y evitar los problemas mencionados anteriormente, una de ellas es por  \textit{validación cruzada} (cross validation en ingles). La validación cruzada es una técnica que evalúa los resultados de un análisis estadístico y garantiza de que sean independientes de la partición de los datos de entrenamiento y prueba. 
+
+Hay diversos tipos de validación cruzada, de las cuales podemos nombrar:
+
+\begin{enumerate}
+
+\item \textbf{K-Fold Cross Validation}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Exite un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto comom entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/crossvalidat.png}
+  \caption{Validación cruzada para k=5\\(Adaptado de:{http: //goo.gl/Dp85h3})}
+	\label{Fig: crossvalidation}
+\end{figure}
+
+\item \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada, tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para validar. La ventaja de este metodo es que usamos todo los datos para realizar el entrenamiento.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-LOOCV.png}
+  \caption{Leave-One-Out Cross-Validation (LOOCV)}
+	\label{Fig: crossvalidation-LOOCV}
+\end{figure}
+
+\item \textbf{Random Subsampling}: En esta técnica, se eligen aleatoriamente múltiples conjuntos de validación y se combinan para formar un conjunto de datos de prueba. Los datos restantes forman el conjunto de datos de entrenamiento.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-random.png}
+  \caption{Random Subsampling}
+	\label{Fig: random-Subsampling}
+\end{figure}
+
+\end{enumerate}
+
+
+%IMPORTANTE: https://sebastianraschka.com/pdf/manuscripts/model-eval.pdf
+%https://dzone.com/articles/machine-learning-validation-techniques
 
 \subsection{Computer Vision}
 
