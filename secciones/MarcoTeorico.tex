@@ -340,7 +340,7 @@ Esta disciplina estudia problemas metodológicos y algorítmicos como así tambi
 Un sistema de \ac{cv} actúa sobre una representación de una realidad que le proporciona información sobre brillo colores, formas, etcétera. Estas representaciones suelen estar en forma de imágenes estáticas, escenas tridimensionales o imágenes en movimiento \citep{Ledda}. 
 
 
-Los campos de aplicación que aplican técnicas de \ac{cv} son diversos tanto como en diferentes áreas de la ciencia y la industria \citep{areascv} :
+Los campos de aplicación que aplican técnicas de \ac{cv} son en diferentes áreas de la ciencia y la industria \citep{areascv} :
 \begin{enumerate}
 \item Robótica : Se usan técnicas de \ac{va} con el fin de reconstruir la escena e identificar los objetos.
 \item Biología : En el campo de la biología podríamos distinguir entre aplicaciones microscópicas y macroscópicas. En una imagen microscópica  podemos  usar técnicas de segmentación para contar el número de microorganismos o células presentes en la imagen.
@@ -362,15 +362,57 @@ Existen diferencias entre procesamiento de imagen y \ac{cv}, la principal es que
 
 En \ac{cv} tratamos de describir el mundo real que vemos en una o mas imágenes y reconstruir sus propiedades, tal como la forma, iluminación y distribución del color \citep{Szeliski}; con esta disciplina podemos saber en que carril se encuentra un vehículo, cuantas personas hay en una escena, reconocer a una persona en particular. Así como lo mencionado, existen numerosas aplicaciones que hoy en día están en el mercado  y usan técnicas de \ac{cv}. 
 
-%https://blogs.zeiss.com/optics-beyond/computer-vision-machine-learning/
+Debido a la complejidad de los nuevos desafios a solucionar las técnicas de \ac{cv} y \ac{ml} se intersectan; de esta manera \ac{cv}  se convirtio en en unos de los dominio principales en los que se han aplicado con exito metodos de \ac{ml} por ejemplo reconocer objetos en una imagen. 
 %https://blogs.zeiss.com/digital/the-relation-between-computer-vision-and-machine-learning/
-
-
 
 \subsection{Ajuste de Modelos}
 
-\subsection{Redes Convolucionales}
+\subsection{Redes Convolucionales}\label{sub:cnn}
 
+\ac{cnn} son una clase de redes neuronales muy utilizadas en la actualidad por profesionales en \ac{cv}. La arquitectura de una \ac{cnn} consiste en múltiples capas donde cada una de estas tienen diferente propósito.
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/cnnconv.png}
+  \caption{Red Neuronal Convolucional (Adaptado de:\citep{cnns})}
+	\label{Fig: redconvolucion}
+\end{figure}
+
+Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas (ver: \ref{Fig: redconvolucion}), tales características pude ser fusionada pre-procesandolas con el fin de detectar características de mayor orden \citep{murphy}.
+
+
+El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características} (ver \ref{Fig: fmaps}). Cada unidad  del mapa de característica es lo que llamamos en la sección (\ref{sub:problemadeteccion}),  \textit{\textbf{feature vector}}. Una capa convolucional completa está compuesta de varios mapas de características (con diferentes 
+\textit{feature vector}), de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/Logos/fmaps.png}
+  \caption{Ejemplo de mapa de características, (Adaptado de: \citep{cnnsarticle})}
+	\label{Fig: fmaps}
+\end{figure}
+
+El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}:
+\begin{enumerate}
+\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución. Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
+es decir a partir de la imagen de entrada aplicar por ejemplo detección de bordes, color, etc.
+\item stride (paso): es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada. Tener un stride grande producirá mapas de características más pequeños.
+\item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
+\end{enumerate}
+
+Las \ac{cnn} estan basadas en operaciónes de convolución; la convolución son opraciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente un mapa de caracteristica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar en comparación con una red \textit{fully connected}.
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
+  \caption{Convolución}
+	\label{Fig:convolucion}
+\end{figure}
+%https://www.scribd.com/document/271869018/Convolucion-con-CNN
+Las aplicaciónes de mayormente utilizadas son: reconocimiento de imágenes, analisis de video, procesamiento de lenguaje natural, detección de poses, segmentación de imagenes, entre otros.
+\subsubsection*{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
+
+
+%https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 \subsection{Regions Proposal}
 
 \subsection{Clasificadores}
