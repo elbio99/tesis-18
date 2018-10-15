@@ -266,13 +266,11 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
-\subsubsection{Validación de Modelos}
-%Validación de Modelos (overfitting, underfitting)
-Para determinar la persición de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de validación en \ac{ml} son usadas para obtener esa tasa de error en el modelo.
+\subsubsection{Validación de Modelos}\label{sub:validacion-modelo}
 
-Antes de evaluar nuestro modelo debemos separar nuestro datos en: \textit{datos de entrenamiento} y \textit{datos de test}; en la mayoria de los casos se suele realizar una separación del conjunto de datos total en porcentajes de 60/40, 70/30 o 80/20 para entrenamiento y test.
+Antes de evaluar nuestro modelo debemos separar nuestro datos en: \textit{datos de entrenamiento} y \textit{datos de test}; en la mayoría de los casos se suele realizar una separación del conjunto de datos total en porcentajes de 60/40, 70/30 o 80/20 para entrenamiento y test.
 
-Una de las principales causas de validar nuestro modelo son obtener resultados erroneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: \textbf{ overfitting y underfitting}. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la performance del modelo. 
+Una de las principales causas de validar nuestro modelo son obtener resultados erróneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: \textbf{ overfitting y underfitting}. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la performance del modelo. 
 
 \subsubsection*{Overfitting}
 Este concepto en \ac{ml} hace referencia al sobreentrenamiento del modelo. El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir. Esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
@@ -326,7 +324,61 @@ Hay diversos tipos de validación cruzada, de las cuales podemos nombrar:
 %IMPORTANTE: https://sebastianraschka.com/pdf/manuscripts/model-eval.pdf
 %https://dzone.com/articles/machine-learning-validation-techniques
 
-\subsection{Computer Vision}
+\subsubsection{Evaluación de Modelos}\label{sub:evaluación-modelo}
+Para determinar la efectividad de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de evaluación en \ac{ml} son usadas para obtener esa tasa de error en el modelo. La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. 
+
+El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación:
+
+\begin{enumerate}
+\item \textbf{Matriz de Confusión}, \textit{Confussion Matrix}: contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/confussion_matrix.png}
+  \caption{Matriz de Confusión}
+	\label{Fig: confusion-matrix}
+\end{figure}
+
+\begin{itemize}
+	\item Positivos (P): Observación positiva (valor etiquetado).
+	\item Verdadero Positivo (TP): La observación es positiva y la predicción también.
+	\item Falso Negativo (FN): La observación es positiva pero la predicción es negativa.
+	\item Falso Positivo (FP): La observación es negativa pero la predicción es positiva.
+	\item Verdadero Negativo (TN) :  La observación es negativa y también la predicción negativa.
+
+\end{itemize}
+
+
+\item \textbf{Accuracy}: Proporción de todas las predicciones que son correctas, da una medida de que tan bueno es el modelo.
+\begin{equation}
+accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}
+\end{equation}
+
+\item \textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
+\begin{equation}
+precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}
+\end{equation}
+
+\item \textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
+\begin{equation}
+recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} 
+\end{equation}
+
+\item \textbf{Overlapping Mean}: Métrica obtenida a partir de la intersección del ground truth y el bounding box de la predicción obtenida \ref{Fig: roc}.
+
+\item \textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área de 1.0 representa un modelo que hizo perfectamente todas las predicciones.
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/curvas-roc.png}
+  \caption{Curva ROC}
+	\label{Fig: roc}
+\end{figure}
+
+
+\end{enumerate}
+
+
+\subsection{Computer Vision}\label{sub:compueter-vision}
 Visión artificial,\ac{cv} por sus siglas en ingles, son aquellas herrmientas desarrolladas para extraer información a partir de imágenes.
 \begin{figure}[H]
  \centering
@@ -342,9 +394,9 @@ Un sistema de \ac{cv} actúa sobre una representación de una realidad que le pr
 
 Los campos de aplicación que aplican técnicas de \ac{cv} son en diferentes áreas de la ciencia y la industria \citep{areascv} :
 \begin{enumerate}
-\item Robótica : Se usan técnicas de \ac{va} con el fin de reconstruir la escena e identificar los objetos.
+\item Robótica : Se usan técnicas de \ac{cv} con el fin de reconstruir la escena e identificar los objetos.
 \item Biología : En el campo de la biología podríamos distinguir entre aplicaciones microscópicas y macroscópicas. En una imagen microscópica  podemos  usar técnicas de segmentación para contar el número de microorganismos o células presentes en la imagen.
-\item Medicina : Para este campo existen muchas aplicaciones que usan \ac{va} en el procesamiento de imagen. Estas aplicaciones están orientadas desde el diagnóstico de dolencia hasta detección de cáncer. 
+\item Medicina : Para este campo existen muchas aplicaciones que usan \ac{cv} en el procesamiento de imagen. Estas aplicaciones están orientadas desde el diagnóstico de dolencia hasta detección de cáncer. 
 \item  Reconocimiento y Clasificación : Campo muy explorado con aplicaciones que podemos encontrar, como detección de rostros, reconocimiento de huellas dactilares.
 \item Inspección y control de calidad : Verificar las característica esperada del producto como por ejemplo sus dimensiones o verificando si el producto cumple con determinados criterios.
 \item  Cartografía: Obtener elevaciones del terreno, estimar densidad de población en un área.
@@ -477,7 +529,7 @@ Regiones Propuesta, \ac{rp} en su traducción al ingles, son un conjunto de mét
 	\label{Fig: propsalregion}
 \end{figure}
 
-Existen diversos métodos para calcular regiones candidatas que podemos encontrar en: \citep{proposal}. En este trabajo se realizo pruebas con los  Edges Boxes, BING y Selective Search.
+Existen diversos métodos para calcular regiones candidatas que podemos encontrar en: \citep{proposal}. En esta tesis se realizo pruebas con los  los métodos \textit{Edges Boxes} y \textit{Selective Search}.
 
 \subsubsection*{Edges Boxes} \label{sub:edgesboxes}
 
@@ -494,26 +546,7 @@ En la figura (\ref{Fig: edges}) podemos ver de manera simplificada los pasos del
 	\label{Fig: edges}
 \end{figure}
 
-Este método evalúa las cajas candidatas utilizando un enfoque de ventana deslizante, similar a la detección de objetos tradicionales; donde en cada posición del objeto evaluamos, escala y relación generando una puntuación (score) que indica la probabilidad de que un objeto esté presente.
-
-\subsubsection*{BING} \label{sub:bing}
-\ac{bing}, puede ser usado para una eficiente estimación de objetos; es un método que propone reducir la ventana de detección a 8x8 y usar la norma de gradiente\footnote{Fuente :https://es.wikipedia.org/wiki/Gradiente} como  un simple vector de 64 dimensiones, realizando una binarización  de estas características.
-
-\ac{bing}  es un modelo lineal, donde:  \(w \in R^{64} \)  y pude ser aproximado por un conjunto de vectores bases. La clave esta en como binarizar y calcular la norma de gradiente eficientemente. Aproximamos la norma de gradiente, cada una tiene un BYTE de valor, usando los bits de parte superior de los valores del BYTE (ver Fig: \ref{Fig: bing}).
-\begin{figure}[H]
- \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/Logos/BING.png}
-  \caption{Ejemplo \ac{bing}. (Adaptado de:\citep{bing})}
-	\label{Fig: bing}
-\end{figure}
-
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/bing2.png}
-  \caption{Ejemplo de la norma de gradiente de una ventana y el modelo aprendido.(Adaptado de:\citep{bing2})}
-	\label{Fig: bing2}
-\end{figure}
+Este método evalúa las cajas candidatas utilizando un enfoque de ventana deslizante, similar a la detección de objetos tradicionales; donde en cada posición del objeto evaluamos, escala y relación generando una puntuación (score) que indica la probabilidad de que un objeto esté presente en el bounding box.
 
 
 \subsubsection*{Selective Search} \label{sub:selectivesearch}
@@ -534,9 +567,7 @@ Las estrategias usadas en este método son:
 
 \subsection{Non-Maximum Suppression}\label{sub:nonmaximumsuppression}
 
-\ac{nms} es un pre-procesamiento muy importante en el ámbito de \ac{cv}  donde trabajamos con imágenes de alta resolución \citep{nms}.  \ac{nms} normalmente se usa con algoritmos de detección de bordes \textit{Edge Boxes} .
-
-Puede  suceder que cuando aplicamos métodos de regiones propuestas existan boxes (regiones) con sobremuestreo, es decir lo que en la literatura se los llama \textit{overlapping bounding boxes} , como por ejemplo ver en la figura (\ref{Fig: overlapping}). 
+\ac{nms} es un pre-procesamiento muy importante en el ámbito de \ac{cv}  donde trabajamos con imágenes de alta resolución \citep{nms};  \ac{nms} normalmente se usa con algoritmos de detección de bordes \textit{Edge Boxes}. Puede  suceder que cuando aplicamos métodos de regiones propuestas existan boxes (regiones) con sobremuestreo, es decir lo que en la literatura se los llama \textit{overlapping bounding boxes} , como por ejemplo ver en la figura (\ref{Fig: overlapping}). 
 
 \begin{figure}[H]
  \centering
@@ -553,7 +584,9 @@ Para poder eliminar este solapamiento (detecciones redundantes) utilizamos \ac{n
   \caption{Ejemplo de Overlapping con diferentes scores. (Adaptado de:\citep{edges})}
 	\label{Fig: interseccion}
 \end{figure}
+
 Dependiendo del valor de score usado podremos eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento. Para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}.
+
 \begin{figure}[H]
  \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Logos/nms.png}
@@ -565,23 +598,76 @@ En \ac{cv} este método es muy utilizado ya que nos permite además de eliminar 
 
 
 \subsection{Clasificadores}\label{sub:clasificadores}
-%  FALTA VER
-Las \ac{svm}, son métodos usado para la clasificación. Un clasificador \ac{svm} busca el limite que separa las clases con el mayor margen posible; como podemos ver en la siguiente imagen (\ref{Fig: margenseparacionsvm}).
+
+Un clasificador es un método que permite a partir de recibir cierta información del objeto es capaz de indicar la categoría o clase a a que pertenece determinado objeto. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
+
+\begin{enumerate}
+\item \textbf{Logistic Regression}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
+
+Para asignar los valores predichos a las probabilidades, usamos la función sigmoide que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
+\begin{equation}
+\phi(z) = \frac{1}{1+e^{-z}}
+\end{equation}
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/separacionsvm.png}
+  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sigmoide.png}
+  \caption{Logistic Regression}
+	\label{Fig: log_reg}
+\end{figure}
+
+
+\item \textbf{Decision Tree}: Estos tipos de clasificadores toman un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja; un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
+	
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
+  \caption{Ejemplo Arboles de desiciones}
+	\label{Fig: decision-tree}
+\end{figure}
+
+
+\item \textbf{Random Forest}:Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{Decision Tree} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando. 
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.jpg}
+  \caption{Ejemplo Random Forest}
+	\label{Fig: random_forest}
+\end{figure}
+
+\item \textbf{Support Vector Machines, SVM}: Un clasificador SVM busca el limite que separa las clases con el mayor margen posible; como podemos ver en la siguiente imagen (\ref{Fig: margenseparacionsvm}).
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/separacionsvm.png}
   \caption{Ejemplo margen de Separación hiperplano SVM \\(Adaptado de:{https://goo.gl/eTZfvH})}
 	\label{Fig: margenseparacionsvm}
 \end{figure}
 
-Las ventajas de las máquinas de soporte de vectores son:
+Las ventajas de estos clasificadores son:
 \begin{itemize}
 \item Eficaz en grandes espacios dimensionales.
 \item Sigue siendo efectivo en casos en los que el número de dimensiones es mayor que el número de muestras.
 \item Versátil: se pueden especificar diferentes funciones del kernel para la función de decisión.
 \item El proceso de entrenamiento es más rápido en comparación con otros clasificadores, sobre todo para conjunto de entrenamientos grandes.
 \end{itemize}
+
+\item \textbf{Nearest Neighbor}: Es otro tipo de clasificador supervisada que busca estimar la probabilidad a posteriori de la clase, es decir,  asigna la muestra $x $ a la clase más frecuente de entre sus $k $ vecinos más cercanos, según una cierta medida de similitud o distancia.
+
+Se calcula la distancia entre los vectores almacenados y el nuevo vector y se seleccionan los $k $ ejemplos más cercanos, una distancia alta entre individuos nos indica que son muy diferentes y una baja que son muy similares. El cálculo de distancia esta dado por la siguiente formula:
+\begin{equation}
+dist(p,q) = \sqrt{\sum_{i=1}^{n} (p_i - q_i)^{2}}
+\end{equation}
+
+
+Es uno de los clasificadores más utilizados por su simplicidad. La principal dificultad de este método consiste en determinar el valor de $k$.
+
+
+%http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
+\end{enumerate}
+
+ 
 
 
 
