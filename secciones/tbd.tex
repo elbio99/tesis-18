@@ -83,12 +83,21 @@ Las siguientes consideraciones tomadas a la hora de elegir determinadas metodolo
 El método utilizado para la extracción de regiones candidatas fue \textit{Selective search}
 
 \subsubsection*{Regiones candidatas}
+Esta etapa del pipeline, ya con las regiones candidatas obtenidas en el punto anterior aplicamos lo que en el marco teórico se desarrollo como \ac{nms} \ref{sec:nms}. Aplicando esta técnica descartamos regiones quedándonos con aquellas que cumplen determinado criterio de solapamiento.
 
-REPASO DE QUE NMS, CROP DE LA IMAGEN
-
-
+Para finalizar se recorto la imagen por cada regiones candidatas obtenidas; a su ves se calculo si cada región candidata se solapaba con algunos de los \textit{graund truth} etiquetados previamente en la imagen \ref{sec:grodunthruh}, almacenando con los valores 0 si no existía solapamiento entre regiones candidatas y 1 en caso contrario.
 
 \subsubsection*{Extracción de características}
-\subsubsection*{Clasificación}
-\subsubsection*{Predicción}
+En esta paso del pipeline se utilizo una red neuronal pre entrenada llamada \textit{Resnet50}\ref{sec:arquitecturasdered}. Obteniendo por cada región un vector de 2048 elementos que la representa.
 
+Estos datos se almacenaron en un archivo \textit{.mat} para poder luego ser utilizado en el paso de clasificación.
+
+\subsubsection*{Clasificación}
+El proceso de clasificación podríamos decir que es el ultimo paso importante del pipeline desarrollado, en el a partir de los datos etiquetados junto con sus vectores de característica correspondiente se entreno un clasificador linear realizando cross validation en cada etapa, para luego obtener métricas mencionadas en \ref{sec:metricas} que seran las que nos indiquen que tan bien generaliza nuestro modelo.
+
+\subsubsection*{Predicción}
+La ultima etapa del pipeline es la predicción en esta etapa a partir del modelo entrenado en el item anterior vamos a tratar de predecir una imagen nueva que nunca vio el modelo. Para poder realizar este paso la nueva imagen debe pasar todos los pasos descripto en el pipeline excluyendo el etiquetado y en entrenamiento de clasificación.
+
+
+
+Un pipeline en \ac{ml} es un proceso iterativo; en este trabajo se realizo diversas iteraciones tanto a nivel individual de cada paso como a nivel global. 
