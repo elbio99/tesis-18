@@ -1,0 +1,22 @@
+% \section{Requerimientos del Software}\label{sec:requerimientos}
+
+% En la siguiente (tabla: \ref{tab:tabladerequerimiento}), se enumeran las especificaciones de requerimiento en el desarrollo del software. 
+% \begin{table}[H]
+% 	\begin{center}
+% 	\begin{tabular}{|c|p{9cm}|c|}\hline
+% 		\rowcolor[gray]{0.9} \textbf{\large ID} & \centering \textbf{\large Requerimientos} &\textbf{\large Tipo}\\
+% 		\hline
+% 		0 & El sistema deberá detectar un área de interés en una imagen satelital &Funcional\\\hline
+%         2 & La imágenes deberá tener las bandas TBD del espectro visible & TBD\\\hline
+%         3 & El software usará técnicas de Machine Learning para el procesamiento de la imágen satelital & Funcional	\\\hline
+%         4 & EL software usará técnica de Computer Vision para el procesamiento de la imágen satelital. & Funcional \\\hline
+%         5 & Se deberá contar con datos de entrada para su simulación: un conjunto de imágene, datos de coordenadas de los puntos de interés & Funcional	\\\hline
+%         6 & El software deberá ser implementado en un lenguaje de programación que soporte tecnología de ML y VA & TBD	\\\hline
+%         7 & El software deberá ser documentado  & TBD	\\\hline
+%         8 & El software medirá el tiempo de procesamiento de las técnicas a usar  & TBD	\\\hline
+%        	9 & El software deberá hacer un pre-procesamiento de la imágen  &	TBD\\\hline
+% 	\end{tabular}
+%     \caption{Requerimientos de Software} \label{tab:tabladerequerimiento}
+%     \end{center}
+% \end{table}
+
