@@ -1,14 +1,14 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En este capitulo se expondrá los resultados que se obtuvieron por medio de los experimentos realizados en este trabajo de investigación. Los pasos seguidos serán presentados dividiendo en diferentes secciones para lograr una mayor comprensión del trabajo por parte del lector.
+En este capitulo se expondrá los resultados obtenidos de los experimentos realizados. El capítulo se dividirá en secciones diferentes para dar al lector una mayor compresión de los resultados.
 
-La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}, se muestran cuales fueron los recursos finales que se utilizaron para realizar los experimentos.
+La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}, se desarrolla cuales son los recursos que se utilizaron para realizar la experimentación.
 
-La segunda sección  \textit{Entrenamiento y Validación} \ref{sec:entrenamiento}, se detallan como se realizo el proceso de aprendizaje de los datos y los procesos de validación que se llevaron a cabo.
+La segunda sección  \textit{Entrenamiento y Validación} \ref{sec:entrenamiento}, se detallan como se realizo el proceso de aprendizaje de los datos y los procesos de validación que se llevaron a cabo; a su vez se detallan las métricas obtenidas de cada predictor entrenado.
 
 \section{Preparación de Datos}\label{sec:preparacion_de_datos}
 
-Vamos a partir de las imágenes obtenidas en el capitulo \ref{chap:recoleccion} donde se puso en detalle los tipos de imágenes que serán utilizadas. En esta sección hablaremos de cual es el \textit{ground truth}, región verdadera, utilizada; como se realizo la extracción de característica de cada imagen, y que criterio de selección de candidatos se utilizo para el entrenamiento.
+Vamos a partir de las imágenes obtenidas en el capitulo \ref{chap:recoleccion} donde se puso en detalle los tipos de imágenes que serán utilizadas. En esta sección hablaremos de cual es el \textit{ground truth}, región de interés utilizada; como se realizo la extracción de característica de cada imagen, y que criterio de selección de candidatos se utilizo para el entrenamiento.
 
 \subsection{Ground truth}\label{sub:groundtruth}
 
@@ -68,45 +68,12 @@ Imagen03 & 543 & Golfo & 44,300,500,900 \\ \hline
 
 Cada una de las imágenes obtenidas (ver: \ref{chap:recoleccion}), se aplico técnicas de selección de regiones candidatas para luego ser analizada y clasificada; para esta fase aplicamos métodos de \textit{Regions Proposal} visto en el capitulo \ref{chap:marcoteorico}.
 
-La primera  consideración tomada fue analizar que método de \textit{Regions Proposal} se utilizaría. Se realizaron pruebas con los métodos \ac{bing}, Selective Search y Edge Boxes; donde podemos detallar lo siguiente: \ref{tabla:comparacionregiones}.
+Unos de los principales inconvenientes a la hora del desarrollo de la tesis fue el tamaño de las imágenes. Las regiones de interés son mas pequeñas en proporción a la escala y tamaño de la imagen utilizada, por este motivo al aplicar técnicas de selección de candidatos no generalizaba de manera correcta las regiones que deseamos captar. 
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|p{2cm}|p{6cm}|p{8cm}|}
-    \hline 
-     & \centering \textbf{Ventajas} & \multicolumn{1}{c|}{\centering \textbf{Desventajas}} \\
-    \hline
-    \centering Selective Search & \parbox[p][0.2\textwidth][c]{6cm}{
-    \begin{itemize}
-        \item Fácil implementación en python	
-    \end{itemize}}  &  \parbox[p][0.2\textwidth][c]{7.5cm}{
-    \begin{itemize}
-        \item Tiempo de ejecución muy alto para imágenes de resolución mayores; ejemplo: 2800x3000px.	
-    \end{itemize} } \\ \hline
-    \centering Edges Boxes & \parbox[p][0.2\textwidth][c]{6cm}{
-    \begin{itemize}
-        \item Buen tiempo de ejecución con imágenes de gran tamaño
-        \item Reconocimientos de regiones de menor tamaño
-    \end{itemize} } & \parbox[p][0.2\textwidth][c]{7.5cm}{
-    \begin{itemize}
-        \item No se encontró una implementación optima en python.	
-    \end{itemize} } \\ \hline 
-     \centering BING & \parbox[p][0.2\textwidth][c]{6cm}{
-    \begin{itemize}
-        \item El tiempo de ejecución en imágenes de gran tamaño es optimo
-    \end{itemize} } &  \parbox[p][0.2\textwidth][c]{7.5cm}{
-    \begin{itemize}
-        \item Baja probabilidad de encontrar regiones de menor tamaño en imágenes grandes.
-    \end{itemize} } \\ \hline
-\end{tabular}
-\caption{Análisis de métodos Regiones Propuestas}
-\label{tabla:comparacionregiones}
-\end{table}
-
-Unos de los principales inconvenientes a la hora del desarrollo de la tesis fue el tamaño de las imágenes. Las regiones de interés son mas pequeñas en proporción a la escala y tamaño de la imagen utilizada, por este motivo al aplicar técnicas de selección de candidatos no generalizaba de manera correcta las regiones que deseamos captar. Para eliminar este problema se procedió a realizar los siguientes pasos: 
+Para eliminar el problema de escala mencionado se procedió a realizar los siguientes pasos: 
 \begin{enumerate}
  \item Para cada imagen original se corto en regiones de 256px de alto por el ancho total de la imagen (ver: \ref{Fig: cropimagen}), donde \textit{w} es el ancho de la imagen y \textit{h} alto de la imagen
- \item Se aplico para cada recorte obtenido el método \textit{Edges Boxes} para la obtención de regiones candidatas (ver: \ref{Fig: cropproposal}).
+ \item A cada recorte se aplico técnicas de \textit{Regions Proposal} para la obtención de regiones candidatas (ver: \ref{Fig: cropproposal}).
 
 \begin{figure}[H]
  \centering
@@ -122,7 +89,7 @@ Unos de los principales inconvenientes a la hora del desarrollo de la tesis fue 
 	\label{Fig: cropproposal}
 \end{figure}
 
-\item Para cada imagen se obtuvo 26 recortes en total, obteniendo el siguiente resultado en la imagen completa \ref{Fig: proposal}.
+\item Para cada imagen se obtuvo 26 recortes, obteniendo el siguiente resultado en la imagen completa \ref{Fig: proposal}.
 
 \begin{figure}[H]
  \centering
@@ -132,12 +99,11 @@ Unos de los principales inconvenientes a la hora del desarrollo de la tesis fue 
 \end{figure}
 
 \end{enumerate}
-La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Edges Boxes} de selección de candidatos. Procesar estas 53.815 regiones candidatas consumirá mucho tiempo de computo, además podemos visualizar que existen regiones solapadas (overlapping); estas regiones representan información duplicada que debemos eliminar. 
+La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Selective Search} de selección de candidatos. Como se mencionó en \ref{sec:nms} existen regiones solapadas que representan la misma información; esta información fue eliminada aplicando \ac{nms} 
 
-Para solucionar el problema del \textit{overlapping}  aplicamos \ac{nms} visto en la sección \ref{sec:nonmaximumsuppression}. 
-El valor usado para la eliminación de regiones candidatas duplicadas fue de 0.8 como valor de solapamiento entre regiones candidatas detectadas.
+El valor usado para la eliminación de regiones candidatas duplicadas fue de $80\% $ como el porcentaje de solapamiento entre las diferentes regiones candidatas detectadas.
 
-En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un valor 0.8 de \textit{overlapping} aplicando \ac{nms} obtenemos un 90\% aproximadamente de optimización en la eliminación de regiones candidatas duplicada, es decir se paso de 53.815 a 1.560 regiones candidatas por imagen para el entrenamiento.
+En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un umbral de $80\% $ en \textit{overlapping} aplicando \ac{nms} obtenemos un $90\% $ aproximadamente de optimización en la eliminación de regiones candidatas duplicada, es decir se paso de 53.815 a 1.560 regiones candidatas por imagen para el entrenamiento.
 
 \begin{figure}[H]
  \centering
@@ -149,26 +115,26 @@ En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un valor 
 
 \subsection{Etiquetado}\label{sub:etiquetado}
 
-Los datos obtenidos de la recolección de regiones candidatas a partir de los métodos \textit{Proposal} debe ser etiquetados para su entrenamiento. Para realizar el etiquetado se utilizo el \textit{ground truth} \ref{sub:groundtruth} que serán comparados con las regiones candidatas calculando el \textit{overlapping} entre estas.
+Los datos obtenidos de la recolección de regiones candidatas a partir de las técnicas de \textit{Regions Propsal} debe ser etiquetados para su entrenamiento. Para realizar el etiquetado se utilizo el \textit{ground truth} \ref{sub:groundtruth} que serán comparados con las regiones candidatas calculando el \textit{overlapping}, solapamiento, entre las regiones.
 
 El criterio utilizado en el etiquetado de datos es el siguiente:
-\begin{enumerate}
+\begin{itemize}
 	\item 0: NO contiene el patrón de interés en la región candidata.
 	\item 1: Existencia del patrón en la región candidata.
-\end{enumerate}
+\end{itemize}
 
-Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de 0.5 como valor de \textit{overlapping}, es decir el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
+Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de $50\% $ como valor de \textit{overlapping}, esto es el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
 
 
 \subsection{Extracción de Características}\label{sub:extracciondecaracteristica}
 
-El proceso de extracción de característica se realiza sobre la regiones candidatas obtenidas luego de aplicar \ac{nms} sobre estas. Por cada región se obtendrá un vector de 2048 dimensiones que representa las características de esa región encontrada.
+El proceso de extracción de característica se realiza sobre la regiones candidatas obtenidas luego de aplicar \ac{nms} sobre estas. Por cada región se obtendrá un vector de 2048 dimensiones que representa a cada región. La obtención de este vector de característica se realiza por medio de una \ac{cnn}, en donde las entradas a la red son las regiones candidatas. 
 
-La obtención del vector de característica se realiza por medio de una \ac{cnn}, en donde las entradas a la red son las regiones candidatas. Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50} donde se obtuvo de la ante ultima capa el vector que va a representar la región.
+Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50}\ref{sec:arquitecturasdered} \ref{chap:pipeline}donde se obtuvo de la ante ultima capa el vector que va a representar la región.
 
 Los vectores obtenidos se almacenaron en un archivo de extensión \textit{.mat}; que contiene los siguientes datos:
 \begin{itemize}
- \item Las coordenadas de cada regiones candidatas.
+ \item Las coordenadas de cada una de las regiones candidatas.
  \item El \textit{feature vector} de 2048 elementos que corresponde a cada región. 
  \item Las etiquetas que indica a que clase pertenece la región \ref{sub:etiquetado}.
 \end{itemize}
