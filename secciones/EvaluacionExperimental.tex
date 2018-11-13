@@ -1,8 +1,8 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En este capitulo se expondrá los resultados obtenidos a partir de los experimentos realizados. Los pasos seguidos serán presentados dividiendo en diferentes secciones para lograr una mayor comprensión del trabajo.
+En este capitulo se expondrá los resultados obtenidos de los experimentos realizados. El capítulo se dividirá en secciones diferentes para dar al lector una mayor compresión de los resultados.
 
-La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}, se desarrollan cuales son los recursos que se utilizaron para realizar la experimentación.
+La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}, se desarrolla cuales son los recursos que se utilizaron para realizar la experimentación.
 
 La segunda sección  \textit{Entrenamiento y Validación} \ref{sec:entrenamiento}, se detallan como se realizo el proceso de aprendizaje de los datos y los procesos de validación que se llevaron a cabo; a su vez se detallan las métricas obtenidas de cada predictor entrenado.
 
@@ -101,9 +101,9 @@ Para eliminar el problema de escala mencionado se procedió a realizar los sigui
 \end{enumerate}
 La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Selective Search} de selección de candidatos. Como se mencionó en \ref{sec:nms} existen regiones solapadas que representan la misma información; esta información fue eliminada aplicando \ac{nms} 
 
-El valor usado para la eliminación de regiones candidatas duplicadas fue de $80% $  como el porcentaje de solapamiento entre las diferentes regiones candidatas detectadas.
+El valor usado para la eliminación de regiones candidatas duplicadas fue de $80\% $ como el porcentaje de solapamiento entre las diferentes regiones candidatas detectadas.
 
-En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un umbral de $80% $ en \textit{overlapping} aplicando \ac{nms} obtenemos un $90% $ aproximadamente de optimización en la eliminación de regiones candidatas duplicada, es decir se paso de 53.815 a 1.560 regiones candidatas por imagen para el entrenamiento.
+En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un umbral de $80\% $ en \textit{overlapping} aplicando \ac{nms} obtenemos un $90\% $ aproximadamente de optimización en la eliminación de regiones candidatas duplicada, es decir se paso de 53.815 a 1.560 regiones candidatas por imagen para el entrenamiento.
 
 \begin{figure}[H]
  \centering
@@ -118,12 +118,12 @@ En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un umbral
 Los datos obtenidos de la recolección de regiones candidatas a partir de las técnicas de \textit{Regions Propsal} debe ser etiquetados para su entrenamiento. Para realizar el etiquetado se utilizo el \textit{ground truth} \ref{sub:groundtruth} que serán comparados con las regiones candidatas calculando el \textit{overlapping}, solapamiento, entre las regiones.
 
 El criterio utilizado en el etiquetado de datos es el siguiente:
-\begin{enumerate}
+\begin{itemize}
 	\item 0: NO contiene el patrón de interés en la región candidata.
 	\item 1: Existencia del patrón en la región candidata.
-\end{enumerate}
+\end{itemize}
 
-Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de $50% $ como valor de \textit{overlapping}, esto es el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
+Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de $50\% $ como valor de \textit{overlapping}, esto es el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
 
 
 \subsection{Extracción de Características}\label{sub:extracciondecaracteristica}
