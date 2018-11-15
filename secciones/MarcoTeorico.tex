@@ -1,28 +1,27 @@
 \chapter{Marco Teórico} \label{chap:marcoteorico}
 
-En el siguiente capitulo se pondrá al alcance del lector las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado.
+En el siguiente capitulo se pondrá al alcance del lector las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en este trabajo de investigación realizado.
 
-Se tratará de dar un enfoque simplificado de temas como: ¿que es el sensado remoto?, ¿que es el Aprendizaje Automático?, descripción y desarrollo de Algoritmos de optimización, validación de modelos, Computer Vision.
-
-Para finalizar se expondrá la arquitectura, entrenamiento y reconocimiento de objetos a través de  redes neuronales convolucionales y clasificadores.
+Se tratará de dar un enfoque simplificado de temas como: ¿que es el sensado remoto?, ¿que es Machine Learning y Computer Vision?, un breve repaso de modelos de optimización, cuales son las técnicas y modelos utilizado de validación para el cálculo de métricas. 
+Por ultimo se describirá los tipos de clasificadores que existen en la actualidad.
 
 \section{Sensado Remoto}\label{sec:sensadoremoto}
 
-En esta sección desarrollaremos el principal enfoque de este trabajo que son las imágenes satelitales; como se forman, rangos de bandas, instrumentos utilizados y datos con los cual se trabaja.
+Para comenzar vamos a hablar del principal enfoque de este trabajo que son las imágenes satelitales. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
 
 \subsection{Teledetección}\label{sub:teledeteccion}
 
 Para comenzar a introducir el concepto de imagen satelital debemos saber como esta formada la misma, es por esto que vamos a desarrollar el concepto de \textit{teledetección}.
 
-La teledeteccion o sensado remoto tambien llamado es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
+La teledetección o sensado remoto también llamado es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
 
-La teledeteccion no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. 
+La teledetección no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. 
 
 En general la teledetección es la medición de energía emanada de la superficie terrestre. Existen diferentes fuentes de energía; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
 
 Los componentes básicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
 \begin{itemize}
-\item \textit{Fuente de energia}: es la radiación electromagnética que capta el sensor; como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
+\item \textit{Fuente de energía}: es la radiación electromagnética que capta el sensor; como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
 
 \item \textit{Cubierta terrestre}: rasgos naturales o realizados por el hombre, ejemplo construcciones, que refleja el sensor.
 
@@ -30,7 +29,7 @@ Los componentes básicos de un sistema de teledetección incluye lo siguiente \c
 
 \item \textit{Sistema de Recepción}: sistema encargado de recibir la información proveniente del sensor y almacenar en un formato apropiado para luego ser distribuido a los usuarios.
 
-\item \textit{Interprete}: encargado de manipular los datos de acuerdo a la temática de interes (agricultura, catastro, etc), es decir aplica diferentes niveles de procesamiento sobre los datos crudos obtenidos por el sensor.
+\item \textit{Interprete}: encargado de manipular los datos de acuerdo a la temática de interés (agricultura, catastro, etc), es decir aplica diferentes niveles de procesamiento sobre los datos crudos obtenidos por el sensor.
 
 \item \textit{Usuario Final}: es el consumidor final de la imagen adquirida.
 \end{itemize}
@@ -66,7 +65,7 @@ Las regiones utilizadas para la observación remota de la tierra son:
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
-  \caption{Espectro electromagnético \citep{https://iie.fing.edu.uy/proyectos/esopo/eem/}}\label{Fig:espectro-electromagnetico}
+  \caption{Espectro electromagnético}\label{Fig:espectro-electromagnetico}
 \end{figure}
 
 
@@ -78,13 +77,13 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion.png}
-  \caption{Resolución espacial \citep{https://iie.fing.edu.uy/proyectos/esopo/eem/}}\label{Fig:resolucion-esp}
+  \caption[Resolución espacial]{Resolución espacial\footnote{//iie.fing.edu.uy/proyectos/esopo/eem/}} \label{Fig:resolucion-esp}
 \end{figure}
 
 \item \textbf{Resolución Espectral}: la resolución espectral especifica el numero y la anchura de las badas espectrales que puede ser discrimidadas por el sensor.
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_espectral.jpg}
-  \caption{Resolución espectral \citep{http://laotraopinion.net/wp-content/uploads/poder-de-resolucion-espectral.jpg}}\label{Fig:resolucion-espectral}
+  \caption[Resolución espectral]{Resolución espectral\footnote{http://laotraopinion.net/wp-content/uploads/poder-de-resolucion-espectral.jpg}}\label{Fig:resolucion-espectral}
 \end{figure}
 
 \item \textbf{Resolución Radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor. Mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información. Ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados.
@@ -98,6 +97,7 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 \end{itemize}
 
 \subsubsection{Imagen Satelital}
+
 Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones de este depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la raciación electromagnetica proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energia electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiometrica.
 
 La asignación de colores más conocido por los usuarios es el \textit{falso color} (R=Red (rojo); G=Green (verde); B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. 
