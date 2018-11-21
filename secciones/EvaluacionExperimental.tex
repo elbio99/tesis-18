@@ -99,7 +99,7 @@ Para eliminar el problema de escala mencionado se procedió a realizar los sigui
 \end{figure}
 
 \end{enumerate}
-La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Selective Search} de selección de candidatos. Como se mencionó en \ref{sec:nms} existen regiones solapadas que representan la misma información; esta información fue eliminada aplicando \ac{nms} 
+La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Selective Search} de selección de candidatos. Como se mencionó en \ref{sub:nonmaximumsuppression} existen regiones solapadas que representan la misma información; esta información fue eliminada aplicando \ac{nms} 
 
 El valor usado para la eliminación de regiones candidatas duplicadas fue de $80\% $ como el porcentaje de solapamiento entre las diferentes regiones candidatas detectadas.
 
@@ -130,7 +130,7 @@ Para la selección de alguna de las etiquetas anteriores el umbral de decisión 
 
 El proceso de extracción de característica se realiza sobre la regiones candidatas obtenidas luego de aplicar \ac{nms} sobre estas. Por cada región se obtendrá un vector de 2048 dimensiones que representa a cada región. La obtención de este vector de característica se realiza por medio de una \ac{cnn}, en donde las entradas a la red son las regiones candidatas. 
 
-Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50}\ref{sec:arquitecturasdered} \ref{chap:pipeline}donde se obtuvo de la ante ultima capa el vector que va a representar la región.
+Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50}\ref{sub:arquitecturacnn} \ref{chap:pipeline}donde se obtuvo de la ante ultima capa el vector que va a representar la región.
 
 Los vectores obtenidos se almacenaron en un archivo de extensión \textit{.mat}; que contiene los siguientes datos:
 \begin{itemize}
