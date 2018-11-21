@@ -29,9 +29,9 @@ Dependiendo de la agencia espacial existe una nomenclatura para determinar los n
 \end{itemize}
 
 
-\section{Datos utilizdos}\label{sec:datosutilizados}
+\section{Datos utilizados}\label{sec:datosutilizados}
 
-En base a lo mencionado en la sección \ref{sec:funcamentacion}, las imágenes que se utilizaron para el desarrollo de esta tesis fueron seleccionadas a partir de los requerimientos del \ac{FS} \ac{conae}. Las imágenes escogidas se asemejan a las características del \ac{FS} \ac{conae} detalladas en los requerimientos formales del mismo; estas imágenes fueron adquiridas por el instrumento \ac{viirs} a bordo del satélite Suomi-NPP \ref{sub:viirs}.
+En base a lo mencionado en la sección \ref{sec:fundamentacion}, las imágenes que se utilizaron para el desarrollo de esta tesis fueron seleccionadas a partir de los requerimientos del \ac{fs} \ac{conae}. Las imágenes escogidas se asemejan a las características del \ac{fs} \ac{conae} detalladas en los requerimientos formales del mismo; estas imágenes fueron adquiridas por el instrumento \ac{viirs} a bordo del satélite Suomi-NPP \ref{sub:viirs}.
 
 Las imágenes fueron descargadas por medio del catalogo  publicado en el sitio oficial de \ac{conae} \footnote{Fuente: http://catalogos.conae.gov.ar/catalogo/catalogo-de-imagenes.html} de acceso gratuito para el publico. Se debe señalar ademas que se trabajó con imágenes correspondiente a los años 2017 y 2018 en una ventana de tiempo desde Abril del 2017 a Marzo del 2018; estas imágenes son de naturaleza óptica con un nivel de procesamiento 1a, de acuerdo a las nomenclaturas utilizadas en la sección \ref{sub:nivelesdeprocesamiento}.
 
@@ -132,9 +132,9 @@ Para recolectar las imágenes mencionadas en la sección anterior: \ref{sec:dato
 	\item Pre-procesamiento.
 \end{enumerate}
 
-El primer punto hace referencia a la descarga manual de los datos por medio del sitio oficial de \ac{conae}; ademas de realizo un pedido para poder obtener una ventana temporal de imágenes mas amplia ya que en la pagina oficial solo contiene imágenes con dos meses de anterioridad respecto a la fecha que se visita.
+El primer punto hace referencia a la descarga manual de los datos por medio del sitio oficial de \ac{conae}; ademas se realizo un pedido para poder obtener una ventana temporal de imágenes mas amplia ya que en la pagina oficial solo contiene imágenes con dos meses de anterioridad respecto a la fecha que se visita.
 
-El segundo y ultimo punto es el que llamamos pre-procesamiento, en este punto se realizaron tareas para obtener la imagen final a ser utilizada para la investigación.
+El segundo y ultimo punto es el que llamamos pre-procesamiento, en este punto se realizaron tareas para obtener la imagen final a ser utilizada para la investigación (ver:\ref{sec:preparacion_de_datos}).
 Partiendo de la imagen obtenida en el punto uno se utilizo la herramienta de procesamiento de imágenes ENVI \ref{sub:enviSoft}, software para el análisis de imágenes. Este software nos proporciona diferentes herramientas para la manipulación y procesamiento  de  una imagen satelital, de las cuales podemos mencionar la \textit{VIIRS Conversion Toolkit}; herramienta nos permite trabajar con productos \ac{viirs}, pudiendo aplicar a las imágenes correcciones geométricas, geo-referenciacion y re-proyecciones entre las diferentes funcionalidades que nos brinda. En este proceso de conversión de imágenes se realizaron diversos pasos para la obtención de las imágenes finales de los cuales se nombran a continuación:
 
 
