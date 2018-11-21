@@ -1,6 +1,6 @@
 \chapter{Desarrollo del Software}\label{chap:Desarrollo}
 
-El capitulo siguiente se describirá las diferentes herramientas de software utilizadas para el desarrollo de esta tesis. El mismo se dividirá en dos secciones la primera describe los detalles técnicos como lenguaje de programación, librerías de software y entorno de trabajo; la segunda sección se muestra la organización y estructura de código realizado.
+El capitulo siguiente se describirá las diferentes herramientas de software utilizadas para el desarrollo de esta tesis. El mismo se dividirá en dos secciones la primera describe los detalles técnicos como lenguaje de programación, librerías de software y entorno de trabajo; la segunda sección se muestra la organización y estructura del código realizado.
 
 
 \section{Detalles Técnicos e Implementación}\label{sec:implementacion}
@@ -15,7 +15,7 @@ Los principales motivos por el cual se optó por este lenguaje de programación 
 \begin{itemize}
  \item Facilidad de implementación y manipulación de grandes cantidades de datos.
  \item Lenguaje muy utilizado en el ámbito laboral de \ac{ml}.
- \item Posee diversas librerías para \ac{ml} y \ac{va} en manipulación de datos e imágenes.
+ \item Posee diversas librerías para \ac{ml} y \ac{cv} en manipulación de datos e imágenes.
 \end{itemize}
 
 
@@ -24,7 +24,7 @@ Los principales motivos por el cual se optó por este lenguaje de programación 
 
 \subsubsection*{Keras}
 
-Es una interfaz de programación (API) de alto nivel para redes neuronales, escrita en python , para la manipulación y uso de modelos de \ac{dl}. Envuelve las eficientes bibliotecas de cálculo numérico Theano y TensorFlow y permite definir y entrenar modelos de redes neuronales en unas breves líneas de código \footnote{Fuente:  https://keras.io/}. Como principal inconveniente encontrado es la escasa documentación de la librería.
+Es una interfaz de programación (API) de alto nivel para redes neuronales, escrita en python , para la manipulación y uso de modelos de \ac{cnn}. Envuelve las eficientes bibliotecas de cálculo numérico Theano y TensorFlow y permite definir y entrenar modelos de redes neuronales en unas breves líneas de código \footnote{Fuente:  https://keras.io/}. Como principal inconveniente encontrado es la escasa documentación de la librería.
 
 \subsubsection*{Scikit-Learn}\label{sub:sklearn}
 Scikit-Learn es una librería de software desarrollada en Python para solucionar problemas de \ac{ml}; que comprende en intentar predecir datos desconocidos a partir de modelos creados. Cuenta con varios algoritmos para la solución de problemas de ,regresión, clasificación y clustering, incluyendo algoritmos como maquinas de soporte vectoriales, vecino mas cercano (K-NN), descenso de gradiente , entre otros\footnote{Fuente: http://scikit-learn.org/stable/index.html}.
@@ -53,7 +53,7 @@ El software de análisis de imágenes \textit{ENVI} es utilizado por profesional
 
 ENVI proporciona una poderosa API que permite agregar sus propios algoritmos propietarios, ampliar las herramientas y modelos existentes, automatizar las tareas de alta frecuencia y combinar múltiples herramientas para producir los resultados deseados.
 
-El principal inconveniente encontrado es la instalación de herramientas adicionales para la manipulación de las imágenes como, VIIRS Toolkit. Otra falencia encontrada es lo poco amigable para el usuario a la hora de trabajar con imágenes.
+El principal inconveniente encontrado es la instalación de herramientas adicionales para la manipulación de las imágenes como,\textit{ VIIRS Toolkit}. Otra falencia encontrada es lo poco amigable para el usuario a la hora de trabajar con imágenes.
 
 \section{Organización y Estructura del código}\label{sec:estructuracodigo}
 
@@ -83,7 +83,7 @@ acciones que lleva a cabo son:
 \begin{itemize}
  \item Lee las carpetas que contiene las imágenes junto con las anotaciones de cada una de ellas.
  \item Comprueba que exista las notaciones
- \item A cada imagen realiza el crops(recorte) correspondiente.
+ \item A cada imagen realiza el crop(recorte) correspondiente.
  \item Extrae las anotaciones de cada imagen.
  \item Llama a la clase para calcular \textit{regions proposal}.
  \item Calcula el \textit{overlapping}, \ac{nms} para cada imagen.
