@@ -2,7 +2,7 @@
 En este apartado se expone las conclusiones y lineamientos futuros obtenidos a partir de la investigación realizada en la presente tesis. 
 
 \section{Conclusiones}
-En el desarrollo de la presente tesis se abordo el problema del reconocimiento de patrones sobre una imagen satelitales. EL estudio derivo en evaluar diferentes bandas a utilizar, pre procesamiento de imágenes ademas de la selección de diversas herramientas informáticas para su desarrollo y conclusión.
+En el desarrollo de la presente tesis se abordo el problema del reconocimiento de patrones sobre una imagen satelitales. El estudio derivo en evaluar diferentes bandas a utilizar, pre-procesamiento de imágenes ademas de la selección de diversas herramientas informáticas para su desarrollo y conclusión.
 
 Como base de lo expresado anteriormente se expone las siguientes conclusiones obtenidas por esta investigación:
 \begin{enumerate}
@@ -14,18 +14,18 @@ Como base de lo expresado anteriormente se expone las siguientes conclusiones ob
 
 \item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos; como se menciona en el punto anterior al tener clase des-balanceadas los modelos entrenados no hacían una buena generalización de los datos. Para evitar esto se trabajo con técnicas de \textit{cross validation} y resampleo de los datos.
 
-\item En base a las experimentaciones realizadas podemos afirmar que aplicar redes neuronales pre entrenadas para la extracción de característica se obtiene una correcta generalización de los datos y son muy eficiente para problemas de clasificación de imágenes.
+\item En base a las experimentaciones realizadas podemos afirmar que aplicar redes neuronales pre-entrenadas para la extracción de característica se obtiene una correcta generalización de los datos y son muy eficiente para problemas de clasificación de imágenes.
 
 \end{enumerate}
 
-El costo computacional en termino de capacidad de operaciones hace que aplicar técnicas de computer vision sea algo muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{va} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
+El costo computacional en termino de capacidad de operaciones hace que aplicar técnicas de computer vision sea  muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{cv} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
 
 
-\section{Lineamientos futuros}\label{linasfuturas}
+\section{Lineamientos futuros}\label{lineafuturas}
 Tomando como base las lecciones aprendidas en el desarrollo de la tesis, las posibles lineas de trabajo e investigaciones a futuro son:
 \begin{enumerate}
  \item A partir del bajo rendimiento en el calculo de los datos surge la posibilidad de implementar procesamiento en base a GPU para el cómputo en paralelo de los datos.
  \item Es posible aplicar diferentes arquitectura de las redes neuronales para la extracción de los vectores de característica; de esta manera determinar cual de las redes tiene mayor generalización en los datos para el tipo de problemática que estamos tratando.
  \item Evaluar nuevas herramientas de extracción de características y computar redes mucho mas livianas en términos de consumo de energía.
-\item Implementar el modelo de detección de regiones satelitales en tiempo real con el fin de poder logar una medida de tiempo, consumo de energía y viabilidad para desarrollarlo en una placa de vuelo. 
+\item Implementar el modelo de detección de regiones satelitales en tiempo real con el fin de poder lograr una medida de: tiempo, consumo de energía y viabilidad para desarrollarlo en una placa de vuelo. 
 \end{enumerate}
