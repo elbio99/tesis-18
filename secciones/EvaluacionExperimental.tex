@@ -130,7 +130,7 @@ Para la selección de alguna de las etiquetas anteriores el umbral de decisión 
 
 El proceso de extracción de característica se realiza sobre la regiones candidatas obtenidas luego de aplicar \ac{nms} sobre estas. Por cada región se obtendrá un vector de 2048 dimensiones que representa a cada región. La obtención de este vector de característica se realiza por medio de una \ac{cnn}, en donde las entradas a la red son las regiones candidatas. 
 
-Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50}\ref{sub:arquitecturacnn} \ref{chap:pipeline}donde se obtuvo de la ante ultima capa el vector que va a representar la región.
+Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50} \ref{sub:arquitecturacnn} donde se obtuvo de la ante ultima capa el vector que va a representar la región.
 
 Los vectores obtenidos se almacenaron en un archivo de extensión \textit{.mat}; que contiene los siguientes datos:
 \begin{itemize}
@@ -146,73 +146,25 @@ Los vectores obtenidos se almacenaron en un archivo de extensión \textit{.mat};
 
 \section{Entrenamiento y Validación}\label{sec:entrenamiento}
 
-En esta sección se comparte como se realizo el proceso de aprendizaje automático \ac{ml} con los datos obtenidos de la sección anterior \ref{sec:preparacion_de_datos}. Luego de la preparación de los datos visto en la sección anterior el conjunto de imágenes finales utilizada para el entrenamiento se detalla en \ref{sec:datosutilizados}.
+En esta sección se desarrolla como se realizo el proceso de aprendizaje automático \ac{ml} con los datos obtenidos de la sección anterior \ref{sec:preparacion_de_datos}. Las imágenes finales utilizadas para realizar el proceso de entrenamiento de detalla en \ref{sec:datosutilizados}.
 
-El datasets final se dividió en tres conjuntos:
-\begin{itemize}
-\item Train.
-\item Test.
-\item Validation.
-\end{itemize}
-
-El total de la muestra de datos para la experimentación fue de 650.000 \textit{feature vector}.
+El datasets final se dividió en tres conjuntos train, test y validación. El total de la muestra de datos para la experimentación fue de 650.000 \textit{feature vector}.
 
 \subsection{Hiper-parametros}\label{sub:hiperparametro}
 
 
-Para obtener una predicción correcta se debe realizar la optimización de parámetros que afectan a la clasificación. El método utilizado para poder realizar la optimización de estos parámetros fue \textit{grid search}\footnote{Fuente: https://goo.gl/koWr74}.  Grid search busca por fuerza bruta los parámetros a optimizar quedándose con aquel que logre un mayor \textit{accuracy} en las evaluaciones; en cada iteración se utiliza \textit{cross-validation} con 5 folds en el entrenamiento para evitar el \textit{overfitting}.
+Para obtener una predicción correcta se debe realizar la optimización de parámetros (ver: \ref{sub:hiperparametro}) que afectan a la clasificación. El método utilizado para poder realizar la optimización de estos parámetros fue \textit{grid search}\footnote{Fuente: https://goo.gl/koWr74}. El método grid-search busca por fuerza bruta los parámetros a optimizar quedándose con aquel que logre un mayor \textit{accuracy} en las evaluaciones; en cada iteración se utiliza \textit{cross-validation} con el valior de k=5 para el proceso de  entrenamiento.
 
-Los parametros son:
+Los parámetros a optimizar por \textit{grid-search} son:
 \begin{enumerate}
-	\item \textbf{Parámetro C}: Controla el costo de la mala clasificación, \textit{misclassification}, en los datos de entrenamiento. Con un valor de C pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos. Para valores muy pequeños de C, debe obtener ejemplos mal clasificados, a menudo incluso si sus datos de entrenamiento son linealmente separables. Para valores grandes de C,  elegirá un hiperplano de menor margen si ese hiperplano hace un mejor trabajo de conseguir que todos los puntos de entrenamiento estén clasificados correctamente. El objetivo es encontrar el equilibrio entre "no demasiado estricto" y "no demasiado relajado". La validación cruzada  son buenas maneras de encontrar el mejor C.
+	\item \textbf{Parámetro C}: Controla el costo de la mala clasificación, \textit{missclassification}, en los datos de entrenamiento. Con un valor de C pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos. Para valores muy pequeños de C, debe obtener ejemplos mal clasificados, a menudo incluso si sus datos de entrenamiento son linealmente separables. Para valores grandes de C,  elegirá un hiperplano de menor margen si ese hiperplano hace un mejor trabajo de conseguir que todos los puntos de entrenamiento estén clasificados correctamente. El objetivo es encontrar el equilibrio entre "no demasiado estricto" y "no demasiado relajado". La validación cruzada  son buenas maneras de encontrar el mejor C.
 	\item \textbf{Parámetro gamma}: Es la inversa de la desviación estándar del kernel RBF (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
 \end{enumerate}
 	
-
-El rango de parámetros usados para el entrenamiento y validación de datos fueron los siguientes:
-
-\begin{itemize}
- \item \textbf{Valor de C}: 1000,100,10,1, 0.1,0.01,0.001,0.0001
- \item \textbf{Valor de Gamma}: 1,0,1,0,01,0,001,0,0001,0,00001
-\end{itemize}
-
-
-
-
-\subsection{Metricas}\label{sub:metricas}
-
-Además de la optimización de los parámetros mencionados \ref{sub:hiperparametro}, la validación de los resultados se usaron las siguientes métricas: \textit{Accuracy, Precisión y Recall}.
-
-\begin{itemize}
-	\item Positivos (P): Observación positiva (valor etiquetado).
-	\item Verdadero Positivo (TP): La observación es positiva y la predicción también.
-	\item Falso Negativo (FN): La observación es positiva pero la predicción es negativa.
-	\item Falso Positivo (FP): La observación es negativa pero la predicción es positiva.
-	\item Verdadero Negativo (TN) :  La observación es negativa y también la predicción negativa.
-\end{itemize}
-
-\begin{enumerate}
-\item \textbf{Accuracy:} Proporción de todas las predicciones que son correctas; da una medida de que tan bueno es el modelo.
-\begin{equation}
-accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}
-\end{equation}
-
-\item \textbf{Precisión:} Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
-\begin{equation}
-precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}
-\end{equation}
-
-\item \textbf{Recall:} Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
-\begin{equation}
-recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} 
-\end{equation}
-
-\item \textbf{Overlapping Mean:} Métrica obtenida a partir de la intersección del ground truth y el bounding box de la predicción obtenida.
-
-\end{enumerate}
-
+El rango de parámetros que se uso para el entrenamiento y validación de datos fueron los siguientes: para valores de C se trabajo con (1000,100,10,1, 0.1,0.01,0.001,0.0001) y para valores de gamma se utilizaron (1,0,1,0,01,0,001,0,0001,0,00001)
 
 \subsection{Resultados obtenidos}\label{sub:resultados}
+Además de la optimización de los parámetros mencionados \ref{sub:hiperparametro}, se debe evaluar la performance del modelo entrenado, como se detallo en la sección \ref{sub:evaluación-modelo}, la validación de nuestro modelo serán basados en las medidas mencionada anteriormente.
 
 En la siguiente tabla \ref{tab:entrenam-result}	se expone los resultados obtenidos de los entrenamientos realizados. Como podemos ver se consideraron  diferentes combinaciones de banda con el fin de encontrar aquella que mejoren las métricas y que resalten las zonas de interés que deseamos detectar.
 
@@ -221,7 +173,7 @@ En la siguiente tabla \ref{tab:entrenam-result}	se expone los resultados obtenid
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
  & \multicolumn{3}{c|}{Hiper - parametros} & \multicolumn{4}{c|}{Metricas} \\ \hline
-Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}average\\ presicion\end{tabular} & \begin{tabular}[c]{@{}c@{}}overlapping\\ mean\end{tabular} \\ \hline
+Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}average\\ precision \end{tabular} & \begin{tabular}[c]{@{}c@{}}overlapping\\ mean\end{tabular} \\ \hline
 \multicolumn{1}{|c|}{1-1-1} & 10 & - & linear & 0.91 & 0.91 & 0.18 & 0.1 \\ \hline
 \multicolumn{1}{|c|}{1-3-5} & 10 & - & linear & 0.93 & 0.94 & 0.57 & 0.28 \\ \hline
 \multicolumn{1}{|c|}{1-5-3} & 1000 & 0.01 & rbf & 0.94 & 0.94 & 0.61 & 0.27 \\ \hline
@@ -255,23 +207,13 @@ Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}av
 \end{center}\caption{Resultados de los entrenamientos}\label{tab:entrenam-result}
 \end{table}
 
-Cada uno de los valores encontrados de los hiper parámetros se obtuvo a través de \textit{grid search}, estos valores son los que optimizan las métricas que estamos empleando.
+Cada uno de los valores encontrados de los hiper-parámetros se obtuvo a través de \textit{grid search}, estos valores son los que optimizan las métricas que estamos empleando.
 
 Se evaluaron también las detecciones obtenidas en el conjunto de test evaluando los \textit{falsos positivos} y re entrenando nuevamente el clasificador con los falsos positivos obtenidos con el fin de lograr una mejora en la detección y localización de las regiones que estamos buscando.
 
-Las tareas realizadas para evaluar la localización del objeto fue obtener el \textit{overlapping mean}; en esta métrica comparamos los \textit{bounding boxs} obtenidos en el entrenamiento realizado y el \textit{ground thruth}, región de interés, que tenemos anotado. Este valor nos da una visión de cual es la exactitud de nuestro predictor en cuanto a la localización del objeto.
+Las tareas realizadas para evaluar la localización del objeto fue obtener la métrica \textit{overlapping mean}; en esta métrica comparamos los \textit{bounding boxs} obtenidos en el entrenamiento realizado y el \textit{ground thruth}, región de interés, que tenemos anotado. Este valor nos da una visión de cual es la exactitud de nuestro predictor en cuanto a la localización del objeto.
 
-En el siguiente cuadro se visualiza la relación existente entre las regiones detectado y la presicion de la detección \ref{Fig: trade-off}.
-
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/Evaluacion-exp/presicion-over.png}
-  \caption{Trade-Off Average Presicion-Overlapping}
-	\label{Fig: trade-off}
-\end{figure}
-
-La siguiente imagen se puede visualizar los \textit{bounding boxs} detectados, esto es el resultado de aplicar el modelo entrenado a una imagen satelital; en este caso la imagen utilizada pertenece a las bandas M9-M7-M11, como se puede ver en la tabla \ref{tab:entrenam-result}, esta combinación de banda es una de las que mejores métricas se obtuvo en términos de localización y presicion en los entrenamientos.
+La siguiente imagen \ref{Fig: TP} se puede visualizar los \textit{bounding boxs} detectados, esto es el resultado de aplicar el modelo entrenado a una imagen satelital; en este caso la imagen utilizada pertenece a las bandas \textbf{M9-M7-M11}. Como se puede observar en la tabla \ref{tab:entrenam-result}, esta combinación de banda es una de las que mejor performance obtuvo al momento de evaluar el modelo en termino de localización, métrica overlapping mean, y precision.
 
 
 \begin{figure}[H]
@@ -280,3 +222,14 @@ La siguiente imagen se puede visualizar los \textit{bounding boxs} detectados, e
   \caption{Ejemplo de predicciones positivas}
 	\label{Fig: TP}
 \end{figure}
+
+En el siguiente cuadro se visualiza la relación existente entre las regiones detectada y la precision de la detección \ref{Fig: trade-off}.
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/Evaluacion-exp/presicion-over.png}
+  \caption{Trade-Off Average precision-Overlapping}
+	\label{Fig: trade-off}
+\end{figure}
+
+
