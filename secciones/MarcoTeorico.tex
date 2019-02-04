@@ -106,25 +106,27 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 %https://mundosigs.wordpress.com/2016/03/07/que-son-los-sensores-remotos/
 %https://www.slideshare.net/noldinn/fundamentos-deteledeteccionemiliochuvieco
 
-\section{Aprendizaje Automático}
 
-\subsection{Machine Learning}
+% COLOCAR ALGO DE LAS CAMARAS, PARA JUSTIFICAR EL OBJETIVO DE ESTA TESIS YA QUE SE PENSO PARA LA CALIBRACIÓN DE LAS CAMARAS. 
+
+% ESTE CAPITULO SE DEBE VINCULAR CON EL CAPITULO DE MACHINE LEARNING
+
+
+\section{Machine Learning}\label{sec:machinelaerning}
+
 \ac{ml} como se mencionó en la primera sección, es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento, generalizando, a partir de los datos de entrada. Un algoritmo de \ac{ml} es aquel que permite aprender a partir del conjunto de datos. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
 "Se dice que un programa de computadora aprende de la experiencia E con respecto a algún tipo de tareas T y la medida de rendimiento P, si su desempeño en tareas en T, medido por P, mejora con la experiencia E." \citep{Mitchell}
 
+\subsection{Aprendizaje Supervisado}\label{sub:aprendizaje_supervisado}
+
+Denntro
+
 Existen una gran cantidad de problemas que caen dentro de este tipo de rama, que podemos nombrar a continuación:
 
-\begin{itemize}
-\item \textit{Problemas de Regresión}: Este tipo de problema se pide que la computadora prediga un valor numérico dada alguna entrada. Los ejemplos que podemos citar son: fijar el precio de una casa a partir de las característica de la misma (cantidad de habitaciones, baños, etc), predecir el valor de la bolsa a partir del comportamiento de la bolsa en el tiempo pasado, entre otros.
+\subsubsection{Problemas de Clasificación}
 
-\begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/regression_linear.png}
-  \caption{Ejemplo Regresión (precio de una casa)}\label{Fig:regression}
-\end{figure}
-
-\item \textit{Problemas de Clasificación}: En un problema de clasificación, estamos tratando de predecir los resultados en una
-salida discreta. En otras palabras, estamos tratando de asignar variables de entrada en categorías discretas. Algunos de los ejemplos son: clasificar perros o gatos determinando a que clase pertenece la imagen, evaluar si un e-mail pertenece a la categoría "spam" o "no spam", entre otros.
+En un problema de clasificación, estamos tratando de predecir los resultados en una salida discreta. En otras palabras, estamos tratando de asignar variables de entrada en categorías discretas. Algunos de los ejemplos son: clasificar perros o gatos determinando a que clase pertenece la imagen, evaluar si un e-mail pertenece a la categoría "spam" o "no spam", entre otros.
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
