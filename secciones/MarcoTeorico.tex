@@ -119,22 +119,30 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 "Se dice que un programa de computadora aprende de la experiencia E con respecto a algún tipo de tareas T y la medida de rendimiento P, si su desempeño en tareas en T, medido por P, mejora con la experiencia E." \citep{Mitchell}
 
 \subsection{Aprendizaje Supervisado}\label{sub:aprendizaje_supervisado}
+% http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
 
-Denntro
+Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, label, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
 
-Existen una gran cantidad de problemas que caen dentro de este tipo de rama, que podemos nombrar a continuación:
+El conjunto de entrenamiento consiste en pares (x1, y1), ...,(xn, yn) donde cada xi es un característica o un conjunto de característica de un dato de ejemplo, y yi is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función Y = f(X) donde el objetivo es aproximar la función dadon un nuevo dato de entrada xi que pueda predecir valores yi. En la siguinte sección se desarrolla una de las técnicas mas utilizads en aprendizaje supervisado, la clasificación.
+
 
 \subsubsection{Problemas de Clasificación}
 
-En un problema de clasificación, estamos tratando de predecir los resultados en una salida discreta. En otras palabras, estamos tratando de asignar variables de entrada en categorías discretas. Algunos de los ejemplos son: clasificar perros o gatos determinando a que clase pertenece la imagen, evaluar si un e-mail pertenece a la categoría "spam" o "no spam", entre otros.
+Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la fontera que separa los datos de cada categoría para luego dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
+
+En los problemas de clasificación tenemos un conjunto de tuplas (X,Y), cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: (xi,yi),…,(xn,yn) valores con las que entrenar nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
+
+Para calcular las probabilidades, se debe obtener una función que transforme las entradas X en una salida que prediga la probabilidad de X para cierta clase es decir: x→f(x)=p(x). A modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra X tiene una Y = A, la función f(x) debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a 0.
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
   \caption{Ejemplo Clasificación}\label{Fig:clasificacion}
 \end{figure}
 
+% Ejemplo de MNIST en clasificación?????
+%https://towardsdatascience.com/support-vector-machine-mnist-digit-classification-with-python-including-my-hand-written-digits-83d6eca7004a
 
-\item \textit{Problemas de Aprendizaje no supervisado}: El aprendizaje no supervisado nos permite abordar los problemas con
+\textit{Problemas de Aprendizaje no supervisado}: El aprendizaje no supervisado nos permite abordar los problemas con
 poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la estructura de los datos donde no necesariamente conocemos el efecto de las variables. Podemos derivar esta estructura agrupando los datos basados en relaciones entre las variables en los datos. Con el aprendizaje no supervisado no hay una retroalimentación basada en los resultados de la predicción. El objetivo de problemas de aprendizaje no supervisados puede ser descubrir grupos de ejemplos similares dentro de los datos, donde se denomina agrupación (clustering), o determinar la distribución de datos dentro del espacio de entrada, conocida como estimación de densidad (density estimación), o proyectar los datos desde un espacio de nivel dimensional alto hasta dos o tres dimensiones con propósitos de visualización \citep{bishop}.
 
 \begin{figure}[H] \centering
