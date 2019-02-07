@@ -114,25 +114,27 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 
 \section{Machine Learning}\label{sec:machinelaerning}
 
-\ac{ml} como se mencionó en la primera sección, es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento, generalizando, a partir de los datos de entrada. Un algoritmo de \ac{ml} es aquel que permite aprender a partir del conjunto de datos. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
+\ac{ml} como se mencionó en la primera sección, es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento a partir de los datos de entrada. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
 "Se dice que un programa de computadora aprende de la experiencia E con respecto a algún tipo de tareas T y la medida de rendimiento P, si su desempeño en tareas en T, medido por P, mejora con la experiencia E." \citep{Mitchell}
 
 \subsection{Aprendizaje Supervisado}\label{sub:aprendizaje_supervisado}
 % http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
 
-Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, label, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
+Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, etiqueta, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
 
-El conjunto de entrenamiento consiste en pares (x1, y1), ...,(xn, yn) donde cada xi es un característica o un conjunto de característica de un dato de ejemplo, y yi is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función Y = f(X) donde el objetivo es aproximar la función dadon un nuevo dato de entrada xi que pueda predecir valores yi. En la siguinte sección se desarrolla una de las técnicas mas utilizads en aprendizaje supervisado, la clasificación.
+El conjunto de entrenamiento consiste en pares (x1, y1), ...,(xn, yn) donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo, y $y_i$ is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$. En la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
 
 
 \subsubsection{Problemas de Clasificación}
 
-Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la fontera que separa los datos de cada categoría para luego dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
+Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la frontera que separa los datos de cada categoría para luego, dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
 
-En los problemas de clasificación tenemos un conjunto de tuplas (X,Y), cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: (xi,yi),…,(xn,yn) valores con las que entrenar nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
+En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: (xi,yi),....,(xn,yn) valores con las que entrenar nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
 
-Para calcular las probabilidades, se debe obtener una función que transforme las entradas X en una salida que prediga la probabilidad de X para cierta clase es decir: x→f(x)=p(x). A modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra X tiene una Y = A, la función f(x) debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a 0.
+Para calcular las probabilidades, se debe obtener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $. A modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra X tiene una Y = A, la función f(x) debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a 0.
+
+En la siguiente figura se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, debe generar la linea punteada que seria la función f(x).
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
@@ -149,7 +151,7 @@ poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la e
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/claustering.png}
   \caption{Ejemplo aprendizaje no supervisado, claustering}\label{Fig:clauster}
 \end{figure}
-\end{itemize}
+
 
 \subsubsection{Entrenamiento del modelo}
 %https://docs.aws.amazon.com/es_es/machine-learning/latest/dg/training-ml-models.html
@@ -273,6 +275,17 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 % PONEMOS BACKPROPAGATION, LEARNING RATE
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
+
+\begin{algorithmic}[1]
+
+\end{algorithmic}
+
+
+    \State{¿Hemos llegado ya?}
+\EndFor
+\end{algorithmic}
+
+
 
 \subsubsection{Validación de Modelos}\label{sub:validacion-modelo}
 
