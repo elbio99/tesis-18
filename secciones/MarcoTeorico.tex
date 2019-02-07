@@ -276,22 +276,26 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
+\begin{algorithm}
+\caption{Gradient Descent}\label{euclid}
 \begin{algorithmic}[1]
 
-\end{algorithmic}
-
-
-    \State{¿Hemos llegado ya?}
+\State $\textbf{INPUT} \gets (X, Y, \theta,iteraciones, \alpha)$
+\State $\textbf{OUTPUT} \gets \theta $
+\For{\texttt{<some condition>}}
+        \State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
+        
 \EndFor
 \end{algorithmic}
+\end{algorithm}
 
 
 
-\subsubsection{Validación de Modelos}\label{sub:validacion-modelo}
+\subsubsection{El problema de sobreajuste}\label{sub:validacion-modelo}
 
-Antes de evaluar nuestro modelo debemos separar nuestro datos en: \textit{datos de entrenamiento} y \textit{datos de test}; en la mayoría de los casos se suele realizar una separación del conjunto de datos total en porcentajes de 60/40, 70/30 o 80/20 para entrenamiento y test.
+En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a datos nuevos. 
 
-Una de las principales causas de validar nuestro modelo son obtener resultados erróneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: \textbf{overfitting y underfitting}. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la performance del modelo. 
+Una de las principales causas de validar nuestro modelo son obtener resultados erróneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: \textbf{overfitting y underfitting}. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos resolver. 
 
 \subsubsection*{Overfitting}
 Este concepto en \ac{ml} hace referencia al sobre-entrenamiento del modelo. El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir. Esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
@@ -399,46 +403,9 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 \end{enumerate}
 
 
-\subsection{Computer Vision}\label{sub:compueter-vision}
-Visión artificial,\ac{cv} por sus siglas en ingles, son aquellas herramientas desarrolladas para extraer información a partir de imágenes.
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/computer-vision.png}
-  \caption{Que es \ac{cv}?, extraido de :(http://vision.stanford.edu)}
-	\label{Fig: computer-vision}
-\end{figure}
+\section{Detección de Objetos}\label{sec:compueter-vision}
 
-Esta disciplina estudia problemas metodológicos y algorítmicos como así también temas relacionados con la implementación y diseño de soluciones. En los años recientes se convirtió en una tecnología clave en muchos campos debido al gran avance en cámara y en procesamiento computacional.
-
-Un sistema de \ac{cv} actúa sobre una representación de una realidad que le proporciona información sobre brillo colores, formas, etcétera. Estas representaciones suelen estar en forma de imágenes estáticas, escenas tridimensionales o imágenes en movimiento \citep{Ledda}. 
-
-
-Los campos de aplicación que aplican técnicas de \ac{cv} son en diferentes áreas de la ciencia y la industria \citep{areascv} :
-\begin{enumerate}
-\item Robótica : Se usan técnicas de \ac{cv} con el fin de reconstruir la escena e identificar los objetos.
-\item Biología : En el campo de la biología podríamos distinguir entre aplicaciones microscópicas y macroscópicas. En una imagen microscópica  podemos  usar técnicas de segmentación para contar el número de microorganismos o células presentes en la imagen.
-\item Medicina : Para este campo existen muchas aplicaciones que usan \ac{cv} en el procesamiento de imagen. Estas aplicaciones están orientadas desde el diagnóstico de dolencia hasta detección de cáncer. 
-\item  Reconocimiento y Clasificación : Campo muy explorado con aplicaciones que podemos encontrar, como detección de rostros, reconocimiento de huellas dactilares.
-\item Inspección y control de calidad : Verificar las característica esperada del producto como por ejemplo sus dimensiones o verificando si el producto cumple con determinados criterios.
-\item  Cartografía: Obtener elevaciones del terreno, estimar densidad de población en un área.
-\item Entre otras...
-\end{enumerate}
-
-Existen diferencias entre procesamiento de imagen y \ac{cv}, la principal es que a través de \ac{cv} tratamos de obtener el conocimiento de la misma tratando de recuperar  la estructura de la misma y describir  sus propiedades. En la \ref{Fig: cv-1} podemos ver como la imagen es representada en array de números y clasificada según una categoría.
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cv-1.png}
-  \caption{Representación de una imagen}
-	\label{Fig: cv-1}
-\end{figure}
-
-
-En \ac{cv} tratamos de describir el mundo real que vemos en una o mas imágenes y reconstruir sus propiedades, tal como la forma, iluminación y distribución del color \citep{Szeliski}; con esta disciplina podemos saber en que carril se encuentra un vehículo, cuantas personas hay en una escena, reconocer a una persona en particular. Así como lo mencionado, existen numerosas aplicaciones que hoy en día están en el mercado  y usan técnicas de \ac{cv}. 
-
-Debido a la complejidad de los nuevos desafíos a solucionar las técnicas de \ac{cv} y \ac{ml} se interceptan; de esta manera \ac{cv}  se convirtió en en unos de los dominio principales en los que se han aplicado con éxito métodos de \ac{ml} por ejemplo reconocer objetos en una imagen. 
-%https://blogs.zeiss.com/digital/the-relation-between-computer-vision-and-machine-learning/
-
-%\subsection{Ajuste de Modelos}
+Detección de objetos es la tarea que nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la localización del elemento que estamos deseando buscar. Existen diversas métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
 
 \subsection{Redes Convolucionales}\label{sub:cnn}
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
@@ -472,15 +439,49 @@ es decir a partir de la imagen de entrada aplicar por ejemplo detección de bord
 \item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
 \end{enumerate}
 
-Las \ac{cnn} están basadas en operaciones de convolución; la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar en comparación con una red \textit{fully connected}.
+La mayoría de las \ac{cnn} tienen arquitecturas similares como se ve en la imagen \ref{Fig: redconvolucion}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}. 
 
-\begin{figure}[h]
+\subsubsection{Convolucion}\label{sub:convolucion}
+
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución; la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
+
+En la imagen \ref{Fig: filter} tenemos de ejemplo una matriz como input que podemos tener de ejemplo una imagen, por otro lado tenemos un filtro también llamado \textit{kernel} en este caso un kernel 3x3 que vamos aplicar a nuestro input.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_1.png}
+  \caption{Input y filtro de convolución}
+	\label{Fig:filter}
+\end{figure}
+
+La operación de convolución se realiza deslizando el kernel sobre el input del cual en cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{feature map} como se muestra a continuación.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
+  \caption{Operación de convolución sobre una imagen} 
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
+  \caption{Operación de convolución sobre una imagen}
+\end{figure}
+
+
+\begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
   \caption{Convolución}
 	\label{Fig:convolucion}
 \end{figure}
 %https://www.scribd.com/document/271869018/Convolucion-con-CNN
+\subsubsection{Poolinig}\label{sub:pooling}
+
+%https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
+
+
+
 Las aplicaciones de mayormente utilizadas son: reconocimiento de imágenes, análisis de video, procesamiento de lenguaje natural, detección de poses, segmentación de imágenes, entre otros.
 \subsubsection*{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
