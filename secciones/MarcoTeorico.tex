@@ -441,7 +441,7 @@ es decir a partir de la imagen de entrada aplicar por ejemplo detección de bord
 
 La mayoría de las \ac{cnn} tienen arquitecturas similares como se ve en la imagen \ref{Fig: redconvolucion}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}. 
 
-\subsubsection{Convolucion}\label{sub:convolucion}
+\subsubsection{Convolución}\label{sub:convolucion}
 
 Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución; la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
 
@@ -472,17 +472,56 @@ La operación de convolución se realiza deslizando el kernel sobre el input del
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
-  \caption{Convolución}
-	\label{Fig:convolucion}
+  \caption{Convolución} \label{Fig:convolucion}
 \end{figure}
 %https://www.scribd.com/document/271869018/Convolucion-con-CNN
-\subsubsection{Poolinig}\label{sub:pooling}
+\subsubsection{Pooling}\label{sub:pooling}
 
 %https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
+Luego de realizar la operación de convolución \ref{sub:convolucion} usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. Esto nos permite reducir el número de parámetros del cual nos permite disminuir el tiempo de entrenamiento.
+
+El tipo de técnica mas común utilizado es \textit{max pooling} que toma el valor máximo de la ventana, esto nos permite reducir el tamaño del \textit{feature map} sin perder información. En la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/pooling_1.png}
+  \caption{Pooling} \label{Fig:Pooling}
+\end{figure}
+
+En las arquitecturas \ac{cnn} (ver: \ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
+
+\subsubsection{Non-linearity  ReLU}\label{sub:relu}
+Esta capa usamos la función de activación ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}, esta función retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_1.png}
+  \caption{ReLU (Rectified Linear Unit)} \label{Fig:relu}
+\end{figure}
+
+Ejemplo aplicado de una ReLU a un \textit{feature map}:
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_2.jpeg}
+  \caption{Ejemplo ReLU } \label{Fig:relu2}
+\end{figure}
 
 
 
-Las aplicaciones de mayormente utilizadas son: reconocimiento de imágenes, análisis de video, procesamiento de lenguaje natural, detección de poses, segmentación de imágenes, entre otros.
+\subsubsection{Fully Connected}\label{sub:fully_connected}
+%https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/
+En las \ac{cnn} luego de las combinación de capas de convolución y pooling agregamos capas llamadas \textit{fully conected}. Las capas fully conected son capas donde cada nodo  está conectado en la siguiente capa, esta capa toma un volumen de entrada y genera un vector dimensional N donde N es el número de clases entre las que el modelo tiene que clasificar. Cada valor de este vector representa la probabilidad de cada clase.
+
+Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fully_conected.png}
+  \caption{Fully conected layer} \label{Fig:fully_conected}
+\end{figure}
+
+
+
 \subsubsection*{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. A continuación desarrollamos las diferentes arquitecturas, topologias, usadas en \ac{cnn}: (extraido de https://towardsdatascience.com/neural-network-architectures-156e5bad51ba)
