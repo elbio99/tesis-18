@@ -96,9 +96,9 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 
 \end{itemize}
 
-\subsubsection{Imagen Satelital}
+\subsection{Adquisición y procesamiento automático de imágenes satelitales}\label{sub:imagen_satelital}
 
-Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones de depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
+Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
 
 La asignación de colores más conocido por los usuarios es el \textit{falso color} (R=Red (rojo); G=Green (verde); B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. La información obtenida de diferentes combinaciones de bandas depende del objeto de estudio que se esta llevando a cabo.
 
@@ -106,10 +106,20 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 %https://mundosigs.wordpress.com/2016/03/07/que-son-los-sensores-remotos/
 %https://www.slideshare.net/noldinn/fundamentos-deteledeteccionemiliochuvieco
 
+Las imágenes generadas a partir de las cámaras a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Para lograr que esa información pueda ser de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la camara a bordo este calibrada y sea posible establecer una relación espacial y temporal de los valores adquiridos por la misma. Para obtener estas característica mencionadas contamos con las imágenes que a partir de estas podemos obtener los datos necesarios para lograr calibrar y obtener imágenes de calidad. 
+
+En capítulos siguientes se desarrolla que tipo de camara y bandas se usaron en esta tesis y cuales fueron el tipo de procesamiento que se llevo a cabo para la obtención de la misma.
+
+Como se explica en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{machine learning} y sus implicancias.
+
+
+%http://sedici.unlp.edu.ar/bitstream/handle/10915/20976/Documento_completo.pdf?sequence=1
 
 % COLOCAR ALGO DE LAS CAMARAS, PARA JUSTIFICAR EL OBJETIVO DE ESTA TESIS YA QUE SE PENSO PARA LA CALIBRACIÓN DE LAS CAMARAS. 
 
 % ESTE CAPITULO SE DEBE VINCULAR CON EL CAPITULO DE MACHINE LEARNING
+
+%http://ing.unne.edu.ar/dep/goeciencias/fotointer/pub/teoria2011/parte02/tdi.pdf
 
 
 \section{Machine Learning}\label{sec:machinelaerning}
@@ -462,12 +472,6 @@ La operación de convolución se realiza deslizando el kernel sobre el input del
   \caption{Operación de convolución sobre una imagen} 
 \end{figure}
 
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
-  \caption{Operación de convolución sobre una imagen}
-\end{figure}
-
 
 \begin{figure}[H]
  \centering
@@ -491,7 +495,8 @@ El tipo de técnica mas común utilizado es \textit{max pooling} que toma el val
 En las arquitecturas \ac{cnn} (ver: \ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
 
 \subsubsection{Non-linearity  ReLU}\label{sub:relu}
-Esta capa usamos la función de activación ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}, esta función retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
+
+Una vez que los \textit{feature maps} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}. Las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
 
 \begin{figure}[H]
  \centering
@@ -510,9 +515,9 @@ Ejemplo aplicado de una ReLU a un \textit{feature map}:
 
 \subsubsection{Fully Connected}\label{sub:fully_connected}
 %https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/
-En las \ac{cnn} luego de las combinación de capas de convolución y pooling agregamos capas llamadas \textit{fully conected}. Las capas fully conected son capas donde cada nodo  está conectado en la siguiente capa, esta capa toma un volumen de entrada y genera un vector dimensional N donde N es el número de clases entre las que el modelo tiene que clasificar. Cada valor de este vector representa la probabilidad de cada clase.
+En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas \textit{fully conected}. Las capas fully conected son capas donde cada nodo  está conectado en la siguiente capa, esta capa toma un volumen de entrada y genera un vector dimensional N donde N es el número de clases entre las que el modelo tiene que clasificar. Cada valor de este vector representa la probabilidad de cada clase.
 
-Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases.
+Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases. Las capas fully conected desempeñan el papel de la tarea de clasificación, mientras que las capas anteriores actúan como extractores de características.
 
 \begin{figure}[H]
  \centering
@@ -520,12 +525,20 @@ Básicamente, una capa \textit{fully conected} observa características de alto 
   \caption{Fully conected layer} \label{Fig:fully_conected}
 \end{figure}
 
+En el siguiente grafico se visualiza de manera generalizada como estan agrupadas las capas en una \ac{cnn}.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
+  \caption{Arquitectura simplificada de una \ac{cnn}.} \label{Fig:cnn_network}
+\end{figure}
 %https://ahmedbesbes.com/understanding-deep-convolutional-neural-networks-with-a-practical-use-case-in-tensorflow-and-keras.html
 
 
 \subsubsection*{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
-La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. A continuación desarrollamos las diferentes arquitecturas, topologias, usadas en \ac{cnn}: (extraido de https://towardsdatascience.com/neural-network-architectures-156e5bad51ba)
+La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior \ref{sub:cnn} vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
+
 \begin{itemize}
 \item \textbf{LeNet5}: Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. 
 
