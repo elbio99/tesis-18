@@ -202,26 +202,75 @@ Como se puede ver en la figura siguiente \ref{Fig:ejemplo-2}, se muestra la fron
 
 De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algoritmo de clasificación.
 
-\subsubsection*{Ejemplo: Regresión Lineal}
-%http://www.deeplearningbook.org/contents/ml.html
-Una Regresión lineal es un claro ejemplo de un algoritmo de \ac{ml}; el objetivo es desarrollar un sistema que tome un vector $x \in \; $R$^n$, prediga el valor de un escalar $y \in \; $R$ $ como salida; la salida de una regresión lineal es una función lineal de la entrada.  Vamos a tomar como $\hat{y}$ el valor que nuestro modelo predice definido por:
+
+\subsection{Clasificadores}\label{sub:clasificadores}
+
+Un clasificador es un método que permite a partir de recibir cierta información del objeto es capaz de indicar la categoría o clase a a que pertenece determinado objeto. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
+
+\begin{enumerate}
+\item \textbf{Logistic Regression}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
+
+Para asignar los valores predichos a las probabilidades, usamos la función sigmoidea que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
 \begin{equation}
-\hat{y} = w^t * x
-\end{equation}
-donde $w \in \; $R$ $, siendo un vector de parámetros.
-Los parámetros son valores que controlan el comportamiento del sistema,en este caso w  multiplicado por x (característica de cada datos de entrada), lo podemos ver como un conjunto de pesos que determinan como cada característica afecta a la predicción.
-
-Si x esta multiplicado por un peso $w_i $ positivo, entonces el valor de esa característica aumenta nuestra predicción, de manera análoga si el valor $w_i $ es negativo esa característica x disminuye mi valor de predicción $\hat{y}$.
-Como siguiente medida debemos medir la precisión de nuestro modelo, para realizar la medición de nuestro modelo debemos anteriormente haber separado el conjunto de datos en dos partes por un lado los datos de que se van a usar para realizar el entrenamiento y por otro los datos que serán utilizados para medir la precisión del modelo, llamado conjunto de test.
-
-Una de las maneras de medir nuestra precisión del modelo con nuestro conjunto de test es computando el error cuadrado medio, dado por la siguiente ecuación:
-\begin{equation}\label{eqn:mse} 
-MSE_{test} = \frac{1}{n}\sum_{i}(\hat{y}^{test}- y^{test})^2
+\phi(z) = \frac{1}{1+e^{-z}}
 \end{equation}
 
-Como se puede ver a partir del calculo anterior el error decremento a 0 cuando $\hat{y}$ es igual a $y$. Para entrenar un modelo de \ac{ml} necesitamos realizar un algoritmo que en cada iteración mejore los valores de los pesos de manera de reducir el error; en la sección siguiente se desarrollará mas en detalle.
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sigmoide.png}
+  \caption{Logistic Regression}
+  \label{Fig: log_reg}
+\end{figure}
 
-Decimos que una hipótesis generaliza bien, cuando predice correctamente con entradas no conocidas.
+
+\item \textbf{Decision Tree}: Estos tipos de clasificadores toman un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja; un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
+  
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
+  \caption{Ejemplo Arboles de desiciones}
+  \label{Fig: decision-tree}
+\end{figure}
+
+
+\item \textbf{Random Forest}:Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{Decision Tree} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando. 
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.jpg}
+  \caption{Ejemplo Random Forest}
+  \label{Fig: random_forest}
+\end{figure}
+
+\item \textbf{Support Vector Machines, SVM}: Un clasificador SVM busca el limite que separa las clases con el mayor margen posible; como podemos ver en la siguiente imagen (\ref{Fig: margenseparacionsvm}).
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/separacionsvm.png}
+  \caption{Ejemplo margen de Separación hiperplano SVM \\(Adaptado de:{https://goo.gl/eTZfvH})}
+  \label{Fig: margenseparacionsvm}
+\end{figure}
+
+Las ventajas de estos clasificadores son:
+\begin{itemize}
+\item Eficaz en grandes espacios dimensionales.
+\item Sigue siendo efectivo en casos en los que el número de dimensiones es mayor que el número de muestras.
+\item Versátil: se pueden especificar diferentes funciones del kernel para la función de decisión.
+\item El proceso de entrenamiento es más rápido en comparación con otros clasificadores, sobre todo para conjunto de entrenamientos grandes.
+\end{itemize}
+
+\item \textbf{Nearest Neighbor}: Es otro tipo de clasificador supervisada que busca estimar la probabilidad a posteriori de la clase, es decir,  asigna la muestra $x $ a la clase más frecuente de entre sus $k $ vecinos más cercanos, según una cierta medida de similitud o distancia.
+
+Se calcula la distancia entre los vectores almacenados y el nuevo vector y se seleccionan los $k $ ejemplos más cercanos, una distancia alta entre individuos nos indica que son muy diferentes y una baja que son muy similares. El cálculo de distancia esta dado por la siguiente formula:
+\begin{equation}
+dist(p,q) = \sqrt{\sum_{i=1}^{n} (p_i - q_i)^{2}}
+\end{equation}
+
+
+Es uno de los clasificadores más utilizados por su simplicidad. La principal dificultad de este método consiste en determinar el valor de $k$.
+%http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
+\end{enumerate}
+
 
 \subsubsection{Función de Costo}
 Existen diferentes maneras de que una algoritmo aprenda los parámetros de un modelo, este proceso de aprendizaje es posible minimizando la función de costo. Una función de costo es una medida del cuán erróneo es el modelo que estamos entrenando en términos a la capacidad de estimar la relación entre $X $ e $y $. Esto se lo puede expresar como la diferencia o distancia entre el valor predicho y el actual valor.
@@ -593,6 +642,19 @@ En el estado del arte actual existen diferentes variantes que parten de la idea 
 	\label{Fig:cnn-analisis}
 \end{figure}
 
+
+
+\section{El problema de la detección}\label{sub:problema_deteccion}
+
+Uno de los problemas que nos encontramos cuando estamos trabajando con imágenes es ademas de poder crear un modelo que permita clasificar una imagen asignando la categoria correcta es poder tambien localizar donde se encuentra este objeto de interes dentro de la misma. La resolución de este problema no solo requiere obtener la categoría especifica a la cual pertenece la imagen sino tambien las coordenadas, valor x e y, del objeto dentro de la imagen. 
+
+El gran desafio que presenta esta problematica como se dijo anteriormente no solo implica clasificar correctamente sino tambien localizar el objeto teniendo en cuenta además las diferentes escalas, rotación, color que puede presentar el objeto dentro de la imagen.
+
+Para abordar este problema existen numerosas técnicas que nos ayudan a resolver. Una de las técnicas iniciales usadadas para la resolución de este problema son por medio de  \textit{slide windows}, esta técnica se basa a partir un rectangulo (ventana) definido recorrer la imágen de izquierda a derecha y desde arriba a abajo dando pasos de N pixeles definidos. El principal inconveniente de esta técnica es el costo computacional que conlleva ya que debe recorrer toda la imagen para encontrar el objeto de interes. Otro de los inconveniente es el tamaño de la ventana generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido. 
+
+Para solucionar estos inconvenientes expuestos anteriormente vamos a desarrollar a continuación diversos algoritmos llamados \texit{regions proposal} que nos permiten atacar el problema de la localización del objeto de manera mucho mas eficiente.
+
+
 \subsection{Regions Proposal} \label{sub:regions-proposal}
 
 Regiones Propuesta, \ac{rp} en su traducción al ingles, son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como contorno, color, etc. El proceso metodológico básico es el siguiente: dada una imagen de entrada, este método busca generar un conjunto de regiones candidatas que son localizadas en un \textit{bounding box}, un \textit{bounding box} es la región de interés, que probablemente contengan objetos de interés para la detección (ver: \ref{Fig: propsalregion}), permiten tener ventanas(bounding box) de diferentes escalas. Estos objetos de interés detectados a partir del método son los que posteriormente vamos a clasificar.
@@ -670,72 +732,3 @@ Dependiendo del valor de score usado podremos eliminar las detecciones redundant
 \end{figure}
 
 En \ac{cv} este método es muy utilizado ya que nos permite además de eliminar detecciones redundantes, ayuda a mejorar la clasificación de la imagen optimizando también el tiempo de procesamiento en la clasificación.
-
-
-\subsection{Clasificadores}\label{sub:clasificadores}
-
-Un clasificador es un método que permite a partir de recibir cierta información del objeto es capaz de indicar la categoría o clase a a que pertenece determinado objeto. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
-
-\begin{enumerate}
-\item \textbf{Logistic Regression}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
-
-Para asignar los valores predichos a las probabilidades, usamos la función sigmoidea que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
-\begin{equation}
-\phi(z) = \frac{1}{1+e^{-z}}
-\end{equation}
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sigmoide.png}
-  \caption{Logistic Regression}
-	\label{Fig: log_reg}
-\end{figure}
-
-
-\item \textbf{Decision Tree}: Estos tipos de clasificadores toman un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja; un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
-	
-\begin{figure}[H]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
-  \caption{Ejemplo Arboles de desiciones}
-	\label{Fig: decision-tree}
-\end{figure}
-
-
-\item \textbf{Random Forest}:Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{Decision Tree} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando. 
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.jpg}
-  \caption{Ejemplo Random Forest}
-	\label{Fig: random_forest}
-\end{figure}
-
-\item \textbf{Support Vector Machines, SVM}: Un clasificador SVM busca el limite que separa las clases con el mayor margen posible; como podemos ver en la siguiente imagen (\ref{Fig: margenseparacionsvm}).
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/separacionsvm.png}
-  \caption{Ejemplo margen de Separación hiperplano SVM \\(Adaptado de:{https://goo.gl/eTZfvH})}
-	\label{Fig: margenseparacionsvm}
-\end{figure}
-
-Las ventajas de estos clasificadores son:
-\begin{itemize}
-\item Eficaz en grandes espacios dimensionales.
-\item Sigue siendo efectivo en casos en los que el número de dimensiones es mayor que el número de muestras.
-\item Versátil: se pueden especificar diferentes funciones del kernel para la función de decisión.
-\item El proceso de entrenamiento es más rápido en comparación con otros clasificadores, sobre todo para conjunto de entrenamientos grandes.
-\end{itemize}
-
-\item \textbf{Nearest Neighbor}: Es otro tipo de clasificador supervisada que busca estimar la probabilidad a posteriori de la clase, es decir,  asigna la muestra $x $ a la clase más frecuente de entre sus $k $ vecinos más cercanos, según una cierta medida de similitud o distancia.
-
-Se calcula la distancia entre los vectores almacenados y el nuevo vector y se seleccionan los $k $ ejemplos más cercanos, una distancia alta entre individuos nos indica que son muy diferentes y una baja que son muy similares. El cálculo de distancia esta dado por la siguiente formula:
-\begin{equation}
-dist(p,q) = \sqrt{\sum_{i=1}^{n} (p_i - q_i)^{2}}
-\end{equation}
-
-
-Es uno de los clasificadores más utilizados por su simplicidad. La principal dificultad de este método consiste en determinar el valor de $k$.
-%http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
-\end{enumerate}
