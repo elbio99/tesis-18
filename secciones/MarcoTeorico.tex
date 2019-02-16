@@ -1,27 +1,22 @@
 \chapter{Marco Teórico} \label{chap:marcoteorico}
 
-En el siguiente capitulo se pondrá al alcance del lector las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en este trabajo de investigación realizado.
-
-Se tratará de dar un enfoque simplificado de temas como: ¿que es el sensado remoto?, ¿que es Machine Learning y Computer Vision?, un breve repaso de modelos de optimización, cuales son las técnicas y modelos utilizado de validación para el cálculo de métricas. 
-Por ultimo se describirá los tipos de clasificadores que existen en la actualidad.
+En el este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como: el sensado remoto,  Machine Learning y Redes Neuronales.
 
 \section{Sensado Remoto}\label{sec:sensadoremoto}
 
-Para comenzar vamos a hablar del principal enfoque de este trabajo que son las imágenes satelitales. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
+Para comenzar, vamos a hablar del principal objetivo de este trabajo que son las imágenes satelitales. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
 
 \subsection{Teledetección}\label{sub:teledeteccion}
 
-Para comenzar a introducir el concepto de imagen satelital debemos saber como esta formada la misma, es por esto que vamos a desarrollar el concepto de \textit{teledetección}.
+La teledetección o \textit{sensado remoto} es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
 
-La teledetección o sensado remoto también llamado es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
+La teledetección no es mas que la detección de propiedades relevantes del entorno, esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. En general la teledetección es la medición de energía emanada de la superficie terrestre. 
 
-La teledetección no es mas que la detección de propiedades relevantes del entorno; esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. 
-
-En general la teledetección es la medición de energía emanada de la superficie terrestre. Existen diferentes fuentes de energía; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
+Existen diferentes fuentes de energía; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
 
 Los componentes básicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
 \begin{itemize}
-\item \textit{Fuente de energía}: es la radiación electromagnética que capta el sensor; como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
+\item \textit{Fuente de energía}: es la radiación electromagnética que capta el sensor, como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
 
 \item \textit{Cubierta terrestre}: rasgos naturales o realizados por el hombre, ejemplo construcciones, que refleja el sensor.
 
@@ -36,15 +31,12 @@ Los componentes básicos de un sistema de teledetección incluye lo siguiente \c
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
-  \caption{Sensado Remoto. Navarrete, Edison, Laubacher, Gerard}\label{Fig:teledeteccion}
+  \caption{Sensado Remoto.}\label{Fig:teledeteccion}
 \end{figure}
 
-\subsubsection{Tipos de Sensores}
-\begin{itemize}
-\item \textbf{sensores pasivos}: son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Estas señales son a partir de la radiación solar natural. Este tipo de sensores son  usados mayormente en aplicaciones de evaluación de recursos naturales. Ejemplo: ASTER, MODIS, VIIRS, LandSat.
+Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Estas señales son a partir de la radiación solar natural. Este tipo de sensores son  usados mayormente en aplicaciones de evaluación de recursos naturales. Ejemplo: ASTER, MODIS, VIIRS, LandSat.
 
-\item \textbf{sensores activos}: son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
-\end{itemize}
+A su ves existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 
 \subsubsection{Espectro electromagnético}
 
@@ -70,7 +62,7 @@ Las regiones utilizadas para la observación remota de la tierra son:
 
 
 \subsubsection{Resolución}
-Unas de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el timpo de resolución. Estas resoluciones la podemos definir de la siguiente manera:
+Unas de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución. Estas resoluciones la podemos definir de la siguiente manera:
 
 \begin{itemize}
 \item \textbf{Resolución Espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel. A menor tamaño de píxel mayor sera la resolución espacial, esto quiere decir que el sensor tendrá mayor detalle de los objetos.
@@ -98,7 +90,7 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 
 \subsection{Adquisición y procesamiento automático de imágenes satelitales}\label{sub:imagen_satelital}
 
-Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
+Las imágenes generadas a partir de las cámaras a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
 
 La asignación de colores más conocido por los usuarios es el \textit{falso color} (R=Red (rojo); G=Green (verde); B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. La información obtenida de diferentes combinaciones de bandas depende del objeto de estudio que se esta llevando a cabo.
 
@@ -106,20 +98,16 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 %https://mundosigs.wordpress.com/2016/03/07/que-son-los-sensores-remotos/
 %https://www.slideshare.net/noldinn/fundamentos-deteledeteccionemiliochuvieco
 
-Las imágenes generadas a partir de las cámaras a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Para lograr que esa información pueda ser de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la camara a bordo este calibrada y sea posible establecer una relación espacial y temporal de los valores adquiridos por la misma. Para obtener estas característica mencionadas contamos con las imágenes que a partir de estas podemos obtener los datos necesarios para lograr calibrar y obtener imágenes de calidad. 
+Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación espacial y temporal de los valores adquiridos por la misma. Para obtener estas característica mencionadas contamos con las imágenes que a partir de estas podemos obtener los datos necesarios para lograr calibrar y obtener imágenes de calidad. 
 
-En capítulos siguientes se desarrolla que tipo de camara y bandas se usaron en esta tesis y cuales fueron el tipo de procesamiento que se llevo a cabo para la obtención de la misma.
-
-Como se explica en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{machine learning} y sus implicancias.
+En capítulos siguientes se desarrolla que tipo de cámara y bandas se usaron en esta tesis y cuales fueron el tipo de procesamiento que se llevo a cabo para la obtención de la misma. Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{machine learning} y sus usos.
 
 
 %http://sedici.unlp.edu.ar/bitstream/handle/10915/20976/Documento_completo.pdf?sequence=1
-
-% COLOCAR ALGO DE LAS CAMARAS, PARA JUSTIFICAR EL OBJETIVO DE ESTA TESIS YA QUE SE PENSO PARA LA CALIBRACIÓN DE LAS CAMARAS. 
-
-% ESTE CAPITULO SE DEBE VINCULAR CON EL CAPITULO DE MACHINE LEARNING
-
 %http://ing.unne.edu.ar/dep/goeciencias/fotointer/pub/teoria2011/parte02/tdi.pdf
+
+% COLOCAR ALGO DE LAS CAMARAS, PARA JUSTIFICAR EL OBJETIVO DE ESTA TESIS YA QUE SE PENSO PARA LA CALIBRACIÓN DE LAS CAMARAS.  ESTE CAPITULO SE DEBE VINCULAR CON EL CAPITULO DE MACHINE LEARNING
+
 
 
 \section{Machine Learning}\label{sec:machinelaerning}
@@ -275,7 +263,7 @@ Es uno de los clasificadores más utilizados por su simplicidad. La principal di
 \subsubsection{Función de Costo}
 Existen diferentes maneras de que una algoritmo aprenda los parámetros de un modelo, este proceso de aprendizaje es posible minimizando la función de costo. Una función de costo es una medida del cuán erróneo es el modelo que estamos entrenando en términos a la capacidad de estimar la relación entre $X $ e $y $. Esto se lo puede expresar como la diferencia o distancia entre el valor predicho y el actual valor.
 
-Como se menciono anteriormente el objetivo de un modelo de \ac{ml} es encontrar los valores que minimicen la función de costo.Una función de costo toma un conjunto de datos y retorna un valor llamado error costo (\textit{loss cost} su traducción en ingles). Existen diferentes tipos de funciones de costo que podemos usar; una de las mas comunes usada es \textbf{mean square error}, MSE, visto en \ref{eqn:mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
+Como se menciono anteriormente el objetivo de un modelo de \ac{ml} es encontrar los valores que minimicen la función de costo.Una función de costo toma un conjunto de datos y retorna un valor llamado error costo (\textit{loss cost} su traducción en ingles). Existen diferentes tipos de funciones de costo que podemos usar; una de las mas comunes usada es \textbf{mean square error}, MSE \ref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
 \begin{figure}[H] \centering
   \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
   \caption{Mean Square Error }\label{Fig:mse}
@@ -341,10 +329,18 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 
 \State $\textbf{INPUT} \gets (X, Y, \theta,iteraciones, \alpha)$
 \State $\textbf{OUTPUT} \gets \theta $
-\For{\texttt{<some condition>}}
-        \State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
-        
-\EndFor
+\State \textbf{i} = 0
+\While {\textbf{i} <  iteraciones}{
+\State i++
+\State	error = \textit{FunciónCosto}(X, Y, \theta)
+
+\If {error < minerror}
+	\State	break
+\Else
+	\State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
+	
+\EndIf
+\EndWhile
 \end{algorithmic}
 \end{algorithm}
 
@@ -464,7 +460,7 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 
 \section{Detección de Objetos}\label{sec:compueter-vision}
 
-Detección de objetos es la tarea que nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la localización del elemento que estamos deseando buscar. Existen diversas métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
+Detección de objetos es la tarea que nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la clase del elemento que estamos deseando buscar. Existen diversas métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
 
 \subsection{Redes Convolucionales}\label{sub:cnn}
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
@@ -480,7 +476,7 @@ Detección de objetos es la tarea que nos permite obtener información de un ele
 Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas (ver: \ref{Fig: redconvolucion}), tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}.
 
 
-El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características} (ver \ref{Fig: fmaps}). Cada unidad  del mapa de característica es lo que llamamos en la sección (\ref{sub:problemadeteccion}),  \textit{\textbf{feature vector}}. Una capa convolucional completa está compuesta de varios mapas de características (con diferentes 
+El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características} (ver \ref{Fig: fmaps}). Cada unidad  del mapa de característica es lo que llamamos  \textit{\textbf{feature vector}}. Una capa convolucional completa está compuesta de varios mapas de características (con diferentes 
 \textit{feature vector}), de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
 
 \begin{figure}[H]
@@ -492,7 +488,7 @@ El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de c
 
 El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}:
 \begin{enumerate}
-\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución. Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
+\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante \ref{sub:convolucion}. Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
 es decir a partir de la imagen de entrada aplicar por ejemplo detección de bordes, color, etc.
 \item stride (paso): es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada. Tener un stride grande producirá mapas de características más pequeños.
 \item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
@@ -501,16 +497,15 @@ es decir a partir de la imagen de entrada aplicar por ejemplo detección de bord
 La mayoría de las \ac{cnn} tienen arquitecturas similares como se ve en la imagen \ref{Fig: redconvolucion}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}. 
 
 \subsubsection{Convolución}\label{sub:convolucion}
+%https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-1-convolution-operation
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución; la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente, un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
 
-Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución; la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
-
-En la imagen \ref{Fig: filter} tenemos de ejemplo una matriz como input que podemos tener de ejemplo una imagen, por otro lado tenemos un filtro también llamado \textit{kernel} en este caso un kernel 3x3 que vamos aplicar a nuestro input.
+En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como input, por otro lado tenemos un filtro también llamado \textit{kernel} en este caso un kernel 3x3 que vamos aplicar a nuestro input.
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_1.png}
-  \caption{Input y filtro de convolución}
-	\label{Fig:filter}
+  \caption{Input y filtro de convolución}\label{Fig:filter}
 \end{figure}
 
 La operación de convolución se realiza deslizando el kernel sobre el input del cual en cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{feature map} como se muestra a continuación.
@@ -527,6 +522,8 @@ La operación de convolución se realiza deslizando el kernel sobre el input del
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
   \caption{Convolución} \label{Fig:convolucion}
 \end{figure}
+
+El ejemplo anterior es muy simplificado, en la realidad, las \ac{cnn} desarrollan detectores de múltiples características y las utilizan para desarrollar varios mapas de características que se conocen como capas convolucionales. A través de estos mapas de característica la red determina qué  considera importantes para poder escanear imágenes y clasificarlas con mayor precisión.
 %https://www.scribd.com/document/271869018/Convolucion-con-CNN
 \subsubsection{Pooling}\label{sub:pooling}
 
@@ -543,7 +540,10 @@ El tipo de técnica mas común utilizado es \textit{max pooling} que toma el val
 
 En las arquitecturas \ac{cnn} (ver: \ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
 
-\subsubsection{Non-linearity  ReLU}\label{sub:relu}
+\subsubsection{Función de Activación  ReLU}\label{sub:relu}
+%https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
+%https://www.analyticsvidhya.com/blog/2017/10/fundamentals-deep-learning-activation-functions-when-to-use-them/
+Las funciones de activación son una característica  importante de las \ac{cnn}, básicamente deciden si una neurona debe ser activada o no es decir si la información que la neurona está recibiendo es relevante para la información dada o si se debe ignorar.
 
 Una vez que los \textit{feature maps} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}. Las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
 
@@ -560,10 +560,12 @@ Ejemplo aplicado de una ReLU a un \textit{feature map}:
   \caption{Ejemplo ReLU } \label{Fig:relu2}
 \end{figure}
 
+La principal ventaja de usar la función ReLU sobre otras funciones de activación es que no activa todas las neuronas al mismo tiempo, si la entrada es negativa, la convertirá a cero y la neurona no se activará. Esto significa que, en un momento dado, solo unas pocas neuronas se activan,lo que la hace eficiente y fácil de calcular.
 
 
 \subsubsection{Fully Connected}\label{sub:fully_connected}
 %https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/
+
 En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas \textit{fully conected}. Las capas fully conected son capas donde cada nodo  está conectado en la siguiente capa, esta capa toma un volumen de entrada y genera un vector dimensional N donde N es el número de clases entre las que el modelo tiene que clasificar. Cada valor de este vector representa la probabilidad de cada clase.
 
 Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases. Las capas fully conected desempeñan el papel de la tarea de clasificación, mientras que las capas anteriores actúan como extractores de características.
