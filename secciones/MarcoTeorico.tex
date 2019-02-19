@@ -460,7 +460,7 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 
 \section{Detección de Objetos}\label{sec:compueter-vision}
 
-Detección de objetos es la tarea que nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la clase del elemento que estamos deseando buscar. Existen diversas métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
+El objetivo de la detección de objetos es detectar todas las ocurrencias de una clase conocida, esta tarea que nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la clase del elemento que estamos deseando buscar. Existen diversas métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
 
 \subsection{Redes Convolucionales}\label{sub:cnn}
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
@@ -648,14 +648,13 @@ En el estado del arte actual existen diferentes variantes que parten de la idea 
 
 \section{El problema de la detección}\label{sub:problema_deteccion}
 
-Uno de los problemas que nos encontramos cuando estamos trabajando con imágenes es ademas de poder crear un modelo que permita clasificar una imagen asignando la categoria correcta es poder tambien localizar donde se encuentra este objeto de interes dentro de la misma. La resolución de este problema no solo requiere obtener la categoría especifica a la cual pertenece la imagen sino tambien las coordenadas, valor x e y, del objeto dentro de la imagen. 
+Generalmente en problemas de detección sola una parte de las clases conocidas están presente en la imagen, pero existen diversas posibilidades tanto de locación como escala que pueden aparecer en la imagen y necesitan ser exploradas. Los objeto en una imagen de una clase particular son altamente variables es decir se presenta el problema que el objeto puede variar en iluminación, cambios en la posición de la cámara y como se menciono anteriormente en escala. 
 
-El gran desafio que presenta esta problematica como se dijo anteriormente no solo implica clasificar correctamente sino tambien localizar el objeto teniendo en cuenta además las diferentes escalas, rotación, color que puede presentar el objeto dentro de la imagen.
+Para abordar este problema existen diversas técnicas una de ellas es por medio de \textit{slide windows}. Slide window es un enfoque para la detección de objeto que considera y clasifica dada cierta ventana definida anteriormente, esta técnica se basa en recorrer la imágen de izquierda a derecha y desde arriba a abajo dando pasos de N pixeles definidos. Este enfoque puede ser considerado con diferentes tamaños de ventanas o con diferentes niveles de resolución convirtiendo la imagen en pirámide para la solución del problema de escala.
 
-Para abordar este problema existen numerosas técnicas que nos ayudan a resolver. Una de las técnicas iniciales usadadas para la resolución de este problema son por medio de  \textit{slide windows}, esta técnica se basa a partir un rectangulo (ventana) definido recorrer la imágen de izquierda a derecha y desde arriba a abajo dando pasos de N pixeles definidos. El principal inconveniente de esta técnica es el costo computacional que conlleva ya que debe recorrer toda la imagen para encontrar el objeto de interes. Otro de los inconveniente es el tamaño de la ventana generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido. 
+El principal inconveniente de esta técnica es el costo computacional que conlleva ya que debe recorrer toda la imagen para encontrar el objeto de interes ademas  generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido por lo que se debe crear imágenes en piramide para la solucion como se menciona anteriormente.
 
-Para solucionar estos inconvenientes expuestos anteriormente vamos a desarrollar a continuación diversos algoritmos llamados \texit{regions proposal} que nos permiten atacar el problema de la localización del objeto de manera mucho mas eficiente.
-
+Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{slide windows} estos son llamados  \texit{regions proposal} que nos permiten atacar el problema de la localización del objeto de manera mucho mas eficiente.
 
 \subsection{Regions Proposal} \label{sub:regions-proposal}
 
