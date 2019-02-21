@@ -34,7 +34,7 @@ Los componentes básicos de un sistema de teledetección incluye lo siguiente \c
   \caption{Sensado Remoto.}\label{Fig:teledeteccion}
 \end{figure}
 
-Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Estas señales son a partir de la radiación solar natural. Este tipo de sensores son  usados mayormente en aplicaciones de evaluación de recursos naturales. Ejemplo: ASTER, MODIS, VIIRS, LandSat.
+Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar.
 
 A su ves existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 
@@ -90,7 +90,7 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 
 \subsection{Adquisición y procesamiento automático de imágenes satelitales}\label{sub:imagen_satelital}
 
-Las imágenes generadas a partir de las cámaras a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las almacena en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
+Las imágenes generadas a partir de la cámara a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel; la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las guarda en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
 
 La asignación de colores más conocido por los usuarios es el \textit{falso color} (R=Red (rojo); G=Green (verde); B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. La información obtenida de diferentes combinaciones de bandas depende del objeto de estudio que se esta llevando a cabo.
 
@@ -100,8 +100,7 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 
 Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación espacial y temporal de los valores adquiridos por la misma. Para obtener estas característica mencionadas contamos con las imágenes que a partir de estas podemos obtener los datos necesarios para lograr calibrar y obtener imágenes de calidad. 
 
-En capítulos siguientes se desarrolla que tipo de cámara y bandas se usaron en esta tesis y cuales fueron el tipo de procesamiento que se llevo a cabo para la obtención de la misma. Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{machine learning} y sus usos.
-
+Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{machine learning} y sus usos.
 
 %http://sedici.unlp.edu.ar/bitstream/handle/10915/20976/Documento_completo.pdf?sequence=1
 %http://ing.unne.edu.ar/dep/goeciencias/fotointer/pub/teoria2011/parte02/tdi.pdf
@@ -109,10 +108,9 @@ En capítulos siguientes se desarrolla que tipo de cámara y bandas se usaron en
 % COLOCAR ALGO DE LAS CAMARAS, PARA JUSTIFICAR EL OBJETIVO DE ESTA TESIS YA QUE SE PENSO PARA LA CALIBRACIÓN DE LAS CAMARAS.  ESTE CAPITULO SE DEBE VINCULAR CON EL CAPITULO DE MACHINE LEARNING
 
 
-
 \section{Machine Learning}\label{sec:machinelaerning}
 
-\ac{ml} como se mencionó en la primera sección, es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento a partir de los datos de entrada. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
+\ac{ml} es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento a partir de los datos de entrada. \ac{ml} nos permite abordar tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
 "Se dice que un programa de computadora aprende de la experiencia E con respecto a algún tipo de tareas T y la medida de rendimiento P, si su desempeño en tareas en T, medido por P, mejora con la experiencia E." \citep{Mitchell}
 
@@ -128,11 +126,11 @@ El conjunto de entrenamiento consiste en pares (x1, y1), ...,(xn, yn) donde cada
 
 Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la frontera que separa los datos de cada categoría para luego, dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
 
-En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: (xi,yi),....,(xn,yn) valores con las que entrenar nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
+En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: (xi,yi),....,(xn,yn) valores con las que entrenamos nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
 
 Para calcular las probabilidades, se debe obtener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $. A modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra X tiene una Y = A, la función f(x) debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a 0.
 
-En la siguiente figura se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, debe generar la linea punteada que seria la función f(x).
+En la siguiente figura se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
@@ -193,7 +191,7 @@ De esta manera cuando se pase un elemento que nunca vio puede determinar en cual
 
 \subsection{Clasificadores}\label{sub:clasificadores}
 
-Un clasificador es un método que permite a partir de recibir cierta información del objeto es capaz de indicar la categoría o clase a a que pertenece determinado objeto. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
+Un clasificador es un método que permite a partir de recibir cierta información del objeto indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
 
 \begin{enumerate}
 \item \textbf{Logistic Regression}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
@@ -263,7 +261,7 @@ Es uno de los clasificadores más utilizados por su simplicidad. La principal di
 \subsubsection{Función de Costo}
 Existen diferentes maneras de que una algoritmo aprenda los parámetros de un modelo, este proceso de aprendizaje es posible minimizando la función de costo. Una función de costo es una medida del cuán erróneo es el modelo que estamos entrenando en términos a la capacidad de estimar la relación entre $X $ e $y $. Esto se lo puede expresar como la diferencia o distancia entre el valor predicho y el actual valor.
 
-Como se menciono anteriormente el objetivo de un modelo de \ac{ml} es encontrar los valores que minimicen la función de costo.Una función de costo toma un conjunto de datos y retorna un valor llamado error costo (\textit{loss cost} su traducción en ingles). Existen diferentes tipos de funciones de costo que podemos usar; una de las mas comunes usada es \textbf{mean square error}, MSE \ref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
+El objetivo de un modelo de \ac{ml} es encontrar los valores que minimicen la función de costo.Una función de costo toma un conjunto de datos y retorna un valor llamado error costo (\textit{loss cost} su traducción en ingles). Existen diferentes tipos de funciones de costo que podemos usar; una de las mas comunes usada es \textbf{mean square error}, MSE \ref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
 \begin{figure}[H] \centering
   \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
   \caption{Mean Square Error }\label{Fig:mse}
@@ -291,7 +289,7 @@ En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la fu
 
 En la mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros; es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia mas típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico y método de Newton Rawson de 2 orden.
 
-\subsubsection*{Descenso de gradiente}\label{sub:gradient-desc}
+\subsubsection{Descenso de gradiente}\label{sub:gradient-desc}
 Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo mas utilizado es el llamado \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento.
 
 Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan la función de costo. $$\min_{w} f(w)$$
@@ -323,7 +321,7 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Gradient Descent}\label{euclid}
 \begin{algorithmic}[1]
 
@@ -350,7 +348,7 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 
 En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a datos nuevos. 
 
-Una de las principales causas de validar nuestro modelo son obtener resultados erróneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: \textbf{overfitting y underfitting}. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos resolver. 
+Una de las principales causas de validar nuestro modelo son obtener resultados erróneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: overfitting y underfitting. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos resolver. 
 
 \subsubsection*{Overfitting}
 Este concepto en \ac{ml} hace referencia al sobre-entrenamiento del modelo. El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir. Esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
@@ -405,9 +403,9 @@ Hay diversos tipos de validación cruzada, de las cuales podemos nombrar:
 %https://dzone.com/articles/machine-learning-validation-techniques
 
 \subsubsection{Evaluación de Modelos}\label{sub:evaluación-modelo}
-Para determinar la efectividad de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de evaluación en \ac{ml} son usadas para obtener esa tasa de error en el modelo. La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. 
+Para determinar la efectividad de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de evaluación en \ac{ml} son usadas para obtener esa tasa de error en el modelo. 
 
-El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación:
+La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación:
 
 \begin{enumerate}
 \item \textbf{Matriz de Confusión}, \textit{Confussion Matrix}: contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz.
@@ -460,7 +458,9 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 
 \section{Detección de Objetos}\label{sec:compueter-vision}
 
-El objetivo de la detección de objetos es detectar todas las ocurrencias de una clase conocida, esta tarea que nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la clase del elemento que estamos deseando buscar. Existen diversas métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
+El objetivo de la detección de objetos es detectar todas las ocurrencias de una clase conocida, esta tarea nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la clase del elemento que estamos deseando buscar. 
+
+Existen diversos métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
 
 \subsection{Redes Convolucionales}\label{sub:cnn}
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
@@ -498,7 +498,7 @@ La mayoría de las \ac{cnn} tienen arquitecturas similares como se ve en la imag
 
 \subsubsection{Convolución}\label{sub:convolucion}
 %https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-1-convolution-operation
-Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución; la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente, un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución, la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente, un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
 
 En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como input, por otro lado tenemos un filtro también llamado \textit{kernel} en este caso un kernel 3x3 que vamos aplicar a nuestro input.
 
@@ -508,7 +508,7 @@ En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como input, por otro
   \caption{Input y filtro de convolución}\label{Fig:filter}
 \end{figure}
 
-La operación de convolución se realiza deslizando el kernel sobre el input del cual en cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{feature map} como se muestra a continuación.
+La operación de convolución se realiza deslizando el kernel sobre el input del cual en cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{mapa de característica} como se muestra a continuación.
 
 \begin{figure}[H]
  \centering
@@ -528,9 +528,9 @@ El ejemplo anterior es muy simplificado, en la realidad, las \ac{cnn} desarrolla
 \subsubsection{Pooling}\label{sub:pooling}
 
 %https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
-Luego de realizar la operación de convolución \ref{sub:convolucion} usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. Esto nos permite reducir el número de parámetros del cual nos permite disminuir el tiempo de entrenamiento.
+Luego de realizar la operación de convolución \ref{sub:convolucion} usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. Esto nos permite reducir el número de parámetros por consiguiente nos permite disminuir el tiempo de entrenamiento.
 
-El tipo de técnica mas común utilizado es \textit{max pooling} que toma el valor máximo de la ventana, esto nos permite reducir el tamaño del \textit{feature map} sin perder información. En la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
+El tipo de técnica mas común utilizado es \textit{max pooling} que toma el valor máximo de la ventana, esto nos permite reducir el tamaño del \textit{mapa de característica} sin perder información. En la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
 
 \begin{figure}[H]
  \centering
@@ -545,7 +545,7 @@ En las arquitecturas \ac{cnn} (ver: \ref{sub:arquitecturacnn}) normalmente la ca
 %https://www.analyticsvidhya.com/blog/2017/10/fundamentals-deep-learning-activation-functions-when-to-use-them/
 Las funciones de activación son una característica  importante de las \ac{cnn}, básicamente deciden si una neurona debe ser activada o no es decir si la información que la neurona está recibiendo es relevante para la información dada o si se debe ignorar.
 
-Una vez que los \textit{feature maps} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}. Las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
+Una vez que los \textit{mapas de característica} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}, las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
 
 \begin{figure}[H]
  \centering
@@ -553,7 +553,7 @@ Una vez que los \textit{feature maps} se extraen de la capa de convolución, el 
   \caption{ReLU (Rectified Linear Unit)} \label{Fig:relu}
 \end{figure}
 
-Ejemplo aplicado de una ReLU a un \textit{feature map}:
+Ejemplo aplicado de una ReLU a un \textit{mapa de característica}:
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_2.jpeg}
@@ -586,7 +586,7 @@ En el siguiente grafico se visualiza de manera generalizada como estan agrupadas
 %https://ahmedbesbes.com/understanding-deep-convolutional-neural-networks-with-a-practical-use-case-in-tensorflow-and-keras.html
 
 
-\subsubsection*{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
+\subsubsection{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior \ref{sub:cnn} vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
 
@@ -654,7 +654,7 @@ Para abordar este problema existen diversas técnicas una de ellas es por medio 
 
 El principal inconveniente de esta técnica es el costo computacional que conlleva ya que debe recorrer toda la imagen para encontrar el objeto de interés ademas  generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido por lo que se debe crear imágenes en pirámide para la solución como se menciona anteriormente.
 
-Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{slide windows} estos son llamados  \texit{regions proposal} que nos permiten atacar el problema de la localización del objeto de manera mucho mas eficiente.
+Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{slide windows} estos son llamados  \textit{regions proposal} que nos permiten atacar el problema de la localización y detección del objeto de manera mucho mas eficiente.
 
 \subsection{Regions Proposal} \label{sub:regions-proposal}
 
