@@ -100,45 +100,43 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 
 Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación espacial y temporal de los valores adquiridos por la misma. Para obtener estas característica mencionadas contamos con las imágenes que a partir de estas podemos obtener los datos necesarios para lograr calibrar y obtener imágenes de calidad. 
 
-Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{machine learning} y sus usos.
+Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{Machine Learning} y sus usos.
 
 %http://sedici.unlp.edu.ar/bitstream/handle/10915/20976/Documento_completo.pdf?sequence=1
 %http://ing.unne.edu.ar/dep/goeciencias/fotointer/pub/teoria2011/parte02/tdi.pdf
 
-% COLOCAR ALGO DE LAS CAMARAS, PARA JUSTIFICAR EL OBJETIVO DE ESTA TESIS YA QUE SE PENSO PARA LA CALIBRACIÓN DE LAS CAMARAS.  ESTE CAPITULO SE DEBE VINCULAR CON EL CAPITULO DE MACHINE LEARNING
 
 
 \section{Machine Learning}\label{sec:machinelaerning}
 
-Machine Learning es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras a aprender determinado comportamiento a partir de los datos de entrada, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos. Los algoritmos de \ac{ml} juegan un rol importante en muchas aplicaciones criticas como \textit{minería de datos}, \textit{reconocimiento de imagen}, \textit{sistemas expertos}, entre otros dominios.
+Machine Learning es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras aprender determinado comportamiento a partir de los datos de entrada, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
-Tom Mitchel \citep{Mitchell} definió un sistema de \ac{ml} de la siguiente manera: "Se dice que un programa de computadora aprende de la experiencia E con respecto a algún tipo de tareas T y la medida de rendimiento P, si su desempeño en tareas en T, medido por P, mejora con la experiencia E". 
+Los algoritmos de \ac{ml} juegan un rol importante en diversos campos como \textit{minería de datos}, \textit{reconocimiento de imagen} entre otros dominios. Un algoritmo de  \ac{ml} permite obtener modelos predictivos a partir de un conjunto de datos, este modelo obtenido sera el usado para luego realizar inferencias sobre valores de datos distintos a los del entrenamiento.
 
-Un algoritmo de \ac{ml} esta dividido en dos tipos principales de técnicas \textit{Aprendizaje supervisado} y \textit{Aprendizaje no supervisado}; en esta tesis desarrollaremos el primer enfoque, aprendizaje supervisado. Retomando la definición desarrollada por \textit{Tom Mitchel} el objetivo de un algoritmo de \ac{ml} es aprender el comportamiento de los datos para luego poder predecir datos de entrada desconocidos, este conocimiento adquirido de los datos es lo que llamaremos \textit{modelo}. 
+El principal objetivo de este aprendizaje es desarrollar la capacidad de generalizar y asociar a partir de los datos. Los algoritmos de  \ac{ml} se dividen en dos grandes categorías que son \textit{Aprendizaje supervisado} y \textit{Aprendizaje no supervisado};  en esta tesis desarrollaremos la primer categoría.  El aprendizaje supervisado los datos deben estar previamente etiquetado , es decir, que tendremos una etiqueta por cada característica que deseamos aprender por ejemplo: color, tamaño, forma, etc. En un algoritmo de \ac{ml} los datos que usamos para que aprenda y generalice se los llama \textit{datasets de entrenamiento} o \textit{conjunto de entrenamiento}
 
-En un algoritmo de \ac{ml} toma como entrada un conjunto de datos también llamado \textit{datasets de entrenamiento} en el cual cada valor representa alguna característica o atributo que deseamos que nuestro modelo aprenda, por ejemplo tamaño, color, formas, etc. Por medio de estos datos de entrenamiento el algoritmo aprenderá una función $ f(X)$, donde $ X$ representa todos los atributos que recibirá nuestro algoritmo, tal que $Y = f(X)$, donde $ Y$ es la variable a predecir. Para poder llevar a cabo esta tarea el algoritmo debe aprender los parámetro de la función que permita aproximar el resultado a una salida deseada es decir  $ Y$, para lograr esta aproximación  utilizamos la \textit{función de costo}, esta función nos permite saber cuan errónea es nuestra salida con respecto a los valores esperado de $ Y$, esta etapa se la llama \textit{entrenamiento de modelo}. El propósito de entrenar un modelo es generar predicciones lo suficientemente \textit{cercanas} a la respuesta correcta, es decir, minimizar el error, medida con la función de costo. 
-Para obtener el mínimo resultado de la función de costo se debe buscar los valores óptimos que minimicen   el error; esto se lo conoce como optimización y es una de las partes fundamentales  de los algoritmos usados en \ac{ml}.
-El objetivo de todo algoritmo de \ac{ml} además de poder minimizar el error de la función de costo es poder construir modelos que abstraiga y generalice el comportamiento observado de los datos para poder predecir de manera correcta datos nuevos.
+Partiendo de los datos de entrenamiento mencionado previamente un algoritmo de \ac{ml} debe aprender una función  $ f(X)$, donde $ X$ representa nuestro conjunto de entrenamiento ; la función aprendida por el algoritmo la llamaremos \textbf{modelo}  que retornará un valor $ y$ tal que se asemeje a la salida deseada. Para poder llevar a cabo esta tarea el algoritmo debe aprender los parámetro de la función que permita realizar esta aproximación 
+
+El método que nos permite realizar esta aproximación es la \textit{función de costo}, la cual va a  determinar cuan errónea es nuestra salida con respecto a los valores esperado de  $ y$, esta etapa la llamamos \textit{entrenamiento de modelo}, su propósito es generar valores lo suficientemente \textit{cercanos} a la respuesta correcta minimizando el error en la predicción medido por la función de costo. Los algoritmo de \ac{ml} son métodos iterativos por lo que en cada iteración debemos minimizar el error obtenido, para poder lograrlo debemos buscar valores óptimos que permitan disminuir el error, conocidos estos como {métodos de optimización}  y son estos fundamentales  para los algoritmos usados en \ac{ml}.
+
+  Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que no vio y poder asociar las etiquetas aprendidas de manera automática.
 
 En las secciones siguientes vamos a desarrollar en mas  detalle el proceso de aprendizaje supervisado centrándonos principalmente en el problema de clasificación, se abordará también los tipos de clasificadores existentes, función de costo,  algoritmos de optimización (\textit{gradient descent}) finalizando con la validación de modelos en \ac{ml}.
 
-\subsection{Aprendizaje Supervisado}\label{sub:aprendizaje_supervisado}
+\subsection{Aprendizaje Supervisado y el problema de la clasificación}\label{sub:aprendizaje_supervisado}
 % http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
 
 Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, etiqueta, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
 
-El conjunto de entrenamiento consiste en pares (x1, y1), ...,(xn, yn) donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo, y $y_i$ is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$. En la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
-
-
-\subsubsection{Problemas de Clasificación}
+El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo, y $y_i$ is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$. En la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
 
 Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la frontera que separa los datos de cada categoría para luego, dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
 
-En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: (xi,yi),....,(xn,yn) valores con las que entrenamos nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
+En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: $(x_i,y_i),....,(x_n,y_n)$ valores con las que entrenamos nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
 
 Para calcular las probabilidades, se debe obtener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $. A modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra X tiene una Y = A, la función f(x) debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a 0.
 
-En la siguiente figura se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
+En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
@@ -148,39 +146,32 @@ En la siguiente figura se visualiza un modelo de clasificación en aprendizaje s
 % Ejemplo de MNIST en clasificación?????
 %https://towardsdatascience.com/support-vector-machine-mnist-digit-classification-with-python-including-my-hand-written-digits-83d6eca7004a
 
-\textit{Problemas de Aprendizaje no supervisado}: El aprendizaje no supervisado nos permite abordar los problemas con
-poca o ninguna idea de cómo deben ser nuestros resultados. Podemos derivar la estructura de los datos donde no necesariamente conocemos el efecto de las variables. Podemos derivar esta estructura agrupando los datos basados en relaciones entre las variables en los datos. Con el aprendizaje no supervisado no hay una retroalimentación basada en los resultados de la predicción. El objetivo de problemas de aprendizaje no supervisados puede ser descubrir grupos de ejemplos similares dentro de los datos, donde se denomina agrupación (clustering), o determinar la distribución de datos dentro del espacio de entrada, conocida como estimación de densidad (density estimación), o proyectar los datos desde un espacio de nivel dimensional alto hasta dos o tres dimensiones con propósitos de visualización \citep{bishop}.
 
-\begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/claustering.png}
-  \caption{Ejemplo aprendizaje no supervisado, claustering}\label{Fig:clauster}
-\end{figure}
-
-
-\subsubsection{Entrenamiento del modelo}
+\subsubsection{Aprendizaje}\label{sub:aprendizaje}
 %https://docs.aws.amazon.com/es_es/machine-learning/latest/dg/training-ml-models.html
 %clasificación supervisada metodos deduccion matematica
 Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego realizar predicciones sobre datos que no conoce.
 
-Para poder entrenar un modelo necesitamos al menos tres cosas especificas:
+Entrenar un modelo supervisado requiere al menos tres cosas especificas:
 \begin{enumerate}
-\item \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo; el objetivo es crear un modelo que generalice los nuevos datos, para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audios de personas hablando.
+\item \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo; el objetivo es crear un modelo que generalice los nuevos datos, para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando.
 
 \item \textbf{Salida esperada}: para cada valor de entrada debemos etiquetar a que clase pertenece es decir, para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la imagen; para un ejemplo de reconocimiento de voz cada audio debe tener una transcripción del mismo.
 
-\item \textbf{Evaluación de las predicciones}: calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir, determinar la distancia entre la salida esperada y los valores predichos.
+\item \textbf{Función de costo}: calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir, determinar el error entre la salida esperada y los valores predichos.
+
 \end{enumerate}
 
-Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada (x) y una variable de salida (Y); que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
+Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada $ x$ e  $ y$  una variable de salida $ Y$; que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
 
 
 \begin{eqnarray}
  f:X \longrightarrow Y\\
- \mbox{Training}:\qquad \{(x^i, y^i) \in X\; x\; Y \} _i=1...n\\
+ \mbox{Entrenamiento}:\qquad \{(x^i, y^i) \in X\; x\; Y \} _i=1...n\\
  \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y
 \end{eqnarray}
 
-Considerando el siguiente ejemplo, dada las coordenadas (x,y) como se muestra en la siguiente figura \ref{Fig:ejemplo-1}, se muestran dos clases, puntos de color negro y otra blanca.
+Considerando el siguiente ejemplo, dada las coordenadas $ (x,y)$ como se muestra en la figura \ref{Fig:ejemplo-1}, se muestran dos clases, puntos de color negro y otra blanca.
 \begin{figure}[H] \centering
   \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample.png}
   \caption{Ejemplo entrenamiento}\label{Fig:ejemplo-1}
@@ -188,7 +179,7 @@ Considerando el siguiente ejemplo, dada las coordenadas (x,y) como se muestra en
 
 La idea principal de desarrollar un modelo; es crear un algoritmo que a partir de datos encuentre automáticamente una frontera, clasifique, encuentre por ejemplo una frontera entre los puntos negros y los puntos blancos.
 
-Como se puede ver en la figura siguiente \ref{Fig:ejemplo-2}, se muestra la frontera de separación creada por el algoritmo entrenado.
+Como se puede ver en la figura \ref{Fig:ejemplo-2}, se muestra la frontera de separación creada por el algoritmo entrenado.
 \begin{figure}[H] \centering
   \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample-fit-1.png}
   \caption{Entrenamiento}\label{Fig:ejemplo-2}
@@ -197,12 +188,12 @@ Como se puede ver en la figura siguiente \ref{Fig:ejemplo-2}, se muestra la fron
 De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algoritmo de clasificación.
 
 
-\subsection{Clasificadores}\label{sub:clasificadores}
+\subsection{Modelos para la clasificación}\label{sub:clasificadores}
 
 Un clasificador es un método que permite a partir de recibir cierta información del objeto indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
 
 \begin{enumerate}
-\item \textbf{Logistic Regression}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
+\item \textbf{Regresión Logística}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
 
 Para asignar los valores predichos a las probabilidades, usamos la función sigmoidea que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
 \begin{equation}
@@ -212,38 +203,91 @@ Para asignar los valores predichos a las probabilidades, usamos la función sigm
 \begin{figure}[H]
  \centering
   \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sigmoide.png}
-  \caption{Logistic Regression}
+  \caption{Regresión Logística}
   \label{Fig: log_reg}
 \end{figure}
 
 
-\item \textbf{Decision Tree}: Estos tipos de clasificadores toman un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja; un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
+\item \textbf{Árboles de decisión}: Estos tipos de clasificadores se forman a partir de  un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja en donde un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. 
+
+Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables de decisión $ X, Y, W, Z$, dado un valor  de entrada en este caso numérico se tomara una decisión en este caso creando dos grupos  si $ X$  es menor a 10 o si es mayor o igual a 10 segmentando el conjunto de datos en dos, de la misma manera las decisiones se tomaran en los nodos $ Y, W, Z$, hasta llegar a la hoja que sera la decisión que debemos tomar. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
+
   
 \begin{figure}[H]
  \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
-  \caption{Ejemplo Arboles de desiciones}
+  \caption{Ejemplo Arboles de decisión}
   \label{Fig: decision-tree}
 \end{figure}
 
 
-\item \textbf{Random Forest}:Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{Decision Tree} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando. 
+\item \textbf{Bosques Aleatorios, Random Forest (RF) por su denominación en ingles}:Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{árboles de decisión} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando.  
+
+En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{RF} donde se crea tres \textit{arboles de decisiones} independientes  inicializado aleatoriamente para cada uno de esto tendrá su correspondiente decisión como se describió en el ítem anterior, la proporción de árboles que toman una misma respuesta se interpreta como la probabilidad de la misma.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.jpg}
-  \caption{Ejemplo Random Forest}
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.png}
+  \caption{Ejemplo RF}
   \label{Fig: random_forest}
 \end{figure}
 
-\item \textbf{Support Vector Machines, SVM}: Un clasificador SVM busca el limite que separa las clases con el mayor margen posible; como podemos ver en la siguiente imagen (\ref{Fig: margenseparacionsvm}).
+\item \textbf{Support Vector Machines, SVM}: El objetivo de un algoritmo SVM es encontrar un hiper-plano en un espacio de $n$ dimensiones que separe los datos con el mayor margen posible, como en la figura \ref{Fig: margenseparacionsvm}. 
+%pag.326 y 328 nuevo de bishop
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/separacionsvm.png}
-  \caption{Ejemplo margen de Separación hiperplano SVM \\(Adaptado de:{https://goo.gl/eTZfvH})}
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/separacionsvm.png}
+  \caption{Ejemplo margen de Separación hiper-plano SVM \\(Adaptado de:{https://goo.gl/eTZfvH})}
   \label{Fig: margenseparacionsvm}
 \end{figure}
+
+Para separar dos clases existen muchos hiper-planos posibles, ver figura \ref{Fig: hiperplanos}, el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar un ejemplo usando un modelo lineal \ref{eq: modelo-lineal}:
+\begin{equation}\label{eq: modelo-lineal}
+    y(x) = w^{\rm T} \vartheta(x) + b
+\end{equation}
+Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a los targets (labels) $t_i,...,t_n$ donde en estos casos $ t  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \ref{eq: modelo-lineal} satisfaga $y(x_n) > 0 $ para los valores que forman $t_n = +1$ y para $ y(x_n) <  0$ para los valores que toman $ t_n = -1$. En diversos casos existen $ n$ hiper planos de separación  \ref{Fig: hiperplanos} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de SVM trata de resolver este problema calculando el margen de separación entre los datos.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/hiperplanos.png}
+  \caption{Ejemplos hiperplanos de separación}
+  \label{Fig: hiperplanos}
+\end{figure}
+
+El margen se define como la distancia perpendicular entre el límite de decisión y el valor mas cercano de los puntos de datos, como se muestra en la figura \ref{Fig: margen}.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/margen.png}
+  \caption{Margen  de separación}
+  \label{Fig: margen}
+\end{figure}
+
+Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia a determinado punto es  \ref{eq: distancia-margen}:
+
+\begin{equation}\label{eq: distancia-margen}
+   \frac{t_n y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} \vartheta(x) + b)}{ \|w \|} 
+\end{equation}
+
+El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$ del conjunto de entrenamiento, y deseamos optimizar los parámetros $ w$ y $ b$ para maximizar esta distancia, así, la solución del margen máximo esta dada por  \ref{eq: margen-maximo}:
+
+\begin{equation}\label{eq: margen-maximo}
+\arg\max_{w ,b} \{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} \vartheta(x) + b)] \}
+\end{equation}
+
+
+En la gran mayoría de casos, los datos no se pueden separar linealmente de forma perfecta, por lo que no existe un hiperplano de separación y no puede obtenerse un margen máximo de manera simple como en la figura \ref{Fig: no-separables}. 
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/marge-no-separables.png}
+  \caption{Clases linealmente no separables}
+  \label{Fig: no-separables}
+\end{figure}
+
+Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros. 
+
 
 Las ventajas de estos clasificadores son:
 \begin{itemize}
@@ -252,45 +296,61 @@ Las ventajas de estos clasificadores son:
 \item Versátil: se pueden especificar diferentes funciones del kernel para la función de decisión.
 \item El proceso de entrenamiento es más rápido en comparación con otros clasificadores, sobre todo para conjunto de entrenamientos grandes.
 \end{itemize}
-
-\item \textbf{Nearest Neighbor}: Es otro tipo de clasificador supervisada que busca estimar la probabilidad a posteriori de la clase, es decir,  asigna la muestra $x $ a la clase más frecuente de entre sus $k $ vecinos más cercanos, según una cierta medida de similitud o distancia.
-
-Se calcula la distancia entre los vectores almacenados y el nuevo vector y se seleccionan los $k $ ejemplos más cercanos, una distancia alta entre individuos nos indica que son muy diferentes y una baja que son muy similares. El cálculo de distancia esta dado por la siguiente formula:
-\begin{equation}
-dist(p,q) = \sqrt{\sum_{i=1}^{n} (p_i - q_i)^{2}}
-\end{equation}
-
-
-Es uno de los clasificadores más utilizados por su simplicidad. La principal dificultad de este método consiste en determinar el valor de $k$.
 %http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
 \end{enumerate}
 
+\subsubsection{Función de Costo}\label{sub:funcion_costo}
 
-\subsubsection{Función de Costo}
-Existen diferentes maneras de que una algoritmo aprenda los parámetros de un modelo, este proceso de aprendizaje es posible minimizando la función de costo. Una función de costo es una medida del cuán erróneo es el modelo que estamos entrenando en términos a la capacidad de estimar la relación entre $X $ e $y $. Esto se lo puede expresar como la diferencia o distancia entre el valor predicho y el actual valor.
+El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados la función generar un valor mayor de error, si el valor de la predicción se acerca al valor esperado el error sera menor de modo que nos indicará si nos estamos acercando a la solución buscada.
 
-El objetivo de un modelo de \ac{ml} es encontrar los valores que minimicen la función de costo.Una función de costo toma un conjunto de datos y retorna un valor llamado error costo (\textit{loss cost} su traducción en ingles). Existen diferentes tipos de funciones de costo que podemos usar; una de las mas comunes usada es \textbf{mean square error}, MSE \ref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
+Existen diferentes tipos de funciones de costo que podemos usar para determinar el error en la predicción, una de las mas comunes usada es \textbf{mean square error}, MSE \ref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
+
+
+
 \begin{figure}[H] \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
   \caption{Mean Square Error }\label{Fig:mse}
   %http://wiki.fast.ai/images/5/55/Linear_line_w_cost_function.png
 \end{figure}
 
-Dado un punto de datos $(x_i,y_i) $, donde $x_i $ es el conjunto de característica (por ejemplo pisos, dormitorios, etc) que el modelo usa para realizar la predicción, $y_i $ es la etiqueta del ejemplo (por ejemplo precio de la casa) e $y(x_i)$ es la la función de predicción; el error esta dado por la siguiente formula:
+Para un problema de clasificación donde tenemos los siguientes datos $(x_i,y_i) $, donde $x_i $ es el conjunto de entrenamiento, por ejemplo las características de una casa pisos, dormitorios, etc; e $y_i$ es el precio correspondiente dada determinada característica. El método utiliza para calcular el error en la predicción es\ref{eqn:error-mse}, en donde $ y(x_i)$ es el valor de la predicción e $y_i$ es la variable a predecir.
 \begin{equation}\label{eqn:error-mse}
-e = (y(x_i) - y_i)^2
+error = (y(x_i) - y_i)^2
 \end{equation} 
-A partir del calculo anterior podemos generalizar y tomar el promedio sobre todo los punto de datos de la siguiente manera:
-\begin{equation}
+A partir del calculo anterior podemos generalizar \ref{eq: mse-ejem} y tomar el promedio sobre todo los punto de datos de esta manera el resultados de este valor no permite determinar cuanto no estamos acercando a la solución buscada.
+\begin{equation}\label{eq: mse-ejem}
 MSE =  \frac{1}{n}\sum_{i}(y_i - y(x_i))^2
 \end{equation}
-% NOTA: SE DEBE PONER MAS FUNCIONES DE COSTO RMSE?
+
+Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior \ref{sub:clasificadores} vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables \textit{slack}.
+
+Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores \ref{Fig:slack-var}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$
+\begin{figure}[H] \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/slack-var.png}
+  \caption{SVM  Función de Costo }\label{Fig:slack-var}
+\end{figure}
+
+El problema de un aprendizaje en SVM se lo puede ver como un problema de optimización de $w$ y $\xi $ de la forma \ref{eq: optim1}
+\begin{equation}\label{eqn: optim1}
+\min_{w  \in R , b \in R} \|w \|^{2} + C \sum_{i}^{N}  \xi_i   \text{  sujeto a    }   t_n(w^{\rm T} \vartheta(x) + b) \geq 1 - \xi_i  ,\; \; i= 1,..N
+\end{equation} 
+En el cual si $\xi \geq 0$ es equivalente a decir que: $\xi_i \max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b)  )$ por lo tanto es equivalente a  \ref{eq: w-loss}.
+\begin{equation}\label{eqn: w-loss}
+\min_{w  \in R} \|w \|^{2} + C \sum_{i}^{N} \max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b)  )
+\end{equation}
+Dada  la formula  \ref{eq: w-loss}  la función de costo sera: $\max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b))$ donde  los puntos se los clasifica en tres categorías: 
+\begin{enumerate}
+\item  $  t_n(w^{\rm T} \vartheta(x) + b)) \geq 1$: el valor está fuera del margen por lo tanto no se computa el error. 
+\item   $  t_n(w^{\rm T} \vartheta(x) + b)) == 1$: el valor está en el  margen por lo tanto no se computa el error. 
+\item   $  t_n(w^{\rm T} \vartheta(x) + b)) < 1$: el valor está dentro del margen por lo tanto se computa el valor de error. 
+
+\end{enumerate}
 
 Existen en la actualidad diversas funciones de costo que nos permite calcular el error del modelo; entre ellas están: Quadratic cost, Cross-entropy cost, Exponentional cost, Hellinger distance, Kullback–Leibler divergence, entre otras.
 
 %https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications
 
-\subsubsection{Algoritmos de Optimización} 
+\subsubsection{Optimización de la función de costo} 
 %https://hackernoon.com/gradient-descent-aynk-7cbe95a778da
 %https://stxlearning.com/2018/03/25/optimizacion-deep-learning-y-complejidad-computacional/
 En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la función de costo como se menciono previamente, este es un problema de optimización ya que si encontramos la solución podemos encontrar esos parámetros que disminuyen el error.
@@ -300,7 +360,11 @@ En la mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro,
 \subsubsection{Descenso de gradiente}\label{sub:gradient-desc}
 Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo mas utilizado es el llamado \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento.
 
-Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los valores $w_i $ que minimizan la función de costo. $$\min_{w} f(w)$$
+Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
+
+\begin{equation}
+w^* =  \arg\min_{w} f(X; w)
+\end{equation}
 
 Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
 
@@ -311,19 +375,18 @@ Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la di
 
 
 %Gradiente extraido de :https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
-El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla f(w) $ vector de derivadas parciales de la función $f$ es decir:
+El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla f(w) $ vector de derivadas parciales de la función $f$ es:
 \begin{equation}
-\nabla f(x) = (\frac{\partial f(\textbf{w})}{\partial w[1]},....., \frac{\partial f(\textbf{w})}{\partial w[d]})
+\nabla f(x) = (\frac{\partial f(\textbf{w})}{\partial w_1},....., \frac{\partial f(\textbf{w})}{\partial w_n})
 \end{equation}
 
-Descenso de gradiente es un algoritmo iterativo; comenzamos con un valor inicial de $\textbf{w}$ (el valor 0 por ejemplo), luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual. Es decir, el paso de actualización es:
+Descenso de gradiente es un algoritmo iterativo del cual comenzamos con un valor inicial de $\textbf{w}$, luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual, es decir, el paso de actualización es:
 \begin{equation}
-\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - n \nabla f(\textbf{w}^{(t)})
+\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla f(\textbf{w}^{(t)})
 \end{equation}
-En el cual $n > 0$, dado que el gradiente apunta a la dirección del mayor índice de $f$ alrededor $w^{(t)}$, el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de T iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$; la salida también puede ser el vector con mayor  $ argmin_{t \in [T]} f(w^{(t)}) $.
+Donde $ \alpha > 0$,  el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de $T$ iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$, en dónde $\hat{w}$ es una nueva posición de los parámetros que se acerca al mínimo buscado, es decir que hacen que $f(w^{(t)})$ se aproxime mejor al valor buscado de $Y$ . 
 
-
-En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan más al mínimo buscado, es decir que hacen que $f(w^{(t)})$ aproxime mejor a $Y$ . Existen diversas variantes de descenso por gradiente como Batch gradient descent, Stochastic gradient descent y Mini-batch gradient descent.
+Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent}.
 
 % PONEMOS BACKPROPAGATION, LEARNING RATE
 %http://ruder.io/optimizing-gradient-descent/
@@ -338,9 +401,9 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 \State \textbf{i} = 0
 \While {\textbf{i} <  iteraciones}{
 \State i++
-\State	error = \textit{FunciónCosto}(X, Y, \theta)
+\State	error = \textit{Función\_Costo}(X, Y, \theta)
 
-\If {error < minerror}
+\If {error < min\_error}
 	\State	break
 \Else
 	\State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
@@ -354,34 +417,34 @@ En dónde $\hat{w}$ es una nueva posición de los parámetros que se acercan má
 
 \subsubsection{El problema de sobreajuste}\label{sub:validacion-modelo}
 
-En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a datos nuevos. 
+En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a nuevos datos. 
 
-Una de las principales causas de validar nuestro modelo son obtener resultados erróneos en la predicción; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: overfitting y underfitting. \textit{\textbf{Overfitting}} y \textit{\textbf{underfitting}} son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos resolver. 
+Una de los principales motivos por el cual tenemos que validar nuestro modelo es para obtener una medida de cuan erróneo pueden llegar a ser nuestros resultados en la predicción ; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: overfitting y underfitting. \textit{\textbf{Overfitting}} y \textit{\textbf{Underfitting}} son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos atacar. 
 
-\subsubsection*{Overfitting}
-Este concepto en \ac{ml} hace referencia al sobre-entrenamiento del modelo. El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir. Esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
+El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir, esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
 
-\subsubsection*{Underfitting}
-Como parte opuesta al overfitting esta el  underfitting; este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos.
+Como parte opuesta al overfitting esta el  underfitting; este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos. En la figura \ref{Fig: overUnder} podemos apreciar los enfoques mencionados anteriormente.
 
 \begin{figure}[h]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/OverFUnderF.png}
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/OverFUnderF.png}
   \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha)}
 	\label{Fig: overUnder}
 \end{figure}
 
 
-Existen diferentes técnicas para validar la robustez de nuestro modelo y evitar los problemas mencionados anteriormente, una de ellas es por  \textit{validación cruzada} (cross validation en ingles). La validación cruzada es una técnica que evalúa los resultados de un análisis estadístico y garantiza de que sean independientes de la partición de los datos de entrenamiento y prueba. 
 
-Hay diversos tipos de validación cruzada, de las cuales podemos nombrar:
+\subsubsection{Estrategias de aprendizaje para evitar el sobreajuste}
+Existen diferentes técnicas para validar la robustez de nuestro modelo y evitar los problemas mencionados en la sección anterior, una de ellas es por  \textit{validación cruzada} (cross validation en ingles). La validación cruzada es una técnica que evalúa los resultados de un análisis estadístico y garantiza de que sean independientes de la partición de los datos de entrenamiento y prueba. 
+
+Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
 \begin{enumerate}
 
 \item \textbf{K-Fold Cross Validation}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Existe un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/crossvalidat.png}
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/crossvalidat.png}
   \caption{Validación cruzada para k=5\\(Adaptado de:{http: //goo.gl/Dp85h3})}
 	\label{Fig: crossvalidation}
 \end{figure}
@@ -413,10 +476,10 @@ Hay diversos tipos de validación cruzada, de las cuales podemos nombrar:
 \subsubsection{Evaluación de Modelos}\label{sub:evaluación-modelo}
 Para determinar la efectividad de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de evaluación en \ac{ml} son usadas para obtener esa tasa de error en el modelo. 
 
-La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación:
+La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación que son \textit{Matriz de confusión}, \textit{accuracy}, \textit{precision}, \textit{recall} y \textit{curvas ROC}.
 
-\begin{enumerate}
-\item \textbf{Matriz de Confusión}, \textit{Confussion Matrix}: contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz.
+La \textit{Matriz de Confusión} contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la forma de la figura \ref{Fig: confusion-matrix}.
+
 
 \begin{figure}[H]
  \centering
@@ -425,71 +488,59 @@ La forma de validar modelos en \ac{ml} es a través de métricas, la elección d
 	\label{Fig: confusion-matrix}
 \end{figure}
 
+Cada valor de las celdas esta dado por:
 \begin{itemize}
 	\item Positivos (P): Observación positiva (valor etiquetado).
 	\item Verdadero Positivo (TP): La observación es positiva y la predicción también.
 	\item Falso Negativo (FN): La observación es positiva pero la predicción es negativa.
 	\item Falso Positivo (FP): La observación es negativa pero la predicción es positiva.
 	\item Verdadero Negativo (TN) :  La observación es negativa y también la predicción negativa.
-
 \end{itemize}
 
+Con los valores obtenidos de la \textit{matriz de confusión} podemos extraer las siguientes métricas:
 
-\item \textbf{Accuracy}: Proporción de todas las predicciones que son correctas, da una medida de que tan bueno es el modelo.
+\textbf{Accuracy}: Proporción de todas las predicciones que son correctas, da una medida de que tan bueno es el modelo.
 \begin{equation}
 accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}
 \end{equation}
 
-\item \textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
+\textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
 \begin{equation}
 precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}
 \end{equation}
 
-\item \textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
+\textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
 \begin{equation}
 recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} 
 \end{equation}
 
-\item \textbf{Overlapping Mean}: Métrica obtenida a partir de la intersección del ground truth y el bounding box de la predicción obtenida \ref{Fig: roc}.
-
-\item \textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área de 1.0 representa un modelo que hizo perfectamente todas las predicciones.
+\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área de 1 representa un modelo que hizo perfectamente todas las predicciones como se visualiza en la figura \ref{Fig: roc}.
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/curvas-roc.png}
-  \caption{Curva ROC}
-	\label{Fig: roc}
+  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/curvas-roc.png}
+  \caption{Curva ROC} \label{Fig: roc}
 \end{figure}
 
+Además de las métricas mencionadas anteriormente para este trabajo se utilizo \textit{Overlapping Mean} como métrica, este valor se calcula a partir de la intersección del \textit{ground trut}h (datos etiquetados) y el\textit{ bounding box} de la predicción obtenida, en capítulos siguiente desarrollaremos mas en detalle los términos mencionados.
 
-\end{enumerate}
 
+\section{Redes convolucionales y el problema de detección de objetos}\label{sec:compueter-vision}
 
-\section{Detección de Objetos}\label{sec:compueter-vision}
+Las Redes neuronales son una poderosa herramienta para la resolución de diferentes problemas en la actualidad. Una red neuronal aprende de forma progresiva a medida que entrena los datos disponible, de esta manera conseguimos que la red aprenda a reconocer la característica o patrones de interés de los datos. Este aprendizaje finaliza luego de un numero variables de iteraciones en el cual vamos midiendo el nivel de error en cada iteración.
 
-El objetivo de la detección de objetos es detectar todas las ocurrencias de una clase conocida, esta tarea nos permite obtener información de un elemento en particular dada una imagen de entrada, es decir a partir de una imagen de entrada podemos inferir la clase del elemento que estamos deseando buscar. 
+El modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. Para el reconocimiento de imagen se hacen uso de Redes neuronales convolucionales \ref{sub:cnn} las cuales son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica de la imagen.   En las secciones siguientes vamos a desarrollar mas en detalle que son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
 
-Existen diversos métodos que nos ayudan a resolver este problema, el mas utilizado en la actualidad es por medio de redes convolucionales como veremos a continuación.
 
 \subsection{Redes Convolucionales}\label{sub:cnn}
-%https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
-\ac{cnn} son una clase de redes neuronales muy utilizadas en la actualidad por profesionales en \ac{cv}. La arquitectura de una \ac{cnn} consiste en múltiples capas donde cada una de estas tienen diferente propósito.
 
-\begin{figure}[h]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/Logos/cnnconv.png}
-  \caption{Red Neuronal Convolucional (Adaptado de:\citep{cnns})}
-	\label{Fig: redconvolucion}
-\end{figure}
-
-Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas (ver: \ref{Fig: redconvolucion}), tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}.
-
+Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se le entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes, debido a que son capaces de detectar características simples como por ejemplo detención de bordes, lineas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas \ref{Fig: redconvolucion}, tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}.
 
 El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características} (ver \ref{Fig: fmaps}). Cada unidad  del mapa de característica es lo que llamamos  \textit{\textbf{feature vector}}. Una capa convolucional completa está compuesta de varios mapas de características (con diferentes 
 \textit{feature vector}), de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/Logos/fmaps.png}
+  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fmaps.png}
   \caption{Ejemplo de mapa de características, (Adaptado de: \citep{cnnsarticle})}
 	\label{Fig: fmaps}
 \end{figure}
@@ -502,13 +553,33 @@ es decir a partir de la imagen de entrada aplicar por ejemplo detección de bord
 \item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
 \end{enumerate}
 
-La mayoría de las \ac{cnn} tienen arquitecturas similares como se ve en la imagen \ref{Fig: redconvolucion}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}. 
+La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}. 
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
+  \caption{Arquitectura simplificada de una \ac{cnn}.} \label{Fig:cnn_network}
+\end{figure}
+
+
+
+
+
 
 \subsubsection{Convolución}\label{sub:convolucion}
 %https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-1-convolution-operation
-Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución, la convolución son operaciones de productos y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente, un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución \ref{eq:conv2}, la convolución son operaciones de producto y sumas entre las capas y los $n $ filtros (kernel) que generan como se mencionó anteriormente, un mapa de característica. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
 
-En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como input, por otro lado tenemos un filtro también llamado \textit{kernel} en este caso un kernel 3x3 que vamos aplicar a nuestro input.
+\begin{equation}\label{eq:conv2}
+    G[i, j] = \sum_{u=-k}^k \sum_{v=-k}^k H[u, v] F[i-u, j-v]
+\end{equation} 
+
+
+
+% NOTA https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html, 
+
+
+En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como entrada, por otro lado tenemos un filtro también llamado \textit{kernel} en este caso un kernel 3x3 que vamos aplicar a nuestra entrada.
 
 \begin{figure}[H]
  \centering
@@ -516,12 +587,12 @@ En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como input, por otro
   \caption{Input y filtro de convolución}\label{Fig:filter}
 \end{figure}
 
-La operación de convolución se realiza deslizando el kernel sobre el input del cual en cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{mapa de característica} como se muestra a continuación.
+La operación de convolución se realiza deslizando el kernel sobre la matriz de entrada del cual para cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{mapa de característica} como se muestra \ref{fig: f_maps2}.
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
-  \caption{Operación de convolución sobre una imagen} 
+  \caption{Operación de convolución sobre una imagen}\label{fig: f_maps2} 
 \end{figure}
 
 
@@ -531,7 +602,7 @@ La operación de convolución se realiza deslizando el kernel sobre el input del
   \caption{Convolución} \label{Fig:convolucion}
 \end{figure}
 
-El ejemplo anterior es muy simplificado, en la realidad, las \ac{cnn} desarrollan detectores de múltiples características y las utilizan para desarrollar varios mapas de características que se conocen como capas convolucionales. A través de estos mapas de característica la red determina qué  considera importantes para poder escanear imágenes y clasificarlas con mayor precisión.
+El ejemplo \ref{Fig:convolucion} es una figura  simplificada de la operación de convolucion, en la realidad, las \ac{cnn} desarrollan detectores de múltiples características y las utilizan para desarrollar varios mapas de características que se conocen como capas convolucionales. A través de estos mapas de característica la red determina qué  considera importantes para poder escanear imágenes y clasificarlas con mayor precisión.
 %https://www.scribd.com/document/271869018/Convolucion-con-CNN
 \subsubsection{Pooling}\label{sub:pooling}
 
@@ -548,12 +619,12 @@ El tipo de técnica mas común utilizado es \textit{max pooling} que toma el val
 
 En las arquitecturas \ac{cnn} (ver: \ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
 
-\subsubsection{Función de Activación  ReLU}\label{sub:relu}
+\subsubsection{Función de activación}\label{sub:relu}
 %https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
 %https://www.analyticsvidhya.com/blog/2017/10/fundamentals-deep-learning-activation-functions-when-to-use-them/
 Las funciones de activación son una característica  importante de las \ac{cnn}, básicamente deciden si una neurona debe ser activada o no es decir si la información que la neurona está recibiendo es relevante para la información dada o si se debe ignorar.
 
-Una vez que los \textit{mapas de característica} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa ReLU (Rectified Linear Unit), mayormente es la mas utilizada en \ac{cnn}, las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la siguiente imagen \ref{Fig:relu} vemos la forma de la función.
+Una vez que los \textit{mapas de característica} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa de activación. Existen diversos metodos que cumplen esta tarea, la mas utilizada en  \ac{cnn} son las capara de activación ReLU (Rectified Linear Unit), las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la figura  \ref{Fig:relu} vemos la forma que toma la función.
 
 \begin{figure}[H]
  \centering
@@ -561,22 +632,34 @@ Una vez que los \textit{mapas de característica} se extraen de la capa de convo
   \caption{ReLU (Rectified Linear Unit)} \label{Fig:relu}
 \end{figure}
 
-Ejemplo aplicado de una ReLU a un \textit{mapa de característica}:
+Ejemplo aplicado de una ReLU a un \textit{mapa de característica} \ref{Fig:relu2}:
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_2.jpeg}
   \caption{Ejemplo ReLU } \label{Fig:relu2}
 \end{figure}
 
-La principal ventaja de usar la función ReLU sobre otras funciones de activación es que no activa todas las neuronas al mismo tiempo, si la entrada es negativa, la convertirá a cero y la neurona no se activará. Esto significa que, en un momento dado, solo unas pocas neuronas se activan,lo que la hace eficiente y fácil de calcular.
+La principal ventaja de usar la función ReLU sobre otras funciones de activación es que no activa todas las neuronas al mismo tiempo, si la entrada es negativa, la convertirá a cero y la neurona no se activará, esto significa que, en un momento dado, solo unas pocas neuronas se activan,lo que la hace eficiente y fácil de calcular.
 
 
-\subsubsection{Fully Connected}\label{sub:fully_connected}
+\subsubsection{Capas totalmente conectadas}\label{sub:fully_connected}
 %https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/
+% https://www.oreilly.com/library/view/tensorflow-for-deep/9781491980446/ch04.html
 
-En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas \textit{fully conected}. Las capas fully conected son capas donde cada nodo  está conectado en la siguiente capa, esta capa toma un volumen de entrada y genera un vector dimensional N donde N es el número de clases entre las que el modelo tiene que clasificar. Cada valor de este vector representa la probabilidad de cada clase.
+En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas totalmente conectadas, por su nombre en ingles \textit{fully conected}.
+Las \textit{fully conected} son las capas más básicas, ya que todas las neuronas de entrada están conectadas a cada neurona de salida. Una \textit{fully connected }  es una capa donde cada dimensión de salida  depende del valor de entrada a la red, esta red se basan en una combinación lineal \ref{eq:fully-conected2} de las variables de entrada que se transforma mediante una función de activación no lineal.
 
-Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases. Las capas fully conected desempeñan el papel de la tarea de clasificación, mientras que las capas anteriores actúan como extractores de características.
+
+\begin{equation}\label{eq:fully-conected2}
+a_j = \sum_{i=1}^D w_{ji}  x_i + w_{j0}
+\end{equation}
+$ a_j$ \ref{eq:fully-conected2}  se conoce como capa de activación para los pesos $w_{ji}$ y dado los valores de entrada ${x_1,...,x_d}$, en esta red hay  $ D$ entradas como $M$ unidades ocultas. La activación de la unidad  $ a_j$ se obtiene luego de la suma de la transformación lineal usando una función de activación $ g(.)$, ReLU por ejemplo, esto nos da que la salida de una \textit{fully conected} tendrá la forma de  \ref{eq:output-fully-conected}.
+
+\begin{equation}\label{eq:output-fully-conected}
+z_j = g(a_j)
+\end{equation}
+
+Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases. Las capas \textit{fully conected }desempeñan  la tarea de clasificación, mientras que las capas convolucionales actúan como extractores de características.
 
 \begin{figure}[H]
  \centering
@@ -584,24 +667,19 @@ Básicamente, una capa \textit{fully conected} observa características de alto 
   \caption{Fully conected layer} \label{Fig:fully_conected}
 \end{figure}
 
-En el siguiente grafico se visualiza de manera generalizada como estan agrupadas las capas en una \ac{cnn}.
 
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
-  \caption{Arquitectura simplificada de una \ac{cnn}.} \label{Fig:cnn_network}
-\end{figure}
 %https://ahmedbesbes.com/understanding-deep-convolutional-neural-networks-with-a-practical-use-case-in-tensorflow-and-keras.html
 
 
-\subsubsection{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
+\subsection{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
+%https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
 La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior \ref{sub:cnn} vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
 
 \begin{itemize}
 \item \textbf{LeNet5}: Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. 
 
-LeNet5 esta formada por 3 capas, usando la capa convolucional para extraer las características espaciales de la imagen. En general esta red fue el origen de muchas de las arquitecturas modernas.
+LeNet5 esta formada por 3 capas, usando la capa de convolución para extraer las características espaciales de la imagen. En general esta red fue el origen de muchas de las arquitecturas modernas.
 
 \item \textbf{AlexNet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. EL problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas; AlexNet consta de 5 capas convoluacionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas \textit{fully connected}. Una importante característica es el uso de \textit{ReLU}(Rectified Linear Unit),  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
 
@@ -642,13 +720,16 @@ Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos 
 
 \end{itemize}
 
-En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50, ResNet101, GoogleNet(InceptionV1, InceptionV3), entre otras. En la siguiente figura \ref{Fig:cnn-analisis} se muestra un análisis realizado\footnote{https://arxiv.org/abs/1605.07678} comparando \textit{accuracy} vs \textit{cantidad de operaciones} realizadas en solo una pasada en toda la red.
+En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50, ResNet101, GoogleNet(InceptionV1, InceptionV3), entre otras. 
+
+En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite{Analysis_deep_network} en donde se compara la complejidad de las arquitecturas existentes en relación a su \textit{accuracy}, los círculos en el grafico representan la cantidad de parámetros de cada red; como se puede ver las redes \textit{VGG} son mucho mas costosas en relación a los costos computacionales como a la cantidad de parámetros que se debe entrenar. Por otro lado podemos ver con las demás arquitecturas tienden a mejorar su \textit{accuracy} a mayor costo computacional y numero de parámetros.
+.
 %https://www.deeplearningitalia.com/guia-para-arquitecturas-de-redes-profundas/
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn-analisis.png}
-  \caption{ResNet:\textit{Residual block}}
+  \caption{Análisis CNN}
 	\label{Fig:cnn-analisis}
 \end{figure}
 
@@ -656,88 +737,127 @@ En el estado del arte actual existen diferentes variantes que parten de la idea 
 
 \section{El problema de la detección}\label{sub:problema_deteccion}
 
-Generalmente en problemas de detección sola una parte de las clases conocidas están presente en la imagen, pero existen diversas posibilidades tanto de locación como escala que pueden aparecer en la imagen y necesitan ser exploradas. Los objeto en una imagen de una clase particular son altamente variables es decir se presenta el problema que el objeto puede variar en iluminación, cambios en la posición de la cámara y como se menciono anteriormente en escala. 
 
-Para abordar este problema existen diversas técnicas una de ellas es por medio de \textit{slide windows}. Slide window es un enfoque para la detección de objeto que considera y clasifica dada cierta ventana definida anteriormente, esta técnica se basa en recorrer la imagen de izquierda a derecha y desde arriba a abajo dando pasos de N pixeles definidos. Este enfoque puede ser considerado con diferentes tamaños de ventanas o con diferentes niveles de resolución convirtiendo la imagen en pirámide para la solución del problema de escala.
+Las redes neuronales convolucionales nos permiten extraer información dada una imagen de entrada, además de poder clasificar la imagen a la categoría adecuada en otras ocasiones necesitamos saber en que posición (coordenadas) de la imagen se encuentra el objeto de interés. Los objetos en una imagen de una clase particular son altamente variables es decir se presenta el problema que el objeto puede variar en iluminación, cambios en la posición de la cámara y tamaño del objeto. Para abordar este problema existen diversas técnicas una de ellas es por medio de un algoritmo de ventana deslizante, \textit{sliding windows} por su denominación en ingles. Sliding windows es un método para detectar objeto en una imagen, este método utiliza una ventana definida previamente que se basa en recorrer la imagen de izquierda a derecha y desde arriba a abajo dando pasos de $N$ píxeles definidos previamente. Este técnica puede ser considerado con diferentes tamaños de ventanas o con diferentes niveles de resolución convirtiendo la imagen en pirámide para la solución del problema de escala. 
 
-El principal inconveniente de esta técnica es el costo computacional que conlleva ya que debe recorrer toda la imagen para encontrar el objeto de interés ademas  generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido por lo que se debe crear imágenes en pirámide para la solución como se menciona anteriormente.
+El principal inconveniente de \textit{sliding windows} es el costo computacional que conlleva aplicarla ya que debe recorrer toda la imagen para encontrar el objeto de interés, generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido por lo que se debe crear imágenes en pirámide para la solución en la escala como se menciona anteriormente; para dar un ejemplo en una imagen de $640 x 480$ píxeles con tamaño de ventada de $ 3 x 3$ y un salto de $2$ se deberían evaluar en el orden de $10^3$ ventanas en la imagen.
 
-Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{slide windows} estos son llamados  \textit{regions proposal} que nos permiten atacar el problema de la localización y detección del objeto de manera mucho mas eficiente.
+Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{sliding windows} estos son llamados regiones propuestas, \textit{regions proposal} por su denominación en ingles, los métodos de regiones propuestas toman una imagen de entrada y retornan una región,\textit{bounding box},  que probablemente contengan algún objeto de interés en la imagen.  En estos \textit{bounding box} retornado por el método habrá al menos uno que contenga o se acerque al objeto de interés que estamos buscando en la imagen.
+
+% las regiones con alta probabilidad seran aquellas que contengan el objeto que estamos buscando, luego podemos clasificarla usando algun modelo como SVM.ZZZZ https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/
+Luego de generar las regiones propuestas extraemos las características de la imagen esto lo hacemos por medio de una \ac{cnn}, a partir de las salidas de esta extracción de característica, \textit{feature extraction} por su denominación en ingles, se utilizará algunos de los métodos de clasificación desarrollado en \ref{sub:clasificadores} en la cual la salida serán los \textit{bounding box} identificado con alguna probabilidad de que contenga o no el objeto que estamos buscando. Como siguiente paso debemos  asegurarnos que los \textit{bounding box} no estén duplicados, es decir que no representen la misma información que otra región, para eliminar regiones duplicadas utilizamos el método de \textit{Non-Maxima Suppression} \ref{sub:nonmaximumsuppression} que a partir de un umbral previamente definido nos permite eliminar regiones duplicadas en la detección.
+
+
+%Un pipeline básico de detección tiene la siguiente estructura \ref{fig:pipeline-deteccion}.
+%\begin{figure}[H]\centering
+%  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/pipeline-deteccion.png}
+%  \caption{Pipeline de detección}\label{fig:pipeline-deteccion}
+%\end{figure}
 
 \subsection{Regions Proposal} \label{sub:regions-proposal}
 
-Regiones Propuesta, \ac{rp} en su traducción al ingles, son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como contorno, color, etc. El proceso metodológico básico es el siguiente: dada una imagen de entrada, este método busca generar un conjunto de regiones candidatas que son localizadas en un \textit{bounding box}, un \textit{bounding box} es la región de interés, que probablemente contengan objetos de interés para la detección (ver: \ref{Fig: propsalregion}), permiten tener ventanas(bounding box) de diferentes escalas. Estos objetos de interés detectados a partir del método son los que posteriormente vamos a clasificar.
+Regions proposal son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como contorno, color, etc. El proceso metodológico básico es el siguiente: dada una imagen de entrada, este método busca generar un conjunto de regiones candidatas que son localizadas en un \textit{bounding box}, un \textit{bounding box} es la región de interés, que probablemente contengan objetos de interés para la detección \ref{Fig: propsalregion} permiten tener ventanas(bounding box) de diferentes escalas. Estos objetos de interés detectados a partir del método son los que posteriormente vamos a clasificar.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/Logos/regionProposal.png}
-  \caption{Ejemplo \ac{rp} \\ (Adaptado de:{http://www.cs.toronto.edu/~byang/})}
+  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/regionProposal.png}
+  \caption{Ejemplo de regiones propuestas.}% \\ (Adaptado de:{http://www.cs.toronto.edu/~byang/})}
 	\label{Fig: propsalregion}
 \end{figure}
 
-Existen diversos métodos para calcular regiones candidatas que podemos encontrar en: \citep{proposal}. En esta tesis se realizo pruebas con los  los métodos \textit{Edges Boxes} y \textit{Selective Search}.
+Existen diversos técnicas para calcular las regiones candidatas \citep{proposal}; en esta tesis se realizo pruebas con los  los métodos \textit{Edges Boxes} y \textit{Selective Search}.
 
 \subsubsection*{Edges Boxes} \label{sub:edgesboxes}
 
-Edges Boxes es un enfoque para la generación de regiones candidatas a partir de los bordes detectados. Utilizando estructuras de datos eficientes, se pueden evaluar millones de boxes (cajas) candidatos en una fracción de segundo; los bordes proporcionan una representación simplificada pero informativa de una imagen \citep{edges}.
+Edges Boxes  \citep{edges} es un método para la generación de regiones candidatas a partir de los bordes detectados. Utilizando estructuras de datos eficientes, se pueden evaluar millones de boxes (cajas) candidatas en una fracción de segundo en donde los bordes proporcionan una representación simplificada pero informativa de una imagen. Los algoritmos para la detección de bordes tradicionales utilizan una variedad de métodos para calcular gradientes de color, en el caso de los nuevos enfoques además utilizan múltiples características como entrada incluyendo brillo, color, textura y  escalas de la imagen. 
 
-Los algoritmos para la detección de bordes tradicionales utilizan una variedad de métodos para calcular gradientes de color, en el caso de los nuevos enfoques además utilizan múltiples características como entrada; incluyendo brillo, color, textura y  escalas de la imagen. 
-
-En la figura (\ref{Fig: edges}) podemos ver de manera simplificada los pasos del método;  en la parte inferior de la imagen vemos que luego de varios operaciones identifica regiones que podrían ser de interés.
+En la figura \ref{Fig: edges} podemos ver de manera simplificada los pasos del método;  en la parte inferior de la imagen \ref{Fig: edges} vemos que luego de varios operaciones identifica regiones que podrían ser de interés.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/edges.png}
+  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/edges.png}
   \caption{Ejemplo proceso detección de bordes (Adaptado de:\citep{edges})}
 	\label{Fig: edges}
 \end{figure}
 
-Este método evalúa las cajas candidatas utilizando un enfoque de ventana deslizante, similar a la detección de objetos tradicionales; donde en cada posición del objeto evaluamos, escala y relación generando una puntuación (score) que indica la probabilidad de que un objeto esté presente en el bounding box.
+Este método evalúa las cajas candidatas utilizando un enfoque de ventana deslizante, similar a la detección de objetos tradicionales \textit{sliding windows}; en el cual para cada posición del objeto evaluamos, escala y relación generando una puntuación (score) que indica la probabilidad de que un objeto esté presente en el bounding box.
 
 
 \subsubsection*{Selective Search} \label{sub:selectivesearch}
-Selective Search es un método de \ac{rp} que  permite obtener regiones candidatas realizando una búsqueda exhaustiva aplicando segmentación sobre la imagen. La segmentación  en procesamiento de imágenes consiste en dividirla en grupo de píxeles u objeto. El objetivo es simplificar la representación logrando que sea mas significativa, fácil de analizar y capturar todas las ubicaciones de objetos posibles; en lugar de una sola técnica para generar ubicaciones , diversifica la  búsqueda y usa  una variedad de particiones de imágenes complementarias para tratar con tantas condiciones de imagen como sea posible \citep{selectivesearch}.
+Selective Search \citep{selectivesearch} es un método de \ac{rp} que  permite obtener regiones candidatas realizando una búsqueda exhaustiva aplicando segmentación sobre la imagen. La segmentación  en procesamiento de imágenes consiste en dividirla en grupo de píxeles u objeto. El objetivo es simplificar la representación logrando que sea mas significativa, fácil de analizar y capturar todas las ubicaciones de objetos posibles; en lugar de una sola técnica para generar ubicaciones , diversifica la  búsqueda y usa  una variedad de particiones de imágenes complementarias para tratar con tantas condiciones de imagen como sea posible.
 Las estrategias usadas en este método son:
 \begin{itemize}
 \item \textbf{Capturar todas las escalas}: los objetos pueden estar en cualquier escala de la imagen, es por esto que se toma en cuenta todas las escalas.
 \item \textbf{Diversificación}: No existe una sola estrategia sino que una región puede formar un objeto solo por color o textura.
-\item \textbf{Rápido computo}: Esta es una de las estrategias principales debido a que el objetivo es producir un conjunto de regiones propuesta de manera eficiente y sin un costo computacional alto.
+\item \textbf{Computo Rápido}: Esta es una de las estrategias principales debido a que el objetivo es producir un conjunto de regiones propuesta de manera eficiente y sin un costo computacional alto.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/selectivesearch.png}
-  \caption{Ejemplo segmentación con \textit{Selective Search} (Adaptado de:\citep{selectivesearch})}
+  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/selectivesearch.png}
+  \caption{Ejemplo segmentación con \textit{Selective Search} } %(Adaptado de:\citep{selectivesearch})
 	\label{Fig: overlapping}
 \end{figure}
 
-\subsection{Non-Maximum Suppression}\label{sub:nonmaximumsuppression}
+\subsection{Extracción de características}\label{sub:features-extraction}
 
-\ac{nms} es un pre-procesamiento muy importante en el ámbito de \ac{cv}  donde trabajamos con imágenes de alta resolución \citep{nms};  \ac{nms} normalmente se usa con algoritmos de detección de bordes \textit{Edge Boxes}. Puede  suceder que cuando aplicamos métodos de regiones propuestas existan boxes (regiones) con sobremuestreo, es decir lo que en la literatura se los llama \textit{overlapping bounding boxes} , como por ejemplo ver en la figura (\ref{Fig: overlapping}). 
+Luego de las extracciones de regiones candidatas obtenidas por algunos de los métodos nombrados en la sección anterior \ref{sub:regions-proposal}, debemos extraer las características significativas que representan cada región dada. Una  característica es algo que se diferencia del resto en un conjunto de datos, esa diferencia nos permite agruparlas de acuerdo a alguna
+similitud entre las mismas. 
 
-\begin{figure}[H]
- \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/overlapMat.png}
-  \caption{Overlapping entre regiones (Adaptado de:{https://goo.gl/ihYMvX})}
-	\label{Fig: overlapping}
-\end{figure}
+El objetivo principal de la  extracción de características, \textit{feature extraction} por su denominación en ingles, es representar los datos como un conjunto reducido de característica que describen de manera eficiente sus principales atributos. Para poder realizar esta tarea utilizamos  las redes neuronales convolucionales \ref{sub:cnn} que  permiten extraer información de la imagen para luego utilizar estos atributos obtenidos y agruparlos según algún criterio establecido. 
 
-Para poder eliminar este solapamiento (detecciones redundantes) utilizamos \ac{nms}. \ac{nms} puede ser formulado como una búsqueda de los máximo locales, donde el máximo local es  mayor que todos sus vecinos (\ref{Fig: interseccion}). El algoritmo selecciona aquellas detecciones con un \textit{score} (intersección) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
 
-\begin{figure}[h]
- \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/Logos/overlapping.png}
-  \caption{Ejemplo de Overlapping con diferentes scores. (Adaptado de:\citep{edges})}
-	\label{Fig: interseccion}
-\end{figure}
+\subsection{Non-Maxima Suppression}\label{sub:nonmaximumsuppression}
 
-Dependiendo del valor de score usado podremos eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento. Para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}.
+Non-Maxima Suppression es un post-procesamiento muy importante en el contexto de la detección. Al aplicar métodos de regiones propuestas puede suceder que existan regiones con sobre-muestreo, es decir superpuestas, como se muestra en la figura  \ref{Fig: overlapping}. 
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Logos/nms.png}
-  \caption{Uso de non-maximum suppression. (Adaptado de:\citep{nms2})}
-	\label{Fig: nonmaximumsuppression}
+  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapMat.png}
+  \caption{Superposición entre regiones.} \label{Fig: overlapping}
 \end{figure}
 
-En \ac{cv} este método es muy utilizado ya que nos permite además de eliminar detecciones redundantes, ayuda a mejorar la clasificación de la imagen optimizando también el tiempo de procesamiento en la clasificación.
+Para poder eliminar detecciones redundantes calculamos un valor denominado  \textit{IoU}, intersección sobre unión,  este valor nos indica el solapamiento, \textit{overlapping} ,  entre diferentes regiones cercanas como se muestra en la figura \ref{Fig: interseccion}. Non-maxima supression puede ser formulado como una búsqueda de los máximo locales en donde el máximo local es  mayor que todos sus vecinos,  el algoritmo selecciona aquellas detecciones con un \textit{puntaje} (IoU) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapping.png}
+  \caption{IoU con diferentes valores}\label{Fig: interseccion}
+\end{figure}
+
+Dependiendo del valor, IoU  obtenido podemos usar un umbral para  eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento, para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}. 
+
+En un pipeline de detección las técnicas de non-maxima supression se utilizan para eliminar detecciones redundantes luego de la clasificación esto nos permite reducir el numero de detecciones a solo una por cada región detectada.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/nms.png}
+  \caption{Uso de Non-maxima supression.}\label{Fig: nonmaximumsuppression}
+\end{figure}
+
+En el siguiente algoritmo  \ref{alg:nms} se visualiza el proceso llevado a cabo por Non-maxima suppresion en la eliminación de regiones redundantes.  El algoritmo recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor, IoU, de cada una de las regiones por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
+%https://www.vision.ee.ethz.ch/publications/papers/proceedings/eth_biwi_01126.pdf
+\begin{algorithm}[H]\caption{Non-Maxima Suppression}\label{alg:nms}
+
+\begin{algorithmic}[1]
+\State $\textbf{INPUT} : \beta = {b_1,..,b_n}, S = {s_1,..,s_n}, N_t$
+%\State $\beta lista de bounding box.$
+%\State $S puntaje obtenido por bounding box.$
+%\State $N_t umbral definido de Non-maxima supression.$
+\State $ \textbf{BEGIN} $
+\State $D \gets \{\}$
+\While {$\beta \neq empty$}
+    \State $ m\gets  argmax S $
+    \State $ M \gets b_m $
+    \State $ D \gets D \cup M; B \gets B - M $
+    \For {$b_i in \beta$}
+    
+        \If {$IoU(M, b_i) \geq N_t$}
+            \State $ B \gets B - b_i; S \gets S - s_i $
+\EndIf
+\EndFor
+\EndWhile
+\State $\textbf{return}   D, S $
+\State $\textbf{END}$
+\end{algorithmic}
+\end{algorithm}
