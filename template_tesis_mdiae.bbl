@@ -1,8 +1,131 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Babawuro y Beiji(2012)]{usman}
+Usman Babawuro y Zou Beiji.
+\newblock Satellite imagery cadastral features extractions using image
+  processing algorithms: A viable option for cadastral science.
+\newblock \emph{International Journal of Computer Science}, 2012.
+
+\bibitem[Canziani et~al.(2017)Canziani, Culurciello, y
+  A.Paszke]{Analysis_deep_network}
+A.~Canziani, E~Culurciello, y A.Paszke.
+\newblock An analysis of deep neural network models for practical application.
+\newblock 2017.
+
+\bibitem[Chuvieco(1990)]{chuvieco}
+Emilio~S. Chuvieco.
+\newblock \emph{Fundamentos de la teledeteccion espacial}.
+\newblock McGraw-Hill, Inc., 3 edition, 1990.
+\newblock ISBN 9788432131271.
+
+\bibitem[Garcia(2015)]{percepcion}
+Alberto~Ruiz Garcia.
+\newblock Sistema de percepción y visión por computador.
+\newblock Tesis de Maestría, Universidad de Murcia, Febrero 2015.
+
+\bibitem[Hosang et~al.(2015)Hosang, Benenson.R, Dollár.P, y B.]{proposal}
+J~Hosang, Benenson.R, Dollár.P, y Schiele B.
+\newblock What make for effective detection proposal?
+\newblock \emph{CoRR}, abs/1502.05082, 2015.
+\newblock URL \url{http://arxiv.org/abs/1502.05082}.
+
+\bibitem[Hosang et~al.(2017)Hosang, Benenson, y Schiele]{nms2}
+Jan~Hendrik Hosang, Rodrigo Benenson, y Bernt Schiele.
+\newblock Learning non-maximum suppression.
+\newblock \emph{CoRR}, abs/1705.02950, 2017.
+\newblock URL \url{http://arxiv.org/abs/1705.02950}.
+
+\bibitem[Huggins et~al.(2009)Huggins, McGrath, Zheng, y Ewing]{Huggins}
+K.~R. Huggins, M.~A. McGrath, Y.~F. Zheng, y R.~L. Ewing.
+\newblock Computer vision localization based on pseudo-satellites.
+\newblock 2009.
+
+\bibitem[Iounousse et~al.(2013)Iounousse, Salah, Ahmed, y Hassan]{pnn}
+J.~Iounousse, E.~Salah, E.~Ahmed, y C.~Hassan.
+\newblock Using an unsupervised approach of probabilistic neural network (pnn)
+  for land use classification from multitemporal satellite images.
+\newblock 2013.
+
+\bibitem[Karn(2016)]{cnnsarticle}
+Ujjwal Karn.
+\newblock An intuitive explanation of convolutional neural networks, 2016.
+\newblock URL
+  \url{https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/}.
+\newblock [Accedido 15-Junio-2017].
+
+\bibitem[Konstantinidis et~al.(2017)Konstantinidis, Stathaki, Argyriou, y
+  Grammalidis]{detectionHOG}
+D.~Konstantinidis, T.~Stathaki, V.~Argyriou, y N.~Grammalidis.
+\newblock Building detection using enhanced hog–lbp features and region
+  refinement processes.
+\newblock \emph{IEEE Journal of Selected Topics in Applied Earth Observations
+  and Remote Sensing}, 2017.
+
+\bibitem[Koon y Yong~Haur(2013)]{Cheang}
+C.~Koon y T.~Yong~Haur.
+\newblock Using convolutional neural networks to count palm trees in satellite
+  image.
+\newblock 2013.
+
+\bibitem[Kouyama et~al.(2016)Kouyama, Kato, Imamoglu, y Fukuhara]{Kouyama}
+Atsunori. Kouyama, T.and~Kanemura, Soushi. Kato, Nevrez Imamoglu, y Ryosuke
+  Fukuhara, Tetsuya.and~Nakamura.
+\newblock Satellite attitude determination and map projection based on robust
+  image matching.
+\newblock \emph{Remote Sensing}, 2016.
+
+\bibitem[Lanillos(2008)]{Lanillos}
+Pablo Lanillos.
+\newblock Sistema de identificación y seguimientos de superficies geográficas
+  basadas en uav con visión artificial.
+\newblock Tesis de Maestría, Universidad Complutense de Madrid, Enero 2008.
+
+\bibitem[Lecun et~al.(1998)Lecun, Bottou, Bengio, y Haffner]{cnns}
+Y.~Lecun, L.~Bottou, Y.~Bengio, y P.~Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock \emph{Proceedings of the IEEE}, 86\penalty0 (11), 11 1998.
+\newblock ISSN 0018-9219.
+
+\bibitem[Matthies et~al.(2007)Matthies, Maimone, Johnson, Cheng, Willson,
+  Villapando, Goldemberg, y Huertas]{RoverMars}
+Larry Matthies, Mark Maimone, Andrew Johnson, Yang Cheng, Reg Willson, Carlos
+  Villapando, Steve Goldemberg, y Andres Huertas.
+\newblock Computer vision on mars.
+\newblock \emph{International Journal of Computer Vision}, February 2007.
+
+\bibitem[Murphy(2012)]{murphy}
+Kevin Murphy.
+\newblock \emph{Machine Learning: A Probabilistic Perspective}.
+\newblock Massachusetts Institute of Technology, 2012.
+\newblock ISBN 978-0-262-01802-9.
+
+\bibitem[Sommerville(2006)]{sommerville}
+Ian Sommerville.
+\newblock \emph{Software Engineering: (Update) (8th Edition) (International
+  Computer Science)}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA, 2006.
+\newblock ISBN 0321313798.
+
+\bibitem[Tweddle(2010)]{Brent}
+Brent~Edward Tweddle.
+\newblock Computer vision based navigation for spacecraft proximity operations.
+\newblock Tesis de Maestría, Department of Aeronautics and Astronautics, Enero
+  2010.
+
+\bibitem[Uijlings et~al.(2014)Uijlings, van~de Sande, Gevers, y
+  Smeulders]{selectivesearch}
+J.R.R Uijlings, K.E.A van~de Sande, T~Gevers, y A.W.M Smeulders.
+\newblock Selective search for object recognition.
+\newblock 2014.
+
+\bibitem[Zitnick y Doll\'ar(2014)]{edges}
+C.~Lawrence Zitnick y Piotr Doll\'ar.
+\newblock Edge boxes: Locating object proposals from edges.
+\newblock 2014.
 
 \end{thebibliography}

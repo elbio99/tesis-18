@@ -322,7 +322,7 @@ A partir del calculo anterior podemos generalizar \ref{eq: mse-ejem} y tomar el 
 MSE =  \frac{1}{n}\sum_{i}(y_i - y(x_i))^2
 \end{equation}
 
-Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior \ref{sub:clasificadores} vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables \textit{slack}.
+Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior (Sec:\ref{sub:clasificadores}) vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables \textit{slack}.
 
 Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores \ref{Fig:slack-var}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$
 \begin{figure}[H] \centering
@@ -330,15 +330,15 @@ Para cada punto de datos de entrenamiento podemos definir una variable que mida 
   \caption{SVM  Función de Costo }\label{Fig:slack-var}
 \end{figure}
 
-El problema de un aprendizaje en SVM se lo puede ver como un problema de optimización de $w$ y $\xi $ de la forma \ref{eq: optim1}
+El problema de un aprendizaje en SVM se lo puede ver como un problema de optimización de $w$ y $\xi $ de la forma \ref{eqn: optim1}
 \begin{equation}\label{eqn: optim1}
 \min_{w  \in R , b \in R} \|w \|^{2} + C \sum_{i}^{N}  \xi_i   \text{  sujeto a    }   t_n(w^{\rm T} \vartheta(x) + b) \geq 1 - \xi_i  ,\; \; i= 1,..N
 \end{equation} 
-En el cual si $\xi \geq 0$ es equivalente a decir que: $\xi_i \max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b)  )$ por lo tanto es equivalente a  \ref{eq: w-loss}.
+En el cual si $\xi \geq 0$ es equivalente a decir que: $\xi_i \max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b)  )$ por lo tanto es equivalente a  \ref{eqn: w-loss}.
 \begin{equation}\label{eqn: w-loss}
 \min_{w  \in R} \|w \|^{2} + C \sum_{i}^{N} \max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b)  )
 \end{equation}
-Dada  la formula  \ref{eq: w-loss}  la función de costo sera: $\max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b))$ donde  los puntos se los clasifica en tres categorías: 
+Dada  la formula  \ref{eqn: w-loss}  la función de costo sera: $\max(0, 1 -  t_n(w^{\rm T} \vartheta(x) + b))$ donde  los puntos se los clasifica en tres categorías: 
 \begin{enumerate}
 \item  $  t_n(w^{\rm T} \vartheta(x) + b)) \geq 1$: el valor está fuera del margen por lo tanto no se computa el error. 
 \item   $  t_n(w^{\rm T} \vartheta(x) + b)) == 1$: el valor está en el  margen por lo tanto no se computa el error. 
@@ -528,12 +528,12 @@ Además de las métricas mencionadas anteriormente para este trabajo se utilizo 
 
 Las Redes neuronales son una poderosa herramienta para la resolución de diferentes problemas en la actualidad. Una red neuronal aprende de forma progresiva a medida que entrena los datos disponible, de esta manera conseguimos que la red aprenda a reconocer la característica o patrones de interés de los datos. Este aprendizaje finaliza luego de un numero variables de iteraciones en el cual vamos midiendo el nivel de error en cada iteración.
 
-El modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. Para el reconocimiento de imagen se hacen uso de Redes neuronales convolucionales \ref{sub:cnn} las cuales son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica de la imagen.   En las secciones siguientes vamos a desarrollar mas en detalle que son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
+El modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. Para el reconocimiento de imagen se hacen uso de Redes neuronales convolucionales (Sec:\ref{sub:cnn}) las cuales son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica de la imagen.   En las secciones siguientes vamos a desarrollar mas en detalle que son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
 
 
 \subsection{Redes Convolucionales}\label{sub:cnn}
 
-Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se le entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes, debido a que son capaces de detectar características simples como por ejemplo detención de bordes, lineas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas \ref{Fig: redconvolucion}, tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}.
+Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se le entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes, debido a que son capaces de detectar características simples como por ejemplo detención de bordes, lineas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas, tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}.
 
 El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características} (ver \ref{Fig: fmaps}). Cada unidad  del mapa de característica es lo que llamamos  \textit{\textbf{feature vector}}. Una capa convolucional completa está compuesta de varios mapas de características (con diferentes 
 \textit{feature vector}), de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
@@ -547,7 +547,7 @@ El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de c
 
 El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}:
 \begin{enumerate}
-\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante \ref{sub:convolucion}. Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
+\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante (Sec:\ref{sub:convolucion}). Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
 es decir a partir de la imagen de entrada aplicar por ejemplo detección de bordes, color, etc.
 \item stride (paso): es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada. Tener un stride grande producirá mapas de características más pequeños.
 \item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
@@ -617,7 +617,7 @@ El tipo de técnica mas común utilizado es \textit{max pooling} que toma el val
   \caption{Pooling} \label{Fig:Pooling}
 \end{figure}
 
-En las arquitecturas \ac{cnn} (ver: \ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
+En las arquitecturas \ac{cnn} (Sec:\ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
 
 \subsubsection{Función de activación}\label{sub:relu}
 %https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
@@ -674,7 +674,7 @@ Básicamente, una capa \textit{fully conected} observa características de alto 
 \subsection{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
-La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior \ref{sub:cnn} vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
+La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior (Sec:\ref{sub:cnn}) vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
 
 \begin{itemize}
 \item \textbf{LeNet5}: Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. 
@@ -745,7 +745,7 @@ El principal inconveniente de \textit{sliding windows} es el costo computacional
 Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{sliding windows} estos son llamados regiones propuestas, \textit{regions proposal} por su denominación en ingles, los métodos de regiones propuestas toman una imagen de entrada y retornan una región,\textit{bounding box},  que probablemente contengan algún objeto de interés en la imagen.  En estos \textit{bounding box} retornado por el método habrá al menos uno que contenga o se acerque al objeto de interés que estamos buscando en la imagen.
 
 % las regiones con alta probabilidad seran aquellas que contengan el objeto que estamos buscando, luego podemos clasificarla usando algun modelo como SVM.ZZZZ https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/
-Luego de generar las regiones propuestas extraemos las características de la imagen esto lo hacemos por medio de una \ac{cnn}, a partir de las salidas de esta extracción de característica, \textit{feature extraction} por su denominación en ingles, se utilizará algunos de los métodos de clasificación desarrollado en \ref{sub:clasificadores} en la cual la salida serán los \textit{bounding box} identificado con alguna probabilidad de que contenga o no el objeto que estamos buscando. Como siguiente paso debemos  asegurarnos que los \textit{bounding box} no estén duplicados, es decir que no representen la misma información que otra región, para eliminar regiones duplicadas utilizamos el método de \textit{Non-Maxima Suppression} \ref{sub:nonmaximumsuppression} que a partir de un umbral previamente definido nos permite eliminar regiones duplicadas en la detección.
+Luego de generar las regiones propuestas extraemos las características de la imagen esto lo hacemos por medio de una \ac{cnn}, a partir de las salidas de esta extracción de característica, \textit{feature extraction} por su denominación en ingles, se utilizará algunos de los métodos de clasificación desarrollado en (Sec:\ref{sub:clasificadores}) en la cual la salida serán los \textit{bounding box} identificado con alguna probabilidad de que contenga o no el objeto que estamos buscando. Como siguiente paso debemos  asegurarnos que los \textit{bounding box} no estén duplicados, es decir que no representen la misma información que otra región, para eliminar regiones duplicadas utilizamos el método de \textit{Non-Maxima Suppression} (Sec:\ref{sub:nonmaximumsuppression}) que a partir de un umbral previamente definido nos permite eliminar regiones duplicadas en la detección.
 
 
 %Un pipeline básico de detección tiene la siguiente estructura \ref{fig:pipeline-deteccion}.
@@ -801,10 +801,10 @@ Las estrategias usadas en este método son:
 
 \subsection{Extracción de características}\label{sub:features-extraction}
 
-Luego de las extracciones de regiones candidatas obtenidas por algunos de los métodos nombrados en la sección anterior \ref{sub:regions-proposal}, debemos extraer las características significativas que representan cada región dada. Una  característica es algo que se diferencia del resto en un conjunto de datos, esa diferencia nos permite agruparlas de acuerdo a alguna
+Luego de las extracciones de regiones candidatas obtenidas por algunos de los métodos nombrados en la sección anterior (Sec:\ref{sub:regions-proposal}), debemos extraer las características significativas que representan cada región dada. Una  característica es algo que se diferencia del resto en un conjunto de datos, esa diferencia nos permite agruparlas de acuerdo a alguna
 similitud entre las mismas. 
 
-El objetivo principal de la  extracción de características, \textit{feature extraction} por su denominación en ingles, es representar los datos como un conjunto reducido de característica que describen de manera eficiente sus principales atributos. Para poder realizar esta tarea utilizamos  las redes neuronales convolucionales \ref{sub:cnn} que  permiten extraer información de la imagen para luego utilizar estos atributos obtenidos y agruparlos según algún criterio establecido. 
+El objetivo principal de la  extracción de características, \textit{feature extraction} por su denominación en ingles, es representar los datos como un conjunto reducido de característica que describen de manera eficiente sus principales atributos. Para poder realizar esta tarea utilizamos  las redes neuronales convolucionales (Sec:\ref{sub:cnn}) que  permiten extraer información de la imagen para luego utilizar estos atributos obtenidos y agruparlos según algún criterio establecido. 
 
 
 \subsection{Non-Maxima Suppression}\label{sub:nonmaximumsuppression}

@@ -1,31 +1,31 @@
 \chapter{Conclusiones y lineamientos futuros}\label{chap:conclusiones}
-En este apartado se expone las conclusiones y lineamientos futuros obtenidos a partir de la investigación realizada en la presente tesis. 
+
 
 \section{Conclusiones}
-En el desarrollo de la presente tesis se abordo el problema del reconocimiento de patrones sobre una imagen satelitales. El estudio derivo en evaluar diferentes bandas a utilizar, pre-procesamiento de imágenes ademas de la selección de diversas herramientas informáticas para su desarrollo y conclusión.
+En el desarrollo de la presente tesis se abordo un problema de detección buscando patrones de interes, laguna Mar Chiquita y golfo de San Matias, dentro de una imagen satelital.
+Para la construcción de la solución se utilizaron diferentes técnicas para el pre-procesamiento de la imagen, redes neuronales para la extracción de característica y algoritmos de clasificación. Como resultado de todos los experimentos realizados se puede exponer las siguientes conclusiones:
 
-Como base de lo expresado anteriormente se expone las siguientes conclusiones obtenidas por esta investigación:
 \begin{enumerate}
-\item El reconocimiento de patrones y las técnicas de aprendizaje automático nos dan diversas ventajas a la hora de optimizar nuestro procesos; en nuestro caso la detección de regiones. Para poder realizar un modelo eficiente se debe tener en cuentas numerosos factores en el cual uno de los mas importante son los datos que vamos a utilizar; estos datos deber ser representativo del modelo que deseamos crear.
+\item Utilizar técnicas de aprendizaje automático en el proceso de automatización de tareas, como en este caso la detección de patrones en una imagen satelital, nos brinda una fuente de información extra en el proceso de calibración/detección. 
 
-\item Cuando se trabaja con imágenes de gran tamaño se deben tener en cuenta el tamaño de regiones que se quiere captar ademas del hardware necesario para poder realizar el computo de los datos.
+\item Al trabajar con imágenes satelitales en donde las resoluciónes de la misma son grandes, se debe tener en cuenta el tamaño de la regiones de interes que se quiere detectar.
 
-\item Otras de las observaciones que se detecto es que las muestra de los datos deben estar balanceadas, es decir tener las mismas cantidad de datos tanto negativos como positivos para poder discriminar de manera adecuada las clases que deseamos detectar.
-
-\item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos; como se menciona en el punto anterior al tener clase des-balanceadas los modelos entrenados no hacían una buena generalización de los datos. Para evitar esto se trabajo con técnicas de \textit{cross validation} y resampleo de los datos.
+\item Uno de los puntos importantes es el tipo del hardware que vamos a utilizar, el computo de los vectores de característica utilizando redes neuronales es costoso en terminos de memoria y velocidad, es por este motivo que en la mayoria de los casos de uso utilizan GPU para el procesamiento.
 
 \item En base a las experimentaciones realizadas podemos afirmar que aplicar redes neuronales pre-entrenadas para la extracción de característica se obtiene una correcta generalización de los datos y son muy eficiente para problemas de clasificación de imágenes.
 
+\item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos, esto se debio al inbalance de clases ya que se recolecto muy pocas muestras positivas, en la mayoria de los casos debido a las nubes que interptaban la region de interes. Se solucióno este problema usando técnicas de cross-validation
+
 \end{enumerate}
 
-El costo computacional en termino de capacidad de operaciones hace que aplicar técnicas de computer vision sea  muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{cv} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
+El costo computacional en termino de capacidad de operaciones hace que aplicar técnicas de computer vision sea  muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite, es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{cv} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
+
 
 
 \section{Lineamientos futuros}\label{lineafuturas}
 Tomando como base las lecciones aprendidas en el desarrollo de la tesis, las posibles lineas de trabajo e investigaciones a futuro son:
 \begin{enumerate}
- \item A partir del bajo rendimiento en el calculo de los datos surge la posibilidad de implementar procesamiento en base a GPU para el cómputo en paralelo de los datos.
+ \item A partir del bajo rendimiento en el calculo de los datos surge la posibilidad de implementar procesamiento en base a GPU para el cómputo en paralelo de los las imágenes.
  \item Es posible aplicar diferentes arquitectura de las redes neuronales para la extracción de los vectores de característica; de esta manera determinar cual de las redes tiene mayor generalización en los datos para el tipo de problemática que estamos tratando.
  \item Evaluar nuevas herramientas de extracción de características y computar redes mucho mas livianas en términos de consumo de energía.
-\item Implementar el modelo de detección de regiones satelitales en tiempo real con el fin de poder lograr una medida de: tiempo, consumo de energía y viabilidad para desarrollarlo en una placa de vuelo. 
 \end{enumerate}

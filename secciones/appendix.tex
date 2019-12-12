@@ -75,7 +75,7 @@ Ejecutamos luego el archivo pasando una imagen\\
 \$ \textbf{python bing.py /home/...../BING-Objectness/doc/bing\_params.json /home/...../bender.jpeg}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descargas de Imágenes}
+\section{Descargas y Recolección de Imágenes}
 Se descargaron las imágenes del sitio de la pagina oficial de \ac{conae} \url{http://www.conae.gov.ar/index.php/espanol/}, para la obtención de las imágenes nos dirigimos a
 la solapa \textit{Catálogo de imágenes y productos}:
 
@@ -103,6 +103,43 @@ Una vez seleccionada la imagen a descargar nos aparece las características de l
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag3.png}
   \caption{Descarga de Imagen}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Recolección de Imágenes}\label{sub:recolecciondeimagen}
+
+En esta sección vamos a desarrollar los pasos que se siguieron para la obtención de las imágenes; para esto dividiremos en dos partes las tareas realizadas por un lado se realizo la descargas de las imágenes y por otro el pre-procesamiento de las mismas. El primer paso hacemos  referencia a la descarga manual de los datos conseguidos a través de la pagina oficial de \ac{conae}; el segundo punto al que llamamos pre-procesamiento se realizaron las conversiones de los datos como se menciona en la seccion anterior \ref{sec:datosutilizados}. Para poder llevar a cabo esta ultima tarea se utilizo la herramienta de procesamiento de imágenes ENVI \ref{sub:enviSoft}, software para el análisis de imágenes. Este software nos proporciona diferentes herramientas para la manipulación y procesamiento  de  una imagen satelital, de las cuales podemos mencionar la \textit{VIIRS Conversion Toolkit}, herramienta nos permite trabajar con imágenes del instrumento \ac{viirs}, pudiendo aplicar a las imágenes correcciones geométricas, geo-referenciacion y re-proyecciones entre las diferentes funcionalidades que nos brinda. 
+
+En este proceso de conversión de imágenes se realizaron diversos pasos para la obtención de las imágenes finales de los cuales se detallan a continuación:
+
+\begin{enumerate}
+
+\item Inicio, pantalla principal ENVI:
+	\begin{figure}[H]\centering
+		\includegraphics[height=1.5cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/envi1.png}
+  		\caption{Pantalla Principal ENVI} \label{Fig: envi1}
+	\end{figure}
+
+
+\item Procesamiento: abrir la herramienta \textit{VIIRS Conversion Toolkit} e ingresar los archivos de cada banda adjuntando el archivo  geo-referenciado, para realizar la carga de la imagen manual(figura: \ref{Fig: envi2}).
+
+\begin{figure}[H] \centering
+  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/envi2.png}
+  \caption{Cargar Bandas ENVI Toolkit} \label{Fig: envi2}
+\end{figure}
+
+\item Re-proyección de imagen: adjuntar bandas a utilizar; se debe asignar de acuerdo al color que corresponda cada banda (RGB) (figura: \ref{Fig: envi3}).
+ 
+\begin{figure}[H]
+ \centering
+  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/envi3.png}
+  \caption{Ejemplo re-proyección \textit{True Color}}
+	\label{Fig: envi3}
+\end{figure}
+
+\end{enumerate}
+
+La imagen resultante luego de esta serie de pasos  son las que se puede ver en la figura \ref{Fig: bandas543}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Instalación de Eclipse}\label{sec:instalacionEclipse}
 Para la instalación del ID Eclipse se debe seguir los siguientes pasos:

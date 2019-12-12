@@ -1,183 +1,61 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En este capitulo se expondrá los resultados obtenidos de los experimentos realizados. El capítulo se dividirá en secciones diferentes para dar al lector una mayor compresión de los resultados.
+En los capítulos anteriores se desarrollaron métodos, algoritmos de aprendizaje supervisado, redes neuronales y las diversas fuentes de datos para poder entrenar un modelo de detección. En  base a lo desarrollado en estas secciones  como se menciona previamente explicaremos el proceso de aprendizaje llevado a cabo explicando todos los  experimentos realizados para la construcción del modelo como así también  el proceso de validación y las métricas se utilizaron para su evaluación. Para finalizar se discutirá los resultados obtenidos. 
 
-La primera sección \textit{Preparación de Datos} \ref{sec:preparacion_de_datos}, se desarrolla cuales son los recursos que se utilizaron para realizar la experimentación.
-
-La segunda sección  \textit{Entrenamiento y Validación} \ref{sec:entrenamiento}, se detallan como se realizo el proceso de aprendizaje de los datos y los procesos de validación que se llevaron a cabo; a su vez se detallan las métricas obtenidas de cada predictor entrenado.
-
-\section{Preparación de Datos}\label{sec:preparacion_de_datos}
-
-Vamos a partir de las imágenes obtenidas en el capitulo \ref{chap:recoleccion} donde se puso en detalle los tipos de imágenes que serán utilizadas. En esta sección hablaremos de cual es el \textit{ground truth}, región de interés utilizada; como se realizo la extracción de característica de cada imagen, y que criterio de selección de candidatos se utilizo para el entrenamiento.
-
-\subsection{Ground truth}\label{sub:groundtruth}
-
-El problema abordado es un problema de clasificación supervisada, es por esto que debemos saber anticipadamente donde se encuentra el objeto de interés que deseamos detectar. En \ac{ml} el termino \textit{ground truth} hace referencia a la información provenida desde la observación; \textit{ground truth} involucra a un conjunto de imágenes y un conjunto de etiquetas en las imágenes que incluye la locación y las características claves en la imagen.
-
-Las etiquetas se añadieron manualmente utilizando una librería desarrollada en python llamada \textit{labelme}\footnote{Fuente: 
-https://github.com/wkentaro/labelme}; que nos permite realizar las anotaciones de las zonas de interés sobre la imagen.
-
-\begin{figure}[h]
- \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/Logos/labelme.png}
-  \caption{Pantalla Principal \textit{labelme}}
-	\label{Fig: labelme}
-\end{figure}
-
-En las imágenes siguientes se muestra el proceso de anotación que se llevo a cabo mediante \textit{labelme}, para detalles de la instalación ir a: \ref{sec:instalacionlabelme}.
-
-Cada anotación se almacena en un archivo .json que luego es transformado y almacenado en una tabla como vemos en \ref{tab:ejemGT}
-\begin{figure}[h]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Logos/labelme1.png}
-  \caption{Etiquetar una región en \textit{labelme}}
-	\label{Fig: labelme1}
-\end{figure}
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/Logos/labelme2.png}
-  \caption{Etiquetar una región en \textit{labelme}}
-	\label{Fig: labelme2}
-\end{figure}
-
-El \textit{ground truth} final obtenido se guardo en el siguiente formato de anotación (ver \ref{tab:GT} y \ref{tab:ejemGT}):
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline Nombre & Bandas & Región & Puntos anotados(x,y)\\ \hline 
-\end{tabular}
-\end{center} \caption{Estructura ground truth.}\label{tab:GT}
-\end{table}
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline \textbf{Nombre} & \textbf{Bandas} & \textbf{Región} & \textbf{Puntos anotados(x,y)}\\ \hline 
-Imagen01 & 367 & Lago  & 23,50,55,22,223\\ \hline 
-Imagen02 & 543 & Lago  & 55,26		\\ \hline 
-Imagen03 & 543 & Golfo & 44,300,500,900 \\ \hline 
-.......  & ...  & .....& ...............\\ \hline 
-\end{tabular}
-\end{center} \caption{Ejemplo ground truth.}\label{tab:ejemGT}
-\end{table}
+%En este capítulo se desarrollará como se realizo el proceso de aprendizaje de los datos y los procesos de validación que se llevaron a cabo; a su vez se detallan las métricas obtenidas de cada modelo entrenado.
 
 
-\subsection{Regiones Candidatas}\label{sub:proposal}
+\section{Datos de entrenamiento}\label{sec:datos_entrenamiento}
 
-Cada una de las imágenes obtenidas (ver: \ref{chap:recoleccion}), se aplico técnicas de selección de regiones candidatas para luego ser analizada y clasificada; para esta fase aplicamos métodos de \textit{Regions Proposal} visto en el capitulo \ref{chap:marcoteorico}.
-
-Unos de los principales inconvenientes a la hora del desarrollo de la tesis fue el tamaño de las imágenes. Las regiones de interés son mas pequeñas en proporción a la escala y tamaño de la imagen utilizada, por este motivo al aplicar técnicas de selección de candidatos no generalizaba de manera correcta las regiones que deseamos captar. 
-
-Para eliminar el problema de escala mencionado se procedió a realizar los siguientes pasos: 
-\begin{enumerate}
- \item Para cada imagen original se corto en regiones de 256px de alto por el ancho total de la imagen (ver: \ref{Fig: cropimagen}), donde \textit{w} es el ancho de la imagen y \textit{h} alto de la imagen
- \item A cada recorte se aplico técnicas de \textit{Regions Proposal} para la obtención de regiones candidatas (ver: \ref{Fig: cropproposal}).
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=1.2cm,keepaspectratio=true,clip=true]{imagenes/Logos/cropimagen.png}
-  \caption{Crop de Imagen Satelital (4833\textit{w} X 256\textit{h})}
-	\label{Fig: cropimagen}
-\end{figure}
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=1.1cm,keepaspectratio=true,clip=true]{imagenes/Logos/cropproposal.png}
-  \caption{Aplicación de Edges Boxes a un recorte de la imagen.}
-	\label{Fig: cropproposal}
-\end{figure}
-
-\item Para cada imagen se obtuvo 26 recortes, obteniendo el siguiente resultado en la imagen completa \ref{Fig: proposal}.
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=13cm,keepaspectratio=true,clip=true]{imagenes/Logos/proposal.png}
-  \caption{Aplicación de Regiones propuestas a una imagen satelital.}
-	\label{Fig: proposal}
-\end{figure}
-
-\end{enumerate}
-La imagen anterior \ref{Fig: proposal} se obtuvo 53.815 regiones por el método \textit{Selective Search} de selección de candidatos. Como se mencionó en \ref{sub:nonmaximumsuppression} existen regiones solapadas que representan la misma información; esta información fue eliminada aplicando \ac{nms} 
-
-El valor usado para la eliminación de regiones candidatas duplicadas fue de $80\% $ como el porcentaje de solapamiento entre las diferentes regiones candidatas detectadas.
-
-En la figura siguiente \ref{Fig: proposalnms} se pude observar que con un umbral de $80\% $ en \textit{overlapping} aplicando \ac{nms} obtenemos un $90\% $ aproximadamente de optimización en la eliminación de regiones candidatas duplicada, es decir se paso de 53.815 a 1.560 regiones candidatas por imagen para el entrenamiento.
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=13cm,keepaspectratio=true,clip=true]{imagenes/Logos/proposalconNMS.png}
-  \caption{Proposal obtenido con Non-maximum suppression}
-	\label{Fig: proposalnms}
-\end{figure}
+Los datos para la construcción del modelo se dividió en  datos entrenamiento y datos de test. Cada conjunto de imágenes de combinaciones de bandas (Sec:\ref{sub:comb_de_banda}) se los dividió en 40 imágenes para el entrenamiento y 10 imágenes para el test. Para cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado en la  en la sección (Sec:\ref{sec: pipeline}). En promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el dataset final de entrenamiento fue de $60000$ y el de test $15000$ en promedio dependiendo de las características de cada una de las combinaciones de bandas y las imágenes. 
 
 
-\subsection{Etiquetado}\label{sub:etiquetado}
 
-Los datos obtenidos de la recolección de regiones candidatas a partir de las técnicas de \textit{Regions Propsal} debe ser etiquetados para su entrenamiento. Para realizar el etiquetado se utilizo el \textit{ground truth} \ref{sub:groundtruth} que serán comparados con las regiones candidatas calculando el \textit{overlapping}, solapamiento, entre las regiones.
+\section{Protocolo Experimental}\label{sec:entrenamiento}
 
-El criterio utilizado en el etiquetado de datos es el siguiente:
+Siguiendo el pipeline desarrollado en la sección (Sec: \ref{sec: pipeline}) ya con los datos de entrenamiento se desarrollará la experimentación de los modelos de detección.
+
+\subsection*{Clasificación - Entrenamiento}\label{sub:entr_class}
+
+Para la clasificación y construcción del modelo se utilizo \textbf{SVM} (Support Vector Machines) (Sec: \ref{sub:clasificadores}), cada entrenamiento se realizo utilizando regiones positivas y negativas de cada una de las imágenes.
+
+En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, este tipos de parámetros se los llama hiperparámetros. Una de las técnicas mas usada en la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de hiperparámetros del modelo. La técnica \textit{Grid Search} busca por fuerza bruta los hiperparámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximiza alguna de las métricas previamente definida. 
+
+En nuestro caso como estamos utilizando SVM (Sec: \ref{sub:clasificadores}) los hiperparámetros que debemos optimizar son \textit{C} y \textit{gamma}. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos, con valores grandes de \textit{C},  elegirá un hiperplano de menor margen el objetivo es encontrar el equilibrio entre "no demasiado estricto" y  "no demasiado relajado". El otro hiperparámetro a  optimizar de  \textit{gamma} es la inversa de la desviación estándar del kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
+
+Se utilizo además \textit{k-fold cross-validation} junto con \textit{Grid Search} en el cual por cada iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación (Sec: \ref{sub:validacion-modelo}), el valor utilizado fue de $k=5$.
+
+El rango de hiperparámetros utilizados para entrenar el modelo con  \textit{k-fold cross-validation} y \textit{Grid Search} fueron los siguientes: 
 \begin{itemize}
-	\item 0: NO contiene el patrón de interés en la región candidata.
-	\item 1: Existencia del patrón en la región candidata.
+    \item Tipos de kernel: lineal, RBF (gaussiano)
+    \item Rango de valores de C: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
+    \item Rango de valores de gamma: (1,0,1,0,01,0,001,0,0001,0,00001)
 \end{itemize}
 
-Para la selección de alguna de las etiquetas anteriores el umbral de decisión fue de $50\% $ como valor de \textit{overlapping}, esto es el nivel de solapamiento que existen entre el \textit{ground truth} y la región candidata.
+\subsection*{Evaluación del modelo}\label{sub:evaluacion_class}
 
+Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (Sec: \ref{sub:evaluación-modelo}) como son: \textit{precisión}, nos da la medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; otra de las métricas desarrolladas para evaluar el modelo es a través de las \textit{curvas ROC}, esta curva nos representa la capacidad que tiene modelo entrenado en discriminar las clases positivas y negativas.
 
-\subsection{Extracción de Características}\label{sub:extracciondecaracteristica}
-
-El proceso de extracción de característica se realiza sobre la regiones candidatas obtenidas luego de aplicar \ac{nms} sobre estas. Por cada región se obtendrá un vector de 2048 dimensiones que representa a cada región. La obtención de este vector de característica se realiza por medio de una \ac{cnn}, en donde las entradas a la red son las regiones candidatas. 
-
-Para este proceso se utilizó una red pre-entrenada \textbf{ResNet50} \ref{sub:arquitecturacnn} donde se obtuvo de la ante ultima capa el vector que va a representar la región.
-
-Los vectores obtenidos se almacenaron en un archivo de extensión \textit{.mat}; que contiene los siguientes datos:
-\begin{itemize}
- \item Las coordenadas de cada una de las regiones candidatas.
- \item El \textit{feature vector} de 2048 elementos que corresponde a cada región. 
- \item Las etiquetas que indica a que clase pertenece la región \ref{sub:etiquetado}.
-\end{itemize}
+El dataset utilizado para evaluar los modelos entrenados  consta de 10 imágenes, considerando el conjunto de imágenes con la combinación de banda correspondiente, cada una con un promedio de 1500 bounding boxes por imágenes repartidas en regiones tanto negativas como positivas.
 
 
 
-%%%%% PONER EJEMPLO DE CODIGO???? y crop de las alguno de los regions proposal???
+%Para validar los modelos utilizamos las métricas desarrolladas en la sección \ref{sub:evaluación-modelo}, la evaluación de la detección utilizamos \textit{IoU}, intersección sobre unión,  en esta métrica comparamos los bounding boxes predichos y el ground thruth etiquetado. Este valor nos da una visión de cual es la exactitud de nuestro modelo en cuanto a la localización del objeto.
 
 
-\section{Entrenamiento y Validación}\label{sec:entrenamiento}
-
-En esta sección se desarrolla como se realizo el proceso de aprendizaje automático \ac{ml} con los datos obtenidos de la sección anterior \ref{sec:preparacion_de_datos}. Las imágenes finales utilizadas para realizar el proceso de entrenamiento de detalla en \ref{sec:datosutilizados}.
-
-El datasets final se dividió en tres conjuntos train, test y validación. El total de la muestra de datos para la experimentación fue de 650.000 \textit{feature vector}.
-
-\subsection{Hiper-parametros}\label{sub:hiperparametro}
-
-
-Para obtener una predicción correcta se debe realizar la optimización de parámetros (ver: \ref{sub:hiperparametro}) que afectan a la clasificación. El método utilizado para poder realizar la optimización de estos parámetros fue \textit{grid search}\footnote{Fuente: https://goo.gl/koWr74}. El método grid-search busca por fuerza bruta los parámetros a optimizar quedándose con aquel que logre un mayor \textit{accuracy} en las evaluaciones; en cada iteración se utiliza \textit{cross-validation} con el valior de k=5 para el proceso de  entrenamiento.
-
-Los parámetros a optimizar por \textit{grid-search} son:
-\begin{enumerate}
-	\item \textbf{Parámetro C}: Controla el costo de la mala clasificación, \textit{missclassification}, en los datos de entrenamiento. Con un valor de C pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos. Para valores muy pequeños de C, debe obtener ejemplos mal clasificados, a menudo incluso si sus datos de entrenamiento son linealmente separables. Para valores grandes de C,  elegirá un hiperplano de menor margen si ese hiperplano hace un mejor trabajo de conseguir que todos los puntos de entrenamiento estén clasificados correctamente. El objetivo es encontrar el equilibrio entre "no demasiado estricto" y "no demasiado relajado". La validación cruzada  son buenas maneras de encontrar el mejor C.
-	\item \textbf{Parámetro gamma}: Es la inversa de la desviación estándar del kernel RBF (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
-\end{enumerate}
-	
-El rango de parámetros que se uso para el entrenamiento y validación de datos fueron los siguientes: para valores de C se trabajo con (1000,100,10,1, 0.1,0.01,0.001,0.0001) y para valores de gamma se utilizaron (1,0,1,0,01,0,001,0,0001,0,00001)
-
-\subsection{Resultados obtenidos}\label{sub:resultados}
-Además de la optimización de los parámetros mencionados \ref{sub:hiperparametro}, se debe evaluar la performance del modelo entrenado, como se detallo en la sección \ref{sub:evaluación-modelo}, la validación de nuestro modelo serán basados en las medidas mencionada anteriormente.
-
-En la siguiente tabla \ref{tab:entrenam-result}	se expone los resultados obtenidos de los entrenamientos realizados. Como podemos ver se consideraron  diferentes combinaciones de banda con el fin de encontrar aquella que mejoren las métricas y que resalten las zonas de interés que deseamos detectar.
+%\subsection*{Resultados obtenidos}\label{sub:resultado_obtenidos}
+En el siguiente cuadro \ref{tab:entrenam-result} se expone los resultados obtenidos de la validación de los modelos entrenados. En la columna \textit{bandas} describe la combinación de banda usada para el experimento; las columnas  de los hiperparámetros nos muestra los valores óptimos encontrados en el entrenamiento a través de algoritmo \textit{Grid Search} y \textit{k-fold cross-validation} , por ultimo tenemos las columnas relacionadas a las métricas finales obtenida en la validación de cada uno de los experimentos ejecutados.
 
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
- & \multicolumn{3}{c|}{Hiper - parametros} & \multicolumn{4}{c|}{Metricas} \\ \hline
-Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}average\\ precision \end{tabular} & \begin{tabular}[c]{@{}c@{}}overlapping\\ mean\end{tabular} \\ \hline
-\multicolumn{1}{|c|}{1-1-1} & 10 & - & linear & 0.91 & 0.91 & 0.18 & 0.1 \\ \hline
-\multicolumn{1}{|c|}{1-3-5} & 10 & - & linear & 0.93 & 0.94 & 0.57 & 0.28 \\ \hline
-\multicolumn{1}{|c|}{1-5-3} & 1000 & 0.01 & rbf & 0.94 & 0.94 & 0.61 & 0.27 \\ \hline
-\multicolumn{1}{|c|}{3-1-5} & 100 & 0.01 & rbf & 0.93 & 0.94 & 0.61 & 0.31 \\ \hline
+ & \multicolumn{3}{c|}{Hiperparámetros seleccionado} & \multicolumn{4}{c|}{Metricas} \\ \hline
+Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}average\\ precision \end{tabular} & \begin{tabular}[c]{@{}c@{}}mean overlap \end{tabular} \\ \hline
+\multicolumn{1}{|c|}{1-1-1} & 10 & - & linear & 0.83 & 0.91 & 0.54 & 0.1 \\ \hline
+\multicolumn{1}{|c|}{1-3-5} & 10 & - & linear & 0.93 & 0.94 & 0.67 & 0.28 \\ \hline
+\multicolumn{1}{|c|}{\textbf{1-5-3}} & \textbf{1000} & \textbf{0.01} & \textbf{rbf} & \cellcolor{yellow!50}\textbf{0.95} & \cellcolor{yellow!50}\textbf{0.95} & 0.73 & 0.27\\ \hline
+\multicolumn{1}{|c|}{3-1-5} & 100 & 0.01 & rbf & 0.93 & 0.95 & 0.72 & 0.31 \\ \hline
 \multicolumn{1}{|c|}{3-3-3} & 1000 & 1 & rbf & 0.92 & 0.92 & 0.28 & 0.1 \\ \hline
 \multicolumn{1}{|c|}{3-5-1} & 10 & 0.01 & rbf & 0.90 & 0.91 & 0.66 & 0.25 \\ \hline
 \multicolumn{1}{|c|}{5-1-3} & 1 & 1 & rbf & 0.89 & 0.86 & 0.46 & 0.29 \\ \hline
@@ -190,7 +68,7 @@ Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}av
 \multicolumn{1}{|c|}{7-11-9} & 1 & 1 & rbf & 0.91 & 0.87 & 0.60 & 0.27 \\ \hline
 \multicolumn{1}{|c|}{7-9-11} & 10 & - & linear & 0.90 & 0.89 & 0.73 & 0.28 \\ \hline
 \multicolumn{1}{|c|}{9-11-7} & 1 & 1 & rbf & 0.89 & 0.86 & 0.66 & 0.23 \\ \hline
-\multicolumn{1}{|c|}{9-7-11} & 1 & 1 & rbf & 0.89 & 0.86 & 0.79 & 0.30 \\ \hline
+\multicolumn{1}{|c|}{9-7-11} & 1 & 1 & rbf & 0.89 & 0.86 & 0.79 & 0.30\\ \hline
 \multicolumn{1}{|c|}{11-11-11} & 1 & 1 & rbf & 0.91 & 0.88 & 0.74 & 0.27 \\ \hline
 \multicolumn{1}{|c|}{11-3-15} & 10 & 0.1 & rbf & 0.89 & 0.83 & 0.59 & 0.3 \\ \hline
 \multicolumn{1}{|c|}{11-15-13} & 1 & 1 & rbf & 0.89 & 0.84 & 0.63 & 0.28 \\ \hline
@@ -202,34 +80,75 @@ Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}av
 \multicolumn{1}{|c|}{15-15-15} & 10 & 1 & rbf & 0.88 & 0.85 & 0.26 & 0.28 \\ \hline
 \multicolumn{1}{|c|}{11-12-13} & 1000 & 1 & rbf & 0.87 & 0.91 & 0.62 & 0.32 \\ \hline
 \multicolumn{1}{|c|}{5-4-3} & 1000 & 1 & rbf & 0.88 & 0.87 & 0.57 & 0.27 \\ \hline
-\multicolumn{1}{|c|}{10-7-5} & 1000 & 0.001 & rbf & 0.91 & 0.96 & 0.58 & 0.36 \\ \hline
+\multicolumn{1}{|c|}{\textbf{10-7-5}} & \textbf{1000} &\textbf{ 0.001} & \textbf{rbf} & 0.91 & 0.96 &\cellcolor{blue!25}\textbf{0.93} & \cellcolor{blue!25}\textbf{0.36}\\ \hline
 \end{tabular}
-\end{center}\caption{Resultados de los entrenamientos}\label{tab:entrenam-result}
+\end{center}\caption{Resultados}\label{tab:entrenam-result}
 \end{table}
 
-Cada uno de los valores encontrados de los hiper-parámetros se obtuvo a través de \textit{grid search}, estos valores son los que optimizan las métricas que estamos empleando.
+Como se puede observar en la tabla anterior \ref{tab:entrenam-result} existen diversas combinaciones de bandas que maximizan las métricas que estamos optimizando: precision, recall, average precision y mean overlap.  
 
-Se evaluaron también las detecciones obtenidas en el conjunto de test evaluando los \textit{falsos positivos} y re entrenando nuevamente el clasificador con los falsos positivos obtenidos con el fin de lograr una mejora en la detección y localización de las regiones que estamos buscando.
+En las combinaciones de bandas \textbf{1-5-3} (falso color) se puede ver que se obtuvo métricas en comparación con el resto mayores en precision como en recall, esto nos dice que el modelo entrenado con esta banda predijo con una precisión de  $94\%$  si la región buscada era la región de interés y con un error del $6\%$ el modelo se equivoco al predecir como verdadero una región que no era del área de interés (falso positivo), de la misma forma el recall para esta banda nos indica que en un $6\%$ no se logro detectar regiones de interés. En los falsos positivos detectados se observo en todo los casos que debido a la naturaleza de la imagen el modelo tiende a confundirse con las nubes blancas como se puede observar en la imagen \ref{Fig:imagen_banda_153}.
 
-Las tareas realizadas para evaluar la localización del objeto fue obtener la métrica \textit{overlapping mean}; en esta métrica comparamos los \textit{bounding boxs} obtenidos en el entrenamiento realizado y el \textit{ground thruth}, región de interés, que tenemos anotado. Este valor nos da una visión de cual es la exactitud de nuestro predictor en cuanto a la localización del objeto.
+Se pudo observar que la mayoría de las combinaciones de bandas que presentan \textit{average precision} (AP), medida que calcula  el área bajo la curva entre precisión y recall, mayor a $70\%$ la naturaleza de las imágenes son muy idénticas como se puede observar en la figura \ref{Fig:imagen_banda_153} y \ref{Fig:imagen_banda_9711}; para dar un ejemplo de esta medida, cada 10 regiones positivas se detectaron $8$ regiones. Por otro lado se observa que en la mayoría de los casos donde el modelo detecto \textit{falsos positivos} se debió al contraste entre las nubes y el suelo o agua.
 
-La siguiente imagen \ref{Fig: TP} se puede visualizar los \textit{bounding boxs} detectados, esto es el resultado de aplicar el modelo entrenado a una imagen satelital; en este caso la imagen utilizada pertenece a las bandas \textbf{M9-M7-M11}. Como se puede observar en la tabla \ref{tab:entrenam-result}, esta combinación de banda es una de las que mejor performance obtuvo al momento de evaluar el modelo en termino de localización, métrica overlapping mean, y precision.
+Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (fig:\ref{Fig:IOU1075}) (color verdadero o por su nombre en ingles \textit{True color}), en esta combinación de bandas se obtuvieron los mejores resultados en cuanto a las métricas de AP (fig:\ref{Fig:AP1075}) y  \textit{mean overlap}, esta ultima medida calculamos la intersección sobre unión \textit{IoU} de las regiones, este valor nos dice que tan exacto es el modelo en cuanto a precisión en términos de localización de la región. Con esta combinación de banda el modelo supo generalizar logrando aprender las características del \textit{ground thruth} en la imagen, como se puede ver en la misma posee diferentes tonalidades del suelo así también a simple vista se puede detectar los diferentes contraste que hay entre las nubes, suelo o agua, estas características particulares hacen que permita identificar de manera adecuada las diferentes clases que estamos buscando.
 
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/Evaluacion-exp/prediction-9711.png}
-  \caption{Ejemplo de predicciones positivas}
-	\label{Fig: TP}
+\begin{figure}[H]\centering
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/ROC153.png}
+  \caption{Average precision, bandas 1-5-3} \label{Fig:ROC153}
+\end{figure}
+\begin{figure}[H]\centering
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/AP9711.png}
+ \caption{Average precision, bandas 9-7-11} \label{Fig:AP9711}
+\end{figure}
+ \begin{figure}[H]\centering
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/ROC1075.png}
+  \caption{Average precision, bandas 10-7-5} \label{Fig:AP1075}
 \end{figure}
 
-En el siguiente cuadro se visualiza la relación existente entre las regiones detectada y la precision de la detección \ref{Fig: trade-off}.
-
-\begin{figure}[h]
+ \begin{figure}[H]
  \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/Evaluacion-exp/presicion-over.png}
-  \caption{Trade-Off Average precision-Overlapping}
-	\label{Fig: trade-off}
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-5-3.png}
+  \caption{Combinación de bandas 1-5-3} \label{Fig:imagen_banda_153}
 \end{figure}
+ 
+ \begin{figure}[H]
+ \centering
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/9-7-11.png}
+  \caption{Combinación de bandas 9-7-11} \label{Fig:imagen_banda_9711}
+\end{figure}
+
+  \begin{figure}[H]
+ \centering
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/10-7-5.png}
+  \caption{Combinación de bandas 10-7-5} \label{Fig:IOU1075}
+\end{figure}
+ 
+El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fue las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la parecencia de las misma, por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
+ 
+ \begin{figure}[H]\centering
+  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-1-1.png}
+  \caption{Combinación de bandas 1-1-1} \label{Fig:imagen_banda_111}
+\end{figure}
+ 
+Para finalizar la evaluación experimental se predijo a modo de ejemplo una imagen nunca vista por los modelos entrenados, en este caso utilizamos el modelo entrenado con las bandas \textbf{9-7-11} para realizar la predicción en la figura siguiente  \ref{Fig: TP} se pude visualizar el resultado de la misma.
+
+\begin{figure}[H]\centering
+  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/prediction-9711.png}
+  \caption{Predicción modelo - bandas 9-7-11} \label{Fig: TP}
+\end{figure}
+
+%http://rammb.cira.colostate.edu/projects/npp/VIIRS_bands_and_bandwidths.pdf
+
+
+
+
+
+
+
+
+
+
+
 
 
