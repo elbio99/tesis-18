@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -23,10 +23,33 @@ Emilio~S. Chuvieco.
 \newblock McGraw-Hill, Inc., 3 edition, 1990.
 \newblock ISBN 9788432131271.
 
+\bibitem[contributors(2019)]{LBP}
+Wikipedia contributors.
+\newblock Local binary patterns --- {Wikipedia}{,} the free encyclopedia, 2019.
+\newblock URL
+  \url{https://en.wikipedia.org/w/index.php?title=Local_binary_patterns&oldid=917375615}.
+\newblock Online; accessed 13-December-2019].
+
+\bibitem[Dalal y Triggs(2005)]{HOG_algoritmo}
+Navneet Dalal y Bill Triggs.
+\newblock Histograms of oriented gradients for human detection.
+\newblock 2005.
+
 \bibitem[Garcia(2015)]{percepcion}
 Alberto~Ruiz Garcia.
 \newblock Sistema de percepción y visión por computador.
 \newblock Tesis de Maestría, Universidad de Murcia, Febrero 2015.
+
+\bibitem[Glumov et~al.(1995)Glumov, Kolomiyetz, y Sergeyev]{sliding_windows}
+N.I. Glumov, E.I. Kolomiyetz, y V.V. Sergeyev.
+\newblock Detection of objects on the image using a sliding window mode.
+\newblock \emph{Optics & Laser Technology}, 27\penalty0 (4):\penalty0 241 --
+  249, 1995.
+\newblock ISSN 0030-3992.
+\newblock \doi{https://doi.org/10.1016/0030-3992(95)93752-D}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/003039929593752D}.
+\newblock Optics and Image Processing in Russia.
 
 \bibitem[Hosang et~al.(2015)Hosang, Benenson.R, Dollár.P, y B.]{proposal}
 J~Hosang, Benenson.R, Dollár.P, y Schiele B.
