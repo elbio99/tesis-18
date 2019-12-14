@@ -46,62 +46,63 @@ Already encountered file secciones/Discusion.aux
  :                                }
 I'm skipping whatever remains of this command
 The style file: plainnatesp.bst.bst
-Illegal, another \bibstyle command---line 79 of file template_tesis_mdiae.aux
+Illegal, another \bibstyle command---line 82 of file template_tesis_mdiae.aux
  : \bibstyle
  :          {apa}
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: secciones/appendix.aux
 Database file #1: template_tesis_mdiae.bib.bib
 Warning--I'm ignoring proposal's extra "year" field
---line 74 of file template_tesis_mdiae.bib.bib
+--line 83 of file template_tesis_mdiae.bib.bib
 Warning--entry type for "cnnsarticle" isn't style-file defined
---line 301 of file template_tesis_mdiae.bib.bib
+--line 310 of file template_tesis_mdiae.bib.bib
 Warning--empty journal in Analysis_deep_network
 Warning--empty journal in HOG_algoritmo
+Warning--empty booktitle in SVM
 Warning--empty journal in Huggins
 Warning--empty journal in pnn
 Warning--empty journal in Cheang
 Warning--empty journal in selectivesearch
 Warning--empty journal in edges
-You've used 23 entries,
+You've used 24 entries,
             2773 wiz_defined-function locations,
-            750 strings with 9387 characters,
-and the built_in function-call counts, 9201 in all, are:
-= -- 780
-> -- 602
-< -- 12
-+ -- 206
-- -- 183
-* -- 704
-:= -- 1513
-add.period$ -- 81
-call.type$ -- 23
-change.case$ -- 128
-chr.to.int$ -- 23
-cite$ -- 53
-duplicate$ -- 432
-empty$ -- 701
-format.name$ -- 214
-if$ -- 1867
+            759 strings with 9526 characters,
+and the built_in function-call counts, 9782 in all, are:
+= -- 836
+> -- 623
+< -- 15
++ -- 213
+- -- 189
+* -- 744
+:= -- 1589
+add.period$ -- 85
+call.type$ -- 24
+change.case$ -- 133
+chr.to.int$ -- 24
+cite$ -- 56
+duplicate$ -- 463
+empty$ -- 752
+format.name$ -- 223
+if$ -- 2002
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 21
-newline$ -- 135
-num.names$ -- 92
-pop$ -- 268
+missing$ -- 22
+newline$ -- 141
+num.names$ -- 96
+pop$ -- 280
 preamble$ -- 1
-purify$ -- 107
+purify$ -- 111
 quote$ -- 0
-skip$ -- 338
+skip$ -- 367
 stack$ -- 0
-substring$ -- 73
-swap$ -- 18
-text.length$ -- 0
+substring$ -- 103
+swap$ -- 30
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 238
-warning$ -- 7
-while$ -- 70
+type$ -- 249
+warning$ -- 8
+while$ -- 75
 width$ -- 0
-write$ -- 309
+write$ -- 324
 (There were 8 error messages)

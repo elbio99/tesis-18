@@ -1,4 +1,4 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{24}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -34,6 +34,12 @@ Wikipedia contributors.
 Navneet Dalal y Bill Triggs.
 \newblock Histograms of oriented gradients for human detection.
 \newblock 2005.
+
+\bibitem[Evgeniou y Pontil(2001)]{SVM}
+Theodoros Evgeniou y Massimiliano Pontil.
+\newblock Support vector machines: Theory and applications.
+\newblock volumen 2049, páginas 249--257, 01 2001.
+\newblock \doi{10.1007/3-540-44673-7_12}.
 
 \bibitem[Garcia(2015)]{percepcion}
 Alberto~Ruiz Garcia.

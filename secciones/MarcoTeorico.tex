@@ -15,19 +15,12 @@ La teledetección no es mas que la detección de propiedades relevantes del ento
 Existen diferentes fuentes de energía; si la fuente de energía es el sol entonces lo llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol, es decir es emitida por un sensor, llamamos \textit{teledetección activa}, como por ejemplo los sensores de radar que funcionan en el rango de microondas.
 
 Los componentes básicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}:
-\begin{itemize}
-\item \textit{Fuente de energía}: es la radiación electromagnética que capta el sensor, como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
-
-\item \textit{Cubierta terrestre}: rasgos naturales o realizados por el hombre, ejemplo construcciones, que refleja el sensor.
-
-\item \textit{Sistema Sensor}: esta compuesto por, cámaras, radar, etc; y la plataforma en la que esta puesto (satélite, avión, globo);  capta la energía proveniente de la tierra y la almacena o envía al sistema de recepción.
-
-\item \textit{Sistema de Recepción}: sistema encargado de recibir la información proveniente del sensor y almacenar en un formato apropiado para luego ser distribuido a los usuarios.
-
-\item \textit{Interprete}: encargado de manipular los datos de acuerdo a la temática de interés (agricultura, catastro, etc), es decir aplica diferentes niveles de procesamiento sobre los datos crudos obtenidos por el sensor.
-
-\item \textit{Usuario Final}: es el consumidor final de la imagen adquirida.
-\end{itemize}
+\paragraph{Fuente de energía}: es la radiación electromagnética que capta el sensor, como mencionamos anteriormente puede tratarse de una fuente pasiva o activa.
+\paragraph{Cubierta terrestre}: rasgos naturales o realizados por el hombre, ejemplo construcciones, que refleja el sensor.
+\paragraph{Sistema Sensor}: esta compuesto por, cámaras, radar, etc; y la plataforma en la que esta puesto (satélite, avión, globo);  capta la energía proveniente de la tierra y la almacena o envía al sistema de recepción.
+\paragraph{Sistema de Recepción}: sistema encargado de recibir la información proveniente del sensor y almacenar en un formato apropiado para luego ser distribuido a los usuarios.
+\paragraph{Interprete}: encargado de manipular los datos de acuerdo a la temática de interés (agricultura, catastro, etc), es decir aplica diferentes niveles de procesamiento sobre los datos crudos obtenidos por el sensor.
+\paragraph{Usuario Final}: es el consumidor final de la imagen adquirida.
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
@@ -42,18 +35,17 @@ A su ves existen los \textit{sensores activos} que son aquellos que emiten radia
 
 El espectro electromagnético se denomina al conjunto de todas las longitudes de onda \citep{chuvieco}. Las ondas electromagnéticas cubren una amplia gama de frecuencias o de longitudes de ondas y pueden clasificarse según su principal fuente de producción. 
 Las regiones utilizadas para la observación remota de la tierra son:
-\begin{itemize}
-\item Espectro visible (0.4 - 0.7 µm): rango de frecuencias del ojo humano; máxima radiación solar. Subdividido en tres bandas: Rojo (0.6 - 0.7 µm), Verde (0.5 - 0.6 µm) y Azul (0.4 - 0.5 µm).
 
-\item Infrarrojo cercano (0.7 - 1.1 µm): denominado IR fotográfico o reflejado; energía solar que reflejan los cuerpos. Comportamiento similar al espectro visible.
+\par Espectro visible (0.4 - 0.7 µm): rango de frecuencias del ojo humano; máxima radiación solar. Subdividido en tres bandas: Rojo (0.6 - 0.7 µm), Verde (0.5 - 0.6 µm) y Azul (0.4 - 0.5 µm).
 
-\item Infrarrojo medio (1.1 – 8 µm): se entremezclan radiación solar y emisión; la atmósfera afecta sensiblemente: aprovechado para medir concentraciones de vapor de agua, ozono, aerosoles, etc.
+\par Infrarrojo cercano (0.7 - 1.1 µm): denominado IR fotográfico o reflejado; energía solar que reflejan los cuerpos. Comportamiento similar al espectro visible.
 
-\item Infrarrojo térmico (8 - 14 µm): radiaciones emitidas por los propios cuerpos; se puede determinar la Temperatura de un cuerpo (IRtérmico). Se puede disponer de imágenes a cualquier hora del día.
+\par Infrarrojo medio (1.1 – 8 µm): se entremezclan radiación solar y emisión; la atmósfera afecta sensiblemente: aprovechado para medir concentraciones de vapor de agua, ozono, aerosoles, etc.
 
-\item Microondas (1mm-1m): Interés creciente de la Teledetección en esta banda; las perturbaciones atmosféricas son menores y es transparente a las nubes. Se suelen utilizar sensores activos. 
+\par Infrarrojo térmico (8 - 14 µm): radiaciones emitidas por los propios cuerpos; se puede determinar la Temperatura de un cuerpo (IRtérmico). Se puede disponer de imágenes a cualquier hora del día.
 
-\end{itemize}
+\par Microondas (1mm-1m): Interés creciente de la Teledetección en esta banda; las perturbaciones atmosféricas son menores y es transparente a las nubes. Se suelen utilizar sensores activos. 
+
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
@@ -64,29 +56,27 @@ Las regiones utilizadas para la observación remota de la tierra son:
 \subsubsection{Resolución}
 Unas de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución. Estas resoluciones la podemos definir de la siguiente manera:
 
-\begin{itemize}
-\item \textbf{Resolución Espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel. A menor tamaño de píxel mayor sera la resolución espacial, esto quiere decir que el sensor tendrá mayor detalle de los objetos.
+\par \textbf{Resolución Espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel. A menor tamaño de píxel mayor sera la resolución espacial, esto quiere decir que el sensor tendrá mayor detalle de los objetos.
 
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion.png}
   \caption[Resolución espacial]{Resolución espacial\footnote{//iie.fing.edu.uy/proyectos/esopo/eem/}} \label{Fig:resolucion-esp}
 \end{figure}
 
-\item \textbf{Resolución Espectral}: la resolución espectral especifica el numero y la anchura de las badas espectrales que puede ser discrimidadas por el sensor.
+\par \textbf{Resolución Espectral}: la resolución espectral especifica el numero y la anchura de las badas espectrales que puede ser discrimidadas por el sensor.
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_espectral.jpg}
   \caption[Resolución espectral]{Resolución espectral\footnote{http://laotraopinion.net/wp-content/uploads/poder-de-resolucion-espectral.jpg}}\label{Fig:resolucion-espectral}
 \end{figure}
 
-\item \textbf{Resolución Radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor. Mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información. Ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados.
+\par \textbf{Resolución Radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor. Mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información. Ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados.
 \begin{figure}[H] \centering
   \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_radiometrica.png}
   \caption{Resolución radiometrica}\label{Fig:resolucion-radiometrica}
 \end{figure}
 
-\item \textbf{Resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen. Este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor. Alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días).
+\par \textbf{Resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen. Este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor. Alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días).
 
-\end{itemize}
 
 \subsection{Adquisición y procesamiento automático de imágenes satelitales}\label{sub:imagen_satelital}
 
@@ -107,9 +97,9 @@ Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr o
 
 
 
-\section{Machine Learning}\label{sec:machinelaerning}
+\section{Aprendizaje Automático}\label{sec:machinelaerning}
 
-Machine Learning es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras aprender determinado comportamiento a partir de los datos de entrada, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
+Aprendizaje automático (\ac{ml} por sus siglas en ingles) es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras aprender determinado comportamiento a partir de los datos de entrada, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
 Los algoritmos de \ac{ml} juegan un rol importante en diversos campos como \textit{minería de datos}, \textit{reconocimiento de imagen} entre otros dominios. Un algoritmo de  \ac{ml} permite obtener modelos predictivos a partir de un conjunto de datos, este modelo obtenido sera el usado para luego realizar inferencias sobre valores de datos distintos a los del entrenamiento.
 
@@ -121,7 +111,7 @@ El método que nos permite realizar esta aproximación es la \textit{función de
 
   Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que no vio y poder asociar las etiquetas aprendidas de manera automática.
 
-En las secciones siguientes vamos a desarrollar en mas  detalle el proceso de aprendizaje supervisado centrándonos principalmente en el problema de clasificación, se abordará también los tipos de clasificadores existentes, función de costo,  algoritmos de optimización (\textit{gradient descent}) finalizando con la validación de modelos en \ac{ml}.
+En las secciones siguientes vamos a desarrollar en mas  detalle el proceso de aprendizaje supervisado centrándonos principalmente en el problema de clasificación, se abordará también los tipos de clasificadores existentes, función de costo,  algoritmos de optimización (\textit{gradient descent \citep{cnns}}) finalizando con la validación de modelos en \ac{ml}.
 
 \subsection{Aprendizaje Supervisado y el problema de la clasificación}\label{sub:aprendizaje_supervisado}
 % http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
@@ -153,14 +143,11 @@ En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en
 Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego realizar predicciones sobre datos que no conoce.
 
 Entrenar un modelo supervisado requiere al menos tres cosas especificas:
-\begin{enumerate}
-\item \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo; el objetivo es crear un modelo que generalice los nuevos datos, para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando.
+\par \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo; el objetivo es crear un modelo que generalice los nuevos datos, para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando.
 
-\item \textbf{Salida esperada}: para cada valor de entrada debemos etiquetar a que clase pertenece es decir, para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la imagen; para un ejemplo de reconocimiento de voz cada audio debe tener una transcripción del mismo.
+\par \textbf{Salida esperada}: para cada valor de entrada debemos etiquetar a que clase pertenece es decir, para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la imagen; para un ejemplo de reconocimiento de voz cada audio debe tener una transcripción del mismo.
 
-\item \textbf{Función de costo}: calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir, determinar el error entre la salida esperada y los valores predichos.
-
-\end{enumerate}
+\par \textbf{Función de costo}: calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir, determinar el error entre la salida esperada y los valores predichos.
 
 Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada $ x$ e  $ y$  una variable de salida $ Y$; que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
 
@@ -192,8 +179,7 @@ De esta manera cuando se pase un elemento que nunca vio puede determinar en cual
 
 Un clasificador es un método que permite a partir de recibir cierta información del objeto indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
 
-\begin{enumerate}
-\item \textbf{Regresión Logística}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
+\par \textbf{Regresión Logística}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
 
 Para asignar los valores predichos a las probabilidades, usamos la función sigmoidea que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
 \begin{equation}
@@ -208,7 +194,7 @@ Para asignar los valores predichos a las probabilidades, usamos la función sigm
 \end{figure}
 
 
-\item \textbf{Árboles de decisión}: Estos tipos de clasificadores se forman a partir de  un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja en donde un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. 
+\par \textbf{Árboles de decisión}: Estos tipos de clasificadores se forman a partir de  un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos mas pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja en donde un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. 
 
 Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables de decisión $ X, Y, W, Z$, dado un valor  de entrada en este caso numérico se tomara una decisión en este caso creando dos grupos  si $ X$  es menor a 10 o si es mayor o igual a 10 segmentando el conjunto de datos en dos, de la misma manera las decisiones se tomaran en los nodos $ Y, W, Z$, hasta llegar a la hoja que sera la decisión que debemos tomar. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
 
@@ -221,7 +207,7 @@ Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables d
 \end{figure}
 
 
-\item \textbf{Bosques Aleatorios, Random Forest (RF) por su denominación en ingles}:Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{árboles de decisión} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando.  
+\par \textbf{Bosques Aleatorios, (\ac{rf} por su denominación en ingles)}: Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación; son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre \textit{SVM} y \textit{árboles de decisión} y luego tomar el voto para la consideración final de la clase del objeto que se esta evaluando.  
 
 En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{RF} donde se crea tres \textit{arboles de decisiones} independientes  inicializado aleatoriamente para cada uno de esto tendrá su correspondiente decisión como se describió en el ítem anterior, la proporción de árboles que toman una misma respuesta se interpreta como la probabilidad de la misma.
 
@@ -232,13 +218,13 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
   \label{Fig: random_forest}
 \end{figure}
 
-\item \textbf{Support Vector Machines, SVM}: El objetivo de un algoritmo SVM es encontrar un hiper-plano en un espacio de $n$ dimensiones que separe los datos con el mayor margen posible, como en la figura \ref{Fig: margenseparacionsvm}. 
+\par \textbf{Maquina de vectores de soporte (\ac{svm} por su siglas en ingles)}: El objetivo de un algoritmo \ac{svm} es encontrar un hiper-plano en un espacio de $n$ dimensiones que separe los datos con el mayor margen posible, como en la figura \ref{Fig: margenseparacionsvm}. 
 %pag.326 y 328 nuevo de bishop
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/separacionsvm.png}
-  \caption{Ejemplo margen de Separación hiper-plano SVM \\(Adaptado de:{https://goo.gl/eTZfvH})}
+  \caption{Ejemplo margen de Separación hiper-plano \ac{svm} \\(Adaptado de:{https://goo.gl/eTZfvH})}
   \label{Fig: margenseparacionsvm}
 \end{figure}
 
@@ -246,7 +232,7 @@ Para separar dos clases existen muchos hiper-planos posibles, ver figura \ref{Fi
 \begin{equation}\label{eq: modelo-lineal}
     y(x) = w^{\rm T} \vartheta(x) + b
 \end{equation}
-Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a los targets (labels) $t_i,...,t_n$ donde en estos casos $ t  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \ref{eq: modelo-lineal} satisfaga $y(x_n) > 0 $ para los valores que forman $t_n = +1$ y para $ y(x_n) <  0$ para los valores que toman $ t_n = -1$. En diversos casos existen $ n$ hiper planos de separación  \ref{Fig: hiperplanos} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de SVM trata de resolver este problema calculando el margen de separación entre los datos.
+Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a los targets (labels) $t_i,...,t_n$ donde en estos casos $ t  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \ref{eq: modelo-lineal} satisfaga $y(x_n) > 0 $ para los valores que forman $t_n = +1$ y para $ y(x_n) <  0$ para los valores que toman $ t_n = -1$. En diversos casos existen $ n$ hiper planos de separación  \ref{Fig: hiperplanos} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos.
 
 \begin{figure}[H]
  \centering
@@ -286,7 +272,7 @@ En la gran mayoría de casos, los datos no se pueden separar linealmente de form
   \label{Fig: no-separables}
 \end{figure}
 
-Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros. 
+Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
 
 
 Las ventajas de estos clasificadores son:
@@ -297,7 +283,6 @@ Las ventajas de estos clasificadores son:
 \item El proceso de entrenamiento es más rápido en comparación con otros clasificadores, sobre todo para conjunto de entrenamientos grandes.
 \end{itemize}
 %http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
-\end{enumerate}
 
 \subsubsection{Función de Costo}\label{sub:funcion_costo}
 
