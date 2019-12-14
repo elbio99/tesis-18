@@ -23,8 +23,8 @@ Los componentes básicos de un sistema de teledetección incluye lo siguiente \c
 \paragraph{Usuario Final}: es el consumidor final de la imagen adquirida.
 
 \begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
-  \caption{Sensado Remoto.}\label{Fig:teledeteccion}
+  \includegraphics[scale=0.4, keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
+  \caption{Sensado Remoto (Adaptado de: https://www.xatakaciencia.com/).}\label{Fig:teledeteccion}
 \end{figure}
 
 Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar.
@@ -48,8 +48,8 @@ Las regiones utilizadas para la observación remota de la tierra son:
 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
-  \caption{Espectro electromagnético}\label{Fig:espectro-electromagnetico}
+  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
+  \caption{Espectro electromagnético (Adapatado de: https://iie.fing.edu.uy/proyectos/esopo/eem/).}\label{Fig:espectro-electromagnetico}
 \end{figure}
 
 
@@ -59,20 +59,21 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 \par \textbf{Resolución Espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel. A menor tamaño de píxel mayor sera la resolución espacial, esto quiere decir que el sensor tendrá mayor detalle de los objetos.
 
 \begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion.png}
-  \caption[Resolución espacial]{Resolución espacial\footnote{//iie.fing.edu.uy/proyectos/esopo/eem/}} \label{Fig:resolucion-esp}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion.png}
+  \caption{Resolución espacial \\  (Adaptado de: http//iie.fing.edu.uy/proyectos/esopo/eem/)} \label{Fig:resolucion-esp}
 \end{figure}
 
 \par \textbf{Resolución Espectral}: la resolución espectral especifica el numero y la anchura de las badas espectrales que puede ser discrimidadas por el sensor.
+
 \begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_espectral.jpg}
-  \caption[Resolución espectral]{Resolución espectral\footnote{http://laotraopinion.net/wp-content/uploads/poder-de-resolucion-espectral.jpg}}\label{Fig:resolucion-espectral}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_espectral.jpg}
+  \caption{Resolución espectral \\ (Adaptado de:http://laotraopinion.net/wp-content/uploads)}\label{Fig:resolucion-espectral}
 \end{figure}
 
 \par \textbf{Resolución Radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor. Mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información. Ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados.
 \begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_radiometrica.png}
-  \caption{Resolución radiometrica}\label{Fig:resolucion-radiometrica}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resolucion_radiometrica.png}
+  \caption{Resolución radiometrica \\ (Adaptado de: www.teledet.com.uy)}\label{Fig:resolucion-radiometrica}
 \end{figure}
 
 \par \textbf{Resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen. Este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor. Alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días).
@@ -129,7 +130,7 @@ Para calcular las probabilidades, se debe obtener una función que transforme la
 En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
   \caption{Ejemplo Clasificación}\label{Fig:clasificacion}
 \end{figure}
 
@@ -188,8 +189,8 @@ Para asignar los valores predichos a las probabilidades, usamos la función sigm
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sigmoide.png}
-  \caption{Regresión Logística}
+  \includegraphics[scale=0.6]{imagenes/MarcoTeorico/sigmoide.png}
+  \caption{Regresión Logística (Adaptado de: \citep{bishop})}
   \label{Fig: log_reg}
 \end{figure}
 
@@ -201,8 +202,8 @@ Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables d
   
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
-  \caption{Ejemplo Arboles de decisión}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
+  \caption{Ejemplo Arboles de decisión \\ (Adaptado de: https://medium.com/machine-learning-bites)}
   \label{Fig: decision-tree}
 \end{figure}
 
@@ -213,8 +214,8 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.png}
-  \caption{Ejemplo RF}
+  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.png}
+  \caption{Ejemplo Bosques Aleatorios \\ (Adaptado de: https://www.researchgate.net/publication/324517994)}
   \label{Fig: random_forest}
 \end{figure}
 
@@ -293,8 +294,8 @@ Existen diferentes tipos de funciones de costo que podemos usar para determinar 
 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
-  \caption{Mean Square Error }\label{Fig:mse}
+  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
+  \caption{Mean Square Error \\(Adaptado de: \citep{bishop})}\label{Fig:mse}
   %http://wiki.fast.ai/images/5/55/Linear_line_w_cost_function.png
 \end{figure}
 
@@ -354,7 +355,7 @@ w^* =  \arg\min_{w} f(X; w)
 Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
   \caption{Gradient Descent }\label{Fig:gradient-descent}
 \end{figure}
 
@@ -371,7 +372,7 @@ Descenso de gradiente es un algoritmo iterativo del cual comenzamos con un valor
 \end{equation}
 Donde $ \alpha > 0$,  el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de $T$ iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$, en dónde $\hat{w}$ es una nueva posición de los parámetros que se acerca al mínimo buscado, es decir que hacen que $f(w^{(t)})$ se aproxime mejor al valor buscado de $Y$ . 
 
-Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent}.
+Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent} \citep{variants_gd}.
 
 % PONEMOS BACKPROPAGATION, LEARNING RATE
 %http://ruder.io/optimizing-gradient-descent/
@@ -412,8 +413,9 @@ Como parte opuesta al overfitting esta el  underfitting; este concepto hace refe
 
 \begin{figure}[h]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/OverFUnderF.png}
-  \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha)}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/OverFUnderF.png}
+  \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha) \\ 
+  (Adaptado de: https://medium.com/deep-learning-neuroevolution-extreme-learning-machines)}
 	\label{Fig: overUnder}
 \end{figure}
 
@@ -424,36 +426,32 @@ Existen diferentes técnicas para validar la robustez de nuestro modelo y evitar
 
 Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
-\begin{enumerate}
 
-\item \textbf{K-Fold Cross Validation}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Existe un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
+\par \textbf{K-Fold Cross Validation}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Existe un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/crossvalidat.png}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/crossvalidat.png}
   \caption{Validación cruzada para k=5\\(Adaptado de:{http: //goo.gl/Dp85h3})}
 	\label{Fig: crossvalidation}
 \end{figure}
 
-\item \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada, tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para validar. La ventaja de este método es que usamos todo los datos para realizar el entrenamiento.
+\par \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada, tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para validar. La ventaja de este método es que usamos todo los datos para realizar el entrenamiento.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-LOOCV.png}
-  \caption{Leave-One-Out Cross-Validation (LOOCV)}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-LOOCV.png}
+  \caption{Leave-One-Out Cross-Validation (LOOCV) \\ (Adaptado de: https://sebastianraschka.com/)}
 	\label{Fig: crossvalidation-LOOCV}
 \end{figure}
 
-\item \textbf{Random Subsampling}: En esta técnica, se eligen aleatoriamente múltiples conjuntos de validación y se combinan para formar un conjunto de datos de prueba. Los datos restantes forman el conjunto de datos de entrenamiento.
+\par \textbf{Random Subsampling}: En esta técnica, se eligen aleatoriamente múltiples conjuntos de validación y se combinan para formar un conjunto de datos de prueba. Los datos restantes forman el conjunto de datos de entrenamiento.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-random.png}
-  \caption{Random Subsampling}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-random.png}
+  \caption{Random Subsampling \\ (Adaptado de: https://sebastianraschka.com/)}
 	\label{Fig: random-Subsampling}
 \end{figure}
-
-\end{enumerate}
-
 
 %IMPORTANTE: https://sebastianraschka.com/pdf/manuscripts/model-eval.pdf
 %https://dzone.com/articles/machine-learning-validation-techniques
@@ -463,15 +461,20 @@ Para determinar la efectividad de un modelo necesitamos realizar un evaluación 
 
 La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación que son \textit{Matriz de confusión}, \textit{accuracy}, \textit{precision}, \textit{recall} y \textit{curvas ROC}.
 
-La \textit{Matriz de Confusión} contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la forma de la figura \ref{Fig: confusion-matrix}.
+La \textit{Matriz de Confusión} contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la forma de la figura \ref{tab: confusion-matrix}.
 
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|c|ll}
+\cline{1-3}
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\textbf{Clase}\\  \textbf{Actual}\end{tabular}} & \multicolumn{2}{c|}{\textbf{Clase Predicha}} &  &  \\ \cline{2-3}
+                                                                         & \textbf{Positivo}         & \textbf{Negativo}         &  &  \\ \cline{1-3}
+\textbf{Postivo}                                                                  & TP               & FN               &  &  \\ \cline{1-3}
+\textbf{Negativo}                                                                 & FP               & TN               &  &  \\ \cline{1-3}
+\end{tabular} \caption{Matriz de Confusión}
+	\label{tab: confusion-matrix}
+\end{table}
 
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/confussion_matrix.png}
-  \caption{Matriz de Confusión}
-	\label{Fig: confusion-matrix}
-\end{figure}
 
 Cada valor de las celdas esta dado por:
 \begin{itemize}
@@ -502,7 +505,7 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 \textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área de 1 representa un modelo que hizo perfectamente todas las predicciones como se visualiza en la figura \ref{Fig: roc}.
 \begin{figure}[H]
  \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/curvas-roc.png}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/curvas-roc.png}
   \caption{Curva ROC} \label{Fig: roc}
 \end{figure}
 
@@ -525,25 +528,19 @@ El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de c
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=6cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fmaps.png}
+  \includegraphics[scale=1,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fmaps.png}
   \caption{Ejemplo de mapa de características, (Adaptado de: \citep{cnnsarticle})}
 	\label{Fig: fmaps}
 \end{figure}
 
-El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}:
-\begin{enumerate}
-\item depth (profundidad): corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante (Sec:\ref{sub:convolucion}). Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc
-es decir a partir de la imagen de entrada aplicar por ejemplo detección de bordes, color, etc.
-\item stride (paso): es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada. Tener un stride grande producirá mapas de características más pequeños.
-\item zero-padding (cero-relleno): A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
-\end{enumerate}
+El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}: \textit{depth (profundidad)}: corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante (Sec:\ref{sub:convolucion}). Por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc; es decir a partir de la imagen de entrada aplicar por ejemplo detección de bordes, color, etc.También tenemos el parámetro \textit{stride (paso)}: es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada. Tener un stride grande producirá mapas de características más pequeños. Por ultimo tenemos el parámetro \textit{zero-padding (cero-relleno)}: A menudo, es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada. Una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
 
-La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}. 
+La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} mas  \textit{pooling} seguidas de las ultimas capas \textit{fully conected}; en las próximas secciones se brindara mas detalle. 
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
-  \caption{Arquitectura simplificada de una \ac{cnn}.} \label{Fig:cnn_network}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
+  \caption{Arquitectura simplificada de una \ac{cnn} \\ (Adaptado de:https://towardsdatascience.com/understanding-input-and-output-shapes-in-convolution).} \label{Fig:cnn_network}
 \end{figure}
 
 
@@ -568,23 +565,23 @@ En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como entrada, por ot
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_1.png}
-  \caption{Input y filtro de convolución}\label{Fig:filter}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_1.png}
+  \caption{Input y filtro de convolución \\ (Adaptado de:https://www.superdatascience.com/blogs/)}\label{Fig:filter}
 \end{figure}
 
 La operación de convolución se realiza deslizando el kernel sobre la matriz de entrada del cual para cada ubicación realizamos una multiplicación de matrices y sumamos el resultado, el resultado de la suma sera nuestro nuevo \textit{mapa de característica} como se muestra \ref{fig: f_maps2}.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
-  \caption{Operación de convolución sobre una imagen}\label{fig: f_maps2} 
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
+  \caption{Operación de convolución sobre una imagen \\ (Adaptado de:https://www.superdatascience.com/blogs/)}\label{fig: f_maps2} 
 \end{figure}
 
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
-  \caption{Convolución} \label{Fig:convolucion}
+  \caption{Convolución \\ (Adaptado de: https://www.scribd.com/document/271869018/Convolucion-con-CNN)} \label{Fig:convolucion}
 \end{figure}
 
 El ejemplo \ref{Fig:convolucion} es una figura  simplificada de la operación de convolucion, en la realidad, las \ac{cnn} desarrollan detectores de múltiples características y las utilizan para desarrollar varios mapas de características que se conocen como capas convolucionales. A través de estos mapas de característica la red determina qué  considera importantes para poder escanear imágenes y clasificarlas con mayor precisión.
@@ -598,8 +595,8 @@ El tipo de técnica mas común utilizado es \textit{max pooling} que toma el val
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/pooling_1.png}
-  \caption{Pooling} \label{Fig:Pooling}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/pooling_1.png}
+  \caption{Pooling \\(Adaptado de:https://towardsdatascience.com/applied-deep-learning)} \label{Fig:Pooling}
 \end{figure}
 
 En las arquitecturas \ac{cnn} (Sec:\ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
@@ -613,15 +610,15 @@ Una vez que los \textit{mapas de característica} se extraen de la capa de convo
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_1.png}
-  \caption{ReLU (Rectified Linear Unit)} \label{Fig:relu}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_1.png}
+  \caption{ReLU (Rectified Linear Unit) \\ (Adaptado de: https://towardsdatascience.com/activation-functions-neural-networks)} \label{Fig:relu}
 \end{figure}
 
 Ejemplo aplicado de una ReLU a un \textit{mapa de característica} \ref{Fig:relu2}:
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_2.jpeg}
-  \caption{Ejemplo ReLU } \label{Fig:relu2}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ReLU_2.jpeg}
+  \caption{Ejemplo ReLU  \\(Adaptado de: https://towardsdatascience.com/activation-functions-neural-networks)} \label{Fig:relu2}
 \end{figure}
 
 La principal ventaja de usar la función ReLU sobre otras funciones de activación es que no activa todas las neuronas al mismo tiempo, si la entrada es negativa, la convertirá a cero y la neurona no se activará, esto significa que, en un momento dado, solo unas pocas neuronas se activan,lo que la hace eficiente y fácil de calcular.
@@ -649,7 +646,7 @@ Básicamente, una capa \textit{fully conected} observa características de alto 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fully_conected.png}
-  \caption{Fully conected layer} \label{Fig:fully_conected}
+  \caption{Fully conected layer \\ (Adaptado de: https://adeshpande3.github.io)} \label{Fig:fully_conected}
 \end{figure}
 
 
@@ -661,49 +658,45 @@ Básicamente, una capa \textit{fully conected} observa características de alto 
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
 La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior (Sec:\ref{sub:cnn}) vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
 
-\begin{itemize}
-\item \textbf{LeNet5}: Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. 
+\par \textbf{LeNet5} \citep{lenet} Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. LeNet5 esta formada por 3 capas, usando la capa de convolución para extraer las características espaciales de la imagen. En general esta red fue el origen de muchas de las arquitecturas modernas.
 
-LeNet5 esta formada por 3 capas, usando la capa de convolución para extraer las características espaciales de la imagen. En general esta red fue el origen de muchas de las arquitecturas modernas.
-
-\item \textbf{AlexNet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. EL problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas; AlexNet consta de 5 capas convoluacionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas \textit{fully connected}. Una importante característica es el uso de \textit{ReLU}(Rectified Linear Unit),  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
+\par \textbf{AlexNet} \citep{alexnet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. EL problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas; AlexNet consta de 5 capas convoluacionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas \textit{fully connected}. Una importante característica es el uso de \textit{ReLU}(Rectified Linear Unit),  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
-  \caption{Arquitectura AlexNet}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
+  \caption{Arquitectura AlexNet \\ (Adaptado de: \citep{alexnet})}
 	\label{Fig:alexnet}
 \end{figure}
 
 
-\item \textbf{VGG}: Esta arquitectura se caracteriza por ser la primera en utilizar filtros 3 × 3 mucho más pequeños en cada capa convolucional y ademas los combinaron como una secuencia de convoluciones. La principal contribución de VGG, ganadora de la competición en 2014 de \textit{ImageNet}, es mostrar que la precisión de la clasificación y localización de un objeto en una imagen puede mejorarse al aumentar la profundidad de la \ac{cnn}.
+\par \textbf{VGG} \citep{vgg} Esta arquitectura se caracteriza por ser la primera en utilizar filtros 3 × 3 mucho más pequeños en cada capa convolucional y ademas los combinaron como una secuencia de convoluciones. La principal contribución de VGG, ganadora de la competición en 2014 de \textit{ImageNet}, es mostrar que la precisión de la clasificación y localización de un objeto en una imagen puede mejorarse al aumentar la profundidad de la \ac{cnn}.
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/vgg.png}
-  \caption{Arquitectura VGG, (Simonyan and Zisserman (2014)).}
+  \caption{Arquitectura VGG,\\ (Adaptado de: \citep{vgg}).}
 	\label{Fig:vgg}
 \end{figure}
 
-\item \textbf{GoogleNet}: EL principal objetivo de esta arquitectura desarrollada es mejorar la utilización de recursos computacionales, esto lo logra definiendo módulos llamados, \textit{módulos inception}, y aumentando la profundidad y el ancho de la red. 
+\par \textbf{GoogleNet} \citep{googlenet} EL principal objetivo de esta arquitectura desarrollada es mejorar la utilización de recursos computacionales, esto lo logra definiendo módulos llamados, \textit{módulos inception}, y aumentando la profundidad y el ancho de la red. 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/inception-1.jpg}
-  \caption{Arquitectura GoogleNet: modulo inception}
+  \caption{Arquitectura GoogleNet: modulo Inception \\ (Adaptado de: \citep{googlenet})}
 	\label{Fig:inception}
 \end{figure}
 Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos para luego agruparlos uno arriba de otro. GoogleNet usa un nuevo termino llamado \textit{Bottleneck layer} que permite reducir el numero de características y sus operaciones 
 
-\item \textbf{ResNet}: Es otro tipo de arquitectura nombrada \textit{"Deep Residual Learning"}, a partir de mapeo subyacentes de $x y H (x)$, es posible aprender la diferencia entre los dos, que es el \textit{residuo} y, posteriormente, ajustar el último a la entrada; siendo el residuo $F(x) = H(x) - x$.
+\par \textbf{ResNet} \citep{resnet_a} Es otro tipo de arquitectura nombrada \textit{"Deep Residual Learning"}, a partir de mapeo subyacentes de $x y H (x)$, es posible aprender la diferencia entre los dos, que es el \textit{residuo} y, posteriormente, ajustar el último a la entrada; siendo el residuo $F(x) = H(x) - x$.
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resnet.png}
-  \caption{ResNet:\textit{Residual block}}
+  \caption{ResNet:\textit{Residual block} \\(Adaptado de: \citep{resnet_a}}
 	\label{Fig:inception}
 \end{figure}
 
-\end{itemize}
 
 En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50, ResNet101, GoogleNet(InceptionV1, InceptionV3), entre otras. 
 
@@ -714,7 +707,7 @@ En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite
 \begin{figure}[H]
  \centering
   \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn-analisis.png}
-  \caption{Análisis CNN}
+  \caption{Análisis CNN \\ (Adaptado de: \citep{cazani_grap})}
 	\label{Fig:cnn-analisis}
 \end{figure}
 
@@ -770,12 +763,7 @@ Este método evalúa las cajas candidatas utilizando un enfoque de ventana desli
 
 \subsubsection*{Selective Search} \label{sub:selectivesearch}
 Selective Search \citep{selectivesearch} es un método de \ac{rp} que  permite obtener regiones candidatas realizando una búsqueda exhaustiva aplicando segmentación sobre la imagen. La segmentación  en procesamiento de imágenes consiste en dividirla en grupo de píxeles u objeto. El objetivo es simplificar la representación logrando que sea mas significativa, fácil de analizar y capturar todas las ubicaciones de objetos posibles; en lugar de una sola técnica para generar ubicaciones , diversifica la  búsqueda y usa  una variedad de particiones de imágenes complementarias para tratar con tantas condiciones de imagen como sea posible.
-Las estrategias usadas en este método son:
-\begin{itemize}
-\item \textbf{Capturar todas las escalas}: los objetos pueden estar en cualquier escala de la imagen, es por esto que se toma en cuenta todas las escalas.
-\item \textbf{Diversificación}: No existe una sola estrategia sino que una región puede formar un objeto solo por color o textura.
-\item \textbf{Computo Rápido}: Esta es una de las estrategias principales debido a que el objetivo es producir un conjunto de regiones propuesta de manera eficiente y sin un costo computacional alto.
-\end{itemize}
+Las estrategias usadas en este método son: \textit{Capturar todas las escalas}: los objetos pueden estar en cualquier escala de la imagen, es por esto que se toma en cuenta todas las escalas.\textit{Diversificación}: No existe una sola estrategia sino que una región puede formar un objeto solo por color o textura.\textit{Computo Rápido}: Esta es una de las estrategias principales debido a que el objetivo es producir un conjunto de regiones propuesta de manera eficiente y sin un costo computacional alto.
 
 \begin{figure}[H]
  \centering

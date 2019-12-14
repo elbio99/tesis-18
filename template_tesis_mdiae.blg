@@ -11,98 +11,99 @@ A level-1 auxiliary file: secciones/Recolecciondedatos.aux
 A level-1 auxiliary file: secciones/EvaluacionExperimental.aux
 A level-1 auxiliary file: secciones/Discusion.aux
 Already encountered file secciones/Introduccion.aux
----line 49 of file template_tesis_mdiae.aux
+---line 53 of file template_tesis_mdiae.aux
  : \@input{secciones/Introduccion.aux
  :                                   }
 I'm skipping whatever remains of this command
 Already encountered file secciones/MarcoTeorico.aux
----line 50 of file template_tesis_mdiae.aux
+---line 54 of file template_tesis_mdiae.aux
  : \@input{secciones/MarcoTeorico.aux
  :                                   }
 I'm skipping whatever remains of this command
 Already encountered file secciones/tbd.aux
----line 51 of file template_tesis_mdiae.aux
+---line 55 of file template_tesis_mdiae.aux
  : \@input{secciones/tbd.aux
  :                          }
 I'm skipping whatever remains of this command
 Already encountered file secciones/Desarrollo.aux
----line 52 of file template_tesis_mdiae.aux
+---line 56 of file template_tesis_mdiae.aux
  : \@input{secciones/Desarrollo.aux
  :                                 }
 I'm skipping whatever remains of this command
 Already encountered file secciones/Recolecciondedatos.aux
----line 53 of file template_tesis_mdiae.aux
+---line 57 of file template_tesis_mdiae.aux
  : \@input{secciones/Recolecciondedatos.aux
  :                                         }
 I'm skipping whatever remains of this command
 Already encountered file secciones/EvaluacionExperimental.aux
----line 54 of file template_tesis_mdiae.aux
+---line 58 of file template_tesis_mdiae.aux
  : \@input{secciones/EvaluacionExperimental.aux
  :                                             }
 I'm skipping whatever remains of this command
 Already encountered file secciones/Discusion.aux
----line 55 of file template_tesis_mdiae.aux
+---line 59 of file template_tesis_mdiae.aux
  : \@input{secciones/Discusion.aux
  :                                }
 I'm skipping whatever remains of this command
 The style file: plainnatesp.bst.bst
-Illegal, another \bibstyle command---line 82 of file template_tesis_mdiae.aux
+Illegal, another \bibstyle command---line 88 of file template_tesis_mdiae.aux
  : \bibstyle
  :          {apa}
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: secciones/appendix.aux
 Database file #1: template_tesis_mdiae.bib.bib
 Warning--I'm ignoring proposal's extra "year" field
---line 83 of file template_tesis_mdiae.bib.bib
+--line 129 of file template_tesis_mdiae.bib.bib
 Warning--entry type for "cnnsarticle" isn't style-file defined
---line 310 of file template_tesis_mdiae.bib.bib
+--line 356 of file template_tesis_mdiae.bib.bib
+Warning--to sort, need author or key in variants_gd
 Warning--empty journal in Analysis_deep_network
 Warning--empty journal in HOG_algoritmo
-Warning--empty booktitle in SVM
+Warning--empty journal in SVM
 Warning--empty journal in Huggins
 Warning--empty journal in pnn
 Warning--empty journal in Cheang
 Warning--empty journal in selectivesearch
 Warning--empty journal in edges
-You've used 24 entries,
+You've used 30 entries,
             2773 wiz_defined-function locations,
-            759 strings with 9526 characters,
-and the built_in function-call counts, 9782 in all, are:
-= -- 836
-> -- 623
-< -- 15
-+ -- 213
-- -- 189
-* -- 744
-:= -- 1589
-add.period$ -- 85
-call.type$ -- 24
-change.case$ -- 133
-chr.to.int$ -- 24
-cite$ -- 56
-duplicate$ -- 463
-empty$ -- 752
-format.name$ -- 223
-if$ -- 2002
+            783 strings with 10252 characters,
+and the built_in function-call counts, 12317 in all, are:
+= -- 1039
+> -- 836
+< -- 14
++ -- 285
+- -- 255
+* -- 968
+:= -- 2000
+add.period$ -- 102
+call.type$ -- 30
+change.case$ -- 173
+chr.to.int$ -- 30
+cite$ -- 70
+duplicate$ -- 566
+empty$ -- 929
+format.name$ -- 296
+if$ -- 2508
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 22
-newline$ -- 141
-num.names$ -- 96
-pop$ -- 280
+missing$ -- 27
+newline$ -- 170
+num.names$ -- 116
+pop$ -- 364
 preamble$ -- 1
-purify$ -- 111
+purify$ -- 145
 quote$ -- 0
-skip$ -- 367
+skip$ -- 449
 stack$ -- 0
-substring$ -- 103
-swap$ -- 30
-text.length$ -- 2
+substring$ -- 109
+swap$ -- 27
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 249
-warning$ -- 8
-while$ -- 75
+type$ -- 315
+warning$ -- 9
+while$ -- 89
 width$ -- 0
-write$ -- 324
+write$ -- 393
 (There were 8 error messages)

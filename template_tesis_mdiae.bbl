@@ -1,9 +1,14 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[var(2018)]{variants_gd}
+variants-of-gradient-descent, Dec 2018.
+\newblock URL
+  \url{https://medium.com/@sunil.jangir07/variants-of-gradient-descent-5f5464c82f28}.
 
 \bibitem[Babawuro y Beiji(2012)]{usman}
 Usman Babawuro y Zou Beiji.
@@ -38,8 +43,13 @@ Navneet Dalal y Bill Triggs.
 \bibitem[Evgeniou y Pontil(2001)]{SVM}
 Theodoros Evgeniou y Massimiliano Pontil.
 \newblock Support vector machines: Theory and applications.
-\newblock volumen 2049, páginas 249--257, 01 2001.
+\newblock 2049:\penalty0 249--257, 01 2001.
 \newblock \doi{10.1007/3-540-44673-7_12}.
+
+\bibitem[G et~al.(2012)G, I, y A]{alexnet}
+Hinton G, Sutskever I, y Krizhevsky A.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock \emph{IEEE}, 2012.
 
 \bibitem[Garcia(2015)]{percepcion}
 Alberto~Ruiz Garcia.
@@ -56,6 +66,11 @@ N.I. Glumov, E.I. Kolomiyetz, y V.V. Sergeyev.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/003039929593752D}.
 \newblock Optics and Image Processing in Russia.
+
+\bibitem[He et~al.(2015)He, Zhang, Ren, y Sun]{resnet_a}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, y Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock \emph{IEEE}, 2015.
 
 \bibitem[Hosang et~al.(2015)Hosang, Benenson.R, Dollár.P, y B.]{proposal}
 J~Hosang, Benenson.R, Dollár.P, y Schiele B.
@@ -133,6 +148,11 @@ Kevin Murphy.
 \newblock Massachusetts Institute of Technology, 2012.
 \newblock ISBN 978-0-262-01802-9.
 
+\bibitem[Simonyanv y Zisserman(2014)]{vgg}
+Karen Simonyanv y Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock \emph{ICLR}, 2014.
+
 \bibitem[Sommerville(2006)]{sommerville}
 Ian Sommerville.
 \newblock \emph{Software Engineering: (Update) (8th Edition) (International
@@ -151,6 +171,17 @@ Brent~Edward Tweddle.
 J.R.R Uijlings, K.E.A van~de Sande, T~Gevers, y A.W.M Smeulders.
 \newblock Selective search for object recognition.
 \newblock 2014.
+
+\bibitem[V et~al.(2015)V, C, W, Y, P, S, D, Erhan, y A]{googlenet}
+Vanhoucke V, Szegedy C, Liu W, Jia1 Y, Sermanet P, Reed S, Anguelov D, Erhan, y
+  Rabinovich A.
+\newblock Going deeper with convolutions.
+\newblock \emph{CVPR}, 2015.
+
+\bibitem[Y et~al.(1998)Y, L, Y, y P]{lenet}
+LeCun Y, Bottou L, Bengio Y, y Haffner P.
+\newblock Gradient-based learning applied to document recognition.
+\newblock \emph{IEEE}, Dec 1998.
 
 \bibitem[Zitnick y Doll\'ar(2014)]{edges}
 C.~Lawrence Zitnick y Piotr Doll\'ar.
