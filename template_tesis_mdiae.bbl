@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -16,11 +16,22 @@ Usman Babawuro y Zou Beiji.
   processing algorithms: A viable option for cadastral science.
 \newblock \emph{International Journal of Computer Science}, 2012.
 
+\bibitem[Bishop(2006)]{bishop}
+Christoper Bishop.
+\newblock \emph{Pattern Recognition and Machine Learning}.
+\newblock Springer., 2006.
+\newblock ISBN 0-387-31073-8.
+
 \bibitem[Canziani et~al.(2017)Canziani, Culurciello, y
   A.Paszke]{Analysis_deep_network}
 A.~Canziani, E~Culurciello, y A.Paszke.
 \newblock An analysis of deep neural network models for practical application.
 \newblock 2017.
+
+\bibitem[Canziani et~al.(2016)Canziani, Paszke, y Culurciello]{cazani_grap}
+Alfredo Canziani, Adam Paszke, y Eugenio Culurciello.
+\newblock An analysis of deep neural network models for practical applications,
+  2016.
 
 \bibitem[Chuvieco(1990)]{chuvieco}
 Emilio~S. Chuvieco.
@@ -172,9 +183,9 @@ J.R.R Uijlings, K.E.A van~de Sande, T~Gevers, y A.W.M Smeulders.
 \newblock Selective search for object recognition.
 \newblock 2014.
 
-\bibitem[V et~al.(2015)V, C, W, Y, P, S, D, Erhan, y A]{googlenet}
-Vanhoucke V, Szegedy C, Liu W, Jia1 Y, Sermanet P, Reed S, Anguelov D, Erhan, y
-  Rabinovich A.
+\bibitem[Vicent et~al.(2015)Vicent, C, W, Y, P, S, D, Erhan, y A]{googlenet}
+Vanhoucke Vicent, Szegedy C, Liu W, Jia1 Y, Sermanet P, Reed S, Anguelov D,
+  Erhan, y Rabinovich A.
 \newblock Going deeper with convolutions.
 \newblock \emph{CVPR}, 2015.
 
@@ -182,6 +193,12 @@ Vanhoucke V, Szegedy C, Liu W, Jia1 Y, Sermanet P, Reed S, Anguelov D, Erhan, y
 LeCun Y, Bottou L, Bengio Y, y Haffner P.
 \newblock Gradient-based learning applied to document recognition.
 \newblock \emph{IEEE}, Dec 1998.
+
+\bibitem[Yang et~al.(2016)Yang, Yan, Lei, y Li]{regions_proposal_gr}
+Bin Yang, Junjie Yan, Zhen Lei, y Stan~Z. Li.
+\newblock {CRAFT} objects from images.
+\newblock \emph{CoRR}, abs/1604.03239, 2016.
+\newblock URL \url{http://arxiv.org/abs/1604.03239}.
 
 \bibitem[Zitnick y Doll\'ar(2014)]{edges}
 C.~Lawrence Zitnick y Piotr Doll\'ar.

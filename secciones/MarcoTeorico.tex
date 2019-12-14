@@ -23,8 +23,8 @@ Los componentes básicos de un sistema de teledetección incluye lo siguiente \c
 \paragraph{Usuario Final}: es el consumidor final de la imagen adquirida.
 
 \begin{figure}[H] \centering
-  \includegraphics[scale=0.4, keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
-  \caption{Sensado Remoto (Adaptado de: https://www.xatakaciencia.com/).}\label{Fig:teledeteccion}
+  \includegraphics[scale=0.3, keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
+  \caption{Sensado Remoto \\(Adaptado de: https://www.xatakaciencia.com/).}\label{Fig:teledeteccion}
 \end{figure}
 
 Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar.
@@ -48,7 +48,7 @@ Las regiones utilizadas para la observación remota de la tierra son:
 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
   \caption{Espectro electromagnético (Adapatado de: https://iie.fing.edu.uy/proyectos/esopo/eem/).}\label{Fig:espectro-electromagnetico}
 \end{figure}
 
@@ -189,8 +189,8 @@ Para asignar los valores predichos a las probabilidades, usamos la función sigm
 
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.6]{imagenes/MarcoTeorico/sigmoide.png}
-  \caption{Regresión Logística (Adaptado de: \citep{bishop})}
+  \includegraphics[scale=0.5]{imagenes/MarcoTeorico/sigmoide.png}
+  \caption{Regresión Logística \\ (Adaptado de: \citep{bishop})}
   \label{Fig: log_reg}
 \end{figure}
 
@@ -355,7 +355,7 @@ w^* =  \arg\min_{w} f(X; w)
 Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
 
 \begin{figure}[H] \centering
-  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
   \caption{Gradient Descent }\label{Fig:gradient-descent}
 \end{figure}
 
@@ -539,7 +539,7 @@ La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la
 
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
+  \includegraphics[scale=0.15,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
   \caption{Arquitectura simplificada de una \ac{cnn} \\ (Adaptado de:https://towardsdatascience.com/understanding-input-and-output-shapes-in-convolution).} \label{Fig:cnn_network}
 \end{figure}
 
@@ -565,7 +565,7 @@ En la imagen \ref{Fig:filter} tenemos de ejemplo una matriz como entrada, por ot
 
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_1.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_1.png}
   \caption{Input y filtro de convolución \\ (Adaptado de:https://www.superdatascience.com/blogs/)}\label{Fig:filter}
 \end{figure}
 
@@ -573,14 +573,14 @@ La operación de convolución se realiza deslizando el kernel sobre la matriz de
 
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convoluc_2.png}
   \caption{Operación de convolución sobre una imagen \\ (Adaptado de:https://www.superdatascience.com/blogs/)}\label{fig: f_maps2} 
 \end{figure}
 
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/convolucion.png}
   \caption{Convolución \\ (Adaptado de: https://www.scribd.com/document/271869018/Convolucion-con-CNN)} \label{Fig:convolucion}
 \end{figure}
 
@@ -664,7 +664,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
   \caption{Arquitectura AlexNet \\ (Adaptado de: \citep{alexnet})}
 	\label{Fig:alexnet}
 \end{figure}
@@ -674,7 +674,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/vgg.png}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/vgg.png}
   \caption{Arquitectura VGG,\\ (Adaptado de: \citep{vgg}).}
 	\label{Fig:vgg}
 \end{figure}
@@ -692,8 +692,8 @@ Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos 
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resnet.png}
-  \caption{ResNet:\textit{Residual block} \\(Adaptado de: \citep{resnet_a}}
+  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resnet.png}
+  \caption{ResNet: \textit{Residual block} \\(Adaptado de: \citep{resnet_a}}
 	\label{Fig:inception}
 \end{figure}
 
@@ -706,7 +706,7 @@ En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn-analisis.png}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn-analisis.png}
   \caption{Análisis CNN \\ (Adaptado de: \citep{cazani_grap})}
 	\label{Fig:cnn-analisis}
 \end{figure}
@@ -738,8 +738,8 @@ Regions proposal son un conjunto de métodos que permiten extraer regiones dentr
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/regionProposal.png}
-  \caption{Ejemplo de regiones propuestas.}% \\ (Adaptado de:{http://www.cs.toronto.edu/~byang/})}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/regionProposal.png}
+  \caption{Ejemplo de regiones propuestas \\ (Adaptado de:\citep{regions_proposal_gr}).}
 	\label{Fig: propsalregion}
 \end{figure}
 
@@ -753,8 +753,8 @@ En la figura \ref{Fig: edges} podemos ver de manera simplificada los pasos del m
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/edges.png}
-  \caption{Ejemplo proceso detección de bordes (Adaptado de:\citep{edges})}
+  \includegraphics[scale=0.21,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/edges.png}
+  \caption{Ejemplo proceso detección de bordes \\ (Adaptado de:\citep{edges})}
 	\label{Fig: edges}
 \end{figure}
 
@@ -767,17 +767,14 @@ Las estrategias usadas en este método son: \textit{Capturar todas las escalas}:
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/selectivesearch.png}
-  \caption{Ejemplo segmentación con \textit{Selective Search} } %(Adaptado de:\citep{selectivesearch})
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/selectivesearch.png}
+  \caption{Ejemplo segmentación con \textit{Selective Search} \\(Adaptado de:\citep{selectivesearch}).}
 	\label{Fig: overlapping}
 \end{figure}
 
 \subsection{Extracción de características}\label{sub:features-extraction}
 
-Luego de las extracciones de regiones candidatas obtenidas por algunos de los métodos nombrados en la sección anterior (Sec:\ref{sub:regions-proposal}), debemos extraer las características significativas que representan cada región dada. Una  característica es algo que se diferencia del resto en un conjunto de datos, esa diferencia nos permite agruparlas de acuerdo a alguna
-similitud entre las mismas. 
-
-El objetivo principal de la  extracción de características, \textit{feature extraction} por su denominación en ingles, es representar los datos como un conjunto reducido de característica que describen de manera eficiente sus principales atributos. Para poder realizar esta tarea utilizamos  las redes neuronales convolucionales (Sec:\ref{sub:cnn}) que  permiten extraer información de la imagen para luego utilizar estos atributos obtenidos y agruparlos según algún criterio establecido. 
+Luego de las extracciones de regiones candidatas obtenidas por algunos de los métodos nombrados en la sección anterior (Sec:\ref{sub:regions-proposal}), debemos extraer las características significativas que representan cada región dada. Una  característica es algo que se diferencia del resto en un conjunto de datos, esa diferencia nos permite agruparlas de acuerdo a alguna similitud entre las mismas. El objetivo principal de la  extracción de características, \textit{feature extraction} por su denominación en ingles, es representar los datos como un conjunto reducido de característica que describen de manera eficiente sus principales atributos. Para poder realizar esta tarea utilizamos  las redes neuronales convolucionales (Sec:\ref{sub:cnn}) que  permiten extraer información de la imagen para luego utilizar estos atributos obtenidos y agruparlos según algún criterio establecido. 
 
 
 \subsection{Non-Maxima Suppression}\label{sub:nonmaximumsuppression}
@@ -786,16 +783,16 @@ Non-Maxima Suppression es un post-procesamiento muy importante en el contexto de
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapMat.png}
-  \caption{Superposición entre regiones.} \label{Fig: overlapping}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapMat.png}
+  \caption{Superposición entre regiones \\ (Adaptado de:https://www.mathworks.com/help/vision/ ).} \label{Fig: overlapping}
 \end{figure}
 
 Para poder eliminar detecciones redundantes calculamos un valor denominado  \textit{IoU}, intersección sobre unión,  este valor nos indica el solapamiento, \textit{overlapping} ,  entre diferentes regiones cercanas como se muestra en la figura \ref{Fig: interseccion}. Non-maxima supression puede ser formulado como una búsqueda de los máximo locales en donde el máximo local es  mayor que todos sus vecinos,  el algoritmo selecciona aquellas detecciones con un \textit{puntaje} (IoU) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapping.png}
-  \caption{IoU con diferentes valores}\label{Fig: interseccion}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapping.png}
+  \caption{IoU con diferentes valores \\ (Adaptado de:\citep{bishop}).}\label{Fig: interseccion}
 \end{figure}
 
 Dependiendo del valor, IoU  obtenido podemos usar un umbral para  eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento, para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}. 
@@ -804,8 +801,8 @@ En un pipeline de detección las técnicas de non-maxima supression se utilizan 
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/nms.png}
-  \caption{Uso de Non-maxima supression.}\label{Fig: nonmaximumsuppression}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/nms.png}
+  \caption{Uso de Non-maxima supression \\ (Adaptado de: \citep{nms2}).}\label{Fig: nonmaximumsuppression}
 \end{figure}
 
 En el siguiente algoritmo  \ref{alg:nms} se visualiza el proceso llevado a cabo por Non-maxima suppresion en la eliminación de regiones redundantes.  El algoritmo recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor, IoU, de cada una de las regiones por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 

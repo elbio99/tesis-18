@@ -6,56 +6,19 @@ A level-1 auxiliary file: secciones/Acronimos.aux
 A level-1 auxiliary file: secciones/Introduccion.aux
 A level-1 auxiliary file: secciones/MarcoTeorico.aux
 A level-1 auxiliary file: secciones/tbd.aux
-A level-1 auxiliary file: secciones/Desarrollo.aux
-A level-1 auxiliary file: secciones/Recolecciondedatos.aux
 A level-1 auxiliary file: secciones/EvaluacionExperimental.aux
 A level-1 auxiliary file: secciones/Discusion.aux
-Already encountered file secciones/Introduccion.aux
----line 53 of file template_tesis_mdiae.aux
- : \@input{secciones/Introduccion.aux
- :                                   }
-I'm skipping whatever remains of this command
-Already encountered file secciones/MarcoTeorico.aux
----line 54 of file template_tesis_mdiae.aux
- : \@input{secciones/MarcoTeorico.aux
- :                                   }
-I'm skipping whatever remains of this command
-Already encountered file secciones/tbd.aux
----line 55 of file template_tesis_mdiae.aux
- : \@input{secciones/tbd.aux
- :                          }
-I'm skipping whatever remains of this command
-Already encountered file secciones/Desarrollo.aux
----line 56 of file template_tesis_mdiae.aux
- : \@input{secciones/Desarrollo.aux
- :                                 }
-I'm skipping whatever remains of this command
-Already encountered file secciones/Recolecciondedatos.aux
----line 57 of file template_tesis_mdiae.aux
- : \@input{secciones/Recolecciondedatos.aux
- :                                         }
-I'm skipping whatever remains of this command
-Already encountered file secciones/EvaluacionExperimental.aux
----line 58 of file template_tesis_mdiae.aux
- : \@input{secciones/EvaluacionExperimental.aux
- :                                             }
-I'm skipping whatever remains of this command
-Already encountered file secciones/Discusion.aux
----line 59 of file template_tesis_mdiae.aux
- : \@input{secciones/Discusion.aux
- :                                }
-I'm skipping whatever remains of this command
 The style file: plainnatesp.bst.bst
-Illegal, another \bibstyle command---line 88 of file template_tesis_mdiae.aux
+Illegal, another \bibstyle command---line 107 of file template_tesis_mdiae.aux
  : \bibstyle
  :          {apa}
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: secciones/appendix.aux
 Database file #1: template_tesis_mdiae.bib.bib
 Warning--I'm ignoring proposal's extra "year" field
---line 129 of file template_tesis_mdiae.bib.bib
+--line 153 of file template_tesis_mdiae.bib.bib
 Warning--entry type for "cnnsarticle" isn't style-file defined
---line 356 of file template_tesis_mdiae.bib.bib
+--line 380 of file template_tesis_mdiae.bib.bib
 Warning--to sort, need author or key in variants_gd
 Warning--empty journal in Analysis_deep_network
 Warning--empty journal in HOG_algoritmo
@@ -65,45 +28,45 @@ Warning--empty journal in pnn
 Warning--empty journal in Cheang
 Warning--empty journal in selectivesearch
 Warning--empty journal in edges
-You've used 30 entries,
+You've used 33 entries,
             2773 wiz_defined-function locations,
-            783 strings with 10252 characters,
-and the built_in function-call counts, 12317 in all, are:
-= -- 1039
-> -- 836
-< -- 14
-+ -- 285
-- -- 255
-* -- 968
-:= -- 2000
-add.period$ -- 102
-call.type$ -- 30
-change.case$ -- 173
-chr.to.int$ -- 30
-cite$ -- 70
-duplicate$ -- 566
-empty$ -- 929
-format.name$ -- 296
-if$ -- 2508
+            794 strings with 10563 characters,
+and the built_in function-call counts, 13501 in all, are:
+= -- 1136
+> -- 915
+< -- 15
++ -- 312
+- -- 279
+* -- 1059
+:= -- 2191
+add.period$ -- 112
+call.type$ -- 33
+change.case$ -- 189
+chr.to.int$ -- 33
+cite$ -- 76
+duplicate$ -- 622
+empty$ -- 1025
+format.name$ -- 323
+if$ -- 2752
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 27
-newline$ -- 170
-num.names$ -- 116
-pop$ -- 364
+missing$ -- 30
+newline$ -- 186
+num.names$ -- 128
+pop$ -- 402
 preamble$ -- 1
-purify$ -- 145
+purify$ -- 159
 quote$ -- 0
-skip$ -- 449
+skip$ -- 494
 stack$ -- 0
-substring$ -- 109
-swap$ -- 27
+substring$ -- 115
+swap$ -- 30
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 315
+type$ -- 343
 warning$ -- 9
-while$ -- 89
+while$ -- 98
 width$ -- 0
-write$ -- 393
-(There were 8 error messages)
+write$ -- 432
+(There was 1 error message)

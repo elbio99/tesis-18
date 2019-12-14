@@ -25,12 +25,8 @@ En nuestro caso como estamos utilizando SVM (Sec: \ref{sub:clasificadores}) los 
 
 Se utilizo además \textit{k-fold cross-validation} junto con \textit{Grid Search} en el cual por cada iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación (Sec: \ref{sub:validacion-modelo}), el valor utilizado fue de $k=5$.
 
-El rango de hiperparámetros utilizados para entrenar el modelo con  \textit{k-fold cross-validation} y \textit{Grid Search} fueron los siguientes: 
-\begin{itemize}
-    \item Tipos de kernel: lineal, RBF (gaussiano)
-    \item Rango de valores de C: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
-    \item Rango de valores de gamma: (1,0,1,0,01,0,001,0,0001,0,00001)
-\end{itemize}
+El rango de hiperparámetros utilizados para entrenar el modelo con  \textit{k-fold cross-validation} y \textit{Grid Search} fueron los siguientes: \textit{Tipos de kernel}: lineal, RBF (gaussiano); \textit{rango de valores de C}: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
+    y \textit{rango de valores de gamma}: (1,0,1,0,01,0,001,0,0001,0,00001)
 
 \subsection*{Evaluación del modelo}\label{sub:evaluacion_class}
 
@@ -91,38 +87,29 @@ En las combinaciones de bandas \textbf{1-5-3} (falso color) se puede ver que se 
 
 Se pudo observar que la mayoría de las combinaciones de bandas que presentan \textit{average precision} (AP), medida que calcula  el área bajo la curva entre precisión y recall, mayor a $70\%$ la naturaleza de las imágenes son muy idénticas como se puede observar en la figura \ref{Fig:imagen_banda_153} y \ref{Fig:imagen_banda_9711}; para dar un ejemplo de esta medida, cada 10 regiones positivas se detectaron $8$ regiones. Por otro lado se observa que en la mayoría de los casos donde el modelo detecto \textit{falsos positivos} se debió al contraste entre las nubes y el suelo o agua.
 
+
+
 Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (fig:\ref{Fig:IOU1075}) (color verdadero o por su nombre en ingles \textit{True color}), en esta combinación de bandas se obtuvieron los mejores resultados en cuanto a las métricas de AP (fig:\ref{Fig:AP1075}) y  \textit{mean overlap}, esta ultima medida calculamos la intersección sobre unión \textit{IoU} de las regiones, este valor nos dice que tan exacto es el modelo en cuanto a precisión en términos de localización de la región. Con esta combinación de banda el modelo supo generalizar logrando aprender las características del \textit{ground thruth} en la imagen, como se puede ver en la misma posee diferentes tonalidades del suelo así también a simple vista se puede detectar los diferentes contraste que hay entre las nubes, suelo o agua, estas características particulares hacen que permita identificar de manera adecuada las diferentes clases que estamos buscando.
 
-\begin{figure}[H]\centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/ROC153.png}
-  \caption{Average precision, bandas 1-5-3} \label{Fig:ROC153}
-\end{figure}
-\begin{figure}[H]\centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/AP9711.png}
- \caption{Average precision, bandas 9-7-11} \label{Fig:AP9711}
-\end{figure}
- \begin{figure}[H]\centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/ROC1075.png}
-  \caption{Average precision, bandas 10-7-5} \label{Fig:AP1075}
+
+
+\begin{figure}[htbp]
+\centering
+\subfigure[ROC-1-5-3]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC153.png}}
+\subfigure[ROC-9-7-11]{\includegraphics[scale=0.3]{imagenes/evaluacion/AP9711.png}}
+\subfigure[ROC-10-7-5]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC1075.png}}
+\caption{Average precision} \label{fig:Average_precision}
 \end{figure}
 
- \begin{figure}[H]
- \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-5-3.png}
-  \caption{Combinación de bandas 1-5-3} \label{Fig:imagen_banda_153}
-\end{figure}
- 
- \begin{figure}[H]
- \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/9-7-11.png}
-  \caption{Combinación de bandas 9-7-11} \label{Fig:imagen_banda_9711}
+
+\begin{figure}[htbp]
+\centering
+\subfigure[1-5-3]{\includegraphics[scale=0.2]{imagenes/evaluacion/1-5-3.png}}
+\subfigure[9-7-11]{\includegraphics[scale=0.2]{imagenes/evaluacion/9-7-11.png}}
+\subfigure[10-7-5]{\includegraphics[scale=0.2]{imagenes/evaluacion/10-7-5.png}}
+\caption{Combinaciones de bandas} \label{fig:COMB_BANDAS}
 \end{figure}
 
-  \begin{figure}[H]
- \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/10-7-5.png}
-  \caption{Combinación de bandas 10-7-5} \label{Fig:IOU1075}
-\end{figure}
  
 El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fue las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la parecencia de las misma, por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
  
