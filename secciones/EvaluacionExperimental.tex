@@ -1,46 +1,39 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En los capítulos anteriores se desarrollaron métodos, algoritmos de aprendizaje supervisado, redes neuronales y las diversas fuentes de datos para poder entrenar un modelo de detección. En  base a lo desarrollado en estas secciones  como se menciona previamente explicaremos el proceso de aprendizaje llevado a cabo explicando todos los  experimentos realizados para la construcción del modelo como así también  el proceso de validación y las métricas se utilizaron para su evaluación. Para finalizar se discutirá los resultados obtenidos. 
-
-%En este capítulo se desarrollará como se realizo el proceso de aprendizaje de los datos y los procesos de validación que se llevaron a cabo; a su vez se detallan las métricas obtenidas de cada modelo entrenado.
-
+En los capítulos anteriores se explicaron diferentes métodos de algoritmos de aprendizaje supervisado, redes neuronales y las diversas fuentes de datos para poder entrenar un modelo de detección. En  base a lo desarrollado en las anteriores secciones  explicaremos el proceso de aprendizaje llevado a cabo detallando todos los  experimentos realizados para la construcción del modelo como así también  el proceso de validación y las métricas que se utilizaron para su evaluación. Para finalizar se discutirá todos los resultados obtenidos de cada uno de los  experimentos realizados. 
 
 \section{Datos de entrenamiento}\label{sec:datos_entrenamiento}
 
-Los datos para la construcción del modelo se dividió en  datos entrenamiento y datos de test. Cada conjunto de imágenes de combinaciones de bandas (Sec:\ref{sub:comb_de_banda}) se los dividió en 40 imágenes para el entrenamiento y 10 imágenes para el test. Para cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado en la  en la sección (Sec:\ref{sec: pipeline}). En promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el dataset final de entrenamiento fue de $60000$ y el de test $15000$ en promedio dependiendo de las características de cada una de las combinaciones de bandas y las imágenes. 
+Para la construcción del modelo se dividió en  datos entrenamiento y datos de test. Cada conjunto de imágenes de combinaciones de bandas (Sec:\ref{sub:comb_de_banda}) se los dividió en 40 imágenes para el entrenamiento y 10 imágenes para el test. Para cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado en la  en la sección (Sec:\ref{sec: pipeline}). En promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el dataset final de entrenamiento fue de $60000$ y el de test $15000$  dependiendo de las características de cada una de las combinaciones de bandas y las imágenes. 
 
 
 
 \section{Protocolo Experimental}\label{sec:entrenamiento}
 
-Siguiendo el pipeline desarrollado en la sección (Sec: \ref{sec: pipeline}) ya con los datos de entrenamiento se desarrollará la experimentación de los modelos de detección.
+Siguiendo el pipeline desarrollado en la sección (Sec: \ref{sec: pipeline}) ya con los datos de entrenamiento se desarrollo la experimentación de los modelos de detección.
 
 \subsection*{Clasificación - Entrenamiento}\label{sub:entr_class}
 
-Para la clasificación y construcción del modelo se utilizo \textbf{SVM} (Support Vector Machines) (Sec: \ref{sub:clasificadores}), cada entrenamiento se realizo utilizando regiones positivas y negativas de cada una de las imágenes.
+Para la clasificación y construcción del modelo se utilizo \ac{svm} (Sec: \ref{sub:clasificadores}), cada conjunto de entrenamiento se realizo utilizando regiones positivas y negativas de cada una de las imágenes obtenidas.
 
-En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, este tipos de parámetros se los llama hiperparámetros. Una de las técnicas mas usada en la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de hiperparámetros del modelo. La técnica \textit{Grid Search} busca por fuerza bruta los hiperparámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximiza alguna de las métricas previamente definida. 
+En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, estos  parámetros se los llama hiperparámetros, una de las técnicas mas usada para la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de parámetros del modelo. La técnica \textit{Grid Search} busca por fuerza bruta los parámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximice alguna de las métricas previamente definida, por ejemplo accuray. 
 
-En nuestro caso como estamos utilizando SVM (Sec: \ref{sub:clasificadores}) los hiperparámetros que debemos optimizar son \textit{C} y \textit{gamma}. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos, con valores grandes de \textit{C},  elegirá un hiperplano de menor margen el objetivo es encontrar el equilibrio entre "no demasiado estricto" y  "no demasiado relajado". El otro hiperparámetro a  optimizar de  \textit{gamma} es la inversa de la desviación estándar del kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
+En nuestro caso como estamos utilizando \ac{svm} (Sec: \ref{sub:clasificadores}) los hiperparámetros que debemos optimizar son \textit{C} y \textit{gamma}. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos, con valores grandes de \textit{C},  elegirá un hiperplano de menor margen, el objetivo es encontrar el equilibrio entre "no demasiado estricto" y  "no demasiado relajado". El otro hiperparámetro a  optimizar de  \textit{gamma} es la inversa de la desviación estándar del kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
 
-Se utilizo además \textit{k-fold cross-validation} junto con \textit{Grid Search} en el cual por cada iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación (Sec: \ref{sub:validacion-modelo}), el valor utilizado fue de $k=5$.
+Para evitar el overfitting (Sec:\ref{sub:problema_deteccion}) se utilizo \textit{k-fold cross-validation} (Sec:\ref{sub:validacion-modelo}) junto con \textit{Grid Search} en el cual por cada iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación, para todos los experimentos realizados el valor utilizado de $K$fue de $5$.
 
-El rango de hiperparámetros utilizados para entrenar el modelo con  \textit{k-fold cross-validation} y \textit{Grid Search} fueron los siguientes: \textit{Tipos de kernel}: lineal, RBF (gaussiano); \textit{rango de valores de C}: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
-    y \textit{rango de valores de gamma}: (1,0,1,0,01,0,001,0,0001,0,00001)
+El rango de hiperparámetros utilizados para entrenar el modelo con  \textit{k-fold cross-validation} y \textit{Grid Search} fueron los siguientes: \textit{Tipos de kernel}: lineal y RBF (gaussiano); para rango de valores de \textit{C}: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
+    y para rango de valores de \textit{gamma}: (1,0,1,0,01,0,001,0,0001,0,00001)
 
 \subsection*{Evaluación del modelo}\label{sub:evaluacion_class}
 
-Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (Sec: \ref{sub:evaluación-modelo}) como son: \textit{precisión}, nos da la medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; otra de las métricas desarrolladas para evaluar el modelo es a través de las \textit{curvas ROC}, esta curva nos representa la capacidad que tiene modelo entrenado en discriminar las clases positivas y negativas.
+Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (Sec: \ref{sub:evaluación-modelo}) estas son: \textit{precisión}, medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; otra de las métricas desarrolladas para evaluar el modelo es a través de las \textit{curvas ROC}, esta curva nos representa la capacidad que tiene modelo entrenado en discriminar entre clases positivas y negativas.
 
 El dataset utilizado para evaluar los modelos entrenados  consta de 10 imágenes, considerando el conjunto de imágenes con la combinación de banda correspondiente, cada una con un promedio de 1500 bounding boxes por imágenes repartidas en regiones tanto negativas como positivas.
 
 
-
-%Para validar los modelos utilizamos las métricas desarrolladas en la sección \ref{sub:evaluación-modelo}, la evaluación de la detección utilizamos \textit{IoU}, intersección sobre unión,  en esta métrica comparamos los bounding boxes predichos y el ground thruth etiquetado. Este valor nos da una visión de cual es la exactitud de nuestro modelo en cuanto a la localización del objeto.
-
-
-%\subsection*{Resultados obtenidos}\label{sub:resultado_obtenidos}
 En el siguiente cuadro \ref{tab:entrenam-result} se expone los resultados obtenidos de la validación de los modelos entrenados. En la columna \textit{bandas} describe la combinación de banda usada para el experimento; las columnas  de los hiperparámetros nos muestra los valores óptimos encontrados en el entrenamiento a través de algoritmo \textit{Grid Search} y \textit{k-fold cross-validation} , por ultimo tenemos las columnas relacionadas a las métricas finales obtenida en la validación de cada uno de los experimentos ejecutados.
+
 
 \begin{table}[H]
 \begin{center}
@@ -54,6 +47,16 @@ Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}av
 \multicolumn{1}{|c|}{3-1-5} & 100 & 0.01 & rbf & 0.93 & 0.95 & 0.72 & 0.31 \\ \hline
 \multicolumn{1}{|c|}{3-3-3} & 1000 & 1 & rbf & 0.92 & 0.92 & 0.28 & 0.1 \\ \hline
 \multicolumn{1}{|c|}{3-5-1} & 10 & 0.01 & rbf & 0.90 & 0.91 & 0.66 & 0.25 \\ \hline
+\end{tabular}
+\end{center}\caption{Resultados}\label{tab:entrenam-result}
+\end{table}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{3}{c|}{Hiperparámetros seleccionado} & \multicolumn{4}{c|}{Metricas} \\ \hline
+Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}average\\ precision \end{tabular} & \begin{tabular}[c]{@{}c@{}}mean overlap \end{tabular} \\ \hline
 \multicolumn{1}{|c|}{5-1-3} & 1 & 1 & rbf & 0.89 & 0.86 & 0.46 & 0.29 \\ \hline
 \multicolumn{1}{|c|}{5-3-1} & 1000 & 0.001 & rbf & 0.90 & 0.88 & 0.38 & 0.21 \\ \hline
 \multicolumn{1}{|c|}{5-5-5} & 100 & 0.01 & rbf & 0.89 & 0.85 & 0.63 & 0.26 \\ \hline
@@ -78,29 +81,18 @@ Bandas & C & gamma & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}av
 \multicolumn{1}{|c|}{5-4-3} & 1000 & 1 & rbf & 0.88 & 0.87 & 0.57 & 0.27 \\ \hline
 \multicolumn{1}{|c|}{\textbf{10-7-5}} & \textbf{1000} &\textbf{ 0.001} & \textbf{rbf} & 0.91 & 0.96 &\cellcolor{blue!25}\textbf{0.93} & \cellcolor{blue!25}\textbf{0.36}\\ \hline
 \end{tabular}
-\end{center}\caption{Resultados}\label{tab:entrenam-result}
+\end{center}\caption{Resultados (cont)}\label{tab:entrenam-result}
 \end{table}
 
-Como se puede observar en la tabla anterior \ref{tab:entrenam-result} existen diversas combinaciones de bandas que maximizan las métricas que estamos optimizando: precision, recall, average precision y mean overlap.  
+En base a los resultados obtenidos de cada entrenamiento expuesto en la tabla \ref{tab:entrenam-result} existen diversas combinaciones de bandas en la cual se obtienen mejores métricas de precision, recall, average precision y mean overlap con respecto a otra.  
 
-En las combinaciones de bandas \textbf{1-5-3} (falso color) se puede ver que se obtuvo métricas en comparación con el resto mayores en precision como en recall, esto nos dice que el modelo entrenado con esta banda predijo con una precisión de  $94\%$  si la región buscada era la región de interés y con un error del $6\%$ el modelo se equivoco al predecir como verdadero una región que no era del área de interés (falso positivo), de la misma forma el recall para esta banda nos indica que en un $6\%$ no se logro detectar regiones de interés. En los falsos positivos detectados se observo en todo los casos que debido a la naturaleza de la imagen el modelo tiende a confundirse con las nubes blancas como se puede observar en la imagen \ref{Fig:imagen_banda_153}.
+En las combinaciones de bandas \textbf{1-5-3} (falso color) se puede ver que se obtuvo métricas en comparación con el resto mayores en precision como en recall, esto nos dice que el modelo entrenado con esta banda predijo con una precisión de  $94\%$  si la región buscada era la región de interés y con un error del $6\%$ el modelo se equivoco al predecir como verdadero una región que no era del área de interés (falso positivo), de la misma forma el recall para esta banda nos indica que en un $6\%$ no se logro detectar regiones de interés. En los falsos positivos detectados se observo en todo los casos que debido a la naturaleza de la imagen el modelo tiende a confundirse con las nubes blancas como se puede observar en la imagen (a) \ref{fig:COMB_BANDAS}.
 
-Se pudo observar que la mayoría de las combinaciones de bandas que presentan \textit{average precision} (AP), medida que calcula  el área bajo la curva entre precisión y recall, mayor a $70\%$ la naturaleza de las imágenes son muy idénticas como se puede observar en la figura \ref{Fig:imagen_banda_153} y \ref{Fig:imagen_banda_9711}; para dar un ejemplo de esta medida, cada 10 regiones positivas se detectaron $8$ regiones. Por otro lado se observa que en la mayoría de los casos donde el modelo detecto \textit{falsos positivos} se debió al contraste entre las nubes y el suelo o agua.
-
-
-
-Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (fig:\ref{Fig:IOU1075}) (color verdadero o por su nombre en ingles \textit{True color}), en esta combinación de bandas se obtuvieron los mejores resultados en cuanto a las métricas de AP (fig:\ref{Fig:AP1075}) y  \textit{mean overlap}, esta ultima medida calculamos la intersección sobre unión \textit{IoU} de las regiones, este valor nos dice que tan exacto es el modelo en cuanto a precisión en términos de localización de la región. Con esta combinación de banda el modelo supo generalizar logrando aprender las características del \textit{ground thruth} en la imagen, como se puede ver en la misma posee diferentes tonalidades del suelo así también a simple vista se puede detectar los diferentes contraste que hay entre las nubes, suelo o agua, estas características particulares hacen que permita identificar de manera adecuada las diferentes clases que estamos buscando.
+Se pudo observar que la mayoría de las combinaciones de bandas que presentan \textit{average precision} (AP), medida que calcula  el área bajo la curva entre precisión y recall, mayor a $70\%$ la naturaleza de las imágenes son muy idénticas como se puede observar en la figura (a) \ref{fig:COMB_BANDAS} y (b) \ref{fig:COMB_BANDAS}; para dar un ejemplo de esta medida, cada 10 regiones positivas se detectaron $8$ regiones. Por otro lado se observa que en la mayoría de los casos donde el modelo detecto \textit{falsos positivos} se debió al contraste entre las nubes y el suelo o agua.
 
 
 
-\begin{figure}[htbp]
-\centering
-\subfigure[ROC-1-5-3]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC153.png}}
-\subfigure[ROC-9-7-11]{\includegraphics[scale=0.3]{imagenes/evaluacion/AP9711.png}}
-\subfigure[ROC-10-7-5]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC1075.png}}
-\caption{Average precision} \label{fig:Average_precision}
-\end{figure}
-
+Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (c) (Fig:\ref{fig:COMB_BANDAS}) (color verdadero o por su nombre en ingles \textit{True color}), en esta combinación de bandas se obtuvieron los mejores resultados en cuanto a las métricas de AP (avergage precision) y  \textit{mean overlap}, esta ultima medida se calcula la intersección sobre unión \textit{IoU} de las regiones, el resultado nos dice que tan exacto es el modelo en cuanto a precisión en términos de localización de la región. Con esta combinación de banda el modelo supo generalizar logrando aprender las características del \textit{ground thruth} en la imagen, como se puede ver en la misma posee diferentes tonalidades del suelo así también a simple vista se puede detectar los diferentes contraste que hay entre las nubes, suelo o agua, estas características particulares hacen que permita identificar de manera adecuada las diferentes clases que estamos buscando.
 
 \begin{figure}[htbp]
 \centering
@@ -110,18 +102,31 @@ Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (fig:\ref{Fig:IO
 \caption{Combinaciones de bandas} \label{fig:COMB_BANDAS}
 \end{figure}
 
+Para realizar un análisis mas detallado de la performance de los modelos entrenados se seleccionaron aquellos que tienen mejores métricas con respecto al resto analizando las \textit{curvas ROC} esta permite ver la capacidad del modelo entrenado en discriminar las diferentes clases.
+
+\begin{figure}[htbp]
+\centering
+\subfigure[ROC-1-5-3]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC153.png}}
+\subfigure[ROC-9-7-11]{\includegraphics[scale=0.3]{imagenes/evaluacion/AP9711.png}}
+\subfigure[ROC-10-7-5]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC1075.png}}
+\caption{Curvas ROC, average presicion} \label{fig:Average_precision}
+\end{figure}
+ 
+
+
+
  
 El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fue las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la parecencia de las misma, por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
  
  \begin{figure}[H]\centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-1-1.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-1-1.png}
   \caption{Combinación de bandas 1-1-1} \label{Fig:imagen_banda_111}
 \end{figure}
  
 Para finalizar la evaluación experimental se predijo a modo de ejemplo una imagen nunca vista por los modelos entrenados, en este caso utilizamos el modelo entrenado con las bandas \textbf{9-7-11} para realizar la predicción en la figura siguiente  \ref{Fig: TP} se pude visualizar el resultado de la misma.
 
 \begin{figure}[H]\centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/evaluacion/prediction-9711.png}
+  \includegraphics[scale=0.05,keepaspectratio=true,clip=true]{imagenes/evaluacion/prediction-9711.png}
   \caption{Predicción modelo - bandas 9-7-11} \label{Fig: TP}
 \end{figure}
 
