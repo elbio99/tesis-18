@@ -2,23 +2,24 @@
 
 
 \section{Conclusiones}
-En el desarrollo de la presente tesis se abordo un problema de detección buscando patrones de interes, laguna Mar Chiquita y golfo de San Matias, dentro de una imagen satelital.
-Para la construcción de la solución se utilizaron diferentes técnicas para el pre-procesamiento de la imagen, redes neuronales para la extracción de característica y algoritmos de clasificación. Como resultado de todos los experimentos realizados se puede exponer las siguientes conclusiones:
+En el desarrollo de la presente tesis se abordo un problema de detección buscando patrones de interés, laguna Mar Chiquita y golfo de San Matías, dentro de una imagen satelital. Para la construcción de la solución se utilizaron diferentes técnicas para el pre-procesamiento de la imagen, redes neuronales para la extracción de característica y algoritmos de clasificación. 
+
+Como resultado de todos los experimentos realizados se puede exponer las siguientes conclusiones:
 
 \begin{enumerate}
-\item Utilizar técnicas de aprendizaje automático en el proceso de automatización de tareas, como en este caso la detección de patrones en una imagen satelital, nos brinda una fuente de información extra en el proceso de calibración/detección. 
+\item Utilizar técnicas de aprendizaje automático en el proceso de automatización de tareas, como en este caso la detección de patrones en una imagen satelital, nos brinda una fuente de información extra para poder realizar el proceso de calibración/detección que se busca en el satélite. 
 
-\item Al trabajar con imágenes satelitales en donde las resoluciónes de la misma son grandes, se debe tener en cuenta el tamaño de la regiones de interes que se quiere detectar.
+\item Al trabajar con imágenes satelitales en donde las resoluciones de la misma son grandes, se debe tener en cuenta el tamaño de la regiones de interés que se quiere detectar.
 
-\item Uno de los puntos importantes es el tipo del hardware que vamos a utilizar, el computo de los vectores de característica utilizando redes neuronales es costoso en terminos de memoria y velocidad, es por este motivo que en la mayoria de los casos de uso utilizan GPU para el procesamiento.
+\item Uno de los puntos importantes es el tipo del hardware que vamos a utilizar, el computo de los vectores de característica utilizando redes neuronales es costoso en términos de memoria y velocidad, es por este motivo que en la mayoría de los casos de uso utilizan GPU para el procesamiento.
 
 \item En base a las experimentaciones realizadas podemos afirmar que aplicar redes neuronales pre-entrenadas para la extracción de característica se obtiene una correcta generalización de los datos y son muy eficiente para problemas de clasificación de imágenes.
 
-\item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos, esto se debio al inbalance de clases ya que se recolecto muy pocas muestras positivas, en la mayoria de los casos debido a las nubes que interptaban la region de interes. Se solucióno este problema usando técnicas de cross-validation
+\item Unos de los principales inconvenientes detectados fue el \textit{overfitting} de los datos, esto se debió al desbalanceo de clases ya que se recolecto muy pocas muestras positivas, en la mayoría de los casos debido a las nubes que interceptaban la región de interés buscada. Se soluciono este problema usando técnicas de cross-validation.
 
 \end{enumerate}
 
-El costo computacional en termino de capacidad de operaciones hace que aplicar técnicas de computer vision sea  muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite, es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{cv} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
+El costo computacional en termino de capacidad de operaciones hace que utilizar técnicas de \ac{cv} sea  muy costoso de aplicar en vuelo. Unos de los principales inconvenientes son la limitaciones de energía que posee un micro-nano-satélite, es por esto que se torna inviable en términos de energía y capacidad de almacenamiento poder implementar esta tecnología. No obstante pudimos ver que herramientas como \ac{ml} y \ac{cv} ayudan de manera eficiente a detectar elemento sobre una imagen satelital automatizando los procesos.
 
 
 
