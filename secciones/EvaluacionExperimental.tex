@@ -102,7 +102,9 @@ Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (c) (Fig:\ref{fi
 \caption{Combinaciones de bandas} \label{fig:COMB_BANDAS}
 \end{figure}
 
-Para realizar un análisis mas detallado de la performance de los modelos entrenados se seleccionaron aquellos que tienen mejores métricas con respecto al resto analizando las \textit{curvas ROC} esta permite ver la capacidad del modelo entrenado en discriminar las diferentes clases.
+Para realizar un análisis mas detallado de la performance de los modelos entrenados se seleccionaron aquellos que tienen mejores métricas con respecto al resto analizando las \textit{curvas ROC} esta permite ver la capacidad del modelo entrenado en discriminar las diferentes clases. En el grafico \ref{fig:Average_precision} se puede visualizar para todas las curvas ROC a medida que aumenta el valor de \textit{recall} va disminuyendo la \textit{precision}. El objetivo es identificar aquel valor que aumente el recall sin perder la precision.
+
+Para las bandas 1-5-3 (Fig: \ref{fig:Average_precision} (a)) el valor optimo se da cuando la precision esta en $0.9$ y $0.2$ en recall, esto nos indica que el modelo entrenado tiene un porcentaje alto de precision a la hora de clasificar una nueva imagen pero un recall bajo ya que no captura todas las regiones dentro de la imagen de igual manera para las bandas 9-7-11 (Fig: \ref{fig:Average_precision} (b)) el valor observado optimo esta dado entre la precision $0.9$ y recall $0.4$, siendo este ultimo valor mas optimo en relación a las bandas 1-5-3. Por ultimo las bandas 10-7-5 (Fig: \ref{fig:Average_precision} (c)) se puede observar que el modelo generalizo de manera optima logrando capturar las características de las imágenes es por esto que se obtuvo una precision de $0.9$ y recall  de $0.8$, siendo este el modelo entrenado mas óptimo. 
 
 \begin{figure}[htbp]
 \centering
@@ -112,18 +114,14 @@ Para realizar un análisis mas detallado de la performance de los modelos entren
 \caption{Curvas ROC, average presicion} \label{fig:Average_precision}
 \end{figure}
  
-
-
-
- 
-El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fue las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la parecencia de las misma, por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
+Como se observo en los diferentes experimentos realizados, las imágenes construidas con diferentes bandas nos brindan diversas fuente de información que nos permiten construir y mejorar los modelos de \ac{ml}. El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fueron las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la parecencia de las misma; por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
  
  \begin{figure}[H]\centering
   \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-1-1.png}
   \caption{Combinación de bandas 1-1-1} \label{Fig:imagen_banda_111}
 \end{figure}
  
-Para finalizar la evaluación experimental se predijo a modo de ejemplo una imagen nunca vista por los modelos entrenados, en este caso utilizamos el modelo entrenado con las bandas \textbf{9-7-11} para realizar la predicción en la figura siguiente  \ref{Fig: TP} se pude visualizar el resultado de la misma.
+Para finalizar la evaluación experimental se predijo a modo de ejemplo una imagen nunca vista por los modelos entrenados, en este caso utilizamos el modelo entrenado con las bandas \textbf{9-7-11} para realizar la predicción, en la figura siguiente  \ref{Fig: TP} se pude visualizar el resultado de la misma.
 
 \begin{figure}[H]\centering
   \includegraphics[scale=0.05,keepaspectratio=true,clip=true]{imagenes/evaluacion/prediction-9711.png}
