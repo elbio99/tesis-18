@@ -1,13 +1,9 @@
 \chapter{ANEXO}\label{chap:anexo}
 \section{Instalación Labelme}\label{sec:instalacionlabelme}
 La instalación de \textit{labelme}, se realizo bajo un sistema operativo Ubuntu-Linux Mint v18.0; se debe instalar las siguiente dependencias:
-\begin{itemize}
-\item \href{https://www.scipy.org/}{Scipy}
-\item \href{http://www.numpy.org/}{Numpy}
-\item \href{http://scikit-image.org/}{scikit-image}
-\item \href{https://riverbankcomputing.com/software/pyqt/intro}{PyQt}
-\item \href{http://matplotlib.org/}{Matplot}
-\end{itemize}
+\href{https://www.scipy.org/}{Scipy},\href{http://www.numpy.org/}{Numpy},\href{http://scikit-image.org/}{scikit-image}
+,\href{https://riverbankcomputing.com/software/pyqt/intro}{PyQt}, \href{http://matplotlib.org/}{Matplot}
+
 
 Luego desde la terminal de Linux ingresamos los siguientes comandos:
 
@@ -19,7 +15,7 @@ Para iniciar \textit{labelme} se ingresa desde la terminal el siguiente comando:
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/labelme1.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/Apendice/labelme1.png}
   \caption{Pantalla Principal \textit{labelme}}
 	\label{Fig: labelme}
 \end{figure}
@@ -81,105 +77,115 @@ la solapa \textit{Catálogo de imágenes y productos}:
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag.png}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag.png}
   \caption{Pantalla Principal CONAE}
 \end{figure}
+
 Luego en las secciones de la izquierda de la pagina seleccionamos Aqua, Terra correspondiente al sensor modis o NPP para viirs.
 \begin{figure}[h]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag1.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag1.png}
   \caption{Pantalla Principal CONAE}
 \end{figure}
 Para la descargas de las imágenes se debe autenticar, si no posee un usuario debe darse de alta en el sistema. Una vez autenticado podemos buscar por fecha, región, latitud,
 longitud o nombre de la imagen.
 \begin{figure}[h]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag2.png}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag2.png}
   \caption{Autenticación de usuario}
 \end{figure}
 Una vez seleccionada la imagen a descargar nos aparece las características de la imagen junto con las bandas que deseamos y su correspondiente archivo de georeferenciación.
 \begin{figure}[H]
  \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag3.png}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/Apendice/conaepag3.png}
   \caption{Descarga de Imagen}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Recolección de Imágenes}\label{sub:recolecciondeimagen}
+\section{Desarrollo del Software}\label{sec:Desarrollo}
 
-En esta sección vamos a desarrollar los pasos que se siguieron para la obtención de las imágenes; para esto dividiremos en dos partes las tareas realizadas por un lado se realizo la descargas de las imágenes y por otro el pre-procesamiento de las mismas. El primer paso hacemos  referencia a la descarga manual de los datos conseguidos a través de la pagina oficial de \ac{conae}; el segundo punto al que llamamos pre-procesamiento se realizaron las conversiones de los datos como se menciona en la seccion anterior \ref{sec:datosutilizados}. Para poder llevar a cabo esta ultima tarea se utilizo la herramienta de procesamiento de imágenes ENVI \ref{sub:enviSoft}, software para el análisis de imágenes. Este software nos proporciona diferentes herramientas para la manipulación y procesamiento  de  una imagen satelital, de las cuales podemos mencionar la \textit{VIIRS Conversion Toolkit}, herramienta nos permite trabajar con imágenes del instrumento \ac{viirs}, pudiendo aplicar a las imágenes correcciones geométricas, geo-referenciacion y re-proyecciones entre las diferentes funcionalidades que nos brinda. 
-
-En este proceso de conversión de imágenes se realizaron diversos pasos para la obtención de las imágenes finales de los cuales se detallan a continuación:
-
-\begin{enumerate}
-
-\item Inicio, pantalla principal ENVI:
-	\begin{figure}[H]\centering
-		\includegraphics[height=1.5cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/envi1.png}
-  		\caption{Pantalla Principal ENVI} \label{Fig: envi1}
-	\end{figure}
+El capitulo siguiente se describirá las diferentes herramientas de software utilizadas para el desarrollo de esta tesis. El mismo se dividirá en dos secciones la primera describe los detalles técnicos como lenguaje de programación, librerías de software y entorno de trabajo; la segunda sección se muestra la organización y estructura del código realizado.
 
 
-\item Procesamiento: abrir la herramienta \textit{VIIRS Conversion Toolkit} e ingresar los archivos de cada banda adjuntando el archivo  geo-referenciado, para realizar la carga de la imagen manual(figura: \ref{Fig: envi2}).
+\subsection{Detalles Técnicos e Implementación}\label{sec:implementacion}
 
-\begin{figure}[H] \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/envi2.png}
-  \caption{Cargar Bandas ENVI Toolkit} \label{Fig: envi2}
-\end{figure}
+\subsubsection*{Python}
+Python es un lenguaje de programación de código abierto y multiparadigma que permite la programación orientada a objeto, funcional e imperativa. 
+Cuenta con estructuras de datos eficientes y de alto nivel, el interprete de Python puede extenderse fácilmente  con nuevas funcionalidades y tipos 
+de  datos implementados en C o C++, además cuenta con una amplia comunidad de soporte y 
+documentación \footnote{Fuente:www.docs.python.org.ar/tutorial}. 
 
-\item Re-proyección de imagen: adjuntar bandas a utilizar; se debe asignar de acuerdo al color que corresponda cada banda (RGB) (figura: \ref{Fig: envi3}).
- 
+Los principales motivos por el cual se optó por este lenguaje de programación es:
+\begin{itemize}
+ \item Facilidad de implementación y manipulación de grandes cantidades de datos.
+ \item Lenguaje muy utilizado en el ámbito laboral de \ac{ml}.
+ \item Posee diversas librerías para \ac{ml} y \ac{cv} en manipulación de datos e imágenes.
+\end{itemize}
+
+
+\subsubsection*{OpenCV}
+\ac{opencv}, es una librería de código libre que nos permite manipular imágenes de manera mas eficiente; esta librería se usa en diferentes ámbitos no solo académico, sino también en ámbitos comerciales, como ejemplo en sistemas de seguridad para detección de movimiento, control de procesos, control de calidad de alimentos, automatización de vehículos y en numerosas áreas de la ciencia como robótica, detección de objetos, reconstrucciones 3D, realidad aumentada, etc. \footnote{Fuente: http://opencv.org/} La biblioteca \ac{opencv} puede ser usado bajo licencia BSD (Berkeley Software Distribution) \footnote{Fuente: https://blog.desdelinux.net/hablemos-de-la-licencia-bsd/ } para proyectos escolares o comerciales. 
+
+\subsubsection*{Keras}
+
+Es una interfaz de programación (API) de alto nivel para redes neuronales, escrita en python , para la manipulación y uso de modelos de \ac{cnn}. Envuelve las eficientes bibliotecas de cálculo numérico Theano y TensorFlow y permite definir y entrenar modelos de redes neuronales en unas breves líneas de código \footnote{Fuente:  https://keras.io/}. Como principal inconveniente encontrado es la escasa documentación de la librería.
+
+\subsubsection*{Scikit-Learn}\label{sub:sklearn}
+Scikit-Learn es una librería de software desarrollada en Python para solucionar problemas de \ac{ml}; que comprende en intentar predecir datos desconocidos a partir de modelos creados. Cuenta con varios algoritmos para la solución de problemas de ,regresión, clasificación y clustering, incluyendo algoritmos como maquinas de soporte vectoriales, vecino mas cercano (K-NN), descenso de gradiente , entre otros\footnote{Fuente: http://scikit-learn.org/stable/index.html}.
+
+Su principal ventaja es la fácil implementación y manipulación de los algoritmos contenidos en la librería.
+
+\subsubsection*{Entorno de desarrollo}
+El entorno de desarrollo utilizado fue el ID \textit{Eclipse}, herramienta de código abierto multiplataforma. Esta herramienta fue diseñada para ser extendida de forma indefinida a través de \textit{plug-ins}. Sus principales características son:
+\begin{itemize}
+ \item Perspectivas, editores y vistas
+ \item Gestión de proyectos
+ \item Extensa colección de \textit{plug-ins}
+\end{itemize}
+El \textit{plug-ins} utilizado para el desarrollo de la tesis fue \textit{Pydev, EGit}. El principal inconveniente encontrado de esta herramienta es 
+el consumo de memoria en ejecución, así también se presentaron inconvenientes a la hora de realizar integración en entornos colaborativos como Git.
+
+\subsubsection*{Control de Versiones}
+
+Las herramientas que se utilizaron para llevar un control del versiones en el desarrollo fueron: \textit{GitHub}\footnote{Fuente: https://github.com/} y \textit{GitLab} \footnote{Fuente : https://about.gitlab.com/} , son software pensado en el mantenimiento de aplicaciones. El objetivo de estas aplicaciones gestionar los diversos cambios que se realizaron sobre los elementos de algún producto o alguna configuración del mismo; una versión, revisión o edición del producto, es el estado en el cual se encuentra el mismo.
+
+Las características principales son: herramientas gráficas para ver como se trabajo en el proyecto, entorno colaborativo permitiendo a diferentes desarrolladores compartir sus trabajos, registro histórico de cada acción realizada en cada elemento, seguimiento de errores.
+
+\section{Organización y Estructura del código}\label{sec:estructuracodigo}
+
+La organización del código experimental se dispuso en varios componentes separados con el fin de hacer el código mas re-utilizable.
+
+La estructura del directorio de trabajo es la siguiente:
+\begin{itemize}
+ \item \textbf{CNN}: Las funciones que contiene realizan el calculo del \textit{feature vector} a través de una red neuronal utilizando la librería 
+\textit{Keras}.
+ \item \textbf{ImgManipulation}: Almacena las diferentes funciones que permiten la manipulación de las imágenes de entrada 
+ \item \textbf{Notacion}: Contiene diferentes clases que permiten calcular los bounding box y \ac{nms}; también contiene las funciones que almacenan 
+la notaciones.
+ \item \textbf{Proposal}: Contiene la clase que ejecuta regions proposal.
+ \item \textbf{TensorF}:Almacena las funciones que permiten realizar el entrenamiento de los datos utilizando \textit{Scikit-Learn}.
+\end{itemize}
+
 \begin{figure}[H]
  \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/envi3.png}
-  \caption{Ejemplo re-proyección \textit{True Color}}
-	\label{Fig: envi3}
-\end{figure}
-
-\end{enumerate}
-
-La imagen resultante luego de esta serie de pasos  son las que se puede ver en la figura \ref{Fig: bandas543}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Instalación de Eclipse}\label{sec:instalacionEclipse}
-Para la instalación del ID Eclipse se debe seguir los siguientes pasos:
-
-Debemos ingresar a la siguiente url: http://www.eclipse.org/downloads/ y pulsar Downloads.
-\begin{figure}[H]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/eclipse1.png}
-  \caption{Eclipse}
-\end{figure}
-
-Se Descarga un archivo comprimido; descomprimimos el archivo e ingresamos a la carpeta descomprimida y ejecutamos el archivo 
-\textbf{eclipse.exe}. En la pantalla siguiente seleccionamos que versión de Eclipse descargar, en este caso Java Developers Eclipse.
-
-\begin{figure}[h]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/eclipse2.png}
-  \caption{Eclipse Instalación}
-\end{figure}
-
-\begin{figure}[h]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/eclipse3.png}
-  \caption{Eclipse Instalación}
-\end{figure}
-
-\begin{figure}[h]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/eclipse4.png}
-  \caption{Eclipse Entorno Principal}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/Logos/structureData.png}
+  \caption{Estructura de directorio de trabajo}
 \end{figure}
 
 
-\subsubsection*{Plug-ins}
-Para la instalación de los \textit{plug-ins} se siguió los siguientes pasos: \textit{Help->EclipseMarketplace} buscar los plug-ins \textit{Pydev} y 
-\textit{Egit}. Reiniciar la herramienta para que tome las instalaciones realizadas.
-\begin{figure}[h]
- \centering
-  \includegraphics[height=8cm,keepaspectratio=true,clip=true]{imagenes/Apendice/eclipse5.png}
-  \caption{Eclipse instalación plug-ins}
-\end{figure}
+\textbf{main.py}\\
+Este scripts constituye la parte principal del proceso automatizado; llamando a las diferentes clases mencionadas previamente. Las principales 
+acciones que lleva a cabo son:
+\begin{itemize}
+ \item Lee las carpetas que contiene las imágenes junto con las anotaciones de cada una de ellas.
+ \item Comprueba que exista las notaciones
+ \item A cada imagen realiza el crop(recorte) correspondiente.
+ \item Extrae las anotaciones de cada imagen.
+ \item Llama a la clase para calcular \textit{regions proposal}.
+ \item Calcula el \textit{overlapping}, \ac{nms} para cada imagen.
+ \item Calcula los \textit{features vectors}
+ \item Almacena los datos en un archivo .mat
+ \item Para finalizar realiza una llamada a la función para el entrenamiento.
+\end{itemize}
 
-
+\subsubsection*{Documentación}\label{sub:documentacion}
+Para documentar el desarrollo realizado se utilizo la herramienta \textbf{\textit{Doxygen}}. Esta herramienta es un generador de documentación de fácil integración y uso en python.
