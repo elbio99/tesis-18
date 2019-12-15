@@ -45,14 +45,14 @@ En esta etapa de trabajo se basó en recolectar todos los datos que serán usado
 %
 \subsubsection*{Preprocesamiento}
 
-A partir de los datos descargados en el paso anterior se debe realizar el procesamiento de los mismos para poder utilizarlo; este procesamiento se basa en convertir los datos \textit{raw} en imágenes. El proceso de conversión de datos en imágenes se realizo a través de la herramienta \textit{ENVI} \ref{sub:enviSoft}, esta herramienta es un software  especializado en el procesamiento y análisis de imágenes  geoespaciales.
+A partir de los datos descargados en el paso anterior se debe realizar el procesamiento de los mismos para poder utilizarlo; este procesamiento se basa en convertir los datos \textit{raw} en imágenes. El proceso de conversión de datos en imágenes se realizo a través de la herramienta \textit{ENVI}, esta herramienta es un software  especializado en el procesamiento y análisis de imágenes  geoespaciales.
 
 Debido a la característica que posee el sensor que utilizamos en el desarrollo ,\textit{VIIRS}, se descompone en diferentes bandas en el espectro electromagnético de las cuales seis bandas son relacionadas en el espectro visible (\textit{VIS}), cuatro en el infrarrojo cercano (\textit{NIR} por sus siglas en inglés), cuatro en el infrarrojo de onda corta (\textit{SWIR}), tres en el infrarrojo medio (\textit{MIR}) y cuatro en el infrarrojo térmico (\textit{TIR}). Para la construcción del set de datos final se usaron diferentes combinaciones de bandas (Sec:\ref{sub:comb_de_banda}), cada una de las bandas deben ser cargadas al software \textit{ENVI} que luego se combinaran cada una de estas en diversos canales \textit{RGB} para la construcción de la misma. Luego de este proceso obtenemos la imagen final como se puede visualizar en la siguiente figura \ref{Fig:img-final}.
 
 En el sección \ref{sec:recoleccion} se desarrolla de manera mas detallada que bandas bandas fueron utilizadas y el proceso que se llevo a cabo para conversión de datos.
 
 \begin{figure}[H] \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/tbd/pre-img.png}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/tbd/pre-img.png}
   \caption{Imagen final obtenida luego del procesamiento.}\label{Fig:img-final}
 \end{figure}
 
@@ -63,7 +63,7 @@ Una vez obtenida las imágenes se generó regiones candidatas a través de méto
 %coordenadas ($x$, $y$) al que pertenece dentro de la imagen. 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/tbd/proposal-img.png}
+  \includegraphics[scale=0.25,keepaspectratio=true,clip=true]{imagenes/tbd/proposal-img.png}
   \caption{Ejemplo regions proposal}\label{Fig:rp-ejemplo}
 \end{figure}
 
@@ -140,7 +140,7 @@ En el proceso de etiquetado debemos usar las anotaciones (polígonos) de nuestro
 %Para realizar el etiquetado de los datos se debe calcular \textit{IoU}, intersección sobre unión, entre la región candidata y las regiones de interés etiquetada previamente con la librería \textit{Labelme}, 
 
 \begin{figure}[H] \centering
-  \includegraphics[height=9cm,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
   \caption{Ground Thruth - etiquetado}\label{Fig:labelme-etiquetado}
 \end{figure}
 
@@ -234,38 +234,24 @@ Para construir el dataset de entada a la red se debió convertir los datos \text
 
 En el siguiente cuadro  \ref{tab:combinacion_banda} se puede ver todas las combinaciones de bandas utilizadas para la construcción del dataset. El conjunto de bandas seleccionadas para los experimentos son las de resolución moderada (M-bands) \ref{tab:viirs} , que posee una resolución espacial a nadir de 750 metros.
 
-\begin{table}[H] \begin{center}
-\begin{tabular}{|c|c|}\hline 
-Num & Combinación de banda\\ \hline 
-1  	& 	M1-M1-M1 	\\ \hline
-2  	&   M1-M3-M5	\\  \hline
-3  	& 	M1-M5-M3	\\ \hline
-4  	&   M3-M1-M5 	\\ \hline
-5   & 	M3-M3-M3 	\\ \hline
-6   & 	M3-M5-M1 	\\ \hline
-7   & 	M5-M1-M3 	\\ \hline
-8   & 	M5-M3-M1 	\\ \hline
-9   &   M5-M5-M5  	\\ \hline
-10  &	M7-M7-M7   	\\ \hline
-11  & 	M9-M9-M9   	\\ \hline
-12  & 	M11-M7-M9  	\\ \hline
-13  & 	M11-M9-M7  	\\ \hline
-14  &  	M7-M11-M9  	\\ \hline
-15  & 	M7-M9-M11  	\\ \hline
-16  & 	M9-M11-M7  	\\ \hline
-17  & 	M9-M7-M11  	\\ \hline
-18  & 	M11-M11-M11	\\ \hline
-19  & 	M11-M13-M15 \\ \hline
-20  & 	M11-M15-M13 \\ \hline
-21  & 	M13-M11-M15 \\ \hline
-22  & 	M13-M13-M13	\\ \hline
-23  & 	M13-M15-M11 \\ \hline
-24  & 	M15-M11-M13	\\ \hline
-25  & 	M15-M13-M11	\\ \hline
-26  & 	M15-M15-M15 \\ \hline
-27  & 	M5-M4-M3 	\\ \hline
-28  & 	M10-M7-M5 	\\ \hline   
-29  & 	M11-M12.M13	\\ \hline        	
+\begin{table}[h] \begin{center}
+\begin{tabular}{|c|c||c|c|}\hline 
+\textbf{Num} & \textbf{Combinación de banda} & \textbf{Num} & \textbf{Combinación de banda} \\ \hline 
+1  	& 	M1-M1-M1 			& 16  & 	M9-M11-M7  \\ \hline
+2  	&   M1-M3-M5			& 17  & 	M9-M7-M11\\  \hline
+3  	& 	M1-M5-M3			& 18  & 	M11-M11-M11\\ \hline
+4  	&   M3-M1-M5 			& 19  & 	M11-M13-M15\\ \hline
+5   & 	M3-M3-M3 			& 20  & 	M11-M15-M13\\ \hline
+6   & 	M3-M5-M1 			& 21  & 	M13-M11-M15 \\ \hline
+7   & 	M5-M1-M3 			& 22  & 	M13-M13-M13\\ \hline
+8   & 	M5-M3-M1 			& 23  & 	M13-M15-M11\\ \hline
+9   &   M5-M5-M5  			& 24  & 	M15-M11-M13\\ \hline
+10  &	M7-M7-M7   			& 25  & 	M15-M13-M11\\ \hline
+11  & 	M9-M9-M9   			& 26  & 	M15-M15-M15\\ \hline
+12  & 	M11-M7-M9  			& 27  & 	M5-M4-M3\\ \hline
+13  & 	M11-M9-M7  			& 28  & 	M10-M7-M5\\ \hline
+14  &  	M7-M11-M9  			& 29  & 	M11-M12.M13\\ \hline
+15  & 	M7-M9-M11  			& -& -\\ \hline      	
 \end{tabular}
 \end{center}\caption{Combinaciones de bandas utilizadas \label{tab:combinacion_banda}}
 \end{table}
@@ -274,7 +260,7 @@ En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las imág
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=10cm,keepaspectratio=true,clip=true]{imagenes/recoleccion/img-543.png}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/recoleccion/img-543.png}
   \caption{Combinación de bandas M5, M4 y M3}
 	\label{Fig: bandas543}
 \end{figure}
