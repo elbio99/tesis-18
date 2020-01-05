@@ -34,7 +34,7 @@ Las regiones utilizadas para la observación remota de la tierra son: \textit{Es
 
 
 \begin{figure}[H] \centering
-  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
   \caption{Espectro electromagnético \\(Adapatado de: https://iie.fing.edu.uy/proyectos/esopo/eem/).}\label{Fig:espectro-electromagnetico}
 \end{figure}
 
@@ -48,7 +48,7 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 \centering
 \subfigure[Resolución espacial ]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion.png}}
 \subfigure[Resolución radiometrica]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion_radiometrica.png}}
-\subfigure[Resolución espectral ]{\includegraphics[width=6.6cm,height=5.1cm]{imagenes/MarcoTeorico/resolucion_espectral.jpg}}
+\subfigure[Resolución espectral ]{\includegraphics[width=6.6cm,height=5.2cm]{imagenes/MarcoTeorico/resolucion_espectral.jpg}}
 
 \caption{Resoluciones del Sensor}\label{Fig:resoluciones}
 \end{figure}
@@ -85,7 +85,7 @@ La asignación de colores más conocido por los usuarios es el \textit{falso col
 %https://mundosigs.wordpress.com/2016/03/07/que-son-los-sensores-remotos/
 %https://www.slideshare.net/noldinn/fundamentos-deteledeteccionemiliochuvieco
 
-Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación espacial y temporal de los valores adquiridos por la misma. Para obtener estas característica mencionadas contamos con las imágenes que a partir de estas podemos obtener los datos necesarios para lograr calibrar y obtener imágenes de calidad. 
+Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación \textit{espacial} y \textit{temporal} de los valores adquiridos por la misma.
 
 Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{Machine Learning} y sus usos.
 
@@ -106,24 +106,18 @@ Partiendo de los datos de entrenamiento mencionado previamente un algoritmo de \
 
 El método que nos permite realizar esta aproximación es la \textit{función de costo}, la cual va a  determinar cuan errónea es nuestra salida con respecto a los valores esperado de  $ y$, esta etapa la llamamos \textit{entrenamiento de modelo}, su propósito es generar valores lo suficientemente \textit{cercanos} a la respuesta correcta minimizando el error en la predicción medido por la función de costo. Los algoritmo de \ac{ml} son métodos iterativos por lo que en cada iteración debemos minimizar el error obtenido, para poder lograrlo debemos buscar valores óptimos que permitan disminuir el error, conocidos estos como {métodos de optimización}  y son estos fundamentales  para los algoritmos usados en \ac{ml}.
 
-  Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que no vio y poder asociar las etiquetas aprendidas de manera automática.
-
-En las secciones siguientes vamos a desarrollar en mas  detalle el proceso de aprendizaje supervisado centrándonos principalmente en el problema de clasificación, se abordará también los tipos de clasificadores existentes, función de costo,  algoritmos de optimización (\textit{gradient descent \citep{cnns}}) finalizando con la validación de modelos en \ac{ml}.
+  Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que no vio y poder asociar las etiquetas aprendidas de manera automática.En las secciones siguientes vamos a desarrollar en mas  detalle el proceso de aprendizaje supervisado centrándonos principalmente en el problema de clasificación, se abordará también los tipos de clasificadores existentes, función de costo,  algoritmos de optimización (\textit{gradient descent \citep{cnns}}) finalizando con la validación de modelos en \ac{ml}.
 
 \subsection{Aprendizaje Supervisado y el problema de la clasificación}\label{sub:aprendizaje_supervisado}
 % http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
 
 Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, etiqueta, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
 
-El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo, y $y_i$ is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$. En la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
+El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo, y $y_i$ is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$, en la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
 
 Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la frontera que separa los datos de cada categoría para luego, dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
 
-En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos. Si suponemos que contamos con n observaciones tenemos: $(x_i,y_i),....,(x_n,y_n)$ valores con las que entrenamos nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones.
-
-Para calcular las probabilidades, se debe obtener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $. A modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra X tiene una Y = A, la función f(x) debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a 0.
-
-En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
+En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos; si suponemos que contamos con n observaciones tenemos: $(x_i,y_i),....,(x_n,y_n)$ valores con las que entrenamos nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones; para calcular las probabilidades se debe obtener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $, a modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra $X$ tiene una $Y = A$, la función $f(x)$ debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a $0$. En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
@@ -134,17 +128,12 @@ En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en
 %https://towardsdatascience.com/support-vector-machine-mnist-digit-classification-with-python-including-my-hand-written-digits-83d6eca7004a
 
 
-\subsubsection{Aprendizaje}\label{sub:aprendizaje}
+%\subsubsection{Aprendizaje}\label{sub:aprendizaje}
 %https://docs.aws.amazon.com/es_es/machine-learning/latest/dg/training-ml-models.html
 %clasificación supervisada metodos deduccion matematica
-Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego realizar predicciones sobre datos que no conoce.
+Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender a partir de esos datos. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego realizar predicciones sobre datos que no conoce.
 
-Entrenar un modelo supervisado requiere al menos tres cosas especificas:
-\par \textbf{Datos de entrada}: determinar cuales son los ejemplos de entrada del algoritmo; el objetivo es crear un modelo que generalice los nuevos datos, para esto los datos de entrada deben ser representativo del mundo real. Por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando.
-
-\par \textbf{Salida esperada}: para cada valor de entrada debemos etiquetar a que clase pertenece es decir, para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la imagen; para un ejemplo de reconocimiento de voz cada audio debe tener una transcripción del mismo.
-
-\par \textbf{Función de costo}: calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir, determinar el error entre la salida esperada y los valores predichos.
+Entrenar un modelo supervisado requiere al menos tres cosas especificas:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos los ejemplos de entrada que consume el algoritmo, el objetivo es crear un modelo que generalice los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
 
 Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada $ x$ e  $ y$  una variable de salida $ Y$; que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
 
@@ -161,9 +150,8 @@ Considerando el siguiente ejemplo, dada las coordenadas $ (x,y)$ como se muestra
   \caption{Ejemplo entrenamiento}\label{Fig:ejemplo-1}
 \end{figure}
 
-La idea principal de desarrollar un modelo; es crear un algoritmo que a partir de datos encuentre automáticamente una frontera, clasifique, encuentre por ejemplo una frontera entre los puntos negros y los puntos blancos.
+La idea principal de desarrollar un modelo; es crear un algoritmo que a partir de datos encuentre automáticamente una frontera, clasifique, encuentre por ejemplo una frontera entre los puntos negros y los puntos blancos.Como se puede ver en la figura \ref{Fig:ejemplo-2}, se muestra la frontera de separación creada por el algoritmo entrenado.
 
-Como se puede ver en la figura \ref{Fig:ejemplo-2}, se muestra la frontera de separación creada por el algoritmo entrenado.
 \begin{figure}[H] \centering
   \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample-fit-1.png}
   \caption{Entrenamiento}\label{Fig:ejemplo-2}
@@ -272,16 +260,10 @@ En la gran mayoría de casos, los datos no se pueden separar linealmente de form
 Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
 
 
-Las ventajas de estos clasificadores son:
-\begin{itemize}
-\item Eficaz en grandes espacios dimensionales.
-\item Sigue siendo efectivo en casos en los que el número de dimensiones es mayor que el número de muestras.
-\item Versátil: se pueden especificar diferentes funciones del kernel para la función de decisión.
-\item El proceso de entrenamiento es más rápido en comparación con otros clasificadores, sobre todo para conjunto de entrenamientos grandes.
-\end{itemize}
+Las ventajas de estos clasificadores son: eficaz para grandes espacios dimensionales, efectivo en casos en los que el número de dimensiones es mayor que el número de muestras, se pueden especificar diferentes funciones del kernel para la función de decisión, el proceso de entrenamiento es más rápido en comparación con otros tipo de clasificadores, sobre todo para cuando tenemos un conjunto de entrenamientos grandes.
 %http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
 
-\subsubsection{Función de Costo}\label{sub:funcion_costo}
+\subsection{Función de Costo}\label{sub:funcion_costo}
 
 El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados la función generar un valor mayor de error, si el valor de la predicción se acerca al valor esperado el error sera menor de modo que nos indicará si nos estamos acercando a la solución buscada.
 
@@ -306,9 +288,10 @@ MSE =  \frac{1}{n}\sum_{i}(y_i - y(x_i))^2
 
 Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior (Sec:\ref{sub:clasificadores}) vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables \textit{slack}.
 
-Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores \ref{Fig:slack-var}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$
+Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores \ref{Fig:slack-var}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$.
+
 \begin{figure}[H] \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/slack-var.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/slack-var.png}
   \caption{SVM  Función de Costo }\label{Fig:slack-var}
 \end{figure}
 
@@ -351,8 +334,8 @@ w^* =  \arg\min_{w} f(X; w)
 Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
 
 \begin{figure}[H] \centering
-  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
-  \caption{Gradient Descent }\label{Fig:gradient-descent}
+  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/gradient-descent.png}
+  \caption{Descenso de Gradiente}\label{Fig:gradient-descent}
 \end{figure}
 
 
@@ -375,7 +358,7 @@ Existen diversas variantes de descenso por gradiente como \textit{Batch gradient
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
 \begin{algorithm}[H]
-\caption{Gradient Descent}\label{euclid}
+\caption{Descenso de Gradiente}\label{euclid}
 \begin{algorithmic}[1]
 
 \State $\textbf{INPUT} \gets (X, Y, \theta,iteraciones, \alpha)$
@@ -397,7 +380,7 @@ Existen diversas variantes de descenso por gradiente como \textit{Batch gradient
 
 
 
-\subsubsection{El problema de sobreajuste}\label{sub:validacion-modelo}
+\subsection{El problema de sobreajuste}\label{sub:validacion-modelo}
 
 En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a nuevos datos. 
 
@@ -472,14 +455,7 @@ La \textit{Matriz de Confusión} contiene información sobre clasificaciones rea
 \end{table}
 
 
-Cada valor de las celdas esta dado por:
-\begin{itemize}
-	\item Positivos (P): Observación positiva (valor etiquetado).
-	\item Verdadero Positivo (TP): La observación es positiva y la predicción también.
-	\item Falso Negativo (FN): La observación es positiva pero la predicción es negativa.
-	\item Falso Positivo (FP): La observación es negativa pero la predicción es positiva.
-	\item Verdadero Negativo (TN) :  La observación es negativa y también la predicción negativa.
-\end{itemize}
+Cada valor de las celdas esta dado por:\textit{positivos (P)}, observaciones positivas; \textit{verdadero positivo (TP)} la observación es positiva y la predicción también;\textit{falso negativo (FN)} la observación es positiva pero la predicción es negativa; \textit{falso positivo (FP)} la observación es negativa pero la predicción es positiva y \textit{verdadero negativo (TN)} la observación es negativa y también la predicción negativa.
 
 Con los valores obtenidos de la \textit{matriz de confusión} podemos extraer las siguientes métricas:
 
