@@ -1,14 +1,14 @@
-\chapter{TBD}\label{chap:tbd}
+\chapter{Esquema de Detección}\label{chap:tbd}
 
 Las imágenes satelitales son una fuente de información utilizadas cada vez mas en la actualidad por diferentes campos de la ciencia, a través de una imagen satelital podemos extraer información que permiten estudiar como por ejemplo las diferentes características del los suelos, obtener información de fenómenos naturales y ayudar a las toma de decisiones \ref{sec:estadodelarte}. Una cámara a bordo de un satélite además nos da la posibilidad de ayudar a la toma de decisiones en tiempo real logrando que de manera automática pueda por ejemplo trazar el curso del satélite previniendo coaliciones o como un mecanismo de ayuda para calibrar su apuntamiento (Sec:\ref{sec:fundamentacion}) brindando mas autonomía en la navegación y en la toma de decisiones. 
 
 Como ya se menciono anteriormente en el  capitulo \ref{chap:introduccion} el objetivo de este trabajo de investigación  (Sec:\ref{sec:obj_general}) es realizar una evaluación experimental de factibilidad al utilizar algoritmos de aprendizaje automático para  la detección de patrones de interés de la misión  (Sec:\ref{sec:contexto})  brindando una  fuente extra de información al satélite para la toma de decisiones de manera automática. 
 
-Los algoritmos de aprendizaje automático (Sec:\ref{sec:machinelaerning}) tienen la capacidad de generalizar (aprender)  a partir de los datos, estos datos son los que llamamos conjunto de entrenamiento, para entrenar (Sec:\ref{sub:aprendizaje}) un modelo de aprendizaje automático necesitamos además del conjunto de datos mencionados previamente, definir una función de costo (Sec:\ref{sub:funcion_costo}) que nos aproxime a los valores de la salida que estamos esperando y un algoritmo de clasificación (Sec:\ref{sub:clasificadores}) que nos indique a que clase o categoría pertenece cada valor. 
+Los algoritmos de aprendizaje automático (Sec:\ref{sec:machinelaerning}) tienen la capacidad de generalizar (aprender)  a partir de los datos, estos datos son los que llamamos conjunto de entrenamiento, para entrenar un modelo de aprendizaje automático necesitamos además del conjunto de datos mencionados previamente, definir una función de costo (Sec:\ref{sub:funcion_costo}) que nos aproxime a los valores de la salida que estamos esperando y un algoritmo de clasificación (Sec:\ref{sub:clasificadores}) que nos indique a que clase o categoría pertenece cada valor. 
 
-En el desarrollo de este trabajo no solo se preciso aprender realizar el entrenamiento de los datos también necesitamos extraer la información de la imagen. Para poder extraer la información de las imágenes utilizamos \textit{redes convolucionales} (Sec:\ref{sec:compueter-vision}), estas redes son una tipo de red que nos permiten extraer patrones (características) (Sec:\ref{sub:features-extraction}) de una imagen como el color, la forma, los bordes por medio de la operación de convolución (Sec:\ref{sub:convolucion}); las operaciones de convolución son operaciones de producto y sumas entre las diferentes capas y filtros de la red que generan como salida un mapa de característica que representa a la imagen. Existen en la actualidad diferentes arquitecturas de redes convolucionales como se desarrollo anteriormente en la sección (Sec:\ref{sub:arquitecturacnn}); mas adelante  detallaremos el tipo de arquitectura de red convolucional utilizada para este trabajo.
+En el desarrollo de este trabajo no solo se preciso aprender realizar el entrenamiento de los datos también necesitamos extraer la información de la imagen. Para poder extraer la información de las imágenes utilizamos \textit{redes convolucionales} (Sec:\ref{sec:compueter-vision}), estas redes son una tipo de red que nos permiten extraer patrones (características) de una imagen como el color, la forma, los bordes por medio de la operación de convolución (Sec:\ref{sub:convolucion}); las operaciones de convolución son operaciones de producto y sumas entre las diferentes capas y filtros de la red que generan como salida un mapa de característica que representa a la imagen. Existen en la actualidad diferentes arquitecturas de redes convolucionales como se desarrollo anteriormente en la sección (Sec:\ref{sub:arquitecturacnn}); mas adelante  detallaremos el tipo de arquitectura de red convolucional utilizada para este trabajo.
 
-Uno de los problemas que se presentan a la hora de desarrollar un detector de patrones además de la extracción de la información de la imagen es determinar en que posición se encuentra el objeto de interés que deseamos reconocer esto se lo conoce en la literatura como el \textit{problema de la detección} (Sec:\ref{sub:problema_deteccion}), existen diferentes técnicas que nos ayudan a resolver este problema, estas técnicas son conocidas como \textit{regiones propuestas} (Sec:\ref{sub:regions-proposal}), algunas de estas son \textit{edges boxes} (Sec:\ref{sub:edgesboxes}), \textit{selective search} (Sec:\ref{sub:selectivesearch}), entre otras. Los métodos de regiones propuestas extraen y agrupan información de la imagen con similares característica, estos tipos de métodos generan un conjunto de regiones candidatas con una probabilidad en cada región generada que nos indica con que posibilidad pueda ser encontrado el objeto que estamos buscando en la imagen; cada región luego sera utilizada como conjunto de entrenamiento con algunos de los algoritmos de aprendizaje automático nombrado anteriormente. La salida de este\textit{esquema de procesamiento} será un modelo que permita detectar a que clase pertenece un nuevo dato nunca visto.
+Uno de los problemas que se presentan a la hora de desarrollar un detector de patrones además de la extracción de la información de la imagen es determinar en que posición se encuentra el objeto de interés que deseamos reconocer esto se lo conoce en la literatura como el \textit{problema de la detección} (Sec:\ref{sub:problema_deteccion}), existen diferentes técnicas que nos ayudan a resolver este problema, estas técnicas son conocidas como \textit{regiones propuestas} (Sec:\ref{sub:regions-proposal}), algunas de estas son \textit{edges boxes}, \textit{selective search}, entre otras. Los métodos de regiones propuestas extraen y agrupan información de la imagen con similares característica, estos tipos de métodos generan un conjunto de regiones candidatas con una probabilidad en cada región generada que nos indica con que posibilidad pueda ser encontrado el objeto que estamos buscando en la imagen; cada región luego sera utilizada como conjunto de entrenamiento con algunos de los algoritmos de aprendizaje automático nombrado anteriormente. La salida de este\textit{esquema de procesamiento} será un modelo que permita detectar a que clase pertenece un nuevo dato nunca visto.
 
 En este capítulo vamos a desarrollar el esquema de trabajo utilizado para la creación de un modelo de aprendizaje automático que permita detectar las zonas de interés como se expuso en la sección (Sec:\ref{sub:obj_especifico}). Además se describirá las diferentes metodologías y decisiones tomadas en la construcción de la solución como son las herramientas utilizadas, el etiquetado de los datos de entrenamiento, los diferentes  métodos de regiones propuestas utilizados, la arquitectura seleccionada para la extracción de las características de la imagen y por ultimo el proceso de clasificación y validación del modelo entrenado.
 
@@ -36,20 +36,15 @@ Partiendo de lo desarrollado anteriormente, en esta sección vamos a desarrollar
 %https://www.datanami.com/2018/09/05/how-to-build-a-better-machine-learning-pipeline/
 \subsection{Descripción del Pipeline desarrollado}\label{sub:desc-pipeline}
 
-\subsubsection*{Datos Raw}
-En esta etapa de trabajo se basó en recolectar todos los datos que serán usado para entrenar y validar el modelo, este proceso conlleva desde la descarga de los datos por medio de la pagina oficial de \ac{conae} hasta el almacenado de los mismos. En el sección \ref{sec:recoleccion} se desarrolla con mas detalle los pasos que se realizaron para la obtención y descarga de los datos.
+%\subsubsection*{Datos Raw}
+En la primera etapa del pipeline de desarrollo se baso en la obtención y recolección de \textbf{datos raw}; en esta etapa se basa en recolectar todos los datos que serán usado para entrenar y validar el modelo, este proceso conlleva desde la descarga de los datos por medio de la pagina oficial de \ac{conae} hasta el almacenado de los mismos; en el sección \ref{sec:recoleccion} se desarrolla con mas detalle los pasos que se realizaron para la obtención y descarga de los datos.
 
 
 %En esta parte del pipeline de desarrollo se trabajo desde la adquisición de los datos hasta llegar a la construcción del datasets de entrenamiento y test. La obtención de los datos se realizo a través de la pagina de \ac{conae} como se menciona en el capítulo \ref{chap:recoleccion}, para mas detalle ver  \ref{chap:anexo}. Las imágenes utilizadas son del sensor \ac{viirs}, estas imágenes están codificadas en un formato "h5",  \textit{Hierarchical Data Format}, este formato es el utilizado para almacenar datos de gran tamaño; cada banda del sensor se la almacena para ser luego procesada y crear la imagen.
 
 %
-\subsubsection*{Preprocesamiento}
-
-A partir de los datos descargados en el paso anterior se debe realizar el procesamiento de los mismos para poder utilizarlo; este procesamiento se basa en convertir los datos \textit{raw} en imágenes. El proceso de conversión de datos en imágenes se realizo a través de la herramienta \textit{ENVI}, esta herramienta es un software  especializado en el procesamiento y análisis de imágenes  geoespaciales.
-
-Debido a la característica que posee el sensor que utilizamos en el desarrollo ,\textit{VIIRS}, se descompone en diferentes bandas en el espectro electromagnético de las cuales seis bandas son relacionadas en el espectro visible (\textit{VIS}), cuatro en el infrarrojo cercano (\textit{NIR} por sus siglas en inglés), cuatro en el infrarrojo de onda corta (\textit{SWIR}), tres en el infrarrojo medio (\textit{MIR}) y cuatro en el infrarrojo térmico (\textit{TIR}). Para la construcción del set de datos final se usaron diferentes combinaciones de bandas (Sec:\ref{sub:comb_de_banda}), cada una de las bandas deben ser cargadas al software \textit{ENVI} que luego se combinaran cada una de estas en diversos canales \textit{RGB} para la construcción de la misma. Luego de este proceso obtenemos la imagen final como se puede visualizar en la siguiente figura \ref{Fig:img-final}.
-
-En el sección \ref{sec:recoleccion} se desarrolla de manera mas detallada que bandas bandas fueron utilizadas y el proceso que se llevo a cabo para conversión de datos.
+%\subsubsection*{Preprocesamiento}
+A partir de los datos descargados  se debe realizar el \textbf{procesamiento} de los mismos para poder utilizarlo, este procesamiento se basa en convertir los datos \textit{raw} en imágenes; el proceso de conversión de datos en imágenes se realizo a través de la herramienta \textit{ENVI}, esta herramienta es un software  especializado en el procesamiento y análisis de imágenes  geoespaciales. Debido a la característica que posee el sensor que utilizamos en el desarrollo ,\textit{VIIRS}, se descompone en diferentes bandas en el espectro electromagnético de las cuales seis bandas son relacionadas en el espectro visible (\textit{VIS}), cuatro en el infrarrojo cercano (\textit{NIR} por sus siglas en inglés), cuatro en el infrarrojo de onda corta (\textit{SWIR}), tres en el infrarrojo medio (\textit{MIR}) y cuatro en el infrarrojo térmico (\textit{TIR}). Para la construcción del set de datos final se usaron diferentes combinaciones de bandas (Sec:\ref{sub:comb_de_banda}), cada una de las bandas deben ser cargadas al software \textit{ENVI} que luego se combinaran cada una de estas en diversos canales \textit{RGB} para la construcción de la misma. Luego de este proceso obtenemos la imagen final como se puede visualizar en la siguiente figura \ref{Fig:img-final}. En el sección \ref{sec:recoleccion} se desarrolla de manera mas detallada que bandas bandas fueron utilizadas y el proceso que se llevo a cabo para conversión de datos.
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/tbd/pre-img.png}
@@ -57,29 +52,23 @@ En el sección \ref{sec:recoleccion} se desarrolla de manera mas detallada que b
 \end{figure}
 
 
-\subsubsection*{Regions Proposal}
+%\subsubsection*{Regions Proposal}
 
 Una vez obtenida las imágenes se generó regiones candidatas a través de métodos de regiones propuestas (Sec:\ref{sub:regions-proposal}) como se pude visualizar en la siguiente imagen \ref{Fig:rp-ejemplo}, estos conjunto de métodos nos retorna  un conjunto de \textit{bounding boxes} dentro de la imagen.
-%coordenadas ($x$, $y$) al que pertenece dentro de la imagen. 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.25,keepaspectratio=true,clip=true]{imagenes/tbd/proposal-img.png}
   \caption{Ejemplo regions proposal}\label{Fig:rp-ejemplo}
 \end{figure}
 
-
-
 En base a los diferentes métodos desarrollados en la sección (Sec:\ref{sub:regions-proposal}) se realizo una evaluación empírica de los mismos. Para dar mas detalle de la evaluación realizada podemos ver la siguiente tabla \ref{tabla:comparacionregiones}:
-
-
-%Se realizo una evaluación empírica de que método seleccionar para el desarrollo en la siguiente tabla se desarrolla el análisis realizado \ref{tabla:comparacionregiones}:
 
 \begin{table}[H]\centering
 \begin{tabular}{|p{2cm}|p{6cm}|p{8cm}|}
     \hline 
      \centering \textbf{Método}  & \centering \textbf{Ventajas} & \multicolumn{1}{c|}{\centering \textbf{Desventajas}} \\
     \hline
-    \centering Selective Search \ref{sub:selectivesearch} & \parbox[p][0.2\textwidth][c]{6cm}{
+    \centering Selective Search \ref{sub:regions-proposal} & \parbox[p][0.2\textwidth][c]{6cm}{
     \begin{itemize}
         \item Extrae la probabilidad de que exista un objeto en la región encontrada.
         \item Diferentes escalas de detección.
@@ -88,7 +77,7 @@ En base a los diferentes métodos desarrollados en la sección (Sec:\ref{sub:reg
     \begin{itemize}
         \item Tiempo de ejecución muy alto para imágenes de resolución mayores; ejemplo: 2800x3000px.	
     \end{itemize} } \\ \hline
-    \centering Edges Boxes \ref{sub:edgesboxes} & \parbox[p][0.2\textwidth][c]{6cm}{
+    \centering Edges Boxes \ref{sub:regions-proposal} & \parbox[p][0.2\textwidth][c]{6cm}{
     \begin{itemize}
         \item Buen tiempo de ejecución con imágenes de gran tamaño
         \item Reconocimientos de regiones de menor tamaño
@@ -110,16 +99,13 @@ En base a los diferentes métodos desarrollados en la sección (Sec:\ref{sub:reg
 \label{tabla:comparacionregiones}
 \end{table}
 
-\subsubsection*{Non-maximums Suppression}
+%\subsubsection*{Non-maximums Suppression}En esta etapa del \textit{pipeline} 
+Obtenido el conjunto de regiones candidatas por cada una de las imágenes se aplicó \ac{nms} (Sec:\ref{sub:nonmaximumsuppression}) para descartar regiones con sobre muestreo quedándonos solo con aquellas regiones que cumplen determinado criterio de solapamiento definido, \textit{IoU}, intersección sobre unión, en este caso el umbral utilizado para eliminar regiones fue de 80\%. Este proceso se realizo para cada una de las imágenes del set de datos descargado.
 
-En esta etapa del \textit{pipeline} una vez obtenido el conjunto de regiones candidatas por cada una de las imágenes se aplicó \ac{nms} (Sec:\ref{sub:nonmaximumsuppression}) para descartar regiones con sobre muestreo quedándonos solo con aquellas regiones que cumplen determinado criterio de solapamiento definido, \textit{IoU}, intersección sobre unión, en este caso el umbral utilizado para eliminar regiones fue de 80\%. Este proceso se realizo para cada una de las imágenes del set de datos descargado.
 
-
-\subsubsection*{Extracción de características}
+%\subsubsection*{Extracción de características}
 Luego del proceso de \ac{nms} para cada región obtenida se debe extraer la información de cada una de las imágenes. Las redes neuronales convolucionales (Sec:\ref{sub:cnn}), permiten extraer las característica distintiva de la imagen haciendo uso de operaciones de convolución como se desarrollo en el capítulo (Sec:\ref{sub:cnn}). El proceso de extracción de información consta como primer paso seleccionar el tipo de arquitectura de la red que sera utilizada, para esta tesis se trabajo con \textit{ResNet50} (Sec:\ref{sub:arquitecturacnn}), la arquitectura  resnet50 recibe como input una imagen de $224 x 224$ y nos retorna un vector de 2048 que sera nuestro input para el entrenamiento del modelo.
-Como paso siguiente luego de la selección de la arquitectura se debe normalizar las imágenes al tamaño requerido por la red; esta imagen normalizada será convertida a un vector que pasara por cada una de las capas de la red ,\textit{convolucion}, \textit{polling}, \textit{fully conected}; para luego ser extraída de la ante ultima capa que sera la que contenga la información final de la imagen.
-
-El proceso descripto anterior se debe realizar para cada una de los bounding boxes contenidos en la imagen.
+Como paso siguiente luego de la selección de la arquitectura se debe normalizar las imágenes al tamaño requerido por la red; esta imagen normalizada será convertida a un vector que pasara por cada una de las capas de la red ,\textit{convolucion}, \textit{polling}, \textit{fully conected}; para luego ser extraída de la ante ultima capa que sera la que contenga la información final de la imagen, este proceso descripto anterior se debe realizar para cada una de los bounding boxes contenidos en la imagen.
 
 
 
@@ -130,7 +116,7 @@ El proceso descripto anterior se debe realizar para cada una de los bounding box
 %Una vez obtenido los vectores de cada región de toda la imagen se %almacenaron en un archivo \textit{.mat} para luego entrenar un %clasificador con ellos.
 
 
-\subsubsection*{Generación de datos para entrenamiento}
+%\subsubsection*{Generación de datos para entrenamiento}
 
 Dado en que estamos por entrenando un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región. Para poder crear el datasets debemos tener identificado nuestras regiones de interés es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés, como se menciona en la sección (Sec:\ref{sec:obj_general}), son el \textit{Golfo de San Matias} y la \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se marco utilizando la librería \textit{Labelme} (Sec:\ref{sec:instalacionlabelme}), este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para compararse con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
 
@@ -150,9 +136,9 @@ Cada uno de los datos etiquetados están relacionado a uno de los vectores de ca
 %Con el el dataset de train se realizo el entrenamiento del modelo %utilizando \textit{grid search} como algoritmo de búsqueda de %hiper-parámetros del modelo \textit{SVM} \ref{sub:clasificadores} y %\textit{cross validation} \ref{Fig: crossvalidation} para evitar %problemas de \textit{overfitting} \ref{sub:problema_deteccion}.
 
 
-\subsubsection*{Evaluación}
+%\subsubsection*{Evaluación}
 
-La validación de los datos como se nombro anteriormente se realizo con el datasets de test de la cual se calculo las métricas de \textit{precision}, \textit{recall} y \textit{auroc} (Sec:\ref{sub:evaluación-modelo}) para medir la eficiencia de los  modelos entrenados en el paso anterior. Luego de diversas iteraciones se llegó a un modelo que maximicen estas métricas mencionadas, este modelo sera la versión final que será utilizado para realizar la predicción de datos que nunca vio el modelo.
+Para la etapa de validación de los datos se realizo con el datasets de test de la cual se calculo las métricas de \textit{precision}, \textit{recall} y \textit{auroc} (Sec:\ref{sub:evaluación-modelo}) para medir la eficiencia de los  modelos entrenados en el paso anterior. Luego de diversas iteraciones se llegó a un modelo que maximicen estas métricas mencionadas, este modelo sera la versión final que será utilizado para realizar la predicción de datos que nunca vio el modelo.
 
 La predicción del modelo final tendrá como respuesta un conjunto de regiones (x, y) de la imagen nueva de entrada en el cual cada una de estas regiones esta asociada una respuesta que nos indica con los valor "0" si la región de interés no se encuentra en la imagen en caso contrario  retornara "1"; cada una de esta predicciones esta asociada a un valor de probabilidad que indica cuan posible es que la región de interés buscada este en esa imagen.
 
@@ -198,29 +184,19 @@ Para la realización de diversos experimentos se utilizaron en total 29 combinac
 El instrumento \ac{viirs} fue lanzado a bordo del satélite Suomi-NPP el 28 de octubre de 2011. Este instrumento posee 5 canales de alta resolución (I-bands), 16 canales de resolución moderada (M-bands) y un canal de baja luz (Day/Night Band, DNB).  En el siguiente cuadro se detallan las diferentes longitudes de onda y los rangos de onda de las bandas, junto con resolución geométrica apuntando a Nadir (ver tabla: \ref{tab:viirs}).
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|c|c|c|}
-\hline Banda & Rango Espectral (um) & Resolución Nadir \\\hline 
- 		M1  & 0.402-0.422   & 0.742 x 0.259 \\ \hline 
-		M2  & 0.436-0.454   & 0.742 x 0.259 \\ \hline 
-		M3  & 0.478-0.498   & 0.742 x 0.259 \\ \hline 
-		M4  & 0.545-0.565   & 0.742 x 0.259 \\ \hline 
-		I1  & 0.600-0.680   & 0.371 x 0.387 \\ \hline 
-		M5  & 0.662-0.682   & 0.742 x 0.259 \\ \hline 
-		M6  & 0.739-0.754   & 0.742 x 0.776 \\ \hline 
-		I2  & 0.846-0.885   & 0.371 x 0.387 \\ \hline 
-		M7  & 0.846-0.885   & 0.742 x 0.259 \\ \hline 
-		M8  & 1.230-1.250   & 0.742 x 0.776 \\ \hline 
-		M9  & 1.371-1.386   & 0.742 x 0.776 \\ \hline 
-		I3  & 1.580-1.640   & 0.371 x 0.387 \\ \hline 
-		M10 & 1.580-1.640   & 0.742 x 0.776 \\ \hline 
-		M11 & 2.225-2.275   & 0.742 x 0.776 \\ \hline 
-		I4  & 3.550-3.930   & 0.371 x 0.387 \\ \hline 
-		M12 & 3.660-3.840   & 0.742 x 0.776 \\ \hline 
-		M13 & 3.973-4.128   & 0.742 x 0.259 \\ \hline 
-		M14 & 8.400-8.700   & 0.742 x 0.776 \\ \hline 
-		M15 & 10.263-11.263 & 0.742 x 0.776 \\ \hline 
-		I5  & 10.500-12.400 & 0.371 x 0.387 \\ \hline 
-		M16 & 11.538-12.488 & 0.742 x 0.776 \\ \hline 
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline \textbf{Banda} & Rango Espectral (um) & Resolución Nadir & \textbf{Banda} & Rango Espectral (um) & Resolución Nadir \\\hline 
+ 		M1  & 0.402-0.422   & 0.742 x 0.259 & I3  & 1.580-1.640   & 0.371 x 0.387 \\ \hline 
+		M2  & 0.436-0.454   & 0.742 x 0.259 & M10 & 1.580-1.640   & 0.742 x 0.776 \\ \hline 
+		M3  & 0.478-0.498   & 0.742 x 0.259 & M11 & 2.225-2.275   & 0.742 x 0.776 \\ \hline 
+		M4  & 0.545-0.565   & 0.742 x 0.259 & I4  & 3.550-3.930   & 0.371 x 0.387 \\ \hline 
+		I1  & 0.600-0.680   & 0.371 x 0.387 & M12 & 3.660-3.840   & 0.742 x 0.776 \\ \hline 
+		M5  & 0.662-0.682   & 0.742 x 0.259 & M13 & 3.973-4.128   & 0.742 x 0.259 \\ \hline 
+		M6  & 0.739-0.754   & 0.742 x 0.776 & M14 & 8.400-8.700   & 0.742 x 0.776 \\ \hline 
+		I2  & 0.846-0.885   & 0.371 x 0.387 & M15 & 10.263-11.263 & 0.742 x 0.776 \\ \hline 
+		M7  & 0.846-0.885   & 0.742 x 0.259 & I5  & 10.500-12.400 & 0.371 x 0.387 \\ \hline 
+		M8  & 1.230-1.250   & 0.742 x 0.776 & M16 & 11.538-12.488 & 0.742 x 0.776 \\ \hline 
+		M9  & 1.371-1.386   & 0.742 x 0.776 & - &-&- \\ \hline 
 \end{tabular}
 \end{center}\caption{Característica de bandas,\ac{viirs} \label{tab:viirs}}
 \end{table}
