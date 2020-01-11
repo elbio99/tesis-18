@@ -1,10 +1,10 @@
 \chapter{Evaluación Experimental}\label{chap:evaluacion}
 
-En los capítulos anteriores se explicaron diferentes métodos de algoritmos de aprendizaje supervisado, redes neuronales y las diversas fuentes de datos para poder entrenar un modelo de detección. En  base a lo desarrollado en las anteriores secciones  explicaremos el proceso de aprendizaje llevado a cabo detallando todos los  experimentos realizados para la construcción del modelo como así también  el proceso de validación y las métricas que se utilizaron para su evaluación. Para finalizar se discutirá todos los resultados obtenidos de cada uno de los  experimentos realizados. 
+En los capítulos anteriores se explicaron diferentes métodos de algoritmos de aprendizaje supervisado, redes neuronales y las diversas fuentes de datos para poder entrenar un modelo de detección. En  base a lo desarrollado en las anteriores secciones  explicaremos el proceso de aprendizaje llevado a cabo detallando todos los  experimentos realizados para la construcción del modelo como así también  el proceso de validación y las métricas que se utilizaron para su evaluación. Para finalizar se discutirá todos los resultados obtenidos para cada uno de los  experimentos realizados. 
 
 \section{Datos de entrenamiento}\label{sec:datos_entrenamiento}
 
-Para la construcción del modelo se dividió en  datos entrenamiento y datos de test. Cada conjunto de imágenes de combinaciones de bandas (Sec:\ref{sub:comb_de_banda}) se los dividió en 40 imágenes para el entrenamiento y 10 imágenes para el test. Para cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado en la  en la sección (Sec:\ref{sec: pipeline}). En promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el dataset final de entrenamiento fue de $60000$ y el de test $15000$  dependiendo de las características de cada una de las combinaciones de bandas y las imágenes. 
+Para la construcción del modelo de detección se dividió el datasets en datos de entrenamiento y datos de test para cada conjunto de imágenes creadas (ver tabla combinaciones de bandas, Sec:\ref{sub:comb_de_banda}) para el cual se dividió en 40 imágenes de entrenamiento y 10 imágenes para test. Cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado  en la sección (Sec:\ref{sec: pipeline}); en promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el datasets final de entrenamiento fue de $60000$ y el de test de $15000$ regiones en promedio dependiendo de las características de las imágenes procesadas por combinaciones de bandas. 
 
 
 
@@ -16,14 +16,14 @@ Siguiendo el pipeline desarrollado en la sección (Sec: \ref{sec: pipeline}) ya 
 
 Para la clasificación y construcción del modelo se utilizo \ac{svm} (Sec: \ref{sub:clasificadores}), cada conjunto de entrenamiento se realizo utilizando regiones positivas y negativas de cada una de las imágenes obtenidas.
 
-En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, estos  parámetros se los llama hiperparámetros, una de las técnicas mas usada para la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de parámetros del modelo. La técnica \textit{Grid Search} busca por fuerza bruta los parámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximice alguna de las métricas previamente definida, por ejemplo accuray. 
+En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, estos  parámetros se los llama \textit{hiperparámetros}, una de las técnicas mas usada para la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de parámetros del modelo. La técnica \textit{Grid Search} busca por fuerza bruta los parámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximice alguna de las métricas previamente definida, por ejemplo accuracy. 
 
-En nuestro caso como estamos utilizando \ac{svm} (Sec: \ref{sub:clasificadores}) los hiperparámetros que debemos optimizar son \textit{C} y \textit{gamma}. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos, con valores grandes de \textit{C},  elegirá un hiperplano de menor margen, el objetivo es encontrar el equilibrio entre "no demasiado estricto" y  "no demasiado relajado". El otro hiperparámetro a  optimizar de  \textit{gamma} es la inversa de la desviación estándar del kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
-
-Para evitar el overfitting (Sec:\ref{sub:problema_deteccion}) se utilizo \textit{k-fold cross-validation} (Sec:\ref{sub:validacion-modelo}) junto con \textit{Grid Search} en el cual por cada iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación, para todos los experimentos realizados el valor utilizado de $K$fue de $5$.
-
-El rango de hiperparámetros utilizados para entrenar el modelo con  \textit{k-fold cross-validation} y \textit{Grid Search} fueron los siguientes: \textit{Tipos de kernel}: lineal y RBF (gaussiano); para rango de valores de \textit{C}: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
+En nuestro caso como estamos utilizando \ac{svm} (Sec: \ref{sub:clasificadores}) los hiperparámetros que debemos optimizar son \textit{C} y \textit{gamma}. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos, con valores grandes de \textit{C}  elegirá un hiperplano de menor margen, el objetivo es encontrar el equilibrio entre "no demasiado estricto" y  "no demasiado relajado". El otro hiperparámetro a  optimizar es el de  \textit{gamma} este hiperparámetro es la inversa de la desviación estándar de un kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
+El rango de hiperparámetros utilizados para entrenar el modelo con \textit{Grid Search} fueron los siguientes: \textit{Tipos de kernel}: lineal y RBF (gaussiano); para rango de valores de \textit{C}: (1000,100,10,1, 0.1,0.01,0.001,0.0001)
     y para rango de valores de \textit{gamma}: (1,0,1,0,01,0,001,0,0001,0,00001)
+    
+Para evitar el overfitting (Sec:\ref{sub:problema_deteccion}) se utilizo \textit{k-fold cross-validation} (Sec:\ref{sub:validacion-modelo}) que en conjunto con \textit{Grid Search} para cada  iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación; en todos los experimentos que se realizaron se utilizo un valor de $K = 5$.
+
 
 \subsection*{Evaluación del modelo}\label{sub:evaluacion_class}
 
@@ -108,13 +108,13 @@ Para las bandas 1-5-3 (Fig: \ref{fig:Average_precision} (a)) el valor optimo se 
 
 \begin{figure}[htbp]
 \centering
-\subfigure[ROC-1-5-3]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC153.png}}
-\subfigure[ROC-9-7-11]{\includegraphics[scale=0.3]{imagenes/evaluacion/AP9711.png}}
-\subfigure[ROC-10-7-5]{\includegraphics[scale=0.3]{imagenes/evaluacion/ROC1075.png}}
+\subfigure[ROC-1-5-3]{\includegraphics[scale=0.55]{imagenes/evaluacion/ROC153.png}}
+\subfigure[ROC-9-7-11]{\includegraphics[scale=0.55]{imagenes/evaluacion/AP9711.png}}
+\subfigure[ROC-10-7-5]{\includegraphics[scale=0.55]{imagenes/evaluacion/ROC1075.png}}
 \caption{Curvas ROC, average presicion} \label{fig:Average_precision}
 \end{figure}
  
-Como se observo en los diferentes experimentos realizados, las imágenes construidas con diferentes bandas nos brindan diversas fuente de información que nos permiten construir y mejorar los modelos de \ac{ml}. El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fueron las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la parecencia de las misma; por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
+Como se observo en los diferentes experimentos realizados, las imágenes construidas con diferentes bandas nos brindan diversas fuente de información que nos permiten construir y mejorar los modelos de \ac{ml}. El principal inconveniente detectado en todos los modelos entrenados con las diferentes combinaciones de bandas fueron las nubes en las imágenes, la mayoría de los \textit{falsos positivos} detectados se debió a la presencia de las misma; por otro lado se observa en la tabla \ref{tab:entrenam-result} que las combinaciones de bandas que mayor métricas dieron fueron aquellas que de alguna manera se podía distinguir y resaltar el suelo, agua y nubes, esto se puede ver reflejado en las bandas  \textbf{1-1-1} (fig: \ref{Fig:imagen_banda_111}) en donde no se puede distinguir las regiones de interés dentro de la misma. 
  
  \begin{figure}[H]\centering
   \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/evaluacion/1-1-1.png}

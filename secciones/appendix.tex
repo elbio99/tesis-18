@@ -1,74 +1,55 @@
 \chapter{ANEXO}\label{chap:anexo}
-\section{Instalación Labelme}\label{sec:instalacionlabelme}
-La instalación de \textit{labelme}, se realizo bajo un sistema operativo Ubuntu-Linux Mint v18.0; se debe instalar las siguiente dependencias:
-\href{https://www.scipy.org/}{Scipy},\href{http://www.numpy.org/}{Numpy},\href{http://scikit-image.org/}{scikit-image}
-,\href{https://riverbankcomputing.com/software/pyqt/intro}{PyQt}, \href{http://matplotlib.org/}{Matplot}
+%\section{Instalación Labelme}\label{sec:instalacionlabelme}
+%La instalación de \textit{labelme}, se realizo bajo un sistema operativo Ubuntu-Linux Mint v18.0; se debe instalar las siguiente dependencias:
+%\href{https://www.scipy.org/}{Scipy},\href{http://www.numpy.org/}{Numpy},\href{http://scikit-image.org/}{scikit-image}
+%,\href{https://riverbankcomputing.com/software/pyqt/intro}{PyQt}, \href{http://matplotlib.org/}{Matplot}
 
 
-Luego desde la terminal de Linux ingresamos los siguientes comandos:
+%Luego desde la terminal de Linux ingresamos los siguientes comandos:
 
-\textbf{(user):sudo apt-get install labelme}
+%\textbf{(user):sudo apt-get install labelme}
 
-Para iniciar \textit{labelme} se ingresa desde la terminal el siguiente comando:
+%Para iniciar \textit{labelme} se ingresa desde la terminal el siguiente comando:
 
-\textbf{(user): labelme (path/nameimage.tiff)}
+%\textbf{(user): labelme (path/nameimage.tiff)}
 
-\begin{figure}[H]
- \centering
-  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/Apendice/labelme1.png}
-  \caption{Pantalla Principal \textit{labelme}}
-	\label{Fig: labelme}
-\end{figure}
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/Apendice/labelme1.png}
+%  \caption{Pantalla Principal \textit{labelme}}
+%	\label{Fig: labelme}
+%\end{figure}
 
-Las anotaciones realizas en este software se almacenará en formato JSON.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Instalación Keras}\label{sec:instalacionkeras}
-Keras es una librería para hacer Deep Learning, keras esta escrita en python ejecuntandose sobre una capa superior de TensorFlow. A continuación vamos a desarrollar el proceso de instalación:
-
-Dependencias de Keras:
-\begin{itemize}
-\item numpy scipy
-\item scikit-learn
-\item pillow
-\item h5py
-\end{itemize}
-Luego de la instalación de las dependencias hacemos:
-
- \textbf{\$ sudo pip install keras}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Instalación OpenCV}\label{sec:instalacionopencv}
-La instalación de OpenCV se realizo por medio del Repositorio de Ubuntu:
-
-\$\textbf{ sudo pip install opencv-python}
-
-La versión utilizada de OpenCV fue la 2.4.9.1 bajo Ubuntu 14.04. Para verificar la su instalación realizamos los siguiente:\\
-\$ python\\
-\$ import cv2\\
-\$ cv2.\_version\_
-
+%Las anotaciones realizas en este software se almacenará en formato JSON.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Instalación Edge Proposal }\label{sec:instalacionedge}
-El método para la obtención de regiones propuesta se ejecuto bajo el lenguaje MATLAB bajo la version R2013b. Se descargo el toolbox desde el repositorio \url{https://github.com/pdollar/toolbox}, se coloca en una carpeta y desde MATLAB en la pestaña Home>SetPath se agrega la correspondiente carpeta. Luego usamos la opción \textit{move to bottom} para soobrescribir las funciones predefinidas de MATLAB.
+%\section{Instalación Keras}\label{sec:instalacionkeras}
+%Keras es una librería para hacer Deep Learning, keras esta escrita en python ejecuntandose sobre una capa superior de TensorFlow. A continuación vamos a desarrollar el proceso de instalación:
 
-A continuación descargamos la siguiente dirección \url{https://github.com/pdollar/edges}, realizando el mismo procedimiento anterior.
+%Dependencias de Keras:
+%\begin{itemize}
+%\item numpy scipy
+%\item scikit-learn
+%\item pillow
+%\item h5py
+%\end{itemize}
+%Luego de la instalación de las dependencias hacemos:
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %\textbf{\$ sudo pip install keras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Instalación OpenCV}\label{sec:instalacionopencv}
+%La instalación de OpenCV se realizo por medio del Repositorio de Ubuntu:
 
-\section{Instalación de BING}
-Para la realización de BING, regiones propuestas, se realizo lo siguiente:
+%\$\textbf{ sudo pip install opencv-python}
 
-Clonamos el siguiente repositorio usando la herramienta GIT\\
-\$\textbf{ git clone https://github.com/alessandroferrari/BING-Objectness}
-Ingresamos a la carpeta Clonada y realizamos \\
-\$ \textbf{make} \\
-Agregamos al PYTHONPATH la siguiente dirección:\\
-\$ \textbf{export PYTHONPATH=/home/..../BING-Objectness/build} \\
+%La versión utilizada de OpenCV fue la 2.4.9.1 bajo Ubuntu 14.04. Para verificar la su instalación realizamos los siguiente:\\
+%\$ python\\
+%\$ import cv2\\
+%\$ cv2.\_version\_
 
-Para La ejecución de una sola imagen cambiamos los parámetros del archivo JSON bing\_params.json \\
-Ejecutamos luego el archivo pasando una imagen\\
-\$ \textbf{python bing.py /home/...../BING-Objectness/doc/bing\_params.json /home/...../bender.jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Descargas y Recolección de Imágenes}
