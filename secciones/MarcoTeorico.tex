@@ -1,6 +1,6 @@
 \chapter{Marco Teórico} \label{chap:marcoteorico}
 
-En el este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como: el sensado remoto,  Machine Learning y Redes Neuronales.
+En el este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como el sensado remoto,  aprendizaje automático y redes neuronales.
 
 \section{Sensado Remoto}\label{sec:sensadoremoto}
 
@@ -19,12 +19,24 @@ realizados por el hombre que refleja el sensor como por ejemplo construcciones; 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.35, keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
-  \caption{Sensado Remoto \\(Adaptado de: https://www.xatakaciencia.com/).}\label{Fig:teledeteccion}
+  \caption{Sensado Remoto. \\ https://www.xatakaciencia.com/.}\label{Fig:teledeteccion}
 \end{figure}
 
-Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar.
+Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar. A su ves existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 
-A su ves existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
+Otras de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución; estas resoluciones la podemos definir de la siguiente manera: \textbf{resolución espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel, a menor tamaño de píxel mayor sera la resolución espacial esto quiere decir que el sensor tendrá mayor detalle de los objetos como se puede observar en la figura (a) \ref{Fig:resoluciones};  
+\textbf{resolución espectral}: la resolución espectral especifica el numero y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (ver figura (c) \ref{Fig:resoluciones}); \textbf{resolución radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor (ver figura (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por ultimo tenemos la \textbf{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
+
+
+\begin{figure}[htbp]
+\centering
+\subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion.png}}
+\subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion_radiometrica.png}}
+\subfigure[]{\includegraphics[width=6.6cm,height=5.2cm]{imagenes/MarcoTeorico/resolucion_espectral.jpg}}
+
+\caption{(a) resolución espacial, (b) resolución radiometrica, (c) resolución espectral}\label{Fig:resoluciones}
+\end{figure}
+
 
 \subsubsection{Espectro electromagnético}
 
@@ -35,43 +47,8 @@ Las regiones utilizadas para la observación remota de la tierra son: \textit{Es
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/espectro-electro.png}
-  \caption{Espectro electromagnético \\(Adapatado de: https://iie.fing.edu.uy/proyectos/esopo/eem/).}\label{Fig:espectro-electromagnetico}
+  \caption{Espectro electromagnético \\ https://iie.fing.edu.uy/proyectos/esopo/eem/.}\label{Fig:espectro-electromagnetico}
 \end{figure}
-
-
-\subsubsection{Resolución}
-Unas de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución; estas resoluciones la podemos definir de la siguiente manera: \textbf{resolución espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel, a menor tamaño de píxel mayor sera la resolución espacial esto quiere decir que el sensor tendrá mayor detalle de los objetos como se puede observar en la figura (a) \ref{Fig:resoluciones};  
-\textbf{resolución espectral}: la resolución espectral especifica el numero y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (ver figura (c) \ref{Fig:resoluciones}); \textbf{resolución radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor (ver figura (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por ultimo tenemos la \textbf{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
-
-
-\begin{figure}[htbp]
-\centering
-\subfigure[Resolución espacial ]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion.png}}
-\subfigure[Resolución radiometrica]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion_radiometrica.png}}
-\subfigure[Resolución espectral ]{\includegraphics[width=6.6cm,height=5.2cm]{imagenes/MarcoTeorico/resolucion_espectral.jpg}}
-
-\caption{Resoluciones del Sensor}\label{Fig:resoluciones}
-\end{figure}
-
-
-
-
-%\begin{figure}[H] \centering
-%  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/%MarcoTeorico/resolucion.png}
-%  \caption{Resolución espacial \\  (Adaptado de: http//iie.fing.edu.uy/%proyectos/esopo/eem/)} \label{Fig:resolucion-esp}
-%\end{figure}
-
-
-%\begin{figure}[H] \centering
-%  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/%MarcoTeorico/resolucion_espectral.jpg}
-%  \caption{Resolución espectral \\ (Adaptado de:http://laotraopinion.net/%wp-content/uploads)}\label{Fig:resolucion-espectral}
-%\end{figure}
-
-
-%\begin{figure}[H] \centering
-%  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/%MarcoTeorico/resolucion_radiometrica.png}
-%  \caption{Resolución radiometrica \\ (Adaptado de: www.teledet.com.uy)}%\label{Fig:resolucion-radiometrica}
-%\end{figure}
 
 
 
@@ -79,7 +56,7 @@ Unas de las características de los sensores son el tipo de imagen que proporcio
 
 Las imágenes generadas a partir de la cámara a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel, la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las guarda en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
 
-La asignación de colores más conocida por los usuarios es el \textit{falso color} (R=Red (rojo), G=Green (verde) y B=Blue (azul)), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. La información obtenida de diferentes combinaciones de bandas depende del objeto de estudio que se esta llevando a cabo.
+La asignación de colores más conocida por los usuarios es el \textit{falso color} (RGB, por rojo, verde y azul en sus denominaciones en ingles), la cual asigna el color azul a la banda del verde, el color verde a la banda del rojo y el color rojo a la banda del infrarrojo cercano. La información obtenida de diferentes combinaciones de bandas depende del objeto de estudio que se esta llevando a cabo.
 
 %https://acolita.com/wp-content/uploads/2018/01/Teledeteccion_espacial_ArcGeek.pdf
 %https://mundosigs.wordpress.com/2016/03/07/que-son-los-sensores-remotos/
@@ -87,7 +64,7 @@ La asignación de colores más conocida por los usuarios es el \textit{falso col
 
 Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación \textit{espacial} y \textit{temporal} de los valores adquiridos por la misma.
 
-Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \textit{Machine Learning} y sus usos.
+Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \ac{ml} y sus usos.
 
 %http://sedici.unlp.edu.ar/bitstream/handle/10915/20976/Documento_completo.pdf?sequence=1
 %http://ing.unne.edu.ar/dep/goeciencias/fotointer/pub/teoria2011/parte02/tdi.pdf
