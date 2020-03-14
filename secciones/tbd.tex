@@ -103,40 +103,12 @@ En base a los diferentes métodos desarrollados en la sección (Sec:\ref{sub:reg
 Obtenido el conjunto de regiones candidatas por cada una de las imágenes se aplicó \ac{nms} (Sec:\ref{sub:nonmaximumsuppression}) para descartar regiones con sobre muestreo quedándonos solo con aquellas regiones que cumplen determinado criterio de solapamiento definido, \textit{IoU}, intersección sobre unión, en este caso el umbral utilizado para eliminar regiones fue de 80\%. Este proceso se realizo para cada una de las imágenes del set de datos descargado.
 
 
-%\subsubsection*{Extracción de características}
 Luego del proceso de \ac{nms} para cada región obtenida se debe extraer la información de cada una de las imágenes. Las redes neuronales convolucionales (Sec:\ref{sub:cnn}), permiten extraer las característica distintiva de la imagen haciendo uso de operaciones de convolución como se desarrollo en el capítulo (Sec:\ref{sub:cnn}). El proceso de extracción de información consta como primer paso seleccionar el tipo de arquitectura de la red que sera utilizada, para esta tesis se trabajo con \textit{ResNet50} (Sec:\ref{sub:arquitecturacnn}), la arquitectura  resnet50 recibe como input una imagen de $224 x 224$ y nos retorna un vector de 2048 que sera nuestro input para el entrenamiento del modelo.
-Como paso siguiente luego de la selección de la arquitectura se debe normalizar las imágenes al tamaño requerido por la red; esta imagen normalizada será convertida a un vector que pasara por cada una de las capas de la red ,\textit{convolucion}, \textit{polling}, \textit{fully conected}; para luego ser extraída de la ante ultima capa que sera la que contenga la información final de la imagen, este proceso se debe realizar para cada una de los bounding boxes contenidos en la imagen.
+Como paso siguiente luego de la selección de la arquitectura se debe normalizar las imágenes al tamaño requerido por la red; esta imagen normalizada será convertida a un vector que pasara por cada una de las capas de la red , convolucion, polling, fully conected; para luego ser extraída de la ante ultima capa que sera la que contenga la información final de la imagen, este proceso se debe realizar para cada una de los bounding boxes contenidos en la imagen. El proceso de entrenamiento comienza luego de obtener el dataset etiquetado (Sec: \ref{sub:generacion_datos_etiquetado}), este proceso conlleva realizar diferentes experimentos con los datos anotados como selección del modelo y búsqueda de hiperparametros.
 
-
-
-%extrajo la información de cada región utilizando redes neuronales convolucionales \ref{sub:cnn}, para esto utilizamos redes pre-entrenadas \ref{sub:arquitecturacnn}. 
 
 %El proceso de extracción se basa en dada una imagen de entrada luego que pasa por toda la red extraer la capa anterior a la ultima, esto lo hacemos porque esta capa tiene toda la información de las característica de la imagen que logro aprender. La información extraída tiene la forma de un vector de $N$ dimensiones dependiendo la arquitectura de la red pre-entrenada que estemos usando, en esta tesis la arquitectura utilizada para el proceso de extracción de característica es una \textit{ResNet50}, obteniendo un vector 2048 elementos como salida de la red.
 
-%Una vez obtenido los vectores de cada región de toda la imagen se %almacenaron en un archivo \textit{.mat} para luego entrenar un %clasificador con ellos.
-
-
-%\subsubsection*{Generación de datos para entrenamiento}
-
-Dado en que estamos por entrenando un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región. Para poder crear el datasets debemos tener identificado nuestras regiones de interés es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés, como se menciona en la sección (Sec:\ref{sec:obj_general}), son el \textit{Golfo de San Matias} y la \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se marco utilizando la librería \textit{Labelme} \footnote{Funte: https://github.com/wkentaro/labelme}, este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para compararse con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
-
-
-En el proceso de etiquetado debemos usar las anotaciones (polígonos) de nuestro \textit{ground thruth} y los regions proposal obtenidos por algunos de los métodos mencionados anteriormente; con estas dos regiones se calcula \textit{IoU}, intersección sobre unión, si el valor del \textit{IoU} superaba el 80\% entonces esa región se la identifica como clase positiva, en caso contrario se marca la región como clase negativa, este proceso se realizo por cada una de las regiones obtenidas de cada una de las imágenes.
-
-%Para realizar el etiquetado de los datos se debe calcular \textit{IoU}, intersección sobre unión, entre la región candidata y las regiones de interés etiquetada previamente con la librería \textit{Labelme}, 
-
-\begin{figure}[H] \centering
-  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
-  \caption{Ground Thruth - etiquetado}\label{Fig:labelme-etiquetado}
-\end{figure}
-
-Cada uno de los datos etiquetados están relacionado a uno de los vectores de característica extraído anteriormente, luego de realizar todo el proceso de extracción y etiquetado ya tenemos el datasets final con el que vamos a entrenar el modelo.
-
-
-%Con el el dataset de train se realizo el entrenamiento del modelo %utilizando \textit{grid search} como algoritmo de búsqueda de %hiper-parámetros del modelo \textit{SVM} \ref{sub:clasificadores} y %\textit{cross validation} \ref{Fig: crossvalidation} para evitar %problemas de \textit{overfitting} \ref{sub:problema_deteccion}.
-
-
-%\subsubsection*{Evaluación}
 
 Para la etapa de validación de los datos se realizo con el datasets de test de la cual se calculo las métricas de \textit{precision}, \textit{recall} y \textit{auroc} (Sec:\ref{sub:evaluación-modelo}) para medir la eficiencia de los  modelos entrenados en el paso anterior. Luego de diversas iteraciones se llegó a un modelo que maximicen estas métricas mencionadas, este modelo sera la versión final que será utilizado para realizar la predicción de datos que nunca vio el modelo.
 
@@ -201,3 +173,16 @@ El instrumento \ac{viirs} fue lanzado a bordo del satélite Suomi-NPP el 28 de o
 \end{center}\caption{Característica de bandas,\ac{viirs} \label{tab:viirs}}
 \end{table}
 
+\subsection{Generación de datos - etiquetado}\label{sub:generacion_datos_etiquetado}
+
+Dado en que estamos por entrenando un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región. Para poder crear el datasets debemos tener identificado nuestras regiones de interés es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés, como se menciona en la sección (Sec:\ref{sec:obj_general}), son el \textit{Golfo de San Matias} y la \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se marco utilizando la librería \textit{Labelme} \footnote{Funte: https://github.com/wkentaro/labelme}, este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para compararse con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
+
+
+En el proceso de etiquetado debemos usar las anotaciones (polígonos) de nuestro datos etiquetados y los \ac{rp} obtenidos por algunos de los métodos mencionados anteriormente; con estas dos regiones se calcula \textit{IoU}, intersección sobre unión, si el valor del \textit{IoU} superaba el $80\%$ entonces esa región se la identifica como clase positiva, en caso contrario se marca la región como clase negativa, este proceso se realizo por cada una de las regiones obtenidas de cada una de las imágenes.
+
+\begin{figure}[H] \centering
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
+  \caption{Ground Thruth - etiquetado}\label{Fig:labelme-etiquetado}
+\end{figure}
+
+Cada uno de los datos etiquetados están relacionado a uno de los vectores de característica extraído, luego de realizar todo el proceso de extracción y etiquetado ya tenemos los datasets con el que vamos a entrenar el modelo.

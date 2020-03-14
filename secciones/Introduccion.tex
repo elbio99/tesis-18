@@ -128,6 +128,8 @@ En la siguiente figura (ver: \ref{Fig: diagbloque}), se muestra el diagrama de b
   \caption{Arquitectura del Software de reconocimiento}
 	\label{Fig: diagbloque}
  \end{figure}
+ 
+Como se visualiza en el diagrama de arquitectura \ref{Fig: diagbloque}, se dispone de cuatros bloques principales dentro del esquema principal definido como sistema inteligente; el bloque \ac{cv} comprende la extracción de características por medio de redes neuronales y el calculo de \ac{rp}(ver: \ref{sub:regions-proposal}); en el bloque de \ac{nms} se calcula el overlapping de los \ac{rp} eliminando datos duplicados (ver: \ref{sub:nonmaximumsuppression}). El bloque de aprendizaje se integra todos los algoritmos utilizados para el entrenamiento y se realiza la validación del los modelos, por ultimo tenemos el bloque de clasificación es el que da como salida la inferencia del modelo entrenado.
 
 
 \section{Estructura General de la Tesis }\label{sec:estructura}
