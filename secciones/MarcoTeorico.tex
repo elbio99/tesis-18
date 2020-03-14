@@ -98,7 +98,7 @@ En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
-  \caption{Ejemplo Clasificación}\label{Fig:clasificacion}
+  \caption{La linea punteada es una función que indica la separación entre dos clases.}\label{Fig:clasificacion}
 \end{figure}
 
 % Ejemplo de MNIST en clasificación?????
@@ -112,7 +112,7 @@ Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de e
 
 Entrenar un modelo supervisado requiere al menos tres cosas especificas:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que consume el algoritmo, el objetivo es crear un modelo que generalice los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
 
-Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de entrada $ x$ e  $ y$  una variable de salida $ Y$; que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
+Como se desarrollo anteriormente el proceso de entrenamiento implica: $f $ es un mapeo en un espacio de entrada (imágenes) $X$ y uno de salida $Y$ (etiquetas de la clase); se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N})$  que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
 
 
 \begin{eqnarray}
@@ -121,29 +121,16 @@ Como se desarrollo anteriormente el proceso de entrenamiento tiene: variables de
  \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y
 \end{eqnarray}
 
-Considerando el siguiente ejemplo, dada las coordenadas $ (x,y)$ como se muestra en la figura \ref{Fig:ejemplo-1}, se muestran dos clases, puntos de color negro y otra blanca.
-\begin{figure}[H] \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample.png}
-  \caption{Ejemplo entrenamiento}\label{Fig:ejemplo-1}
-\end{figure}
-
-La idea principal de desarrollar un modelo; es crear un algoritmo que a partir de datos encuentre automáticamente una frontera, clasifique, encuentre por ejemplo una frontera entre los puntos negros y los puntos blancos.Como se puede ver en la figura \ref{Fig:ejemplo-2}, se muestra la frontera de separación creada por el algoritmo entrenado.
-
-\begin{figure}[H] \centering
-  \includegraphics[height=4cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/sample-fit-1.png}
-  \caption{Entrenamiento}\label{Fig:ejemplo-2}
-\end{figure}
-
-De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algoritmo de clasificación.
+La función $f$ es un modelo paramétrico, por ejemplo uno lineal, la idea principal es crear un algoritmo que a partir de os datos encuentre automáticamente una frontera  como se puede ver en la figura \ref{Fig:clasificacion}, para un caso de clasificación binaria los valores de $y$ podrían tomar los siguiente datos $Y={-1,1}$. De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algoritmo de clasificación.
 
 
 \subsection{Modelos para la clasificación}\label{sub:clasificadores}
 
-Un clasificador es un método que permite a partir de recibir cierta información del objeto indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
+Un clasificador es un método que permite a partir de recibir cierta información indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
 
 \par \textbf{Regresión Logística}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
 
-Para asignar los valores predichos a las probabilidades, usamos la función sigmoidea que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
+Para asignar los valores predichos a las probabilidades, usamos la función sigmoide que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
 \begin{equation}
 \phi(z) = \frac{1}{1+e^{-z}}
 \end{equation}
@@ -151,7 +138,7 @@ Para asignar los valores predichos a las probabilidades, usamos la función sigm
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.5]{imagenes/MarcoTeorico/sigmoide.png}
-  \caption{Regresión Logística \\ (Adaptado de: \citep{bishop})}
+  \caption{Regresión Logística, \citep{bishop}.}
   \label{Fig: log_reg}
 \end{figure}
 
@@ -164,7 +151,7 @@ Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables d
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/decision-tree.png}
-  \caption{Ejemplo Arboles de decisión \\ (Adaptado de: https://medium.com/machine-learning-bites)}
+  \caption{Ejemplo Arboles de decisión.}% \\ (Adaptado de: https://medium.com/machine-learning-bites)}
   \label{Fig: decision-tree}
 \end{figure}
 
@@ -176,25 +163,25 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.png}
-  \caption{Ejemplo Bosques Aleatorios \\ (Adaptado de: https://www.researchgate.net/publication/324517994)}
+  \caption{Ejemplo Bosques Aleatorios \\ https://www.researchgate.net/publication/324517994}
   \label{Fig: random_forest}
 \end{figure}
 
-\par \textbf{Maquina de vectores de soporte (\ac{svm} por su siglas en ingles)}: El objetivo de un algoritmo \ac{svm} es encontrar un hiper-plano en un espacio de $n$ dimensiones que separe los datos con el mayor margen posible, como en la figura \ref{Fig: margenseparacionsvm}. 
+\par \textbf{Maquina de vectores de soporte (SVM por su siglas en ingles)}: El objetivo de un algoritmo \ac{svm} es encontrar un hiperplano en un espacio de $n$ dimensiones que separe los datos con el mayor margen posible, como en la figura \ref{Fig: margenseparacionsvm}. 
 %pag.326 y 328 nuevo de bishop
 
 \begin{figure}[H]
  \centering
   \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/separacionsvm.png}
-  \caption{Margen de Separación hiper-plano \\ (Adaptado de:{https://goo.gl/eTZfvH})}
+  \caption{Margen de Separación hiperplano \\ (Adaptado de:{https://goo.gl/eTZfvH})}
   \label{Fig: margenseparacionsvm}
 \end{figure}
 
-Para separar dos clases existen muchos hiper-planos posibles, ver figura \ref{Fig: hiperplanos}, el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar un ejemplo usando un modelo lineal \ref{eq: modelo-lineal}:
+Para separar dos clases existen muchos hiperplanos posibles, ver figura \ref{Fig: hiperplanos}, el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar un ejemplo usando un modelo lineal \ref{eq: modelo-lineal}:
 \begin{equation}\label{eq: modelo-lineal}
-    y(x) = w^{\rm T} \vartheta(x) + b
+    Y(x) = w^{\rm T} \f(x) + b
 \end{equation}
-Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a los targets (labels) $t_i,...,t_n$ donde en estos casos $ t  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \ref{eq: modelo-lineal} satisfaga $y(x_n) > 0 $ para los valores que forman $t_n = +1$ y para $ y(x_n) <  0$ para los valores que toman $ t_n = -1$. En diversos casos existen $ n$ hiper planos de separación  \ref{Fig: hiperplanos} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos.
+Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a datos etiquetados  $y_i,...,y_n$ donde en estos casos $ y  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ Y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \ref{eq: modelo-lineal} satisfaga $Y(x_n) > 0 $ para los valores que forman $y_n = +1$ y para $ Y(x_n) <  0$ para los valores que toman $ y_n = -1$. En diversos casos existen $ n$ hiperplanos de separación  \ref{Fig: hiperplanos} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos.
 
 \begin{figure}[H]
  \centering
@@ -203,38 +190,21 @@ Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada 
   \label{Fig: hiperplanos}
 \end{figure}
 
-El margen se define como la distancia perpendicular entre el límite de decisión y el valor mas cercano de los puntos de datos, como se muestra en la figura \ref{Fig: margen}.
 
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/margen.png}
-  \caption{Margen  de separación}
-  \label{Fig: margen}
-\end{figure}
-
-Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia a determinado punto es  \ref{eq: distancia-margen}:
+Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
 
 \begin{equation}\label{eq: distancia-margen}
-   \frac{t_n y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} \vartheta(x) + b)}{ \|w \|} 
+   \frac{t_n y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} \vartheta(x) + b)}{ \|w \|}.
 \end{equation}
 
-El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$ del conjunto de entrenamiento, y deseamos optimizar los parámetros $ w$ y $ b$ para maximizar esta distancia, así, la solución del margen máximo esta dada por  \ref{eq: margen-maximo}:
+El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$ del conjunto de entrenamiento, y deseamos optimizar los parámetros $ w$ y $ b$ para maximizar esta distancia, así, la solución del margen máximo esta dada por:
 
 \begin{equation}\label{eq: margen-maximo}
-\arg\max_{w ,b} \{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} \vartheta(x) + b)] \}
+\arg\max_{w ,b} \{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} \vartheta(x) + b)] \}.
 \end{equation}
 
 
-En la gran mayoría de casos, los datos no se pueden separar linealmente de forma perfecta, por lo que no existe un hiperplano de separación y no puede obtenerse un margen máximo de manera simple como en la figura \ref{Fig: no-separables}. 
-
-\begin{figure}[H]
- \centering
-  \includegraphics[height=5cm,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/marge-no-separables.png}
-  \caption{Clases linealmente no separables}
-  \label{Fig: no-separables}
-\end{figure}
-
-Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
+En la gran mayoría de casos, los datos no se pueden separar linealmente de forma perfecta, por lo que no existe un hiperplano de separación y no puede obtenerse un margen máximo de manera simple. Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
 
 
 Las ventajas de estos clasificadores son: eficaz para grandes espacios dimensionales, efectivo en casos en los que el número de dimensiones es mayor que el número de muestras, se pueden especificar diferentes funciones del kernel para la función de decisión, el proceso de entrenamiento es más rápido en comparación con otros tipo de clasificadores, sobre todo para cuando tenemos un conjunto de entrenamientos grandes.
@@ -250,20 +220,20 @@ Existen diferentes tipos de funciones de costo que podemos usar para determinar 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
-  \caption{Mean Square Error \\(Adaptado de: \citep{bishop})}\label{Fig:mse}
+  \caption{Mean Square Error \\ \citep{bishop}}\label{Fig:mse}
   %http://wiki.fast.ai/images/5/55/Linear_line_w_cost_function.png
 \end{figure}
 
-Para un problema de clasificación donde tenemos los siguientes datos $(x_i,y_i) $, donde $x_i $ es el conjunto de entrenamiento, por ejemplo las características de una casa pisos, dormitorios, etc; e $y_i$ es el precio correspondiente dada determinada característica. El método utiliza para calcular el error en la predicción es\ref{eqn:error-mse}, en donde $ y(x_i)$ es el valor de la predicción e $y_i$ es la variable a predecir.
+Para un problema de clasificación donde tenemos los siguientes datos $(x_i,y_i) $, donde $x_i $ es el conjunto de entrenamiento, por ejemplo las características de una casa pisos, dormitorios, etc; e $y_i$ es el precio correspondiente dada determinada característica. El método utiliza para calcular el error en la predicción es \eqref{eqn:error-mse}, en donde $ y(x_i)$ es el valor de la predicción e $y_i$ es la variable a predecir.
 \begin{equation}\label{eqn:error-mse}
-error = (y(x_i) - y_i)^2
+error_i = (y(x_i) - y_i)^2
 \end{equation} 
 A partir del calculo anterior podemos generalizar \ref{eq: mse-ejem} y tomar el promedio sobre todo los punto de datos de esta manera el resultados de este valor no permite determinar cuanto no estamos acercando a la solución buscada.
 \begin{equation}\label{eq: mse-ejem}
-MSE =  \frac{1}{n}\sum_{i}(y_i - y(x_i))^2
+MSE =  \frac{1}{N}\sum_{i}(y_i - y(x_i))^2
 \end{equation}
 
-Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior (Sec:\ref{sub:clasificadores}) vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables \textit{slack}.
+Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior (Sec:\ref{sub:clasificadores}) vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables de holgura (\emph{slack}).
 
 Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores \ref{Fig:slack-var}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$.
 
