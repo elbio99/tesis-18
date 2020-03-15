@@ -9,64 +9,66 @@ A level-1 auxiliary file: secciones/tbd.aux
 A level-1 auxiliary file: secciones/EvaluacionExperimental.aux
 A level-1 auxiliary file: secciones/Discusion.aux
 The style file: plainnatesp.bst.bst
-Illegal, another \bibstyle command---line 107 of file template_tesis_mdiae.aux
+Illegal, another \bibstyle command---line 91 of file template_tesis_mdiae.aux
  : \bibstyle
  :          {apa}
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: secciones/appendix.aux
 Database file #1: template_tesis_mdiae.bib.bib
 Warning--I'm ignoring proposal's extra "year" field
---line 153 of file template_tesis_mdiae.bib.bib
+--line 208 of file template_tesis_mdiae.bib.bib
 Warning--entry type for "cnnsarticle" isn't style-file defined
---line 380 of file template_tesis_mdiae.bib.bib
+--line 435 of file template_tesis_mdiae.bib.bib
 Warning--to sort, need author or key in variants_gd
 Warning--empty journal in Analysis_deep_network
 Warning--empty journal in HOG_algoritmo
 Warning--empty journal in SVM
 Warning--empty journal in Huggins
 Warning--empty journal in pnn
+Warning--empty journal in exponential_cost
 Warning--empty journal in Cheang
+Warning--empty booktitle in cross_entropy
 Warning--empty journal in selectivesearch
 Warning--empty journal in edges
-You've used 33 entries,
+You've used 38 entries,
             2773 wiz_defined-function locations,
-            794 strings with 10563 characters,
-and the built_in function-call counts, 13501 in all, are:
-= -- 1136
-> -- 915
-< -- 15
-+ -- 312
-- -- 279
-* -- 1059
-:= -- 2191
-add.period$ -- 112
-call.type$ -- 33
-change.case$ -- 189
-chr.to.int$ -- 33
-cite$ -- 76
-duplicate$ -- 622
-empty$ -- 1025
-format.name$ -- 323
-if$ -- 2752
+            831 strings with 11493 characters,
+and the built_in function-call counts, 16070 in all, are:
+= -- 1384
+> -- 1018
+< -- 22
++ -- 347
+- -- 309
+* -- 1247
+:= -- 2553
+add.period$ -- 132
+call.type$ -- 38
+change.case$ -- 214
+chr.to.int$ -- 38
+cite$ -- 88
+duplicate$ -- 755
+empty$ -- 1249
+format.name$ -- 364
+if$ -- 3329
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 30
-newline$ -- 186
-num.names$ -- 128
-pop$ -- 402
+missing$ -- 35
+newline$ -- 216
+num.names$ -- 148
+pop$ -- 453
 preamble$ -- 1
-purify$ -- 159
+purify$ -- 179
 quote$ -- 0
-skip$ -- 494
+skip$ -- 603
 stack$ -- 0
-substring$ -- 115
-swap$ -- 30
-text.length$ -- 0
+substring$ -- 240
+swap$ -- 67
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 343
-warning$ -- 9
-while$ -- 98
+type$ -- 398
+warning$ -- 11
+while$ -- 122
 width$ -- 0
-write$ -- 432
+write$ -- 505
 (There was 1 error message)

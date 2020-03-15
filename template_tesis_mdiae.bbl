@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -113,6 +113,19 @@ Ujjwal Karn.
   \url{https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/}.
 \newblock [Accedido 15-Junio-2017].
 
+\bibitem[Kim y Lee(2012)]{exponential_cost}
+Hyungjin Kim y Sanghwan Lee.
+\newblock Greedy virtual network embedding under an exponential cost function.
+\newblock páginas 216--221, 02 2012.
+\newblock \doi{10.1109/ICOIN.2012.6164380}.
+
+\bibitem[Kitsos y Toulias(2017)]{Hellinger}
+Christos Kitsos y Thomas Toulias.
+\newblock Hellinger distance between generalized normal distributions.
+\newblock \emph{British Journal of Mathematics & Computer Science},
+  21:\penalty0 1--16, 01 2017.
+\newblock \doi{10.9734/BJMCS/2017/32229}.
+
 \bibitem[Konstantinidis et~al.(2017)Konstantinidis, Stathaki, Argyriou, y
   Grammalidis]{detectionHOG}
 D.~Konstantinidis, T.~Stathaki, V.~Argyriou, y N.~Grammalidis.
@@ -133,6 +146,14 @@ Atsunori. Kouyama, T.and~Kanemura, Soushi. Kato, Nevrez Imamoglu, y Ryosuke
 \newblock Satellite attitude determination and map projection based on robust
   image matching.
 \newblock \emph{Remote Sensing}, 2016.
+
+\bibitem[Kullback y Leibler(1951)]{kullback}
+S.~Kullback y R.~A. Leibler.
+\newblock On information and sufficiency.
+\newblock \emph{Ann. Math. Statist.}, 22\penalty0 (1):\penalty0 79--86, 03
+  1951.
+\newblock \doi{10.1214/aoms/1177729694}.
+\newblock URL \url{https://doi.org/10.1214/aoms/1177729694}.
 
 \bibitem[Lanillos(2008)]{Lanillos}
 Pablo Lanillos.
@@ -159,10 +180,24 @@ Kevin Murphy.
 \newblock Massachusetts Institute of Technology, 2012.
 \newblock ISBN 978-0-262-01802-9.
 
+\bibitem[Nasr et~al.(2002)Nasr, Badr, y Joun]{cross_entropy}
+G.E. Nasr, E.~Badr, y C.~Joun.
+\newblock Cross entropy error function in neural networks: Forecasting gasoline
+  demand.
+\newblock páginas 381--384, 01 2002.
+
 \bibitem[Simonyanv y Zisserman(2014)]{vgg}
 Karen Simonyanv y Andrew Zisserman.
 \newblock Very deep convolutional networks for large-scale image recognition.
 \newblock \emph{ICLR}, 2014.
+
+\bibitem[{Sitompul}(2013)]{quadratic_cost}
+E.~{Sitompul}.
+\newblock Linear-quadratic cost function for dynamic system modelling using
+  recurrent neural networks.
+\newblock En \emph{2013 International Conference on Computer, Control,
+  Informatics and Its Applications (IC3INA)}, páginas 237--242, Nov 2013.
+\newblock \doi{10.1109/IC3INA.2013.6819180}.
 
 \bibitem[Sommerville(2006)]{sommerville}
 Ian Sommerville.
