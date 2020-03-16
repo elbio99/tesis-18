@@ -272,7 +272,7 @@ Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo m
 Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
 \begin{equation}
-w^* =  \arg\min_{w} f(X; w)
+w^* =  \arg\min_{w} \mathcal{L}(X; w)
 \end{equation}
 
 Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
@@ -284,16 +284,16 @@ Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la di
 
 
 %Gradiente extraido de :https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
-El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla f(w) $ vector de derivadas parciales de la función $f$ es:
+El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla \mathcal{L}(w) $ vector de derivadas parciales de $\mathcal{L}$ es:
 \begin{equation}
-\nabla f(x) = (\frac{\partial f(\textbf{w})}{\partial w_1},....., \frac{\partial f(\textbf{w})}{\partial w_n})
+\nabla \mathcal{L}(x) = (\frac{\partial \mathcal{L}(\textbf{w})}{\partial w_1},....., \frac{\partial \mathcal{L}(\textbf{w})}{\partial w_n})
 \end{equation}
 
 Descenso de gradiente es un algoritmo iterativo del cual comenzamos con un valor inicial de $\textbf{w}$, luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual, es decir, el paso de actualización es:
 \begin{equation}
-\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla f(\textbf{w}^{(t)})
+\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)})
 \end{equation}
-Donde $ \alpha > 0$,  el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de $T$ iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$, en dónde $\hat{w}$ es una nueva posición de los parámetros que se acerca al mínimo buscado, es decir que hacen que $f(w^{(t)})$ se aproxime mejor al valor buscado de $Y$ . 
+Donde $ \alpha > 0$,  el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de $T$ iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$, en dónde $\hat{w}$ es una nueva posición de los parámetros que se acerca al mínimo buscado, es decir que hacen que $\mathcal{L}(w^{(t)})$ se aproxime mejor al valor buscado de $Y$ . 
 
 Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent} \citep{variants_gd}.
 
@@ -328,7 +328,7 @@ Existen diversas variantes de descenso por gradiente como \textit{Batch gradient
 
 En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a nuevos datos. 
 
-Una de los principales motivos por el cual tenemos que validar nuestro modelo es para obtener una medida de cuan erróneo pueden llegar a ser nuestros resultados en la predicción ; esta causa esta dada por dos términos muy importante que debemos tener en cuenta: overfitting y underfitting. \textit{\textbf{Overfitting}} y \textit{\textbf{Underfitting}} son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos atacar. 
+Una de los principales motivos por el cual tenemos que validar nuestro modelo es para obtener una medida de cuan erróneo pueden llegar a ser nuestros resultados en la predicción ; esta causa esta dada por dos términos muy importante que debemos tener en cuenta es el  overfitting y underfitting. El valor de overfitting y underfitting son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos atacar. 
 
 El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir, esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
 
@@ -337,8 +337,7 @@ Como parte opuesta al overfitting esta el  underfitting; este concepto hace refe
 \begin{figure}[h]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/OverFUnderF.png}
-  \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha) \\ 
-  (Adaptado de: https://medium.com/deep-learning-neuroevolution-extreme-learning-machines)}
+  \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha) }%\\(Adaptado de: https://medium.com/deep-learning-neuroevolution-extreme-learning-machines)}
 	\label{Fig: overUnder}
 \end{figure}
 
@@ -350,11 +349,11 @@ Existen diferentes técnicas para validar la robustez de nuestro modelo y evitar
 Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
 
-\par \textbf{K-Fold Cross Validation}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Existe un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
+\par \textbf{Validación cruzada de K vueltas}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Existe un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/crossvalidat.png}
-  \caption{Validación cruzada para k=5\\(Adaptado de:{http: //goo.gl/Dp85h3})}
+  \caption{Validación cruzada para k=5.}%\\(Adaptado de:{http: //goo.gl/Dp85h3})}
 	\label{Fig: crossvalidation}
 \end{figure}
 
@@ -363,7 +362,7 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-LOOCV.png}
-  \caption{Leave-One-Out Cross-Validation (LOOCV) \\ (Adaptado de: https://sebastianraschka.com/)}
+  \caption{Leave-One-Out Cross-Validation (LOOCV).}%\\ (Adaptado de: https://sebastianraschka.com/)}
 	\label{Fig: crossvalidation-LOOCV}
 \end{figure}
 
@@ -372,7 +371,7 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cross-validation-random.png}
-  \caption{Random Subsampling \\ (Adaptado de: https://sebastianraschka.com/)}
+  \caption{Random Subsampling.}% (Adaptado de: https://sebastianraschka.com/)}
 	\label{Fig: random-Subsampling}
 \end{figure}
 
@@ -425,7 +424,25 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
   \caption{Curva ROC} \label{Fig: roc}
 \end{figure}
 
-Además de las métricas mencionadas anteriormente para este trabajo se utilizo \textit{Overlapping Mean} como métrica, este valor se calcula a partir de la intersección del \textit{ground trut}h (datos etiquetados) y el\textit{ bounding box} de la predicción obtenida, en capítulos siguiente desarrollaremos mas en detalle los términos mencionados.
+\subsubsection*{Métricas de detección}\label{sub:metricas_de_deteccion}
+% https://biblioteca.unirioja.es/tfe_e/TFE004595.pdf
+Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se esta realizando; además de las métricas mencionadas anteriormente para evaluar el rendimiento de un modelo de detección de objeto se utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en ingles), esta medida nos da la precisión de un detector de objeto en un conjunto de datos etiquetados. Dado un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
+\begin{equation}
+IOU = \frac{area\;de\;interseccion\;entre\;region\;etiquetada\;y\;prediccion}{area\;de\;union\;entre\;region\;etiquetada\;y\;region\;que\;se\;predijo}
+\end{equation}
+
+Cuando evaluamos un modelo de detección de objeto queremos saber a que clase pertenece, la métrica de evaluación IOU no tiene en cuenta la clase por lo que no se puede utilizar directamente; para esto definimos la métrica mAP (mean Average Precision), esta métrica calcula el valor de precisión promedio para el valor de recall de 0 a 1.
+
+En base a los datos etiquetados tenemos un conjunto de objetos de una clase $c \in C$, decimos que un objeto es detectado correctamente si el modelo entrenado realiza una predicción tal que el valor de IOU sea mayor a un valor definido previamente, $0.5$ (valor tomado normalmente), y $c$ es igual a la clase predicha. Para cada una de las imágenes obtenemos la precision de la clase $C$ de la siguiente forma:
+\begin{equation}
+Precision_c = \frac{numero\;de\;detecciones\;de\;la\;clase\;C\;en\;una\;imagen}{numero\;de\;objetos\;de\;la\;clase\;C\;en\;una\;imagen}
+\end{equation}
+
+Para evaluar el modelo debemos tomar el conjunto de imágenes definido como $I$, el \textit{average precision} se define como:
+\begin{equation}
+Average Precision_c = \frac{\sum Precision_c}{I\;con\;objetos\;que\;pertenece\;a\;la\;clase\;C}
+\end{equation}
+
 
 
 \section{Redes convolucionales y el problema de detección de objetos}\label{sec:compueter-vision}
