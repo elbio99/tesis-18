@@ -633,10 +633,10 @@ Las redes neuronales convolucionales nos permiten extraer información dada una 
 
 El principal inconveniente de \textit{sliding windows} es el costo computacional que conlleva aplicarla ya que debe recorrer toda la imagen para encontrar el objeto de interés, generalmente los objetos no se presentan de un tamaño fijo en toda la imagen por lo que al aplicar esta técnica la ventana no coincida con el tamaño de ventana definido por lo que se debe crear imágenes en pirámide para la solución en la escala como se menciona anteriormente; para dar un ejemplo en una imagen de $640 x 480$ píxeles con tamaño de ventada de $ 3 x 3$ y un salto de $2$ se deberían evaluar en el orden de $10^3$ ventanas en la imagen.
 
-Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{sliding windows} estos son llamados regiones propuestas, \textit{regions proposal} por su denominación en ingles, los métodos de regiones propuestas toman una imagen de entrada y retornan una región, \textit{bounding box},  que probablemente contengan algún objeto de interés en la imagen; los \textit{bounding box} retornado por algunos de los métodos de regiones propuestas habrá al menos uno que contenga o se acerque al objeto de interés que estamos buscando dentro de la imagen.
+Existen diversos algoritmos mucho mas eficientes en termino de tiempo y reconocimiento de objeto que \textit{sliding windows} estos son llamados regiones propuestas, \ac{rp} por su denominación en ingles, los métodos de regiones propuestas toman una imagen de entrada y retornan una región, \textit{bounding box},  que probablemente contengan algún objeto de interés en la imagen; los \textit{bounding box} retornado por algunos de los métodos de regiones propuestas habrá al menos uno que contenga o se acerque al objeto de interés que estamos buscando dentro de la imagen.
 
 % las regiones con alta probabilidad seran aquellas que contengan el objeto que estamos buscando, luego podemos clasificarla usando algun modelo como SVM.ZZZZ https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/
-Luego de generar las regiones propuestas extraemos las características de la imagen por medio de una \ac{cnn}, a partir de las salidas de esta extracción de característica, \textit{feature extraction} por su denominación en ingles, se utilizará algunos de los métodos de clasificación desarrollado en (Sec:\ref{sub:clasificadores}) en la cual la salida serán los \textit{bounding box} identificado con alguna probabilidad de que contenga o no el objeto que estamos buscando. Como siguiente paso debemos  asegurarnos que los \textit{bounding box} no estén duplicados, es decir que no representen la misma información que otra región, para eliminar regiones duplicadas utilizamos el método de \textit{Non-Maxima Suppression} (Sec:\ref{sub:nonmaximumsuppression}) que a partir de un umbral previamente definido nos permite eliminar regiones duplicadas en la detección.
+Luego de generar las regiones propuestas extraemos las características de la imagen por medio de una \ac{cnn}, a partir de las salidas de esta extracción de característica, \textit{feature extraction} por su denominación en ingles, se utilizará algunos de los métodos de clasificación desarrollado en (Sec:\ref{sub:clasificadores}) en la cual la salida serán los \textit{bounding box} identificado con alguna probabilidad de que contenga o no el objeto que estamos buscando. Como siguiente paso debemos  asegurarnos que los \textit{bounding box} no estén duplicados, es decir que no representen la misma información que otra región, para eliminar regiones duplicadas utilizamos el método de supresión de no máximos (NMS, pos sus siglas en ingles) (Sec:\ref{sub:nonmaximumsuppression}) que a partir de un umbral previamente definido nos permite eliminar regiones duplicadas en la detección.
 
 
 %Un pipeline básico de detección tiene la siguiente estructura \ref{fig:pipeline-deteccion}.
@@ -651,7 +651,7 @@ Regions proposal son un conjunto de métodos que permiten extraer regiones dentr
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/regionProposal.png}
-  \caption{Ejemplo de regiones propuestas \\ (Adaptado de:\citep{regions_proposal_gr}).}
+  \caption{Regiones propuestas, \citep{regions_proposal_gr}.}
 	\label{Fig: propsalregion}
 \end{figure}
 
@@ -672,7 +672,7 @@ Las estrategias usadas en este método es \textit{capturar todas las escalas}: l
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/selectivesearch.png}
-  \caption{Ejemplo segmentación con \textit{Selective Search} \\(Adaptado de:\citep{selectivesearch}).}
+  \caption{Segmentación por el metodo de \textit{Selective Search} con diferentes valores de umbrales \\ \citep{selectivesearch}.}
 	\label{Fig: overlapping}
 \end{figure}
 
@@ -689,25 +689,25 @@ Luego de las extracciones de regiones candidatas obtenidas por algunos de los m�
 
 \subsection{Non-Maxima Suppression}\label{sub:nonmaximumsuppression}
 
-Non-Maxima Suppression es un post-procesamiento muy importante en el contexto de la detección. Al aplicar métodos de regiones propuestas puede suceder que existan regiones con sobre-muestreo, es decir superpuestas, como se muestra en la figura  \ref{Fig: overlapping}. 
+El método de supresión de no máximos (NMS) es un post-procesamiento muy importante en el contexto de la detección. Al aplicar métodos de regiones propuestas puede suceder que existan regiones con sobre-muestreo, es decir superpuestas, como se muestra en la figura  \ref{Fig: overlapping}. 
 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapMat.png}
-  \caption{Superposición entre regiones \\ (Adaptado de:https://www.mathworks.com/help/vision/ ).} \label{Fig: overlapping}
+  \caption{Superposición entre dos regiones \\ (https://www.mathworks.com/help/vision/ ).} \label{Fig: overlapping}
 \end{figure}
 
-Para poder eliminar detecciones redundantes calculamos un valor denominado  \textit{IoU}, intersección sobre unión,  este valor nos indica el solapamiento, \textit{overlapping} ,  entre diferentes regiones cercanas como se muestra en la figura \ref{Fig: interseccion}. Non-maxima supression puede ser formulado como una búsqueda de los máximo locales en donde el máximo local es  mayor que todos sus vecinos,  el algoritmo selecciona aquellas detecciones con un \textit{puntaje} (IoU) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
+Para poder eliminar detecciones redundantes calculamos un valor denominado  \textit{IoU}, intersección sobre unión,  este valor nos indica el solapamiento, \textit{overlapping} ,  entre diferentes regiones cercanas como se muestra en la figura \ref{Fig: interseccion}. \ac{nms} puede ser formulado como una búsqueda de los máximo locales en donde el máximo local es  mayor que todos sus vecinos,  el algoritmo selecciona aquellas detecciones con un \textit{puntaje} (IoU) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapping.png}
-  \caption{IoU con diferentes valores \\ (Adaptado de:\citep{bishop}).}\label{Fig: interseccion}
+  \caption{IoU con diferentes valores de umbrales\\ \citep{bishop}.}\label{Fig: interseccion}
 \end{figure}
 
 Dependiendo del valor, IoU  obtenido podemos usar un umbral para  eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento, para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}. 
 
-En un pipeline de detección las técnicas de non-maxima supression se utilizan para eliminar detecciones redundantes luego de la clasificación esto nos permite reducir el numero de detecciones a solo una por cada región detectada.
+En un pipeline de detección las técnicas de \ac{nms}  se utilizan para eliminar detecciones redundantes luego de la clasificación esto nos permite reducir el numero de detecciones a solo una por cada región detectada.
 
 \begin{figure}[H]
  \centering
@@ -715,8 +715,9 @@ En un pipeline de detección las técnicas de non-maxima supression se utilizan 
   \caption{Uso de Non-maxima supression \\ (Adaptado de: \citep{nms2}).}\label{Fig: nonmaximumsuppression}
 \end{figure}
 
-En el siguiente algoritmo  \ref{alg:nms} se visualiza el proceso llevado a cabo por Non-maxima suppresion en la eliminación de regiones redundantes.  El algoritmo recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor IoU de cada una de las regiones por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
+En el siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo por \ac{nms} en la eliminación de regiones redundantes.  El algoritmo  recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor IoU de cada una de las regiones por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
 %https://www.vision.ee.ethz.ch/publications/papers/proceedings/eth_biwi_01126.pdf
+%D es un acumulador de bboxes
 \begin{algorithm}[H]\caption{Non-Maxima Suppression}\label{alg:nms}
 
 \begin{algorithmic}[1]
@@ -727,11 +728,10 @@ En el siguiente algoritmo  \ref{alg:nms} se visualiza el proceso llevado a cabo 
 \State $ \textbf{BEGIN} $
 \State $D \gets \{\}$
 \While {$\beta \neq empty$}
-    \State $ m\gets  argmax S $
+    \State $ m\gets  \argmax S $
     \State $ M \gets b_m $
     \State $ D \gets D \cup M; B \gets B - M $
-    \For {$b_i in \beta$}
-    
+    \For {$b_i$ to $\beta$}
         \If {$IoU(M, b_i) \geq N_t$}
             \State $ B \gets B - b_i; S \gets S - s_i $
 \EndIf
