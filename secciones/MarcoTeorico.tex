@@ -117,8 +117,8 @@ Como se desarrollo anteriormente el proceso de entrenamiento implica: $f $ es un
 
 \begin{eqnarray}
  f:X \longrightarrow Y\\
- \mbox{Entrenamiento}:\qquad \{(x^i, y^i) \in X\; x\; Y \} _i=1...n\\
- \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y
+ \mbox{Entrenamiento}:\qquad \{(x^i, y^i) \in X\; x\; Y. \} _i=1...n.\\
+ \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y.
 \end{eqnarray}
 
 La función $f$ es un modelo paramétrico, por ejemplo uno lineal, la idea principal es crear un algoritmo que a partir de os datos encuentre automáticamente una frontera  como se puede ver en la figura \ref{Fig:clasificacion}, para un caso de clasificación binaria los valores de $y$ podrían tomar los siguiente datos $Y={-1,1}$. De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algoritmo de clasificación.
@@ -128,11 +128,11 @@ La función $f$ es un modelo paramétrico, por ejemplo uno lineal, la idea princ
 
 Un clasificador es un método que permite a partir de recibir cierta información indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
 
-\par \textbf{Regresión Logística}: son un tipo de clasificadores que permite analizar un conjunto de datos en el cual hay una o más variables independientes. El objetivo de este método es encontrar un mejor modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). 
+\par \textbf{Regresión Logística}: describe y estima la relación entre una variable binaria dependiente y variables independiente. El objetivo de este método es encontrar un modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas), el valor $z$ de la ecuación \ref {ecu:rg} viene dado de un valor obtenido de clasificación que es el que aprende efectivamente, por ejemplo: un modelo lineal.
 
 Para asignar los valores predichos a las probabilidades, usamos la función sigmoide que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
-\begin{equation}
-\phi(z) = \frac{1}{1+e^{-z}}
+\begin{equation}\label{ecu:rg}
+\phi(z) = \frac{1}{1+e^{-z}}.
 \end{equation}
 
 \begin{figure}[H]
@@ -163,7 +163,8 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/random-forest.png}
-  \caption{Bosques Aleatorios \\ https://www.researchgate.net/publication/324517994}
+  \caption{Bosques Aleatorios.} 
+  %\\ https://www.researchgate.net/publication/324517994}
   \label{Fig: random_forest}
 \end{figure}
 
@@ -188,7 +189,7 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 
 Para separar dos clases existen muchos hiperplanos posibles (a) \ref{Fig: svm_margen_hiperplano}, el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar un ejemplo usando un modelo lineal \eqref{eq: modelo-lineal}:
 \begin{equation}\label{eq: modelo-lineal}
-    Y(x) = w^{\rm T} f(x) + b
+    Y(x) = w^{\rm T} f(x) + b.
 \end{equation}
 
 Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a datos etiquetados  $y_i,...,y_n$ donde en estos casos $ y  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ Y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \eqref{eq: modelo-lineal} satisfaga $Y(x_n) > 0 $ para los valores que forman $y_n = +1$ y para $ Y(x_n) <  0$ para los valores que toman $ y_n = -1$. En diversos casos existen $ n$ hiperplanos de separación (a)  \ref{Fig: svm_margen_hiperplano} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos. Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
@@ -226,11 +227,11 @@ Existen diferentes tipos de funciones de costo que podemos usar para determinar 
 
 Para un problema de clasificación donde tenemos los siguientes datos $(x_i,y_i) $, donde $x_i $ es el conjunto de entrenamiento, por ejemplo las características de una casa pisos, dormitorios, etc; e $y_i$ es el precio correspondiente dada determinada característica. El método utiliza para calcular el error en la predicción es \eqref{eqn:error-mse}, en donde $ y(x_i)$ es el valor de la predicción e $y_i$ es la variable a predecir.
 \begin{equation}\label{eqn:error-mse}
-error_i = (y(x_i) - y_i)^2
+error_i = (y(x_i) - y_i)^2.
 \end{equation} 
 A partir del calculo anterior podemos generalizar \qref{eq: mse-ejem} y tomar el promedio sobre todo los punto de datos de esta manera el resultados de este valor no permite determinar cuanto no estamos acercando a la solución buscada.
 \begin{equation}\label{eq: mse-ejem}
-MSE =  \frac{1}{N}\sum_{i}(y_i - y(x_i))^2
+MSE =  \frac{1}{N}\sum_{i}(y_i - y(x_i))^2.
 \end{equation}
 
 Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior (Sec:\ref{sub:clasificadores}) vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables de holgura (\emph{slack}).
@@ -240,12 +241,12 @@ Para cada punto de datos de entrenamiento podemos definir una variable que mida 
 
 El problema de un aprendizaje en SVM se lo puede ver como un problema de optimización de $w$ y $\xi $ de la forma \eqref{eqn: optim1}
 \begin{eqnarray}\label{eqn: optim1}
-\min_{w  \in R , b \in R} \|w \|^{2} + C \sum_{i}^{N}  \xi_i   \\
-\text{  sujeto a    }   t_n(w^{\rm T} f(x) + b) \geq 1 - \xi_i  ,\; \; i= 1,..N
+\min_{w  \in R , b \in R} \|w \|^{2} + C \sum_{i}^{N}  \xi_i  . \\
+\text{  sujeto a    }   t_n(w^{\rm T} f(x) + b) \geq 1 - \xi_i  ,\; \; i= 1,..N.
 \end{eqnarray} 
 En el cual si $\xi \geq 0$ es equivalente a decir que: $\xi_i \max(0, 1 -  t_n(w^{\rm T} f(x) + b)  )$ por lo tanto es equivalente a  \eqref{eqn: w-loss}.
 \begin{equation}\label{eqn: w-loss}
-\min_{w  \in R} \|w \|^{2} + C \sum_{i}^{N} \max(0, 1 -  t_n(w^{\rm T} f(x) + b)  )
+\min_{w  \in R} \|w \|^{2} + C \sum_{i}^{N} \max(0, 1 -  t_n(w^{\rm T} f(x) + b)  ).
 \end{equation}
 Dada  la formula  \eqref{eqn: w-loss}  la función de costo sera: $\max(0, 1 -  t_n(w^{\rm T} f(x) + b))$ donde  los puntos se los clasifica en tres categorías: 
 \begin{enumerate}
@@ -272,7 +273,7 @@ Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo m
 Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
 \begin{equation}
-w^* =  \arg\min_{w} \mathcal{L}(X; w)
+w^* =  \arg\min_{w} \mathcal{L}(X; w).
 \end{equation}
 
 Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la diferencia entre las salidas $Y$ y las producidas por el modelo dependiente de $w$. Entre menor  diferencia mejor aproximación a la salida $Y$. 
@@ -286,12 +287,12 @@ Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la di
 %Gradiente extraido de :https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
 El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla \mathcal{L}(w) $ vector de derivadas parciales de $\mathcal{L}$ es:
 \begin{equation}
-\nabla \mathcal{L}(x) = (\frac{\partial \mathcal{L}(\textbf{w})}{\partial w_1},....., \frac{\partial \mathcal{L}(\textbf{w})}{\partial w_n})
+\nabla \mathcal{L}(x) = (\frac{\partial \mathcal{L}(\textbf{w})}{\partial w_1},....., \frac{\partial \mathcal{L}(\textbf{w})}{\partial w_n}).
 \end{equation}
 
 Descenso de gradiente es un algoritmo iterativo del cual comenzamos con un valor inicial de $\textbf{w}$, luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual, es decir, el paso de actualización es:
 \begin{equation}
-\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)})
+\textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)}).
 \end{equation}
 Donde $ \alpha > 0$,  el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de $T$ iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$, en dónde $\hat{w}$ es una nueva posición de los parámetros que se acerca al mínimo buscado, es decir que hacen que $\mathcal{L}(w^{(t)})$ se aproxime mejor al valor buscado de $Y$ . 
 
@@ -404,17 +405,17 @@ Con los valores obtenidos de la \textit{matriz de confusión} podemos extraer la
 
 \textbf{Accuracy}: Proporción de todas las predicciones que son correctas, da una medida de que tan bueno es el modelo.
 \begin{equation}
-accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}
+accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}.
 \end{equation}
 
 \textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
 \begin{equation}
-precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}
+precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}.
 \end{equation}
 
 \textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
 \begin{equation}
-recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} 
+recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} .
 \end{equation}
 
 \textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área de 1 representa un modelo que hizo perfectamente todas las predicciones como se visualiza en la figura \ref{Fig: roc}.
@@ -428,19 +429,19 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 % https://biblioteca.unirioja.es/tfe_e/TFE004595.pdf
 Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se esta realizando; además de las métricas mencionadas anteriormente para evaluar el rendimiento de un modelo de detección de objeto se utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en ingles), esta medida nos da la precisión de un detector de objeto en un conjunto de datos etiquetados. Dado un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
 \begin{equation}
-IOU = \frac{area\;de\;interseccion\;entre\;region\;etiquetada\;y\;prediccion}{area\;de\;union\;entre\;region\;etiquetada\;y\;region\;que\;se\;predijo}
+IOU = \frac{area\;de\;interseccion\;entre\;region\;etiquetada\;y\;prediccion}{area\;de\;union\;entre\;region\;etiquetada\;y\;region\;que\;se\;predijo}.
 \end{equation}
 
 Cuando evaluamos un modelo de detección de objeto queremos saber a que clase pertenece, la métrica de evaluación IOU no tiene en cuenta la clase por lo que no se puede utilizar directamente; para esto definimos la métrica mAP (mean Average Precision), esta métrica calcula el valor de precisión promedio para el valor de recall de 0 a 1.
 
 En base a los datos etiquetados tenemos un conjunto de objetos de una clase $c \in C$, decimos que un objeto es detectado correctamente si el modelo entrenado realiza una predicción tal que el valor de IOU sea mayor a un valor definido previamente, $0.5$ (valor tomado normalmente), y $c$ es igual a la clase predicha. Para cada una de las imágenes obtenemos la precision de la clase $C$ de la siguiente forma:
 \begin{equation}
-Precision_c = \frac{numero\;de\;detecciones\;de\;la\;clase\;C\;en\;una\;imagen}{numero\;de\;objetos\;de\;la\;clase\;C\;en\;una\;imagen}
+Precision_c = \frac{numero\;de\;detecciones\;de\;la\;clase\;C\;en\;una\;imagen}{numero\;de\;objetos\;de\;la\;clase\;C\;en\;una\;imagen}.
 \end{equation}
 
 Para evaluar el modelo debemos tomar el conjunto de imágenes definido como $I$, el \textit{average precision} se define como:
 \begin{equation}
-Average Precision_c = \frac{\sum Precision_c}{I\;con\;objetos\;que\;pertenece\;a\;la\;clase\;C}
+Average Precision_c = \frac{\sum Precision_c}{I\;con\;objetos\;que\;pertenece\;a\;la\;clase\;C}.
 \end{equation}
 
 
@@ -477,7 +478,7 @@ La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la
 Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ver: \ref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n $ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar.
 
 \begin{equation}\label{eq:conv2}
-    G[i, j] = \sum_{u=-k}^k \sum_{v=-k}^k H[u, v] F[i-u, j-v]
+    G[i, j] = \sum_{u=-k}^k \sum_{v=-k}^k H[u, v] F[i-u, j-v].
 \end{equation} 
 
 
@@ -546,12 +547,12 @@ Las \textit{fully conected} son las capas más básicas, ya que todas las neuron
 
 
 \begin{equation}\label{eq:fully-conected2}
-a_j = \sum_{i=1}^D w_{ji}  x_i + w_{j0}
+a_j = \sum_{i=1}^D w_{ji}  x_i + w_{j0}.
 \end{equation}
 $ a_j$  se conoce como capa de activación para los pesos $w_{ji}$ y dado los valores de entrada ${x_1,...,x_d}$, en esta red hay  $ D$ entradas como $M$ unidades ocultas. La activación de la unidad  $ a_j$ se obtiene luego de la suma de la transformación lineal usando una función de activación $ g(.)$, ReLU por ejemplo, esto nos da que la salida de una \textit{fully conected} tendrá la forma de  \ref{eq:output-fully-conected}.
 
 \begin{equation}\label{eq:output-fully-conected}
-z_j = g(a_j)
+z_j = g(a_j).
 \end{equation}
 
 Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases. Las capas \textit{fully conected }desempeñan  la tarea de clasificación, mientras que las capas convolucionales actúan como extractores de características.
@@ -577,8 +578,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
-  \caption{Arquitectura AlexNet.}
-  %\\ (Adaptado de: \citep{alexnet})}
+  \caption{Arquitectura AlexNet \citep{alexnet}.}
 	\label{Fig:alexnet}
 \end{figure}
 
@@ -588,8 +588,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/vgg.png}
-  \caption{Arquitectura VGG.}
-  %\\ (Adaptado de: \citep{vgg}).}
+  \caption{Arquitectura VGG \citep{vgg}.}
 	\label{Fig:vgg}
 \end{figure}
 
@@ -597,7 +596,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/inception-1.jpg}
-  \caption{Arquitectura GoogleNet: modulo Inception.}% \\ (Adaptado de: \citep{googlenet})}
+  \caption{Arquitectura GoogleNet: modulo Inception \citep{googlenet}.}
   	\label{Fig:inception}
 \end{figure}
 Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos para luego agruparlos uno arriba de otro. GoogleNet usa un nuevo termino llamado \textit{Bottleneck layer} que permite reducir el numero de características y sus operaciones 
@@ -607,7 +606,7 @@ Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resnet.png}
-  \caption{ResNet: \textit{Residual block}.}% \\(Adaptado de: \citep{resnet_a}}
+  \caption{ResNet: \textit{Residual block \citep{resnet_a}.}}
 	\label{Fig:inception}
 \end{figure}
 
@@ -712,7 +711,7 @@ En un pipeline de detección las técnicas de \ac{nms}  se utilizan para elimina
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/nms.png}
-  \caption{Uso de Non-maxima supression \\ (Adaptado de: \citep{nms2}).}\label{Fig: nonmaximumsuppression}
+  \caption{Uso de Non-maxima supression \citep{nms2}.}\label{Fig: nonmaximumsuppression}
 \end{figure}
 
 En el siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo por \ac{nms} en la eliminación de regiones redundantes.  El algoritmo  recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor IoU de cada una de las regiones por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
