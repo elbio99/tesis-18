@@ -113,7 +113,7 @@ Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de e
 
 Entrenar un modelo supervisado requiere al menos tres cosas especificas:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que consume el algoritmo, el objetivo es crear un modelo que generalice los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
 
-Como se desarrollo anteriormente el proceso de entrenamiento implica: $f $ es un mapeo en un espacio de entrada (imágenes) $X$ y uno de salida $Y$ (etiquetas de la clase); se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N})$  que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
+Como se desarrollo anteriormente el proceso de entrenamiento implica: $f $ es un mapeo en un espacio de entrada (imágenes) $X$ y uno de salida $Y$ (etiquetas de la clase); se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
 
 
 \begin{eqnarray}
@@ -286,7 +286,7 @@ Esto quiere decir que queremos encontrar los parámetros $w$ que minimicen la di
 
 
 %Gradiente extraido de :https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
-El gradiente de una función diferenciable $ f: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla \mathcal{L}(w) $ vector de derivadas parciales de $\mathcal{L}$ es:
+El gradiente de una función diferenciable $ \mathcal{L}: R^d \longrightarrow R $ en $\textbf{w}$, denotado $ \nabla \mathcal{L}(w) $ vector de derivadas parciales de $\mathcal{L}$ es:
 \begin{equation}
 \nabla \mathcal{L}(x) = (\frac{\partial \mathcal{L}(\textbf{w})}{\partial w_1},....., \frac{\partial \mathcal{L}(\textbf{w})}{\partial w_n}).
 \end{equation}
@@ -295,36 +295,52 @@ Descenso de gradiente es un algoritmo iterativo del cual comenzamos con un valor
 \begin{equation}
 \textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)}).
 \end{equation}
-Donde $ \alpha > 0$,  el algoritmo va en sentido opuesto disminuyendo el valor de la función. Luego de $T$ iteraciones se genera un vector promedio dado por: $ \hat{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}$, en dónde $\hat{w}$ es una nueva posición de los parámetros que se acerca al mínimo buscado, es decir que hacen que $\mathcal{L}(w^{(t)})$ se aproxime mejor al valor buscado de $Y$ . 
 
-Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent} \citep{variants_gd}.
+Donde $ \alpha > 0$, dado que el gradiente apunta en  dirección a la mayor aumento de $\mathcal{L}$ alrededor de $w^{(t)}$, el algoritmo da pequeños paso en la dirección opuesta, disminuyendo así el valor de la función $\mathcal{L}$. El resultado final podría ser el ultimo valor obtenido $w^{(t)}$ o o el valor que genero mejor rendimiento $\arg\min_{t}\mathcal{L}(\textbf{w}^{(t)})$ \citep{gradient_des}.
 
 % PONEMOS BACKPROPAGATION, LEARNING RATE
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
-\begin{algorithm}[H]
-\caption{Descenso de Gradiente}\label{euclid}
+En un modelo de aprendizaje automático lo que se busca es encontrar una relación entre los datos de entradas y las salidas deseadas como se menciona anteriormente, por ejemplo para un modelo de la forma $y= mx+b$ (regresión lineal) depende de los parámetros  $m$ y $b$;  estos dos valores los representamos usando la notación $\theta$, de tal forma que buscamos encontrar $\mathcal{L}_{\theta} (X) \approx Y$. Es decir que la función $\mathcal{L}$ con los parámetros $\theta$ de tal forma que para todos los valores $X$ de entrada aproxime a los valores de salida $Y$ correspondientes. Para validar que tan bien nuestros parámetros definen a nuestra salida podemos definir una función de costo $J(\theta)$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo. El valor $\hat\theta$ es una nueva posición para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}_\theta(X)$ aproxime mejor a $Y$.
+
+%\begin{algorithm}[H] %\caption{Descenso de Gradiente}\label{euclid}
+%\begin{algorithmic}[1]
+
+%\State $\textbf{INPUT} \gets (X, Y, \theta,iteraciones, \alpha)$
+%\State $\textbf{OUTPUT} \gets \theta $
+%\State \textbf{i} = 0
+%\While {\textbf{i} <  iteraciones}{
+%\State i++
+%\State	error = \textit{Función\_Costo}(X, Y, \theta)
+
+%\If {error < min\_error}
+%	\State	break
+%\Else
+%	\State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
+	
+%\EndIf
+%\EndWhile
+%\end{algorithmic}
+%\end{algorithm}
+
+\begin{algorithm}[H] \caption{Descenso de Gradiente}\label{euclid}
 \begin{algorithmic}[1]
-
-\State $\textbf{INPUT} \gets (X, Y, \theta,iteraciones, \alpha)$
-\State $\textbf{OUTPUT} \gets \theta $
-\State \textbf{i} = 0
-\While {\textbf{i} <  iteraciones}{
-\State i++
-\State	error = \textit{Función\_Costo}(X, Y, \theta)
-
-\If {error < min\_error}
+\State \textbf{INPUT} $\gets$ ($\mathcal{L}$, $\theta$, threshold or iters, $\alpha$)
+\While {True}
+\If {$\theta_{1} - \theta_{0}$  $>$ threshold or iters }
 	\State	break
 \Else
-	\State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
+	\State \texttt{$\hat\theta$ := $\hat\theta$ - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
 	
 \EndIf
+\State iters += 1
 \EndWhile
 \end{algorithmic}
 \end{algorithm}
 
-\newpage
+
+Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent} \citep{variants_gd}.
 
 \subsection{El problema de sobreajuste}\label{sub:validacion-modelo}
 

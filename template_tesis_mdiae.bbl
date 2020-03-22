@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -185,6 +185,12 @@ G.E. Nasr, E.~Badr, y C.~Joun.
 \newblock Cross entropy error function in neural networks: Forecasting gasoline
   demand.
 \newblock páginas 381--384, 01 2002.
+
+\bibitem[Shalev-Shwartz y Ben-David(2014)]{gradient_des}
+Shai Shalev-Shwartz y Shai Ben-David.
+\newblock \emph{Understanding Machine Learning: From Theory to Algorithms}.
+\newblock Cambridge University Press, 2014.
+\newblock ISBN 1107057132.
 
 \bibitem[Simonyanv y Zisserman(2014)]{vgg}
 Karen Simonyanv y Andrew Zisserman.

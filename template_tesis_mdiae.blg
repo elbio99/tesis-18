@@ -9,7 +9,7 @@ A level-1 auxiliary file: secciones/tbd.aux
 A level-1 auxiliary file: secciones/EvaluacionExperimental.aux
 A level-1 auxiliary file: secciones/Discusion.aux
 The style file: plainnatesp.bst.bst
-Illegal, another \bibstyle command---line 91 of file template_tesis_mdiae.aux
+Illegal, another \bibstyle command---line 99 of file template_tesis_mdiae.aux
  : \bibstyle
  :          {apa}
 I'm skipping whatever remains of this command
@@ -18,7 +18,7 @@ Database file #1: template_tesis_mdiae.bib.bib
 Warning--I'm ignoring proposal's extra "year" field
 --line 208 of file template_tesis_mdiae.bib.bib
 Warning--entry type for "cnnsarticle" isn't style-file defined
---line 435 of file template_tesis_mdiae.bib.bib
+--line 444 of file template_tesis_mdiae.bib.bib
 Warning--to sort, need author or key in variants_gd
 Warning--empty journal in Analysis_deep_network
 Warning--empty journal in HOG_algoritmo
@@ -30,45 +30,45 @@ Warning--empty journal in Cheang
 Warning--empty booktitle in cross_entropy
 Warning--empty journal in selectivesearch
 Warning--empty journal in edges
-You've used 38 entries,
+You've used 39 entries,
             2773 wiz_defined-function locations,
-            831 strings with 11493 characters,
-and the built_in function-call counts, 16070 in all, are:
-= -- 1384
-> -- 1018
-< -- 22
-+ -- 347
-- -- 309
-* -- 1247
-:= -- 2553
-add.period$ -- 132
-call.type$ -- 38
-change.case$ -- 214
-chr.to.int$ -- 38
-cite$ -- 88
-duplicate$ -- 755
-empty$ -- 1249
-format.name$ -- 364
-if$ -- 3329
+            836 strings with 11638 characters,
+and the built_in function-call counts, 16440 in all, are:
+= -- 1415
+> -- 1039
+< -- 23
++ -- 354
+- -- 315
+* -- 1271
+:= -- 2613
+add.period$ -- 136
+call.type$ -- 39
+change.case$ -- 218
+chr.to.int$ -- 39
+cite$ -- 90
+duplicate$ -- 775
+empty$ -- 1281
+format.name$ -- 373
+if$ -- 3407
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 35
-newline$ -- 216
-num.names$ -- 148
-pop$ -- 453
+missing$ -- 37
+newline$ -- 222
+num.names$ -- 152
+pop$ -- 465
 preamble$ -- 1
-purify$ -- 179
+purify$ -- 183
 quote$ -- 0
-skip$ -- 603
+skip$ -- 618
 stack$ -- 0
-substring$ -- 240
-swap$ -- 67
+substring$ -- 242
+swap$ -- 68
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 398
+type$ -- 404
 warning$ -- 11
-while$ -- 122
+while$ -- 125
 width$ -- 0
-write$ -- 505
+write$ -- 519
 (There was 1 error message)
