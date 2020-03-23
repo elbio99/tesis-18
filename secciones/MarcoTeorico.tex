@@ -8,7 +8,7 @@ Para comenzar, vamos a hablar del principal objetivo de este trabajo que son las
 
 \subsection{Teledetección}\label{sub:teledeteccion}
 
-La teledetección o \textit{sensado remoto} es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (ver fig \ref{Fig:teledeteccion}).
+La teledetección o \textit{sensado remoto} es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (fig: \ref{Fig:teledeteccion}).
 
 La teledetección no es mas que la detección de propiedades relevantes del entorno, esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. En general la teledetección es la medición de energía emanada de la superficie terrestre. 
 
@@ -25,7 +25,7 @@ realizados por el hombre que refleja el sensor como por ejemplo construcciones; 
 Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar. A su ves existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 
 Otras de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución; estas resoluciones la podemos definir de la siguiente manera: \textbf{resolución espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel, a menor tamaño de píxel mayor sera la resolución espacial esto quiere decir que el sensor tendrá mayor detalle de los objetos como se puede observar en la figura (a) \ref{Fig:resoluciones};  
-\textbf{resolución espectral}: la resolución espectral especifica el numero y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (ver figura (c) \ref{Fig:resoluciones}); \textbf{resolución radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor (ver figura (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por ultimo tenemos la \textbf{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
+\textbf{resolución espectral}: la resolución espectral especifica el numero y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (fig: (c) \ref{Fig:resoluciones}); \textbf{resolución radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor (fig: (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por ultimo tenemos la \textbf{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
 
 
 \begin{figure}[htbp]
@@ -91,7 +91,7 @@ El método que nos permite realizar esta aproximación es la \textit{función de
 
 Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, etiqueta, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
 
-El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo, y $y_i$ is el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$, en la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
+El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo y $y_i$ es el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$, en la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
 
 Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la frontera que separa los datos de cada categoría para luego, dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
 
@@ -122,7 +122,7 @@ Como se desarrollo anteriormente el proceso de entrenamiento implica: $f $ es un
  \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y.
 \end{eqnarray}
 
-La función $f$ es un modelo paramétrico, por ejemplo uno lineal, la idea principal es crear un algoritmo que a partir de os datos encuentre automáticamente una frontera  como se puede ver en la figura \ref{Fig:clasificacion}, para un caso de clasificación binaria los valores de $y$ podrían tomar los siguiente datos $Y={-1,1}$. De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato; en este caso estamos hablando en un algoritmo de clasificación.
+La función $f$ es un modelo paramétrico, por ejemplo uno lineal, la idea principal es crear un algoritmo que a partir de os datos encuentre automáticamente una frontera  como se puede ver en la figura \ref{Fig:clasificacion}, para un caso de clasificación binaria los valores de $y$ podrían tomar los siguiente datos $Y=({-1,1})$. De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato, en este caso estamos hablando en un algoritmo de clasificación.
 
 
 \subsection{Modelos para la clasificación}\label{sub:clasificadores}
@@ -216,7 +216,7 @@ Las ventajas de estos clasificadores son: eficaz para grandes espacios dimension
 
 El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados la función generar un valor mayor de error, si el valor de la predicción se acerca al valor esperado el error sera menor de modo que nos indicará si nos estamos acercando a la solución buscada.
 
-Existen diferentes tipos de funciones de costo que podemos usar para determinar el error en la predicción, una de las mas comunes usada es \textbf{mean square error}, MSE \ref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ ver figura: \ref{Fig:mse}.
+Existen diferentes tipos de funciones de costo que podemos usar para determinar el error en la predicción, una de las mas comunes usada es \textbf{mean square error}, MSE \eqref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ (fig: \ref{Fig:mse}).
 
 
 
@@ -230,7 +230,7 @@ Para un problema de clasificación donde tenemos los siguientes datos $(x_i,y_i)
 \begin{equation}\label{eqn:error-mse}
 error_i = (y(x_i) - y_i)^2.
 \end{equation} 
-A partir del calculo anterior podemos generalizar \qref{eq: mse-ejem} y tomar el promedio sobre todo los punto de datos de esta manera el resultados de este valor no permite determinar cuanto no estamos acercando a la solución buscada.
+A partir del calculo anterior podemos generalizar \eqref{eq: mse-ejem} y tomar el promedio sobre todo los punto de datos de esta manera el resultados de este valor no permite determinar cuanto no estamos acercando a la solución buscada.
 \begin{equation}\label{eq: mse-ejem}
 MSE =  \frac{1}{N}\sum_{i}(y_i - y(x_i))^2.
 \end{equation}
@@ -261,7 +261,7 @@ Dependiendo del modelo de clasificación que estemos utilizando existen diferent
 
 %https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications
 
-\subsubsection{Optimización de la función de costo} 
+\subsection{Optimización de la función de costo} 
 %https://hackernoon.com/gradient-descent-aynk-7cbe95a778da
 %https://stxlearning.com/2018/03/25/optimizacion-deep-learning-y-complejidad-computacional/
 En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la función de costo como se menciono previamente, este es un problema de optimización ya que si encontramos la solución podemos encontrar esos parámetros que disminuyen el error.
@@ -490,7 +490,7 @@ La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la
 
 \subsubsection{Convolución}\label{sub:convolucion}
 %https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-1-convolution-operation
-Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ver: \eqref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n$ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar. En imágenes nos interesa usar la operación de convolución sobre más de un eje;  si tenemos una imagen $I$ y un kernel $K$ de dos dimensiones podemos definir como:
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ec. \eqref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n$ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar. En imágenes nos interesa usar la operación de convolución sobre más de un eje;  si tenemos una imagen $I$ y un kernel $K$ de dos dimensiones podemos definir como:
 
 \begin{equation}\label{eq:conv2}
     G(i, j) = (I ∗ K)(i, j) = \sum_{m} \sum_{n} I(m, n) K(i - m, j - n).
@@ -517,7 +517,7 @@ Las \ac{cnn} desarrollan detectores de múltiples características y las utiliza
 \subsubsection{Pooling}\label{sub:pooling}
 
 %https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
-Luego de realizar la operación de convolución (ver: \ref{sub:convolucion}) usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. Esto nos permite reducir el número de parámetros por consiguiente nos permite disminuir el tiempo de entrenamiento.
+Luego de realizar la operación de convolución (Sec:\ref{sub:convolucion}) usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. Esto nos permite reducir el número de parámetros por consiguiente nos permite disminuir el tiempo de entrenamiento.
 
 El tipo de técnica mas común utilizado es \textit{max pooling} que toma el valor máximo de la ventana, esto nos permite reducir el tamaño del \textit{mapa de característica} sin perder información. En la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
 
@@ -558,13 +558,13 @@ La principal ventaja de usar la función ReLU sobre otras funciones de activaci�
 % https://www.oreilly.com/library/view/tensorflow-for-deep/9781491980446/ch04.html
 
 En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas totalmente conectadas, por su nombre en ingles \textit{fully conected}.
-Las \textit{fully conected} son las capas más básicas, ya que todas las neuronas de entrada están conectadas a cada neurona de salida. Una \textit{fully connected }  es una capa donde cada dimensión de salida  depende del valor de entrada a la red, esta red se basan en una combinación lineal (ver: \ref{eq:fully-conected2}) de las variables de entrada que se transforma mediante una función de activación no lineal.
+Las \textit{fully conected} son las capas más básicas, ya que todas las neuronas de entrada están conectadas a cada neurona de salida. Una \textit{fully connected }  es una capa donde cada dimensión de salida  depende del valor de entrada a la red, esta red se basan en una combinación lineal (ec.\eqref{eq:fully-conected2}) de las variables de entrada que se transforma mediante una función de activación no lineal.
 
 
 \begin{equation}\label{eq:fully-conected2}
 a_j = \sum_{i=1}^D w_{ji}  x_i + w_{j0}.
 \end{equation}
-$ a_j$  se conoce como capa de activación para los pesos $w_{ji}$ y dado los valores de entrada ${x_1,...,x_d}$, en esta red hay  $ D$ entradas como $M$ unidades ocultas. La activación de la unidad  $ a_j$ se obtiene luego de la suma de la transformación lineal usando una función de activación $ g(.)$, ReLU por ejemplo, esto nos da que la salida de una \textit{fully conected} tendrá la forma de  \ref{eq:output-fully-conected}.
+$ a_j$  se conoce como capa de activación para los pesos $w_{ji}$ y dado los valores de entrada ${x_1,...,x_d}$, en esta red hay  $ D$ entradas como $M$ unidades ocultas. La activación de la unidad  $ a_j$ se obtiene luego de la suma de la transformación lineal usando una función de activación $ g(.)$, ReLU por ejemplo, esto nos da que la salida de una \textit{fully conected} tendrá la forma de  \eqref{eq:output-fully-conected}.
 
 \begin{equation}\label{eq:output-fully-conected}
 z_j = g(a_j).
@@ -588,7 +588,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 
 \par \textbf{LeNet5} \citep{lenet} Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. LeNet5 esta formada por 3 capas, usando la capa de convolución para extraer las características espaciales de la imagen. En general esta red fue el origen de muchas de las arquitecturas modernas.
 
-\par \textbf{AlexNet} \citep{alexnet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. EL problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas; AlexNet consta de 5 capas convoluacionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas \textit{fully connected}. Una importante característica es el uso de \textit{ReLU}(Rectified Linear Unit),  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
+\par \textbf{AlexNet} \citep{alexnet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. EL problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas; AlexNet consta de 5 capas convolucionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas \textit{fully connected}. Una importante característica es el uso de \textit{ReLU}(Rectified Linear Unit),  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
 
 \begin{figure}[H]
  \centering
@@ -686,7 +686,7 @@ Las estrategias usadas en este método es \textit{capturar todas las escalas}: l
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/selectivesearch.png}
-  \caption{Segmentación por el metodo de \textit{Selective Search} con diferentes valores de umbrales \\ \citep{selectivesearch}.}
+  \caption{Segmentación por el método de \textit{Selective Search} con diferentes valores de umbrales \\ \citep{selectivesearch}.}
 	\label{Fig: overlapping}
 \end{figure}
 

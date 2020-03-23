@@ -1,6 +1,6 @@
 \chapter{Introducción}\label{chap:introduccion}
 
-Este capítulo introductorio se abordara los principales conceptos relacionados con el trabajo de tesis, comenzando con una descripción del marco de trabajo de investigación, el objetivo principal, los objetivos secundarios, fundamentos y motivación que nos llevo a realizar la pregunta de investigación; ademas se dará un resumen del estado del arte de la temática en el ámbito espacial describiendo la metodología empleada para el desarrollo de software implementado.  Para finalizar se describe los capítulos posteriores que dan al lector una guía de como esta organizada la tesis.
+Este capítulo se abordara los principales conceptos relacionados al trabajo realizado de esta tesis, comenzando con una descripción del marco de trabajo de investigación, el objetivo principal, los objetivos secundarios, fundamentos y motivación que nos llevo a realizar la pregunta de investigación; ademas se dará un resumen del estado del arte de la temática en el ámbito espacial describiendo la metodología empleada para el desarrollo de software implementado.  Para finalizar se describe los capítulos posteriores que dan al lector una guía de como esta organizada la tesis.
 
 
 \section{Contexto de la Tesis}\label{sec:contexto}
@@ -120,7 +120,7 @@ modelo mas eficiente.
 
 \subsection{Contexto del Sistema}\label{sub:casodeuso}
 
-En la siguiente figura (ver: \ref{Fig: diagbloque}), se muestra el diagrama de bloque del sistema, donde observamos la arquitectura general del software. 
+En la siguiente figura (\ref{Fig: diagbloque}), se muestra el diagrama de bloque del sistema, donde observamos la arquitectura general del software. 
 
 \begin{figure}[H]
  \centering
@@ -129,7 +129,7 @@ En la siguiente figura (ver: \ref{Fig: diagbloque}), se muestra el diagrama de b
 	\label{Fig: diagbloque}
  \end{figure}
  
-Como se visualiza en el diagrama de arquitectura \ref{Fig: diagbloque}, se dispone de cuatros bloques principales dentro del esquema principal definido como sistema inteligente; el bloque \ac{cv} comprende la extracción de características por medio de redes neuronales y el calculo de \ac{rp}(ver: \ref{sub:regions-proposal}); en el bloque de \ac{nms} se calcula el overlapping de los \ac{rp} eliminando datos duplicados (ver: \ref{sub:nonmaximumsuppression}). El bloque de aprendizaje se integra todos los algoritmos utilizados para el entrenamiento y se realiza la validación del los modelos, por ultimo tenemos el bloque de clasificación es el que da como salida la inferencia del modelo entrenado.
+Como se visualiza en el diagrama de arquitectura \ref{Fig: diagbloque}, se dispone de cuatros bloques principales dentro del esquema principal definido como sistema inteligente; el bloque \ac{cv} comprende la extracción de características por medio de redes neuronales y el calculo de \ac{rp}(Sec:\ref{sub:regions-proposal}); en el bloque de \ac{nms} se calcula el overlapping de los \ac{rp} eliminando datos duplicados (Sec: \ref{sub:nonmaximumsuppression}). El bloque de aprendizaje se integra todos los algoritmos utilizados para el entrenamiento y se realiza la validación del los modelos, por ultimo tenemos el bloque de clasificación es el que da como salida la inferencia del modelo entrenado.
 
 
 \section{Estructura General de la Tesis }\label{sec:estructura}

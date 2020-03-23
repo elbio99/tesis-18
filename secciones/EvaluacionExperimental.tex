@@ -11,9 +11,9 @@ Para la construcción del modelo de detección se dividió el datasets en datos 
 
 %Las redes neuronales que vamos a utilizar para la construcción de esta tesis son redes neuronales pre-entrenadas (Sec:\ref{sub:cnn}), estas redes neuronales necesitan como entrada imágenes ópticas con tres canales correspondiente a \textit{RGB} (rojo, verde y azul), los canales RGB se emplean para representar distintos colores a partir de la mezcla de cada uno de estos.
 
-Las combinaciones de bandas en imágenes satelitales nos ayudan a analizar y diferenciar diferentes elementos dentro de la imagen, para esto utilizamos diversas combinaciones de bandas en base a los canales RGB que nos permiten visualizar diferentes elementos de acuerdo a la banda que estamos utilizando. El paso de cada banda por un canal RGB especifico permitirá teñir de colores los elementos que ofrezcan mayor o menor reflexión de longitudes de onda; como por ejemplo, la vegetación, focos de incendios, agua, brindando diferentes fuentes de información para ser explotada. El conjunto de bandas seleccionadas para los experimentos son las de resolución moderada (M-bands) (ver: \ref{tab:viirs}).
+Las combinaciones de bandas en imágenes satelitales nos ayudan a analizar y diferenciar diferentes elementos dentro de la imagen, para esto utilizamos diversas combinaciones de bandas en base a los canales RGB que nos permiten visualizar diferentes elementos de acuerdo a la banda que estamos utilizando. El paso de cada banda por un canal RGB especifico permitirá teñir de colores los elementos que ofrezcan mayor o menor reflexión de longitudes de onda; como por ejemplo, la vegetación, focos de incendios, agua, brindando diferentes fuentes de información para ser explotada. El conjunto de bandas seleccionadas para los experimentos son las de resolución moderada (M-bands) (\ref{tab:viirs}).
  
-Para la construcción del dataset final se utilizaron las bandas impares (ver: \ref{tab:viirs})  mas las bandas que corresponden al color verdadero. En total se obtuvieron 29 datasets con combinaciones de bandas diferentes para realizar la evaluación experimental; en el siguiente cuadro  \ref{tab:combinacion_banda} se puede ver todas las combinaciones de bandas utilizadas para la construcción final del los dataset.
+Para la construcción del dataset final se utilizaron las bandas impares (\ref{tab:viirs})  mas las bandas que corresponden al color verdadero. En total se obtuvieron 29 datasets con combinaciones de bandas diferentes para realizar la evaluación experimental; en el siguiente cuadro  \ref{tab:combinacion_banda} se puede ver todas las combinaciones de bandas utilizadas para la construcción final del los dataset.
 
 \begin{table}[h] \begin{center}
 \begin{tabular}{|c|c||c|c|}\hline 
@@ -87,16 +87,6 @@ Bandas & C & $\gamma$ & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}
 \multicolumn{1}{|c|}{3-1-5} & 100 & 0.01 & rbf & 0.93 & 0.95 & 0.72 & 0.31 \\ \hline
 \multicolumn{1}{|c|}{3-3-3} & 1000 & 1 & rbf & 0.92 & 0.92 & 0.28 & 0.1 \\ \hline
 \multicolumn{1}{|c|}{3-5-1} & 10 & 0.01 & rbf & 0.90 & 0.91 & 0.66 & 0.25 \\ \hline
-\end{tabular}
-\end{center}\caption{Resultados}\label{tab:entrenam-result}
-\end{table}
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
- & \multicolumn{3}{c|}{Hiperparámetros seleccionado} & \multicolumn{4}{c|}{Metricas} \\ \hline
-Bandas & C & $\gamma$ & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}}average\\ precision \end{tabular} & \begin{tabular}[c]{@{}c@{}}mean overlap \end{tabular} \\ \hline
 \multicolumn{1}{|c|}{5-1-3} & 1 & 1 & rbf & 0.89 & 0.86 & 0.46 & 0.29 \\ \hline
 \multicolumn{1}{|c|}{5-3-1} & 1000 & 0.001 & rbf & 0.90 & 0.88 & 0.38 & 0.21 \\ \hline
 \multicolumn{1}{|c|}{5-5-5} & 100 & 0.01 & rbf & 0.89 & 0.85 & 0.63 & 0.26 \\ \hline
@@ -121,7 +111,7 @@ Bandas & C & $\gamma$ & kernel & precision & recall & \begin{tabular}[c]{@{}c@{}
 \multicolumn{1}{|c|}{5-4-3} & 1000 & 1 & rbf & 0.88 & 0.87 & 0.57 & 0.27 \\ \hline
 \multicolumn{1}{|c|}{\textbf{10-7-5}} & \textbf{1000} &\textbf{ 0.001} & \textbf{rbf} & 0.91 & 0.96 &\cellcolor{blue!25}\textbf{0.93} & \cellcolor{blue!25}\textbf{0.36}\\ \hline
 \end{tabular}
-\end{center}\caption{Resultados (cont)}\label{tab:entrenam-result}
+\end{center}\caption{Resultados.}\label{tab:entrenam-result}
 \end{table}
 
 En base a los resultados obtenidos de cada entrenamiento expuesto en la tabla \ref{tab:entrenam-result} existen diversas combinaciones de bandas en la cual se obtienen mejores métricas de precision, recall, average precision y mean overlap con respecto a otra.  
@@ -132,7 +122,7 @@ Se pudo observar que la mayoría de las combinaciones de bandas que presentan \t
 
 
 
-Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (c) (Fig:\ref{fig:COMB_BANDAS}) (color verdadero o por su nombre en ingles \textit{True color}), en esta combinación de bandas se obtuvieron los mejores resultados en cuanto a las métricas de AP (avergage precision) y  \textit{mean overlap}, esta ultima medida se calcula la intersección sobre unión \textit{IoU} de las regiones, el resultado nos dice que tan exacto es el modelo en cuanto a precisión en términos de localización de la región. Con esta combinación de banda el modelo supo generalizar logrando aprender las características del \textit{ground thruth} en la imagen, como se puede ver en la misma posee diferentes tonalidades del suelo así también a simple vista se puede detectar los diferentes contraste que hay entre las nubes, suelo o agua, estas características particulares hacen que permita identificar de manera adecuada las diferentes clases que estamos buscando.
+Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (c) (Fig:\ref{fig:COMB_BANDAS}) (color verdadero o por su nombre en ingles \textit{True color}), en esta combinación de bandas se obtuvieron los mejores resultados en cuanto a las métricas de AP (average precision) y  \textit{mean overlap}, esta ultima medida se calcula la intersección sobre unión \textit{IoU} de las regiones, el resultado nos dice que tan exacto es el modelo en cuanto a precisión en términos de localización de la región. Con esta combinación de banda el modelo supo generalizar logrando aprender las características del \textit{ground thruth} en la imagen, como se puede ver en la misma posee diferentes tonalidades del suelo así también a simple vista se puede detectar los diferentes contraste que hay entre las nubes, suelo o agua, estas características particulares hacen que permita identificar de manera adecuada las diferentes clases que estamos buscando.
 
 \begin{figure}[htbp]
 \centering
@@ -145,7 +135,7 @@ Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (c) (Fig:\ref{fi
 Para realizar un análisis mas detallado de la performance de los modelos entrenados se seleccionaron aquellos que tienen mejores métricas con respecto al resto analizando las \textit{curvas ROC} esta permite ver la capacidad del modelo entrenado en discriminar las diferentes clases. En el grafico \ref{fig:Average_precision} se puede visualizar para todas las curvas ROC a medida que aumenta el valor de \textit{recall} va disminuyendo la \textit{precision}. El objetivo es identificar aquel valor que aumente el recall sin perder la precision.
 \newpage
 
-Para las bandas 1-5-3 (Fig: \ref{fig:Average_precision} (a)) el valor optimo se da cuando la precision esta en $0.9$ y $0.2$ en recall, esto nos indica que el modelo entrenado tiene un porcentaje alto de precision a la hora de clasificar una nueva imagen pero un recall bajo ya que no captura todas las regiones dentro de la imagen de igual manera para las bandas 9-7-11 (Fig: \ref{fig:Average_precision} (b)) el valor observado optimo esta dado entre la precision $0.9$ y recall $0.4$, siendo este ultimo valor mas optimo en relación a las bandas 1-5-3. Por ultimo las bandas 10-7-5 (Fig: \ref{fig:Average_precision} (c)) se puede observar que el modelo generalizo de manera optima logrando capturar las características de las imágenes es por esto que se obtuvo una precision de $0.9$ y recall  de $0.8$, siendo este el modelo entrenado mas óptimo. 
+Para las bandas 1-5-3 (Fig: \ref{fig:Average_precision} (a)) el valor optimo se da cuando la precision esta en $0.9$ y $0.2$ en recall, esto nos indica que el modelo entrenado tiene un porcentaje alto de precision a la hora de clasificar una nueva imagen pero un recall bajo ya que no captura todas las regiones dentro de la imagen de igual manera para las bandas 9-7-11 (Fig:\ref{fig:Average_precision} (b)) el valor observado optimo esta dado entre la precision $0.9$ y recall $0.4$, siendo este ultimo valor mas optimo en relación a las bandas 1-5-3. Por ultimo las bandas 10-7-5 (Fig: \ref{fig:Average_precision} (c)) se puede observar que el modelo generalizo de manera optima logrando capturar las características de las imágenes es por esto que se obtuvo una precision de $0.9$ y recall  de $0.8$, siendo este el modelo entrenado mas óptimo. 
 
 \begin{figure}[htbp]
 \centering
