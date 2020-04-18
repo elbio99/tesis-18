@@ -2,7 +2,7 @@
 
 En el este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como el sensado remoto,  aprendizaje automático y redes neuronales.
 
-\section{Sensado Remoto}\label{sec:sensadoremoto}
+\section{Sensado remoto}\label{sec:sensadoremoto}
 
 Para comenzar, vamos a hablar del principal objetivo de este trabajo que son las imágenes satelitales. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
 
@@ -72,7 +72,7 @@ Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr o
 
 
 
-\section{Aprendizaje Automático}\label{sec:machinelaerning}
+\section{Aprendizaje automático}\label{sec:machinelaerning}
 
 Aprendizaje automático (\ac{ml} por sus siglas en ingles) es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras aprender determinado comportamiento a partir de los datos de entrada, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos.
 
@@ -86,48 +86,44 @@ El método que nos permite realizar esta aproximación es la \textit{función de
 
   Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que nunca vio el modelo y poder asociar las etiquetas aprendidas de manera automática. En las secciones siguientes vamos a desarrollar en mas detalle el proceso de aprendizaje supervisado centrándonos principalmente en el problema de clasificación, se abordará también los tipos de clasificadores existentes, función de costo, algoritmos de optimización (\textit{gradient descent \citep{cnns}}) finalizando con la validación de modelos en \ac{ml}.
 
-\subsection{Aprendizaje Supervisado y el problema de la clasificación}\label{sub:aprendizaje_supervisado}
+\subsection{Aprendizaje supervisado y el problema de la clasificación}\label{sub:aprendizaje_supervisado}
 % http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
 
 Aprendizaje supervisado es una de las tareas mas frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos; es decir por cada observación de los datos tenemos asociado un valor, etiqueta, que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
 
-El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo y $y_i$ es el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$, en la siguiente sección se desarrolla una de las técnicas mas utilizada en aprendizaje supervisado, la clasificación.
+El conjunto de entrenamiento consiste en pares $(x_1, y_1), ...,(x_n, y_n)$ donde cada $x_i$  es un característica o un conjunto de característica de un dato de ejemplo y $y_i$ es el valor de la clase que se quiere predecir. Un algoritmo de aprendizaje supervisado produce un función $Y = f(X)$ donde el objetivo es aproximar la función dando un nuevo dato de entrada $x_i$ que pueda predecir valores $y_i$, en la siguiente sección  (sec.\ref{sub:clasificadores}) vamos a desarrollar los métodos de clasificación que son los que utilizaremos en este trabajo.
 
-Un problema de clasificación es cuando estamos tratando de predecir una variable categórica tal como, 'spam' o 'no spam', 'perro' o 'gato', 'autorizado' o 'no autorizado', etc. Un modelo de clasificación intenta aprender la frontera que separa los datos de cada categoría para luego, dado un nuevo valor de entrada desconocido poder mapear ese valor con alguna de las categorías aprendidas.
+En un problema de clasificación se intenta predecir si determinada variable de entrada pertenece a una de las clases anteriormente aprendida, por ello el modelo de clasificación deberá aprender la frontera que separe cada categoría dada con el fin de asignar a cada categoría un valor nuevo de entrada. En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas $Y$ toman valores categóricos, es decir si suponemos que contamos con $n$ observaciones tenemos: $(x_i,y_i),....,(x_n,y_n)$ valores con las que entrenamos nuestro algoritmo de clasificación. 
 
-En los problemas de clasificación tenemos un conjunto de tuplas $(X,Y)$, cuyas Y toman valores categóricos; si suponemos que contamos con $n$ observaciones tenemos: $(x_i,y_i),....,(x_n,y_n)$ valores con las que entrenamos nuestro algoritmo de clasificación. Los algoritmos de clasificación  calculan la probabilidad de cada clase y luego las probabilidades se mapean y se clasifican las observaciones; para calcular las probabilidades se debe obtener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $, a modo de ejemplo,  tenemos 2 clases posibles “A” y “B”, si la muestra $X$ tiene una $Y = A$, la función $f(x)$ debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a $0$. En la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación en aprendizaje supervisado donde debe generar una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo debe aprender. 
+Los algoritmos de clasificación calculan la probabilidad de cada clase y luego esas probabilidades se mapean y  clasifican las observaciones. Para calcular estas probabilidades se debe tener una función que transforme las entradas $X$ en una salida que prediga la probabilidad de $X$ para cierta clase es decir: $ x \longrightarrow f(x) = p(x) $; a modo de ejemplo, dada 2 clases posibles “A” y “B”, si la muestra $X$ tiene una $Y = A$, la función $f(x)$ debe ser tal que la probabilidad de la clase A sea cercana a 1 y  de la clase B sea cercana a $0$, en la figura \ref{Fig:clasificacion} se visualiza un ejemplo de un modelo de clasificación donde se  genera una frontera que separe los datos rojos y verdes en este caso, la linea punteada sera la función que el modelo deberá aprender. 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
   \caption{La linea punteada es una función que indica la separación entre dos clases.}\label{Fig:clasificacion}
 \end{figure}
 
-% Ejemplo de MNIST en clasificación?????
-%https://towardsdatascience.com/support-vector-machine-mnist-digit-classification-with-python-including-my-hand-written-digits-83d6eca7004a
+Entrenar un modelo de clasificación supervisado requiere al menos tres valores:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe "aprender", el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
+
+Como se desarrollo anteriormente el proceso de entrenamiento implica dado un conjunto de imágenes $X$ y uno de salida $Y$ (etiquetas de la clase) se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje debemos encontrar una relación de una función que se aproxime a los datos etiquetados de la siguiente forma: $f(X) ≈ Y$.
 
 
-%\subsubsection{Aprendizaje}\label{sub:aprendizaje}
-%https://docs.aws.amazon.com/es_es/machine-learning/latest/dg/training-ml-models.html
-%clasificación supervisada metodos deduccion matematica
-Entrenar un modelo de \ac{ml} consiste en proporcionar un conjunto de datos de entradas, datos de entrenamiento, de las cuales el algoritmo va a aprender a partir de esos datos. El algoritmo encuentra patrones en los datos proporcionados de entrada y genera un modelo que captura y generaliza dichos patrones para luego realizar predicciones sobre datos que no conoce.
 
-Entrenar un modelo supervisado requiere al menos tres cosas especificas:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que consume el algoritmo, el objetivo es crear un modelo que generalice los nuevos datos; para esto los datos de entrada deben ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar métricas con los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
-
-Como se desarrollo anteriormente el proceso de entrenamiento implica: $f $ es un mapeo en un espacio de entrada (imágenes) $X$ y uno de salida $Y$ (etiquetas de la clase); se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje obtenemos la siguiente relación entre estas variables como vemos a continuación.
+La función $f$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir obtener  $f(x_i) ≈ y_i$, para un problema de clasificación binaria los datos que toman los valores de $Y$ pueden ser $Y={-1, 1}$. 
 
 
-\begin{eqnarray}
- f:X \longrightarrow Y\\
- \mbox{Entrenamiento}:\qquad \{(x^i, y^i) \in X\; x\; Y. \} _i=1...n.\\
- \mbox{El objetivo es encontrar}\; f\; \mbox{tal que:}\qquad f(x)\approx y.
-\end{eqnarray}
-
-La función $f$ es un modelo paramétrico, por ejemplo uno lineal, la idea principal es crear un algoritmo que a partir de os datos encuentre automáticamente una frontera  como se puede ver en la figura \ref{Fig:clasificacion}, para un caso de clasificación binaria los valores de $y$ podrían tomar los siguiente datos $Y=({-1,1})$. De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato, en este caso estamos hablando en un algoritmo de clasificación.
+Los modelos buscan estimar los parámetros de $f(X)$ que mejor se ajusten a las observaciones de la muestra en este caso $Y$
 
 
-\subsection{Modelos para la clasificación}\label{sub:clasificadores}
 
-Un clasificador es un método que permite a partir de recibir cierta información indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
+
+
+
+ De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato, en este caso estamos hablando en un algoritmo de clasificación.
+
+
+\subsection{Modelos de clasificación}\label{sub:clasificadores}
+
+Un clasificador es un método que permite a partir de cierta información indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
 
 \par \textbf{Regresión Logística}: describe y estima la relación entre una variable binaria dependiente y variables independiente. El objetivo de este método es encontrar un modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas), el valor $z$ de la ecuación \ref {ecu:rg} viene dado de un valor obtenido de clasificación que es el que aprende efectivamente, por ejemplo: un modelo lineal.
 
@@ -212,8 +208,13 @@ En la gran mayoría de casos, los datos no se pueden separar linealmente de form
 Las ventajas de estos clasificadores son: eficaz para grandes espacios dimensionales, efectivo en casos en los que el número de dimensiones es mayor que el número de muestras, se pueden especificar diferentes funciones del kernel para la función de decisión, el proceso de entrenamiento es más rápido en comparación con otros tipo de clasificadores, sobre todo para cuando tenemos un conjunto de entrenamientos grandes.
 %http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
 
-\subsection{Función de Costo}\label{sub:funcion_costo}
+\subsection{Función de costo}\label{sub:funcion_costo}
+% ENLACES DE INTERES
+%http://bibing.us.es/proyectos/abreproy/11185/fichero/Volumen+1_Detector+Multiusuario+para+DS-CDMA+basado+en+SVM%252F7.+Support+Vector+Machines%252FSupport+Vector+Machines.pdf
+%https://rpubs.com/Joaquin_AR/267926
+%https://medium.com/datos-y-ciencia/aprendizaje-supervisado-introducci%C3%B3n-a-la-clasificaci%C3%B3n-y-principales-algoritmos-dadee99c9407
 
+% FIN
 El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados la función generar un valor mayor de error, si el valor de la predicción se acerca al valor esperado el error sera menor de modo que nos indicará si nos estamos acercando a la solución buscada.
 
 Existen diferentes tipos de funciones de costo que podemos usar para determinar el error en la predicción, una de las mas comunes usada es \textbf{mean square error}, MSE \eqref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ (fig: \ref{Fig:mse}).
@@ -252,7 +253,7 @@ En el cual si $\xi \geq 0$ es equivalente a decir que: $\xi_i \max(0, 1 -  t_n(w
 Dada  la formula  \eqref{eqn: w-loss}  la función de costo sera: $\max(0, 1 -  t_n(w^{\rm T} f(x) + b))$ donde  los puntos se los clasifica en tres categorías: 
 \begin{enumerate}
 \item  $  t_n(w^{\rm T} f(x) + b)) \geq 1$: el valor está fuera del margen por lo tanto no se computa el error. 
-\item   $  t_n(w^{\rm T} f(x) + b)) == 1$: el valor está en el  margen por lo tanto no se computa el error. 
+\item   $  t_n(w^{\rm T} f(x) + b)) = 1$: el valor está en el  margen por lo tanto no se computa el error. 
 \item   $  t_n(w^{\rm T} f(x) + b)) < 1$: el valor está dentro del margen por lo tanto se computa el valor de error. 
 
 \end{enumerate}
@@ -269,9 +270,8 @@ En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la fu
 En la mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros; es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia mas típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico y método de Newton Rawson de 2 orden.
 
 \subsubsection{Descenso de gradiente}\label{sub:gradient-desc}
-Para encontrar el mínimo valor para grandes dimensiones de datos el algoritmo mas utilizado es el llamado \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento.
+Un método utilizado de optimización de funciones  es el \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
-Este algoritmo permite que el modelo aprenda el gradiente o la dirección que el modelo debe seguir para reducir el error; en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
 \begin{equation}
 w^* =  \arg\min_{w} \mathcal{L}(X; w).
@@ -396,7 +396,7 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 %IMPORTANTE: https://sebastianraschka.com/pdf/manuscripts/model-eval.pdf
 %https://dzone.com/articles/machine-learning-validation-techniques
 
-\subsubsection{Evaluación de Modelos}\label{sub:evaluación-modelo}
+\subsubsection{Evaluación de modelos}\label{sub:evaluación-modelo}
 Para determinar la efectividad de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de evaluación en \ac{ml} son usadas para obtener esa tasa de error en el modelo. 
 
 La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación que son \textit{Matriz de confusión}, \textit{accuracy}, \textit{precision}, \textit{recall} y \textit{curvas ROC}.
@@ -470,7 +470,7 @@ Las Redes neuronales son una poderosa herramienta para la resolución de diferen
 El modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. Para el reconocimiento de imagen se hacen uso de Redes neuronales convolucionales (Sec:\ref{sub:cnn}) las cuales son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica dentro de la imagen. En las secciones siguientes vamos a desarrollar mas en detalle que son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
 
 
-\subsection{Redes Convolucionales}\label{sub:cnn}
+\subsection{Redes convolucionales}\label{sub:cnn}
 
 Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes debido a que son capaces de detectar características simples, como por ejemplo detención de bordes, lineas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas, tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}. l conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características}, una capa convolucional completa está compuesta de varios mapas de características de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
 
@@ -659,7 +659,7 @@ Luego de generar las regiones propuestas extraemos las características de la im
 %  \caption{Pipeline de detección}\label{fig:pipeline-deteccion}
 %\end{figure}
 
-\subsection{Regions Proposal} \label{sub:regions-proposal}
+\subsection{Regions proposal} \label{sub:regions-proposal}
 
 Regions proposal son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como contorno, color, etc. El proceso metodológico básico es el siguiente: dada una imagen de entrada por medio de algún método se busca generar un conjunto de regiones candidatas que serán localizadas en un \textit{bounding box}, un \textit{bounding box} es la región de interés, que probablemente alguna de esas regiones contengan algún objetos de interés para la detección (fig: \ref{Fig: propsalregion}); estos métodos permiten tener ventanas (bounding box) de diferentes escalas los que nos ayuda a poder localizar objetos de diferentes tamaños, los objetos de interés detectados serán los que posteriormente vamos a utilizar para realizar la clasificación. Como podemos observar en la figura \ref{Fig: propsalregion} como se generan los \textit{bounding boxes} en la imagen.
 
@@ -701,7 +701,7 @@ Luego de las extracciones de regiones candidatas obtenidas por algunos de los m�
 %Luego de las extracciones de regiones candidatas obtenidas por algunos de los métodos nombrados en la sección anterior (Sec:\ref{sub:regions-proposal}), debemos extraer las características significativas que representan cada región dada. Una  característica es algo que se diferencia del resto en un conjunto de datos, esa diferencia nos permite agruparlas de acuerdo a alguna similitud entre las mismas. El objetivo principal de la  extracción de características, \textit{feature extraction} por su denominación en ingles, es representar los datos como un conjunto reducido de característica que describen de manera eficiente sus principales atributos. Para poder realizar esta tarea utilizamos  las redes neuronales convolucionales (Sec:\ref{sub:cnn}) que  permiten extraer información de la imagen para luego utilizar estos atributos obtenidos y agruparlos según algún criterio establecido. 
 
 
-\subsection{Non-Maxima Suppression}\label{sub:nonmaximumsuppression}
+\subsection{Non-maxima suppression}\label{sub:nonmaximumsuppression}
 
 El método de supresión de no máximos (NMS) es un post-procesamiento muy importante en el contexto de la detección. Al aplicar métodos de regiones propuestas puede suceder que existan regiones con sobre-muestreo, es decir superpuestas, como se muestra en la figura  \ref{Fig: overlapping}. 
 

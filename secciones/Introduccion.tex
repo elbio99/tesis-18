@@ -3,7 +3,7 @@
 Este capítulo se abordara los principales conceptos relacionados al trabajo realizado de esta tesis, comenzando con una descripción del marco de trabajo de investigación, el objetivo principal, los objetivos secundarios, fundamentos y motivación que nos llevo a realizar la pregunta de investigación; ademas se dará un resumen del estado del arte de la temática en el ámbito espacial describiendo la metodología empleada para el desarrollo de software implementado.  Para finalizar se describe los capítulos posteriores que dan al lector una guía de como esta organizada la tesis.
 
 
-\section{Contexto de la Tesis}\label{sec:contexto}
+\section{Contexto de la tesis}\label{sec:contexto}
 El presente trabajo se realizó para recibir el grado de \textbf{\textit{Maestría en desarrollos informáticos de aplicación espacial}}. El mismo se encuadra dentro del Plan Nacional Espacial Argentino vigente (2004-2015), a través de \ac{conae} en conjunto con la unidad académica \ac{unlam} y la unidad de desarrollo \ac{sur}.
 
 Esta investigación se centra en aplicar  algoritmos de \textit{Visión por computadora} (\ac{cv} por sus siglas en ingles)  y \textit{Aprendizaje automático} (\ac{ml} por sus siglas en ingles) para la localización y reconocimiento de objetos en una imagen satelital.
@@ -24,7 +24,7 @@ A continuación se expondrá los objetivos específicos que permiten en su conju
 \end{itemize}
 
 
-\section{Fundamentación/Motivación}\label{sec:fundamentacion}
+\section{Fundamentación/motivación}\label{sec:fundamentacion}
 
 Partiendo del objetivo principal, la presente investigación se centra en evaluar diversas técnicas de \ac{cv} y \ac{ml} aplicadas a imágenes satelitales terrestres.
 
@@ -47,7 +47,7 @@ Diversas son las ventajas que nos permitirán realizar estos nuevos enfoques com
 \item \textbf{Monitoreo del territorio nacional}: evaluando a través de imágenes satelitales las frontera nacional.
 \end{itemize}
 
-\section{Estado del Arte} \label{sec:estadodelarte}
+\section{Estado del arte} \label{sec:estadodelarte}
 
 En este sección describiremos las diversas investigaciones y trabajos realizados con imágenes satelitales aplicando técnicas de \ac{cv} y \ac{ml} resaltando el estado actual y uso de la temática abordada.
 
@@ -79,17 +79,7 @@ Siguiendo la misma linea de investigación podemos nombrar el proyecto \textit{D
 
 Usar técnicas de \ac{cv} implica lograr que el satélite tenga mayor autonomía, en el articulo realizado por \cite{Kouyama}, aplica esta tecnología para determinar la actitud y órbita del satélite basado en los datos adquiridos por los sensores del mismo; en el articulo los autores describen que para pequeños satélites,CubeSat, tienen una carga útil limitada y sus actitudes a veces son difíciles de determinar a partir de los pocos sensores que contiene a bordo por sí solos. Estas actitudes incorrectas conducen a proyecciones y mediciones inexactas que requieren corrección de pos-procesamiento en tierra. En el estudio proponen un esquema automatizado y robusto que deriva la actitud del satélite a partir de sus imágenes de observación y de la posición de satélite conocida, combinando características de tierra de una imagen observada y de imágenes registradas. El esquema combina algoritmos de \ac{cv} (es decir, detección de características y validaciones robustas) y restricciones geométricas de la observación por satélite.
 
-\cite{Huggins} en su trabajo titulado \textit{Computer Vision Localization Based on Pseudo-Satellites} propone usar técnicas de \ac{cv} para la localización y orientación de un CubeSat para complementar la navegación, el estudio se enfoca en  aumentar la capacidad de los GPS utilizando \ac{cv}. El autor siguiere crear una red de nodos en el cual un grupo de nodos poseen GPS para calcular su posición y el otro grupo a partir del uso de la posición de la cámara y usando técnicas de  \ac{cv}  utilizar la posición del primer grupo para calcular la suya intercambiando información de los datos y calculando la distancia y orientación de la cámara \citep{Huggins}.
-
-Como vimos existen en la actualidad estudios y aplicaciones realizadas ya sea en vuelo o en tierra que utilizan algoritmos de reconocimiento de patrones, por lo que la tendencia vista en los últimos tiempo es muy alentadora y nos abre una nueva forma de mirar al espacio y enfocar nuestro desarrollo a esta área, como podemos ver en el gráfico siguiente \ref{Fig: scopus1} el crecimiento de investigaciones realizadas en este campo. 
-
-\begin{figure}[h]
- \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/scopus.png}
-  \caption{Cantidad de documentos citados entre 2000 y 2018 en la temática \ac{cv} y \ac{ml}}
-	\label{Fig: scopus1}
-\end{figure}
-
+\cite{Huggins} en su trabajo titulado \textit{Computer Vision Localization Based on Pseudo-Satellites} propone usar técnicas de \ac{cv} para la localización y orientación de un CubeSat para complementar la navegación, el estudio se enfoca en  aumentar la capacidad de los GPS utilizando \ac{cv}. El autor siguiere crear una red de nodos en el cual un grupo de nodos poseen GPS para calcular su posición y el otro grupo a partir del uso de la posición de la cámara y usando técnicas de  \ac{cv}  utilizar la posición del primer grupo para calcular la suya intercambiando información de los datos y calculando la distancia y orientación de la cámara \citep{Huggins}. Como vimos existen en la actualidad estudios y aplicaciones realizadas ya sea en vuelo o en tierra que utilizan algoritmos de reconocimiento de patrones, por lo que la tendencia vista en los últimos tiempo es muy alentadora y nos abre una nueva forma de mirar al espacio y enfocar nuestro desarrollo a esta área.
 
 
 \section{Metodología}\label{sec:metodologia}
@@ -118,13 +108,13 @@ modelo mas eficiente.
 \end{itemize}
 
 
-\subsection{Contexto del Sistema}\label{sub:casodeuso}
+\subsection{Contexto del sistema}\label{sub:casodeuso}
 
-En la siguiente figura (\ref{Fig: diagbloque}), se muestra el diagrama de bloque del sistema, donde observamos la arquitectura general del software. 
+En la figura (\ref{Fig: diagbloque}), se muestra el diagrama de bloque del sistema, donde observamos la arquitectura general del software. 
 
 \begin{figure}[H]
  \centering
-  \includegraphics[height=7cm,keepaspectratio=true,clip=true]{imagenes/Logos/diagramabloque.png}
+  \includegraphics[height=5.5cm,keepaspectratio=true,clip=true]{imagenes/Logos/DB-Sistema.png}
   \caption{Arquitectura del Software de reconocimiento}
 	\label{Fig: diagbloque}
  \end{figure}
@@ -132,7 +122,7 @@ En la siguiente figura (\ref{Fig: diagbloque}), se muestra el diagrama de bloque
 Como se visualiza en el diagrama de arquitectura \ref{Fig: diagbloque}, se dispone de cuatros bloques principales dentro del esquema principal definido como sistema inteligente; el bloque \ac{cv} comprende la extracción de características por medio de redes neuronales y el calculo de \ac{rp}(Sec:\ref{sub:regions-proposal}); en el bloque de \ac{nms} se calcula el overlapping de los \ac{rp} eliminando datos duplicados (Sec: \ref{sub:nonmaximumsuppression}). El bloque de aprendizaje se integra todos los algoritmos utilizados para el entrenamiento y se realiza la validación del los modelos, por ultimo tenemos el bloque de clasificación es el que da como salida la inferencia del modelo entrenado.
 
 
-\section{Estructura General de la Tesis }\label{sec:estructura}
+\section{Estructura general de la tesis }\label{sec:estructura}
 
 
 La tesis se estructura de acuerdo a los siguientes capítulos: Introducción, Marco Teórico, Desarrollo del Software, Evaluación experimental , Conclusiones y trabajos a futuro, Bibliografía y Apéndice :

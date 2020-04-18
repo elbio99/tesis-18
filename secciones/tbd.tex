@@ -19,7 +19,7 @@ En este capítulo vamos a desarrollar el esquema de trabajo utilizado para la cr
 %
 
 
-\section{Esquema de Procesamiento}\label{sec: pipeline}
+\section{Esquema de procesamiento}\label{sec: pipeline}
 
 %En la siguiente imagen \ref{Fig:pipeline} podemos ver un pipeline de desarrollo en aprendizaje supervisado:
 %\begin{figure}[H] \centering
@@ -35,7 +35,7 @@ Partiendo de lo desarrollado anteriormente, en esta sección vamos a entrar en m
 
 \newpage
 %https://www.datanami.com/2018/09/05/how-to-build-a-better-machine-learning-pipeline/
-\subsection{Descripción del Pipeline desarrollado}\label{sub:desc-pipeline}
+\subsection{Descripción del pipeline desarrollado}\label{sub:desc-pipeline}
 
 %\subsubsection*{Datos Raw}
 En la primera etapa del pipeline de desarrollo se baso en la obtención y recolección de \textbf{datos raw}; en esta etapa se basa en recolectar todos los datos que serán usado para entrenar y validar el modelo, este proceso conlleva desde la descarga de los datos por medio de la pagina oficial de \ac{conae} hasta el almacenado de los mismos; en el sección \ref{sec:recoleccion} se desarrolla con mas detalle los pasos que se realizaron para la obtención y descarga de los datos.
@@ -115,12 +115,12 @@ Para la etapa de validación de los datos se realizo con el datasets de test de 
 
 La predicción del modelo final tendrá como respuesta un conjunto de regiones (x, y) de la imagen nueva de entrada en el cual cada una de estas regiones esta asociada una respuesta que nos indica con los valor "0" si la región de interés no se encuentra en la imagen en caso contrario  retornara "1"; cada una de esta predicciones esta asociada a un valor de probabilidad que indica cuan posible es que la región de interés buscada este en esa imagen.
 
-\section{Recolección de Datos}\label{sec:recoleccion}
+\section{Recolección de datos}\label{sec:recoleccion}
 
 En este capítulo se describirá  los pasos que se llevaron a cabo para obtener los datos de la tesis. Se  desarrollara de manera mas detallada como se obtuvo el dataset y que configuraciones de bandas se usaron para la construcción de las imágenes.
 
 
-\subsection{Imágenes Satelitales}
+\subsection{Imágenes satelitales}
 
 Una imagen satelital se la puede definir como la representación visual de información capturada por un sensor montado en un satélite artificial (Sec:\ref{sub:imagen_satelital}). Estos sensores recogen la información reflejada por la superficie de la tierra que luego es enviada para su posterior procesamiento.
 
