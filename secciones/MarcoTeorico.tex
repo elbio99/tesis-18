@@ -104,21 +104,8 @@ Los algoritmos de clasificación calculan la probabilidad de cada clase y luego 
 
 Entrenar un modelo de clasificación supervisado requiere al menos tres valores:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe "aprender", el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
 
-Como se desarrollo anteriormente el proceso de entrenamiento implica dado un conjunto de imágenes $X$ y uno de salida $Y$ (etiquetas de la clase) se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje debemos encontrar una relación de una función que se aproxime a los datos etiquetados de la siguiente forma: $f(X) ≈ Y$.
-
-
-
-La función $f$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir obtener  $f(x_i) ≈ y_i$, para un problema de clasificación binaria los datos que toman los valores de $Y$ pueden ser $Y={-1, 1}$. 
-
-
-Los modelos buscan estimar los parámetros de $f(X)$ que mejor se ajusten a las observaciones de la muestra en este caso $Y$
-
-
-
-
-
-
- De esta manera cuando se pase un elemento que nunca vio puede determinar en cual de los dos espacios creado por el modelo cae este nuevo dato, en este caso estamos hablando en un algoritmo de clasificación.
+Como se desarrollo anteriormente el proceso de entrenamiento implica dado un conjunto de imágenes $X$ y uno de salida $Y$ (etiquetas de la clase) se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje debemos encontrar una relación de una función que se aproxime a los datos etiquetados de la siguiente forma: $f(X) ≈ Y$. La función $f(X)$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir dado un modelo paramétrico como por ejemplo uno lineal de la forma $y_i = \beta_0 + \beta_1 x_i + \epsilon_i$ en donde $\epsilon_i$ es el error del modelo e $Y$ puede tomar valores $(-1,1)$ para un problema de clasificación binaria, lo que se busca es por medio de un modelo de aprendizaje encontrar los valores de  $\beta_i$ que se aproxime a los valores $y_i$.
+ 
 
 
 \subsection{Modelos de clasificación}\label{sub:clasificadores}
