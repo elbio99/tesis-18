@@ -104,20 +104,28 @@ Los algoritmos de clasificación calculan la probabilidad de cada clase y luego 
 
 Entrenar un modelo de clasificación supervisado requiere al menos tres valores:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe "aprender", el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a que clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es la función de costo que nos permite calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir determinar el error entre la salida esperada y los valores predichos.
 
-Como se desarrollo anteriormente el proceso de entrenamiento implica dado un conjunto de imágenes $X$ y uno de salida $Y$ (etiquetas de la clase) se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje debemos encontrar una relación de una función que se aproxime a los datos etiquetados de la siguiente forma: $f(X) ≈ Y$. La función $f(X)$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir dado un modelo paramétrico como por ejemplo uno lineal de la forma $y_i = \beta_0 + \beta_1 x_i + \epsilon_i$ en donde $\epsilon_i$ es el error del modelo e $Y$ puede tomar valores $(-1,1)$ para un problema de clasificación binaria, lo que se busca es por medio de un modelo de aprendizaje encontrar los valores de  $\beta_i$ que se aproxime a los valores $y_i$.
+Como se desarrollo anteriormente el proceso de entrenamiento implica dado un conjunto de imágenes $X$ y uno de salida $Y$ (etiquetas de la clase) se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje debemos encontrar una relación de una función que se aproxime a los datos etiquetados de la siguiente forma: $f(X) ≈ Y$. La función $f(X)$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir dado un modelo paramétrico como por ejemplo uno lineal de la forma $y_i = w^t x_i + \epsilon_i$ en donde $\epsilon_i$ es el error del modelo e $Y$ puede tomar valores $(-1,1)$ para un problema de clasificación binaria, lo que se busca es por medio de un modelo de aprendizaje encontrar los valores de  $w$ que se aproxime a los valores $y_i$.
  
 
 
 \subsection{Modelos de clasificación}\label{sub:clasificadores}
 
-Un clasificador es un método que permite a partir de cierta información indicar a cual es la categoría o clase a la que pertenece. Existen diversos tipos de clasificadores en la actualidad que nombraremos a continuación:
+En base a lo desarrollado en la sección anterior (sec.\ref{sub:aprendizaje_supervisado}) podemos definir diferentes algoritmos de clasificación que se utilizan en la actualidad.
 
-\par \textbf{Regresión Logística}: describe y estima la relación entre una variable binaria dependiente y variables independiente. El objetivo de este método es encontrar un modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas), el valor $z$ de la ecuación \ref {ecu:rg} viene dado de un valor obtenido de clasificación que es el que aprende efectivamente, por ejemplo: un modelo lineal.
+%LOG_reg https://medium.com/datos-y-ciencia/aprendizaje-supervisado-introducci%C3%B3n-a-la-clasificaci%C3%B3n-y-principales-algoritmos-dadee99c9407
+\par \textbf{Regresión Logística}: describe y estima la relación entre una variable binaria dependiente y variables independiente. El objetivo de este método es encontrar un modelo que describa la relación entre la respuesta del modelo dado las variables independientes(variables predictivas o explicativas). En un modelo de clasificación por regresión logística el valor $z$ de la ecuación \ref {ecu:rg} es una combinación lineal de los pesos y las característica $x_i$ del definido como $z=w^t x_i$. 
+   
 
-Para asignar los valores predichos a las probabilidades, usamos la función sigmoide que mapea cualquier valor real en otro valor entre 0 y 1, que tiene la siguiente forma:
 \begin{equation}\label{ecu:rg}
 \phi(z) = \frac{1}{1+e^{-z}}.
 \end{equation}
+
+La salida de la función sigmoide $\phi(z)$ (\ref {ecu:rg}) se interpreta como la probabilidad de que un valor determinado pertenezca a una de las clases, es decir:
+\begin{equation}\label{ecu:f_sig_class}
+\hat{y} = \left \{\begin{matrix} 1 & \mbox{si }\phi(z) \ge 0
+\\ 0 & \mbox{si }\phi(z) < 0 \end{matrix}\right. 
+\end{equation}
+
 
 \begin{figure}[H]
  \centering
