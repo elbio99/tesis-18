@@ -160,23 +160,25 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
   \label{Fig: random_forest}
 \end{figure}
 
-\par \textbf{Maquina de vectores de soporte (SVM por su siglas en ingles)}: El objetivo de un algoritmo \ac{svm} es encontrar un hiperplano en un espacio de $n$ dimensiones que separe los datos con el mayor margen posible, como en la figura (b) \ref{Fig: svm_margen_hiperplano}. 
+\par \textbf{Maquina de vectores de soporte (SVM por su siglas en ingles)}: son otro tipo de clasificadores lineales,  el objetivo de un algoritmo \ac{svm} es construir un hiperplano (\ref{Fig: svm_margen_hiperplano} (a)) en un espacio de $n$ dimensiones que permita separar de manera optima dos datos de una clase con respecto a la otra. La característica fundamental de \ac{svm} es encontrar el hiperplano que tenga la máxima distancia, \textit{margen} \ref{Fig: svm_margen_hiperplano} (b), entre los puntos que estén más cerca de el mismo.
+
+% http://bibing.us.es/proyectos/abreproy/70448/fichero/05_Capitulo4.pdf
+%http://zaguan.unizar.es/record/59156/files/TAZ-TFG-2016-2057.pdf?version=1
+
+%https://www.cienciadedatos.net/documentos/34_maquinas_de_vector_soporte_support_vector_machines
 %pag.326 y 328 nuevo de bishop
-
-
-%\begin{figure}[H] \centering
-%  \includegraphics[scale=0.35,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/slack-var.png}
-%  \caption{Margen de separación del hiperplano}\label{Fig: margenseparacionsvm}
-%\end{figure}
 
 
 \begin{figure}[htbp]
 \centering
 \subfigure[]{\includegraphics[width=6cm, height=6cm]{imagenes/MarcoTeorico/hiperplanos.png}}
-\subfigure[]{\includegraphics[width=6cm, height=6cm]{imagenes/MarcoTeorico/slack-var.png}}
+\subfigure[]{\includegraphics[width=5.5cm, height=6cm]{imagenes/MarcoTeorico/margen_svm.png}}
 
 \caption{(a) Hiperplanos de seaparación (b) margen de separacion del hiperplano.}\label{Fig: svm_margen_hiperplano}
 \end{figure}
+%The margin is defined as the perpendicular distance between the decision boundary and the closest of the data points, as shown on the left figure. Maximizing the margin leads to a particular choice of decision boundary, as shown on the right. The location of this boundary is determined by a subset of the data points, known as support vectors, which are indicated by the circles
+
+
 
 
 Para separar dos clases existen muchos hiperplanos posibles (a) \ref{Fig: svm_margen_hiperplano}, el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar un ejemplo usando un modelo lineal \eqref{eq: modelo-lineal}:
