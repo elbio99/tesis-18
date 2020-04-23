@@ -160,7 +160,8 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
   \label{Fig: random_forest}
 \end{figure}
 
-\par \textbf{Maquina de vectores de soporte (SVM por su siglas en ingles)}: son otro tipo de clasificadores lineales,  el objetivo de un algoritmo \ac{svm} es construir un hiperplano (\ref{Fig: svm_margen_hiperplano} (a)) en un espacio de $n$ dimensiones que permita separar de manera optima dos datos de una clase con respecto a la otra. La característica fundamental de \ac{svm} es encontrar el hiperplano que tenga la máxima distancia, \textit{margen} \ref{Fig: svm_margen_hiperplano} (b), entre los puntos que estén más cerca de el mismo.
+\par \textbf{Maquina de vectores de soporte (SVM por su siglas en ingles)}: son otro tipo de clasificadores lineales,  el objetivo de un algoritmo \ac{svm} es construir un hiperplano (\ref{Fig: svm_margen_hiperplano} (a)) en un espacio de $n$ dimensiones que permita separar de manera optima dos datos de una clase con respecto a la otra. La característica fundamental de \ac{svm} es encontrar el hiperplano que tenga la máxima distancia, \textit{margen} , entre los puntos que estén más cerca de el mismo. El margen se define como la distancia perpendicular entre el límite de decisión y el punto de datos más cercano, como se muestra en la figura \ref{Fig: svm_margen_hiperplano} (b)}. La ubicación de este límite está determinada por un subconjunto de los puntos de datos, conocidos como vectores de soporte \citep{bishop}.
+
 
 % http://bibing.us.es/proyectos/abreproy/70448/fichero/05_Capitulo4.pdf
 %http://zaguan.unizar.es/record/59156/files/TAZ-TFG-2016-2057.pdf?version=1
@@ -176,12 +177,8 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 
 \caption{(a) Hiperplanos de seaparación (b) margen de separacion del hiperplano.}\label{Fig: svm_margen_hiperplano}
 \end{figure}
-%The margin is defined as the perpendicular distance between the decision boundary and the closest of the data points, as shown on the left figure. Maximizing the margin leads to a particular choice of decision boundary, as shown on the right. The location of this boundary is determined by a subset of the data points, known as support vectors, which are indicated by the circles
 
-
-
-
-Para separar dos clases existen muchos hiperplanos posibles (a) \ref{Fig: svm_margen_hiperplano}, el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar un ejemplo usando un modelo lineal \eqref{eq: modelo-lineal}:
+Para separar dos clases existen muchos hiperplanos posibles \ref{Fig: svm_margen_hiperplano} (a), como se desarrollo anteriormente el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases, vamos a dar un ejemplo usando un modelo lineal \eqref{eq: modelo-lineal}:
 \begin{equation}\label{eq: modelo-lineal}
     Y(x) = w^{\rm T} f(x) + b.
 \end{equation}
@@ -189,15 +186,14 @@ Para separar dos clases existen muchos hiperplanos posibles (a) \ref{Fig: svm_ma
 Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a datos etiquetados  $y_i,...,y_n$ donde en estos casos $ y  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ Y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \eqref{eq: modelo-lineal} satisfaga $Y(x_n) > 0 $ para los valores que forman $y_n = +1$ y para $ Y(x_n) <  0$ para los valores que toman $ y_n = -1$. En diversos casos existen $ n$ hiperplanos de separación (a)  \ref{Fig: svm_margen_hiperplano} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos. Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
 
 \begin{equation}\label{eq: distancia-margen}
-   \frac{t_n Y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} f(x) + b)}{ \|w \|}.
+   \frac{t_n Y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} f(x_n) + b)}{ \|w \|}.
 \end{equation}
 
 El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$ del conjunto de entrenamiento, y deseamos optimizar los parámetros $ w$ y $ b$ para maximizar esta distancia, así, la solución del margen máximo esta dada por:
 
 \begin{equation}\label{eq: margen-maximo}
-\arg\max_{w ,b} \{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} f(x) + b)] \}.
+\argmax_{w, b} \left\{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} f(x_n) + b)]  \right\}
 \end{equation}
-
 
 En la gran mayoría de casos, los datos no se pueden separar linealmente de forma perfecta, por lo que no existe un hiperplano de separación y no puede obtenerse un margen máximo de manera simple. Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
 
@@ -212,7 +208,10 @@ Las ventajas de estos clasificadores son: eficaz para grandes espacios dimension
 %https://medium.com/datos-y-ciencia/aprendizaje-supervisado-introducci%C3%B3n-a-la-clasificaci%C3%B3n-y-principales-algoritmos-dadee99c9407
 
 % FIN
-El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados la función generar un valor mayor de error, si el valor de la predicción se acerca al valor esperado el error sera menor de modo que nos indicará si nos estamos acercando a la solución buscada.
+
+%COST F EN CLASIFICACION.
+% https://machinelearningknowledge.ai/cost-functions-in-machine-learning/#Cost_functions_for_Classification_problems
+El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. La función de costo generará un valor menor de error si el valor de la predicción se acerca a la solución buscada.
 
 Existen diferentes tipos de funciones de costo que podemos usar para determinar el error en la predicción, una de las mas comunes usada es \textbf{mean square error}, MSE \eqref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ (fig: \ref{Fig:mse}).
 
