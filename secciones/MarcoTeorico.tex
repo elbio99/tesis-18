@@ -211,28 +211,17 @@ Las ventajas de estos clasificadores son: eficaz para grandes espacios dimension
 
 %COST F EN CLASIFICACION.
 % https://machinelearningknowledge.ai/cost-functions-in-machine-learning/#Cost_functions_for_Classification_problems
-El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio. Para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. La función de costo generará un valor menor de error si el valor de la predicción se acerca a la solución buscada.
+El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio, para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo utilizando de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. Como se desarrollo anteriormente un algoritmo de \ac{ml} deberá minimizar la función de costo para que esta produzca un valor menor de error entre el valor esperado y la salida del modelo.
 
-Existen diferentes tipos de funciones de costo que podemos usar para determinar el error en la predicción, una de las mas comunes usada es \textbf{mean square error}, MSE \eqref{eqn:error-mse}, en este caso determina la distancia o simplemente la diferencia entre el dato y el predictor $(x_i - y_i) $ (fig: \ref{Fig:mse}).
+En un problema de clasificación utilizando  el algoritmo SVM desarrollado en la sección anterior (sec:\ref{sub:clasificadores}) 
 
 
+%MIRAR ESTE http://verso.mat.uam.es/~joser.berrendero/cursos/Matematicas-IO/io-tema6-svm-16.pdf
 
-\begin{figure}[H] \centering
-  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/mse-cost.png}
-  \caption{Mean Square Error \\ \citep{bishop}}\label{Fig:mse}
-  %http://wiki.fast.ai/images/5/55/Linear_line_w_cost_function.png
-\end{figure}
+%http://cs229.stanford.edu/notes/cs229-notes3.pdf
+%http://web.mit.edu/6.034/wwwbob/svm-notes-long-08.pdf
 
-Para un problema de clasificación donde tenemos los siguientes datos $(x_i,y_i) $, donde $x_i $ es el conjunto de entrenamiento, por ejemplo las características de una casa pisos, dormitorios, etc; e $y_i$ es el precio correspondiente dada determinada característica. El método utiliza para calcular el error en la predicción es \eqref{eqn:error-mse}, en donde $ y(x_i)$ es el valor de la predicción e $y_i$ es la variable a predecir.
-\begin{equation}\label{eqn:error-mse}
-error_i = (y(x_i) - y_i)^2.
-\end{equation} 
-A partir del calculo anterior podemos generalizar \eqref{eq: mse-ejem} y tomar el promedio sobre todo los punto de datos de esta manera el resultados de este valor no permite determinar cuanto no estamos acercando a la solución buscada.
-\begin{equation}\label{eq: mse-ejem}
-MSE =  \frac{1}{N}\sum_{i}(y_i - y(x_i))^2.
-\end{equation}
-
-Para un problema de clasificación utilizando  SVM desarrollado en la sección anterior (Sec:\ref{sub:clasificadores}) vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables de holgura (\emph{slack}).
+vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables de holgura (\emph{slack}).
 
 Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores (b) \ref{Fig: svm_margen_hiperplano}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$.
 
