@@ -178,15 +178,16 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 \caption{(a) Hiperplanos de seaparación (b) margen de separacion del hiperplano.}\label{Fig: svm_margen_hiperplano}
 \end{figure}
 
-Para separar dos clases existen muchos hiperplanos posibles \ref{Fig: svm_margen_hiperplano} (a), como se desarrollo anteriormente el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases, vamos a dar un ejemplo usando un modelo lineal \eqref{eq: modelo-lineal}:
+Para un problema de clasificación binaria en el que necesitamos separar dos clases, existen muchos hiperplanos posibles \ref{Fig: svm_margen_hiperplano} (a), como se desarrollo anteriormente el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar considerar un modelo de clasificación lineal con etiquetas $t_n \in\{1, -1 \}$ y datos de entrenamiento de $N$ vectores de entada $x_i,..., x_n$ \eqref{eq: modelo-lineal}.
+
 \begin{equation}\label{eq: modelo-lineal}
-    Y(x) = w^{\rm T} f(x) + b.
+    y(x) = w^{\rm T} f(x) + b.
 \end{equation}
 
-Los datos de entrenamiento de la función comprenden de $ N$ vectores de entada $x_i,..., x_n$ con valores correspondiente a datos etiquetados  $y_i,...,y_n$ donde en estos casos $ y  \in \{1,  -1 \}$ y los nuevos valores de $ x$ se clasifican según $ Y(x)$. Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo que la función  \eqref{eq: modelo-lineal} satisfaga $Y(x_n) > 0 $ para los valores que forman $y_n = +1$ y para $ Y(x_n) <  0$ para los valores que toman $ y_n = -1$. En diversos casos existen $ n$ hiperplanos de separación (a)  \ref{Fig: svm_margen_hiperplano} que permita lograr una solución al problema planteado, el objetivos es encontrar aquel hiperplano que menor error nos de en la generalización. El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos. Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
+Dado este conjunto de datos asumimos que son lineal mente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo, $y(x_n) > 0 $ para puntos $t_n = 1 $ y $y(x_n) < 0$ para datos con etiqueta $t_n = -1$. En diversos casos existen $ n$ hiperplanos de separación (a)  \ref{Fig: svm_margen_hiperplano} que permita lograr una solución al problema.  El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos. Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuan alejado esta el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
 
 \begin{equation}\label{eq: distancia-margen}
-   \frac{t_n Y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} f(x_n) + b)}{ \|w \|}.
+   \frac{t_n y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} f(x_n) + b)}{ \|w \|}.
 \end{equation}
 
 El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$ del conjunto de entrenamiento, y deseamos optimizar los parámetros $ w$ y $ b$ para maximizar esta distancia, así, la solución del margen máximo esta dada por:
@@ -195,13 +196,37 @@ El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$
 \argmax_{w, b} \left\{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} f(x_n) + b)]  \right\}
 \end{equation}
 
+Como podemos ver encontrar un hiperplano optimo es un problema de optimización, la solución directa de este problema de optimización sería muy compleja, entonces podemos convertirlo a un problema equivalente que sea mucho más fácil de resolver reescalando $w \to kw$ y $b \to kb$ entonces la distancia desde cualquier punto $X_n$ hasta la frontera de decisión esta dada por $ t_n y(x_n) / \|w \|$ no cambia, podemos usar esto para establecer en el punto más cercano:
+
+\begin{equation}\label{eq: margen-maximo_2}
+t_n(w^{\rm T} f(x) + b) = 1.
+\end{equation}
+Para todos los puntos de datos tendrán las siguiente restricción:
+
+\begin{equation}\label{eq: margen-maximo_3}
+t_n(w^{\rm T} f(x) + b) \geq 1.
+\end{equation}
+
+Para este problema de optimización se requiere maximizar $\|w \|^{-1}$, que es equivalente a minimizar $\|w \|^{2}$, por lo que nos queda la siguiente ecuación:
+
+\begin{equation}\label{eq: margen-maximo_optimizacion}
+\argmin_{w, b}  \frac{1}{2}} \|w \|^{2}.
+\end{equation}
+
+La resolución del problema utilizamos los multiplicadores de Lagrange  \citep{bishop} con valores de $a_n \geq 0$, la función Lagrangiana tendrá la siguiente forma:
+
+\begin{equation}\label{eq: lagrange}
+L(w, b, a) = \frac{1}{2}} \|w \|^{2} - \sum_{n=1}^{N} a_n \left\{ t_n(w^{\rm T} f(x) + b)- 1 \right\}.
+\end{equation}
+
+
 En la gran mayoría de casos, los datos no se pueden separar linealmente de forma perfecta, por lo que no existe un hiperplano de separación y no puede obtenerse un margen máximo de manera simple. Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
 
 
 Las ventajas de estos clasificadores son: eficaz para grandes espacios dimensionales, efectivo en casos en los que el número de dimensiones es mayor que el número de muestras, se pueden especificar diferentes funciones del kernel para la función de decisión, el proceso de entrenamiento es más rápido en comparación con otros tipo de clasificadores, sobre todo para cuando tenemos un conjunto de entrenamientos grandes.
 %http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
 
-\subsection{Función de costo}\label{sub:funcion_costo}
+\section{Función de costo}\label{sub:funcion_costo}
 % ENLACES DE INTERES
 %http://bibing.us.es/proyectos/abreproy/11185/fichero/Volumen+1_Detector+Multiusuario+para+DS-CDMA+basado+en+SVM%252F7.+Support+Vector+Machines%252FSupport+Vector+Machines.pdf
 %https://rpubs.com/Joaquin_AR/267926
@@ -211,39 +236,7 @@ Las ventajas de estos clasificadores son: eficaz para grandes espacios dimension
 
 %COST F EN CLASIFICACION.
 % https://machinelearningknowledge.ai/cost-functions-in-machine-learning/#Cost_functions_for_Classification_problems
-El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio, para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo utilizando de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. Como se desarrollo anteriormente un algoritmo de \ac{ml} deberá minimizar la función de costo para que esta produzca un valor menor de error entre el valor esperado y la salida del modelo.
-
-En un problema de clasificación utilizando  el algoritmo SVM desarrollado en la sección anterior (sec:\ref{sub:clasificadores}) 
-
-
-%MIRAR ESTE http://verso.mat.uam.es/~joser.berrendero/cursos/Matematicas-IO/io-tema6-svm-16.pdf
-
-%http://cs229.stanford.edu/notes/cs229-notes3.pdf
-%http://web.mit.edu/6.034/wwwbob/svm-notes-long-08.pdf
-
-vamos a describir como trabaja la función de costo para la búsqueda  de un modelo que permita clasificar un valor de manera óptima. Los algoritmos SVM como se desarrollo anteriormente son aquellos en el cual necesitamos obtener un hiperplano que separe  dos conjuntos de datos, en  muchos casos esa condición no se cumple, pero aún así las dos clases están bastante separadas excepto para algunos datos de entrenamiento  donde las dos categorías se superponen. No sería un error si encontráramos un hiperplano y aceptáramos cierto nivel de error; para poder medir el valor del error  utilizamos variables de holgura (\emph{slack}).
-
-Para cada punto de datos de entrenamiento podemos definir una variable que mida la distancia del punto a su hiperplano marginal  esta variable la llamaremos  $\xi _i$, cuando los valores de un punto esta en el lado equivocado el valor que tomará sera $ \xi_i > 1$ también llamado \textit{missclassified} en caso contrario cuando esta entre $ 0 < \xi_i \leq 1 $ no se cuantifican como errores (b) \ref{Fig: svm_margen_hiperplano}, entonces el valor del  margen esta dado por : $ M  = \frac{2}{ \|w \|} $  y el error sera:  $ \frac{ \xi}{ \|w \|} >  M$.
-
-
-El problema de un aprendizaje en SVM se lo puede ver como un problema de optimización de $w$ y $\xi $ de la forma \eqref{eqn: optim1}
-\begin{eqnarray}\label{eqn: optim1}
-\min_{w  \in R , b \in R} \|w \|^{2} + C \sum_{i}^{N}  \xi_i  . \\
-\text{  sujeto a    }   t_n(w^{\rm T} f(x) + b) \geq 1 - \xi_i  ,\; \; i= 1,..N.
-\end{eqnarray} 
-En el cual si $\xi \geq 0$ es equivalente a decir que: $\xi_i \max(0, 1 -  t_n(w^{\rm T} f(x) + b)  )$ por lo tanto es equivalente a  \eqref{eqn: w-loss}.
-\begin{equation}\label{eqn: w-loss}
-\min_{w  \in R} \|w \|^{2} + C \sum_{i}^{N} \max(0, 1 -  t_n(w^{\rm T} f(x) + b)  ).
-\end{equation}
-Dada  la formula  \eqref{eqn: w-loss}  la función de costo sera: $\max(0, 1 -  t_n(w^{\rm T} f(x) + b))$ donde  los puntos se los clasifica en tres categorías: 
-\begin{enumerate}
-\item  $  t_n(w^{\rm T} f(x) + b)) \geq 1$: el valor está fuera del margen por lo tanto no se computa el error. 
-\item   $  t_n(w^{\rm T} f(x) + b)) = 1$: el valor está en el  margen por lo tanto no se computa el error. 
-\item   $  t_n(w^{\rm T} f(x) + b)) < 1$: el valor está dentro del margen por lo tanto se computa el valor de error. 
-
-\end{enumerate}
-
-Dependiendo del modelo de clasificación que estemos utilizando existen diferentes funciones de costo que nos permiten calcular el error del modelo; entre ellas están Quadratic cost \citep{quadratic_cost}, Cross-entropy cost \citep{cross_entropy}, Exponential cost \citep{exponential_cost}, Hellinger distance \citep{Hellinger}, Kullback–Leibler divergence \citep{kullback}, entre otras.
+El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio, para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo utilizando de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. Como se desarrollo anteriormente un algoritmo de \ac{ml} deberá minimizar la función de costo para que esta produzca un valor menor de error entre el valor esperado y la salida del modelo. Dependiendo del modelo de clasificación que estemos utilizando existen diferentes funciones de costo que nos permiten calcular el error del modelo; entre ellas están Quadratic cost \citep{quadratic_cost}, Cross-entropy cost \citep{cross_entropy}, Exponential cost \citep{exponential_cost}, Hellinger distance \citep{Hellinger}, Kullback–Leibler divergence \citep{kullback}, entre otras.
 
 %https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications
 
