@@ -1,31 +1,29 @@
 \chapter{Marco Teórico} \label{chap:marcoteorico}
 
-En el este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como el sensado remoto,  aprendizaje automático y redes neuronales.
+En este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como el sensado remoto,  aprendizaje automático y redes neuronales.
 
 \section{Sensado remoto}\label{sec:sensadoremoto}
 
-Para comenzar, vamos a hablar del principal objetivo de este trabajo que son las imágenes satelitales. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
+En esta sección vamos a realizar una introducción del proceso llevado a cabo para la obtención de una imagen satelital. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
 
 \subsection{Teledetección}\label{sub:teledeteccion}
 
-La teledetección o \textit{sensado remoto} es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (fig: \ref{Fig:teledeteccion}).
+La teledetección o \textit{sensado remoto} es el proceso que nos permite obtener una imagen de la superficie terrestre de forma remota, es decir sin estar en contacto con ella. Una imagen satelital es una representación de estos datos reflejados por la superficie terrestre que son captadas por un sensor que se encuentran a bordo de un satélite artificial (fig: \ref{Fig:teledeteccion}). La teledetección no es mas que la detección de propiedades relevantes del entorno, esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}.
 
-La teledetección no es mas que la detección de propiedades relevantes del entorno, esta capacidad no es despreciable, nos permite desarrollar aplicaciones practicas con un impacto cada ves mayor \citep{percepcion}. En general la teledetección es la medición de energía emanada de la superficie terrestre. 
-
-Existen diferentes fuentes de energía, si la fuente de energía es el sol la llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol es decir es emitida por un sensor la llamamos \textit{teledetección activa} como por ejemplo los sensores de radar que funcionan en el rango de microondas.
+En general la teledetección es la medición de energía emanada de la superficie terrestre. Existen diferentes fuentes de energía, si la fuente de energía es el sol la llamamos \textit{teledetección pasiva}, si la energía medida no es emitida por el Sol es decir es emitida por un sensor la llamamos \textit{teledetección activa} como por ejemplo los sensores de radar que funcionan en el rango de microondas.
 
 Los componentes básicos de un sistema de teledetección incluye lo siguiente \citep{chuvieco}: \textit{fuente de energía},  radiación electromagnética que capta el sensor puede tratarse de una fuente pasiva o activa; \textit{cubierta terrestre}, rasgos naturales o 
 realizados por el hombre que refleja el sensor como por ejemplo construcciones; \textit{sistema sensor} compuesto por cámaras, radar, etc  y la plataforma en la que esta puesto (satélite, avión, globo) capta la energía proveniente de la tierra y la almacena o envía al sistema de recepción; \textit{sistema de recepción} encargado de recibir la información proveniente del sensor y almacenar en un formato apropiado para luego ser distribuido a los usuarios; \textit{interprete} es el encargado de manipular los datos de acuerdo a la temática de interés (agricultura, catastro, etc), es decir aplica diferentes niveles de procesamiento sobre los datos crudos obtenidos por el sensor por ultimo tenemos los \textit{usuarios finales} que son los consumidores de la imagen adquirida.
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.35, keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/teledeteccion.png}
-  \caption{Ejemplo de fuente de energía pasiva o activa en el sensado remoto.}\label{Fig:teledeteccion}
+  \caption{Ejemplo de fuente de energía pasiva o activa en teledetección.}\label{Fig:teledeteccion}
 \end{figure}
 
 Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar. A su ves existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo especifico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 
-Otras de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución; estas resoluciones la podemos definir de la siguiente manera: \textbf{resolución espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel, a menor tamaño de píxel mayor sera la resolución espacial esto quiere decir que el sensor tendrá mayor detalle de los objetos como se puede observar en la figura (a) \ref{Fig:resoluciones};  
-\textbf{resolución espectral}: la resolución espectral especifica el numero y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (fig: (c) \ref{Fig:resoluciones}); \textbf{resolución radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor (fig: (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por ultimo tenemos la \textbf{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra; es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
+Otras de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución; estas resoluciones la podemos definir de la siguiente manera: \textit{resolución espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel, a menor tamaño de píxel mayor sera la resolución espacial esto quiere decir que el sensor tendrá mayor detalle de los objetos como se puede observar en la figura (a) \ref{Fig:resoluciones};  
+\textit{resolución espectral}: la resolución espectral especifica el numero y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (fig: (c) \ref{Fig:resoluciones}); \textit{resolución radiometrica}: indica el numero de bits utilizados para expresar los datos recogidos por el sensor (fig: (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por ultimo tenemos la \textit{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra, es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura esta en función de el tipo de orbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
 
 
 \begin{figure}[htbp]
@@ -40,9 +38,9 @@ Otras de las características de los sensores son el tipo de imagen que proporci
 
 \subsubsection{Espectro electromagnético}
 
-El espectro electromagnético se denomina al conjunto de todas las longitudes de onda \citep{chuvieco}. Las ondas electromagnéticas cubren una amplia gama de frecuencias o de longitudes de ondas y pueden clasificarse según su principal fuente de producción. 
+En teledetección el espectro electromagnético se denomina al conjunto de todas las longitudes de onda \citep{chuvieco}. Las ondas electromagnéticas cubren una amplia gama de frecuencias o de longitudes de ondas y pueden clasificarse según su principal fuente de producción. 
 
-Las regiones utilizadas para la observación remota de la tierra son: \textit{Espectro visible} (0.4 - 0.7 µm): rango de frecuencias del ojo humano; máxima radiación solar. Subdividido en tres bandas: Rojo (0.6 - 0.7 µm), Verde (0.5 - 0.6 µm) y Azul (0.4 - 0.5 µm). \textit{Infrarrojo cercano} (0.7 - 1.1 µm): denominado IR fotográfico o reflejado; energía solar que reflejan los cuerpos su comportamiento es similar al espectro visible. \textit{Infrarrojo medio} (1.1 – 8 µm): se entremezclan radiación solar y emisión; la atmósfera afecta sensiblemente: aprovechado para medir concentraciones de vapor de agua, ozono, aerosoles, etc. \textit{Infrarrojo térmico} (8 - 14 µm): radiaciones emitidas por los propios cuerpos; se puede determinar la Temperatura de un cuerpo (IRtérmico)con este tipo se puede disponer de imágenes a cualquier hora del día. \textit{Microondas} (1mm-1m): de interés creciente de la Teledetección en esta banda, las perturbaciones atmosféricas son menores y es transparente a las nubes, se suelen utilizar en sensores activos. 
+Las regiones utilizadas para la observación remota de la tierra son: \textit{espectro visible} (0.4 - 0.7 µm): rango de frecuencias del ojo humano, máxima radiación solar, subdividido en tres bandas; rojo (0.6 - 0.7 µm), verde (0.5 - 0.6 µm) y azul (0.4 - 0.5 µm). El \textit{infrarrojo cercano} (0.7 - 1.1 µm) denominado IR fotográfico o reflejado, energía solar que reflejan los cuerpos, su comportamiento es similar al espectro visible. El \textit{infrarrojo medio} (1.1 – 8 µm) se entremezclan radiación solar y emisión, la atmósfera afecta sensiblemente, aprovechado para medir concentraciones de vapor de agua, ozono, aerosoles, etc. El \textit{infrarrojo térmico} (8 - 14 µm) las radiaciones emitidas por los propios cuerpos, se puede determinar la temperatura de un cuerpo (IR térmico), con este tipo se puede disponer de imágenes a cualquier hora del día. Las \textit{microondas} (1mm-1m) son de interés creciente de la teledetección, en esta banda las perturbaciones atmosféricas son menores y es transparente a las nubes, se suelen utilizar en sensores activos. 
 
 
 \begin{figure}[H] \centering
@@ -53,7 +51,7 @@ Las regiones utilizadas para la observación remota de la tierra son: \textit{Es
 
 
 
-\subsection{Adquisición y procesamiento automático de imágenes satelitales}\label{sub:imagen_satelital}
+\subsection{Adquisición y procesamiento de imágenes satelitales}\label{sub:imagen_satelital}
 
 Las imágenes generadas a partir de la cámara a bordo de un satélite posee una enorme alternativa para poder brindar información dentro de diversas áreas de estudio. Una imagen satelital esta compuesta por diferentes matrices de las cuales cada celda representa un píxel, la dimensiones  depende del tipo de resolución espacial como se mencionó anteriormente. Los sensores almacenan la radiación electromagnética proveniente de distintas coberturas y las guarda en el píxel de acuerdo a los intervalos de onda correspondiente de cada sensor. Esta energía electromagnética se representa en cada píxel por un valor digital llamado Nivel Digital (ND), la cantidad de ND que se podrá representar depende de la resolución radiométrica.
 
@@ -65,7 +63,7 @@ La asignación de colores más conocida por los usuarios es el \textit{falso col
 
 Para lograr que la imagen obtenida a partir de una cámara a bordo de un satélite sea información de calidad se debe procesar los datos que deseamos obtener, uno de los requerimientos principales para obtener datos de calidad es que la cámara a bordo este calibrada y sea posible establecer una relación \textit{espacial} y \textit{temporal} de los valores adquiridos por la misma.
 
-Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática; para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \ac{ml} y sus usos.
+Como se desarrollo en el primer capítulo, el objetivo de esta tesis es lograr obtener estas características de manera automática, para esto proponemos el uso de técnicas de \ac{ml} para la resolución de este problema. En la sección siguiente vamos a desarrollar mas en detalle  el concepto \ac{ml} y sus usos.
 
 %http://sedici.unlp.edu.ar/bitstream/handle/10915/20976/Documento_completo.pdf?sequence=1
 %http://ing.unne.edu.ar/dep/goeciencias/fotointer/pub/teoria2011/parte02/tdi.pdf

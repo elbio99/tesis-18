@@ -101,7 +101,7 @@ modelo mas eficiente.
 
 \subsection{Contexto del sistema}\label{sub:casodeuso}
 
-En la siguiente figura (\ref{Fig: diagbloque}), se muestra el diagrama de bloque del sistema, donde observamos la arquitectura general del software que se realizo para el prototipo experimental desarrollado. 
+La siguiente figura (\ref{Fig: diagbloque}) se expone la arquitectura general del software realizado para el prototipo experimental desarrollado. 
 
 \begin{figure}[H]
  \centering
@@ -110,23 +110,23 @@ En la siguiente figura (\ref{Fig: diagbloque}), se muestra el diagrama de bloque
 	\label{Fig: diagbloque}
  \end{figure}
  
-Como se visualiza en el diagrama de arquitectura \ref{Fig: diagbloque}, se dispone de un bloque principal que llamamos \textit{sistema inteligente} en el comprende el calculo de \ac{rp} en base a las imagenes satelitales que recibe como entrada, el bloque de NMS (sec: \ref{sub:nonmaximumsuppression}) nos permite eliminar el overlapping de regiones detectadas. En el bloque de clasificación integraremos todos los experimentos realizados (validación cruzada, búsqueda de hiperparametros y evaluación), en base a los datos y las anotaciones recibidas como entrada, la salida final sera la respuesta del modelo entrenado.
+Como se visualiza en el diagrama de arquitectura \ref{Fig: diagbloque}, se dispone de un bloque principal que llamamos \textit{sistema inteligente} en el comprende el calculo de \ac{rp} en base a las imagenes satelitales que recibe como entrada, el computo de NMS (sec: \ref{sub:nonmaximumsuppression}) que permite eliminar el overlapping de regiones detectadas y el bloque de clasificación integrado por todos los experimentos realizados (validación cruzada, búsqueda de hiperparametros y evaluación), en base a los datos y las anotaciones recibidas como entrada, la salida final sera la respuesta del modelo entrenado.
 
 \section{Estructura general de la tesis }\label{sec:estructura}
 
 
 La tesis se estructura de acuerdo a los siguientes capítulos: Introducción, Marco Teórico, Desarrollo del Software, Evaluación experimental , Conclusiones y trabajos a futuro, Bibliografía y Apéndice :
 
-En el \textbf{Capítulo} \ref{chap:marcoteorico} \textit{Marco Teórico}: plantea los fundamentos e investigación que se realizaron con el fin de situar el problema dentro de limites teóricos. En este capitulo se desarrolla los conceptos claves como: ¿que es visión artificial?, los métodos que existen, diferentes algoritmos de detección que encontramos en la literatura, ¿ que entendemos por aprendizaje automático?, los campos que hacen uso de esta metodología, nombrando la importancia de las redes neuronales en el campo de reconocimiento de patrones.
+En el capítulo \ref{chap:marcoteorico} \textit{Marco teórico}: plantea los fundamentos e investigación que se realizaron con el fin de situar el problema dentro de limites teóricos. En este capitulo se desarrolla los conceptos claves como: ¿que es visión artificial?, los métodos que existen, diferentes algoritmos de detección que encontramos en la literatura, ¿ que entendemos por aprendizaje automático?, los campos que hacen uso de esta metodología, nombrando la importancia de las redes neuronales en el campo de reconocimiento de patrones.
 
-El \textbf{Capítulo} \ref{chap:tbd} \textit{Esquema de Detección}: En este capítulo se describen el esquema de procesamiento (pipeline) utilizado para el desarrollo de la tesis, también se desarrollará la \textit{recolección de datos} llevada a cabo para la obtención de las imágenes.
+El capítulo \ref{chap:tbd} \textit{Esquema de detección}: En este capítulo se describen el esquema de procesamiento (pipeline) utilizado para el desarrollo de la tesis, también se desarrollará la \textit{recolección de datos} llevada a cabo para la obtención de las imágenes.
 
 %El \textbf{Capítulo} \ref{chap:Desarrollo} \textit{Desarrollo del Software}: En este capítulo se evalúan las diferentes herramientas utilizadas, junto con la estructura del código realizado.
 
-El \textbf{Capítulo} \ref{chap:evaluacion} \textit{Evaluación Experimental}:  se  dividió en tres secciones principales. La primera hace referencia al los datos y procesos que se llevaron a cabo sobre las imágenes. La segunda parte se describe como se extrajo los datos de cada imagen para realizar el entrenamiento. En la sección final del capitulo se describen los métodos de validación utilizados y cuales fueron los resultados obtenidos.
+El capítulo \ref{chap:evaluacion} \textit{Evaluación experimental}:  se  dividió en tres secciones principales. La primera hace referencia al los datos y procesos que se llevaron a cabo sobre las imágenes. La segunda parte se describe como se extrajo los datos de cada imagen para realizar el entrenamiento. En la sección final del capitulo se describen los métodos de validación utilizados y cuales fueron los resultados obtenidos.
 
-En el \textbf{Capítulo} \ref{chap:conclusiones} \textit{Conclusiones y Trabajo a Futuro}: se plantea las conclusiones sacadas de la investigación y experimentación además de los posibles trabajo a futuro partiendo de lo realizado.
+En el capítulo \ref{chap:conclusiones} \textit{Conclusiones y trabajo a futuro}: se plantea las conclusiones sacadas de la investigación y experimentación además de los posibles trabajo a futuro partiendo de lo realizado.
 
-\textbf{Capítulo} \textit{Bibliografía}: Se enuncian las diferentes fuentes consultadas para el desarrollo de la tesis.
+Capítulo \textit{Bibliografía}: Se enuncian las diferentes fuentes consultadas para el desarrollo de la tesis.
 
-Para finalizar tenemos el \textit{Capítulo \ref{chap:anexo} Apéndice}: describe algunos procesos realizados para el desarrollo de la tesis como por ejemplo: instalación de librerías, desarrollo de códigos utilizados y diagramas.
+Para finalizar tenemos el capítulo \ref{chap:anexo} Apéndice}: describe algunos procesos realizados para el desarrollo de la tesis como por ejemplo: instalación de librerías, desarrollo de códigos utilizados y diagramas.
