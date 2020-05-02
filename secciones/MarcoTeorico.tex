@@ -375,11 +375,11 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
 Cuando entrenamos modelos en \ac{ml} debemos medir la efectividad del mismo, es decir, cual es la capacidad de generalizar dado un conjunto de valores desconocidos. Para poder determinar esta efectividad existen métodos de evaluación que nos permiten obtener el grado de error que hay en el modelo creado.
 
-La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación que son \textit{Matriz de confusión}, \textit{accuracy}, \textit{precision}, \textit{recall} y \textit{curvas ROC}.
+La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. Las métricas de evaluación que utilizamos en esta tesis serán las siguientes \textit{Matriz de confusión}, \textit{accuracy}, \textit{precision}, \textit{recall} y \textit{curvas ROC}.
 
-La \textit{Matriz de Confusión} contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la forma de la figura \ref{tab: confusion-matrix}.
+La matriz de confusión contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la siguiente forma \ref{tab: confusion-matrix}.
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|ll}
 \cline{1-3}
@@ -392,35 +392,35 @@ La \textit{Matriz de Confusión} contiene información sobre clasificaciones rea
 \end{table}
 
 
-Cada valor de las celdas esta dado por:\textit{positivos (P)}, observaciones positivas; \textit{verdadero positivo (TP)} la observación es positiva y la predicción también;\textit{falso negativo (FN)} la observación es positiva pero la predicción es negativa; \textit{falso positivo (FP)} la observación es negativa pero la predicción es positiva y \textit{verdadero negativo (TN)} la observación es negativa y también la predicción negativa.
+Cada valor de las celdas esta dado por: \textit{positivos (P)}, observaciones positivas; \textit{verdadero positivo (TP)} la observación es positiva y la predicción también, \textit{falso negativo (FN)} la observación es positiva pero la predicción es negativa,  \textit{falso positivo (FP)} la observación es negativa pero la predicción es positiva y \textit{verdadero negativo (TN)} la observación es negativa y también la predicción negativa.
 
-Con los valores obtenidos de la \textit{matriz de confusión} podemos extraer las siguientes métricas:
+Con los valores obtenidos de la matriz de confusión anterior podemos extraer las siguientes métricas:
 
-\textbf{Accuracy}: Proporción de todas las predicciones que son correctas, da una medida de que tan bueno es el modelo.
+\textbf{Accuracy}: Proporción de todas las predicciones que son correctas, nos da una medida de que tan bueno es el modelo.
 \begin{equation}
 accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}.
 \end{equation}
 
-\textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son reales.
+\textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son verdaderas.
 \begin{equation}
 precision=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}.
 \end{equation}
 
-\textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas reales se obtuvo correctamente.
+\textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas verdaderas se obtuvo correctamente.
 \begin{equation}
 recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} .
 \end{equation}
 
-\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área de 1 representa un modelo que hizo perfectamente todas las predicciones como se visualiza en la figura \ref{Fig: roc}.
+\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área que obtengamos  como resultado igual a 1 representará un modelo que hizo perfectamente todas las predicciones como se visualiza en la figura \ref{Fig: roc}.
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/curvas-roc.png}
-  \caption{Curva ROC} \label{Fig: roc}
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ROC.png}
+  \caption{Curva ROC, la linea punteada indica un clasificador aleatorio, mientras que la linea color amarilla nos idica como varia un clasificador en relación a los falsos positivos e verdaderos positivo.} \label{Fig: roc}
 \end{figure}
 
 \subsubsection*{Métricas de detección}\label{sub:metricas_de_deteccion}
 % https://biblioteca.unirioja.es/tfe_e/TFE004595.pdf
-Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se esta realizando; además de las métricas mencionadas anteriormente para evaluar el rendimiento de un modelo de detección de objeto se utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en ingles), esta medida nos da la precisión de un detector de objeto en un conjunto de datos etiquetados. Dado un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
+Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se esta realizando, además de las métricas mencionadas anteriormente para evaluar el rendimiento un modelo de detección de objeto utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en ingles), esta medida nos da la precisión de un detector de objeto en un conjunto de datos etiquetados. Dado un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
 \begin{equation}
 IOU = \frac{area\;de\;interseccion\;entre\;region\;etiquetada\;y\;prediccion}{area\;de\;union\;entre\;region\;etiquetada\;y\;region\;que\;se\;predijo}.
 \end{equation}
