@@ -441,18 +441,18 @@ Average Precision_c = \frac{\sum Precision_c}{I\;con\;objetos\;que\;pertenece\;a
 
 \section{Redes convolucionales y el problema de detección de objetos}\label{sec:compueter-vision}
 
-Las Redes neuronales son una poderosa herramienta para la resolución de diferentes problemas en la actualidad. Una red neuronal aprende de forma progresiva a medida que entrena los datos disponible, de esta manera conseguimos que la red aprenda a reconocer la característica o patrones de interés de los datos. Este aprendizaje finaliza luego de un numero variable de iteraciones en el cual vamos midiendo el nivel de error en cada iteración.
+En esta sección desarrollaremos el concepto de redes neuronales, mas precisamente el tipo de  redes neuronales conocidas como redes neuronales convolucionales. Las redes neuronales son una poderosa herramienta que en la actualidad se utiliza para la resolución de diferentes problemas como por ejemplo el reconocimiento de patrones dentro de una imagen, estas redes consiguen aprender las diferentes características que se encuentran en la imagen a partir de los datos que recibe como entrada. El proceso de aprendizaje es un proceso iterativo en el cual por cada iteración vamos calculando el nivel de error que existen con respecto a la salida esperada, el modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. 
 
-El modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. Para el reconocimiento de imagen se hacen uso de Redes neuronales convolucionales (Sec:\ref{sub:cnn}) las cuales son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica dentro de la imagen. En las secciones siguientes vamos a desarrollar mas en detalle que son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
+En el reconocimiento de imagen  hacemos uso de redes neuronales convolucionales (sec:\ref{sub:cnn}), como se nombro anteriormente son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica dentro de la imagen. En las secciones siguientes vamos a desarrollar mas en detalle que son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
 
 
 \subsection{Redes convolucionales}\label{sub:cnn}
 
-Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes debido a que son capaces de detectar características simples, como por ejemplo detención de bordes, lineas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen; combinando esta información de salida en las capas mas profundas, tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}. l conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características}, una capa convolucional completa está compuesta de varios mapas de características de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
+Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes debido a que son capaces de detectar características simples, como por ejemplo detención de bordes, lineas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (sub-regiones) de la imagen combinando esta información de salida en las capas mas profundas, tales características pude ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}. El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características}, una capa convolucional completa está compuesta de varios mapas de características de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
 
-El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}: \textit{depth (profundidad)}: corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante (Sec:\ref{sub:convolucion}); por ejemplo la primera capa toma la imagen original, luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc.También tenemos el parámetro \textit{stride (paso)} que es el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada; tener un stride grande producirá mapas de características más pequeños. Por ultimo tenemos el parámetro \textit{zero-padding (cero-relleno)}, a menudo es conveniente rellenar la matriz de entrada con ceros alrededor del borde, de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada; una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
+El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}: \textit{depth} (profundidad): corresponde al numero de filtros usados para la operación de convolución como veremos mas adelante (sec:\ref{sub:convolucion}), por ejemplo la primera capa toma la imagen original que luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc. El parámetro \textit{stride} (paso) es un valor que indica el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada, tener un stride grande producirá mapas de características más pequeños. Por ultimo tenemos el parámetro \textit{zero-padding} (cero-relleno), a menudo es conveniente rellenar la matriz de entrada con ceros alrededor del borde de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada; una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
 
-La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} (Sec: \ref{sub:convolucion}) mas  \textit{pooling} (Sec: \ref{sub:pooling}) seguidas de las ultimas capas \textit{fully conected}(Sec: \ref{sub:fully_connected}), en las próximas secciones se abordará en mas detalle. 
+La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolucion} (sec: \ref{sub:convolucion}),  \textit{pooling} (sec: \ref{sub:pooling}) seguidas de las ultimas capas \textit{fully conected} (sec: \ref{sub:fully_connected}), en las próximas secciones se abordará en mas detalle. 
 
 \begin{figure}[H]\centering
   \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/cnn_intuition.png}
@@ -466,18 +466,18 @@ La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la
 
 \subsubsection{Convolución}\label{sub:convolucion}
 %https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-1-convolution-operation
-Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ec. \eqref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n$ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar. En imágenes nos interesa usar la operación de convolución sobre más de un eje;  si tenemos una imagen $I$ y un kernel $K$ de dos dimensiones podemos definir como:
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ec. \eqref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n$ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar. En imágenes nos interesa usar la operación de convolución sobre más de un eje,  si tenemos una imagen $I$ y un kernel $K$ de dos dimensiones podemos definir como:
 
 \begin{equation}\label{eq:conv2}
     G(i, j) = (I ∗ K)(i, j) = \sum_{m} \sum_{n} I(m, n) K(i - m, j - n).
 \end{equation} 
 
-$G$ matriz de salida denominada mapa de característica, para los valores de $i, j$ perteneciente indices  de la matriz y $m, n$ indices de filas y columnas de la imagen $I$.
+$G$ será la matriz de salida denominada mapa de característica, para los valores de $i, j$ perteneciente a indices  de la matriz y $m, n$ corresponde a indices de filas y columnas de la imagen $I$.
 
 % NOTA https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html, 
 
 
-En la figura (a) \ref{Fig:filter} tenemos de ejemplo una matriz de entrada y por otro lado tenemos un filtro también que lo llamamos \textit{kernel}, en este caso un kernel (filtro) es de $3x3$ que se aplica a la matriz de entrada. La operación de convolución se realiza deslizando el kernel sobre la matriz de entrada del cual para cada ubicación realizamos una multiplicación de matrices y sumamos el resultado; el resultado de la suma sera nuestro nuevo \textit{mapa de característica} como se muestra (b) \ref{Fig:filter}.
+En la figura (a) \ref{Fig:filter} tenemos de ejemplo una matriz de entrada y un filtro también denominado \textit{kernel}, en este caso un kernel (filtro) es de $3x3$ que se aplica a la matriz de entrada. La operación de convolución se realiza deslizando el kernel sobre la matriz de entrada del cual para cada ubicación realizamos una multiplicación de matrices y sumamos, el resultado de la suma sera nuestro nuevo \textit{mapa de característica} como se muestra (b) \ref{Fig:filter}.
 
 \begin{figure}[htbp]
 \centering
@@ -493,9 +493,9 @@ Las \ac{cnn} desarrollan detectores de múltiples características y las utiliza
 \subsubsection{Pooling}\label{sub:pooling}
 
 %https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
-Luego de realizar la operación de convolución (Sec:\ref{sub:convolucion}) usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. Esto nos permite reducir el número de parámetros por consiguiente nos permite disminuir el tiempo de entrenamiento.
+Luego de las operaciones de convolución (sec:\ref{sub:convolucion}) usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. La reducción de dimensionalidad nos permite reducir el número de parámetros que por consiguiente nos hará disminuir el tiempo de entrenamiento.
 
-El tipo de técnica mas común utilizado es \textit{max pooling} que toma el valor máximo de la ventana, esto nos permite reducir el tamaño del \textit{mapa de característica} sin perder información. En la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
+El tipo de técnica mas común utilizada es \textit{max pooling} que toma el valor máximo de la ventana permitiendo reducir el tamaño del \textit{mapa de característica} sin perder información, en la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
 
 \begin{figure}[H]
  \centering
@@ -503,14 +503,12 @@ El tipo de técnica mas común utilizado es \textit{max pooling} que toma el val
   \caption{Pooling.} \label{Fig:Pooling}%\\(Adaptado de:https://towardsdatascience.com/applied-deep-learning)
 \end{figure}
 
-En las arquitecturas \ac{cnn} (Sec:\ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de 2; mientras que mayormente la convolución se realiza con ventanas de 3x3 y stride de 1. 
+En las arquitecturas \ac{cnn} (sec:\ref{sub:arquitecturacnn}) normalmente la capa de pooling son ventanas de 2x2 con stride de $2$ mientras que las capas de  convolución se realizan con ventanas de $3x3$ y stride de $1$. 
 
 \subsubsection{Función de activación}\label{sub:relu}
 %https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
 %https://www.analyticsvidhya.com/blog/2017/10/fundamentals-deep-learning-activation-functions-when-to-use-them/
-Las funciones de activación son una característica  importante de las \ac{cnn}, básicamente deciden si una neurona debe ser activada o no es decir si la información que la neurona está recibiendo es relevante para la información dada o si se debe ignorar.
-
-Una vez que los \textit{mapas de característica} se extraen de la capa de convolución, el siguiente paso es moverlos a una capa de activación. Existen diversos metodos que cumplen esta tarea, la mas utilizada en  \ac{cnn} son las capara de activación ReLU (Rectified Linear Unit), las  ReLU son operaciones punto a punto, las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo. El la figura  \ref{Fig:relu} vemos la forma que toma la función.
+Las funciones de activación es una característica  importante de las \ac{cnn}, estas funciones básicamente deciden si una neurona debe ser activada o no, es decir si la información que la neurona está recibiendo es relevante para la operación dada o si se debe ignorar. Una vez que los \textit{mapas de característica} se extraen de la capa de convolución el siguiente paso es moverlos a una capa de activación. Existen diversos métodos que cumplen esta tarea, la mas utilizada en  \ac{cnn} son las capas de activación ReLU (Rectified Linear Unit), las  ReLU son operaciones punto a punto, las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo, en la figura  \ref{Fig:relu} vemos la forma que toma la función.
 
 \begin{figure}[H]
  \centering
@@ -526,7 +524,7 @@ Una vez que los \textit{mapas de característica} se extraen de la capa de convo
 %  \caption{Ejemplo ReLU  \\(Adaptado de: https://towardsdatascience.com/activation-functions-neural-networks)} \label{Fig:relu2}
 %\end{figure}
 
-La principal ventaja de usar la función ReLU sobre otras funciones de activación es que no activa todas las neuronas al mismo tiempo, si la entrada es negativa, la convertirá a cero y la neurona no se activará, esto significa que, en un momento dado, solo unas pocas neuronas se activan,lo que la hace eficiente y fácil de calcular.
+La principal ventaja de usar la función ReLU sobre otras funciones de activación es que no activa todas las neuronas al mismo tiempo, si la entrada es negativa la convertirá a cero y la neurona no se activará esto significa que en un momento dado solo unas pocas neuronas se activan por lo que la hace eficiente y fácil de calcular.
 
 
 \subsubsection{Capas totalmente conectadas}\label{sub:fully_connected}
@@ -534,7 +532,7 @@ La principal ventaja de usar la función ReLU sobre otras funciones de activaci�
 % https://www.oreilly.com/library/view/tensorflow-for-deep/9781491980446/ch04.html
 
 En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas totalmente conectadas, por su nombre en ingles \textit{fully conected}.
-Las \textit{fully conected} son las capas más básicas, ya que todas las neuronas de entrada están conectadas a cada neurona de salida. Una \textit{fully connected }  es una capa donde cada dimensión de salida  depende del valor de entrada a la red, esta red se basan en una combinación lineal (ec.\eqref{eq:fully-conected2}) de las variables de entrada que se transforma mediante una función de activación no lineal.
+Las fully conected son las capas más básicas ya que todas las neuronas de entrada están conectadas a cada neurona de salida, una capa fully connected  es aquella en donde cada dimensión de salida  depende del valor de entrada a la red, esta red se basan en una combinación lineal (ec.\eqref{eq:fully-conected2}) de las variables de entrada que se transforma mediante una función de activación no lineal.
 
 
 \begin{equation}\label{eq:fully-conected2}
@@ -546,7 +544,7 @@ $ a_j$  se conoce como capa de activación para los pesos $w_{ji}$ y dado los va
 z_j = g(a_j).
 \end{equation}
 
-Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior, obtendrá las probabilidades correctas para las diferentes clases. Las capas \textit{fully conected }desempeñan  la tarea de clasificación, mientras que las capas convolucionales actúan como extractores de características.
+Básicamente, una capa \textit{fully conected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior obtendrá las probabilidades correctas para las diferentes clases. Las capas fully conected desempeñan  la tarea de clasificación mientras que las capas convolucionales actúan como extractores de características.
 
 %\begin{figure}[H] \centering
 %  \includegraphics[scale=1,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fully_conected.png}
