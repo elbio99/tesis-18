@@ -558,11 +558,11 @@ Básicamente, una capa \textit{fully conected} observa características de alto 
 \subsection{Arquitecturas de redes convolucionales}\label{sub:arquitecturacnn}
 %https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
-La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior (Sec:\ref{sub:cnn}) vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
+La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior (sec:\ref{sub:cnn})  vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
 
-\par \textbf{LeNet5} \citep{lenet} Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen; de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen, es decir en múltiples locación. LeNet5 esta formada por 3 capas, usando la capa de convolución para extraer las características espaciales de la imagen. En general esta red fue el origen de muchas de las arquitecturas modernas.
+\par \textbf{LeNet5} \citep{lenet} Fue una de las primeras \ac{cnn} que impulso el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen, de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen en múltiples locación. LeNet5 esta formada por 3 capas usando la capa de convolución para extraer las características espaciales de la imagen, en general esta red fue el origen de muchas de las arquitecturas modernas.
 
-\par \textbf{AlexNet} \citep{alexnet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. EL problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas; AlexNet consta de 5 capas convolucionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas \textit{fully connected}. Una importante característica es el uso de \textit{ReLU}(Rectified Linear Unit),  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
+\par \textbf{AlexNet} \citep{alexnet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. El problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas, AlexNet consta de 5 capas convolucionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas fully connected. Una importante característica es el uso de la función ReLU,  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
 
 \begin{figure}[H]
  \centering
@@ -581,16 +581,16 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 	\label{Fig:vgg}
 \end{figure}
 
-\par \textbf{GoogleNet} \citep{googlenet} EL principal objetivo de esta arquitectura desarrollada es mejorar la utilización de recursos computacionales, esto lo logra definiendo módulos llamados, \textit{módulos inception}, y aumentando la profundidad y el ancho de la red. 
+\par \textbf{GoogleNet} \citep{googlenet} El principal objetivo de esta arquitectura desarrollada es mejorar la utilización de recursos computacionales, esto lo logra definiendo módulos llamados, \textit{módulos inception}, y aumentando la profundidad y el ancho de la red. 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/inception-1.jpg}
   \caption{Arquitectura GoogleNet: modulo Inception \citep{googlenet}.}
   	\label{Fig:inception}
 \end{figure}
-Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos para luego agruparlos uno arriba de otro. GoogleNet usa un nuevo termino llamado \textit{Bottleneck layer} que permite reducir el numero de características y sus operaciones 
+Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos para luego agruparlos uno arriba de otro, GoogleNet usa un nuevo termino llamado \textit{Bottleneck layer} que permite reducir el numero de características y sus operaciones 
 
-\par \textbf{ResNet} \citep{resnet_a} Es otro tipo de arquitectura nombrada \textit{"Deep Residual Learning"}, a partir de mapeo subyacentes de $x y H (x)$, es posible aprender la diferencia entre los dos, que es el \textit{residuo} y, posteriormente, ajustar el último a la entrada; siendo el residuo $F(x) = H(x) - x$.
+\par \textbf{ResNet} \citep{resnet_a} Es otro tipo de arquitectura nombrada \textit{"Deep Residual Learning"}, a partir de mapeo subyacentes de $x y H (x)$, es posible aprender la diferencia entre los dos, que es el \textit{residuo} y, posteriormente ajustar el último a la entrada siendo el residuo $F(x) = H(x) - x$.
 
 \begin{figure}[H]
  \centering
@@ -602,8 +602,7 @@ Como se puede ver en la imagen anterior \ref{Fig:inception} se diseño módulos 
 
 En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50, ResNet101, GoogleNet(InceptionV1, InceptionV3), entre otras. 
 
-En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite{Analysis_deep_network} en donde se compara la complejidad de las arquitecturas existentes en relación a su \textit{accuracy}, los círculos en el grafico representan la cantidad de parámetros de cada red; como se puede ver las redes \textit{VGG} son mucho mas costosas en relación a los costos computacionales como a la cantidad de parámetros que se debe entrenar. Por otro lado podemos ver con las demás arquitecturas tienden a mejorar su \textit{accuracy} a mayor costo computacional y numero de parámetros.
-.
+En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite{Analysis_deep_network} en donde se compara la complejidad de las arquitecturas existentes en relación a su \textit{accuracy}, los círculos en el grafico representan la cantidad de parámetros de cada red, como se puede ver las redes \textit{VGG} son mucho mas costosas en relación a los costos computacionales como a la cantidad de parámetros que se debe entrenar. Por otro lado podemos ver con las demás arquitecturas tienden a mejorar su \textit{accuracy} a mayor costo computacional y numero de parámetros.
 %https://www.deeplearningitalia.com/guia-para-arquitecturas-de-redes-profundas/
 
 \begin{figure}[H]
