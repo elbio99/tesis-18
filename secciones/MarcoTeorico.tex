@@ -230,7 +230,7 @@ Las ventajas de estos clasificadores son: eficaz para grandes espacios dimension
 
 %COST F EN CLASIFICACION.
 % https://machinelearningknowledge.ai/cost-functions-in-machine-learning/#Cost_functions_for_Classification_problems
-El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio, para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo utilizando de manera de aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. 
+El proceso de aprendizaje de un algoritmo de \ac{ml} genera un  modelo que predice un valor dado a partir de un nuevo dato que nunca vio, para poder realizar esta tarea necesitamos que el algoritmo aprenda los parámetros del modelo para poder aproximar la salida deseada a los valores predichos. La forma de determinar cuan distante y/o diferente es la salida con respecto a los valores esperado es por medio de la \textit{función de costo}, este método permite evaluar qué tan bien el algoritmo modela el conjunto de datos si las predicciones son incorrectas con respecto a los valores deseados. 
 
 Como se desarrollo anteriormente un algoritmo de \ac{ml} deberá minimizar la función de costo para que esta produzca un valor menor de error entre el valor esperado y la salida del modelo. Dependiendo del modelo de clasificación que estemos utilizando existen diferentes funciones de costo que nos permiten calcular el error del modelo; entre ellas están Quadratic cost \citep{quadratic_cost}, Cross-entropy cost \citep{cross_entropy}, Exponential cost \citep{exponential_cost}, Hellinger distance \citep{Hellinger}, Kullback–Leibler divergence \citep{kullback}, entre otras.
 
@@ -244,7 +244,7 @@ En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la fu
 La mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros, es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia mas típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico y método de Newton Rawson de 2 orden.
 
 \subsubsection{Descenso de gradiente}\label{sub:gradient-desc}
-Un método utilizado de optimización de funciones  es el \textbf{Descenso de Gradiente} (\textit{gradient descent} en ingles). El descenso de gradiente es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
+Descenso de gradiente, \textit{gradient descent} en ingles, es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
 
 \begin{equation}
@@ -265,7 +265,7 @@ El gradiente de una función diferenciable $ \mathcal{L}: R^d \longrightarrow R 
 \nabla \mathcal{L}(x) = (\frac{\partial \mathcal{L}(\textbf{w})}{\partial w_1},....., \frac{\partial \mathcal{L}(\textbf{w})}{\partial w_n}).
 \end{equation}
 
-Descenso de gradiente es un algoritmo iterativo del cual comenzamos con un valor inicial de $\textbf{w}$, luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual, es decir, el paso de actualización es:
+El algoritmo de descenso de gradiente es un método iterativo del cual comenzamos con un valor inicial de $\textbf{w}$, luego en cada iteración damos un paso en la dirección negativa del gradiente en el punto actual, es decir, el paso de actualización es:
 \begin{equation}
 \textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)}).
 \end{equation}
@@ -276,7 +276,9 @@ Donde $ \alpha > 0$, dado que el gradiente apunta en  dirección a la mayor aume
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
 
-En un modelo de aprendizaje automático lo que se busca es encontrar una relación entre los datos de entradas y las salidas deseadas como se menciona anteriormente, por ejemplo para un modelo de la forma $y= mx+b$ (regresión lineal) depende de los parámetros  $m$ y $b$;  estos dos valores los representamos usando la notación $\theta$, de tal forma que buscamos encontrar $\mathcal{L}_{\theta} (X) \approx Y$. Es decir que la función $\mathcal{L}$ con los parámetros $\theta$ de tal forma que para todos los valores $X$ de entrada aproxime a los valores de salida $Y$ correspondientes. Para validar que tan bien nuestros parámetros definen a nuestra salida podemos definir una función de costo $J(\theta)$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo. El valor $\hat\theta$ es una nueva posición para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}_\theta(X)$ aproxime mejor a $Y$.
+En un modelo de aprendizaje automático lo que se busca es encontrar una relación entre los datos de entradas y las salidas deseadas como se menciona anteriormente, por ejemplo para un modelo de la forma $y= mx+b$ (regresión lineal) depende de los parámetros  $m$ y $b$;  estos dos valores los representamos usando la notación $\theta$, de tal forma que buscamos encontrar $\mathcal{L}_{\theta} (X) \approx Y$. Es decir que la función $\mathcal{L}$ con los parámetros $\theta$ de tal forma que para todos los valores $X$ de entrada aproxime a los valores de salida $Y$ correspondientes. 
+
+Para validar que tan bien nuestros parámetros definen a nuestra salida podemos definir una función de costo $J(\theta)$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo. El valor $\hat\theta$ es una nueva posición para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}_\theta(X)$ aproxime mejor a $Y$. El algoritmo para el computo del descenso de gradiente tiene la siguiente forma:
 
 %\begin{algorithm}[H] %\caption{Descenso de Gradiente}\label{euclid}
 %\begin{algorithmic}[1]
@@ -318,13 +320,11 @@ Existen diversas variantes de descenso por gradiente como \textit{Batch gradient
 
 \subsection{El problema de sobreajuste}\label{sub:validacion-modelo}
 
-En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a nuevos datos. 
-
-Una de los principales motivos por el cual tenemos que validar nuestro modelo es para obtener una medida de cuan erróneo pueden llegar a ser nuestros resultados en la predicción ; esta causa esta dada por dos términos muy importante que debemos tener en cuenta es el  overfitting y underfitting. El valor de overfitting y underfitting son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos atacar. 
+En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a nuevos datos. Uno de los principales motivos por el cual tenemos que validar nuestro modelo es para obtener una medida de cuan erróneo pueden llegar a ser nuestros resultados en la predicción, esta causa esta dada por dos términos muy importante que debemos tener en cuenta es el \textit{sobreajuste} (overfitting en ingles) y \textit{subajuste} (underfitting en ingles). El valor de overfitting y underfitting son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos atacar. 
 
 El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir, esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
 
-Como parte opuesta al overfitting esta el  underfitting; este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos. En la figura \ref{Fig: overUnder} podemos apreciar los enfoques mencionados anteriormente.
+Como parte opuesta al overfitting esta el  underfitting, este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos. En la figura \ref{Fig: overUnder} podemos apreciar los enfoques mencionados anteriormente.
 
 \begin{figure}[h]
  \centering
@@ -336,7 +336,8 @@ Como parte opuesta al overfitting esta el  underfitting; este concepto hace refe
 
 
 \subsubsection{Estrategias de aprendizaje para evitar el sobreajuste}
-Existen diferentes técnicas para validar la robustez de nuestro modelo y evitar los problemas mencionados en la sección anterior, una de ellas es por  \textit{validación cruzada} (cross validation en ingles). La validación cruzada es una técnica que evalúa los resultados de un análisis estadístico y garantiza de que sean independientes de la partición de los datos de entrenamiento y prueba. 
+
+Existen diferentes técnicas para evitar los problemas mencionados en la sección anterior, una de ellas es por  \textit{validación cruzada} (cross validation en ingles). La validación cruzada es una técnica que evalúa los resultados de un análisis estadístico y garantiza de que sean independientes de la partición de los datos de entrenamiento y prueba. 
 
 Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
@@ -370,8 +371,9 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 %IMPORTANTE: https://sebastianraschka.com/pdf/manuscripts/model-eval.pdf
 %https://dzone.com/articles/machine-learning-validation-techniques
 
-\subsubsection{Evaluación de modelos}\label{sub:evaluación-modelo}
-Para determinar la efectividad de un modelo necesitamos realizar un evaluación de cuan bien nuestro modelo puede generalizar los datos y lograr una predicción correcta dado un valor de entrada desconocido. Las técnicas de evaluación en \ac{ml} son usadas para obtener esa tasa de error en el modelo. 
+\subsection{Evaluación de modelos}\label{sub:evaluación-modelo}
+
+Cuando entrenamos modelos en \ac{ml} debemos medir la efectividad del mismo, es decir, cual es la capacidad de generalizar dado un conjunto de valores desconocidos. Para poder determinar esta efectividad existen métodos de evaluación que nos permiten obtener el grado de error que hay en el modelo creado.
 
 La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. El trabajo realizado en esta tesis es un problema de clasificación, es por esto que desarrollaremos las métricas existentes para problemas de clasificación que son \textit{Matriz de confusión}, \textit{accuracy}, \textit{precision}, \textit{recall} y \textit{curvas ROC}.
 
