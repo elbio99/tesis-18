@@ -676,7 +676,7 @@ Luego de las extracciones de regiones candidatas obtenidas por algunos de los m�
 
 \subsection{Non-maxima suppression}\label{sub:nonmaximumsuppression}
 
-El método de supresión de no máximos (NMS) es un post-procesamiento muy importante en el contexto de la detección. El algoritmo  \ac{nms} se encarga de eliminar regiones que estén superpuestas entre si como se muestra en la figura  \ref{Fig: overlapping}.
+El método de supresión de no máximos (NMS) es un post-procesamiento frecuente en el contexto de la detección de patrones. El algoritmo  \ac{nms} se encarga de eliminar regiones que estén superpuestas entre si como se muestra en la figura  \ref{Fig: overlapping}.
 
 \begin{figure}[H]
  \centering
@@ -684,15 +684,15 @@ El método de supresión de no máximos (NMS) es un post-procesamiento muy impor
   \caption{Superposición entre las regiones A y B.} \label{Fig: overlapping}
 \end{figure}
 
-Para poder eliminar detecciones redundantes calculamos un valor denominado  \textit{IoU}, intersección sobre unión,  este valor nos indica el solapamiento, \textit{overlapping} ,  entre diferentes regiones cercanas como se muestra en la figura \ref{Fig: interseccion}. El algoritmo de \ac{nms} puede ser formulado como una búsqueda de los máximo locales en donde el máximo local es  mayor que todos sus vecinos,  el algoritmo selecciona aquellas detecciones con un \textit{puntaje} (IoU) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
+Para poder eliminar detecciones redundantes calculamos un valor denominado  \textit{IoU}, intersección sobre unión,  este valor nos indica el solapamiento, \textit{overlapping} ,  entre diferentes regiones cercanas como se muestra en la figura \ref{Fig: interseccion}. El algoritmo de \ac{nms} puede ser formulado como una búsqueda de los máximo locales en donde el máximo local es  mayor que todos sus vecinos; el algoritmo selecciona aquellas detecciones con un \textit{puntaje} (IoU) alto y elimina los vecinos mas cercanos ya que es muy probable que cubran el mismo objeto \citep{nms2}.
 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/overlapping.png}
-  \caption{IoU con diferentes valores de umbrales\\ \citep{bishop}.}\label{Fig: interseccion}
+  \caption{IoU con diferentes valores de puntajes \citep{bishop}.}\label{Fig: interseccion}
 \end{figure}
 
-Dependiendo del valor, IoU  obtenido podemos usar un umbral para  eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento, para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}. 
+Dependiendo del valor de IoU  obtenido podemos usar un umbral para  eliminar las detecciones redundantes y lograr una mayor optimización  en el reconocimiento; para obtener una visión mas general del método podemos ver la siguiente figura \ref{Fig: nonmaximumsuppression}. 
 
 En un pipeline de detección las técnicas de \ac{nms}  se utilizan para eliminar detecciones redundantes luego de la clasificación esto nos permite reducir el numero de detecciones a solo una por cada región detectada.
 
@@ -702,7 +702,7 @@ En un pipeline de detección las técnicas de \ac{nms}  se utilizan para elimina
   \caption{\ac{nms} aplicado a una imagen, \citep{nms2}.}\label{Fig: nonmaximumsuppression}
 \end{figure}
 
-En el siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo por \ac{nms} en la eliminación de regiones redundantes.  El algoritmo  recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor IoU de cada una de las regiones por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
+El siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo por \ac{nms} en la eliminación de regiones redundantes.  El algoritmo  recibe como entrada un conjunto de datos $\beta$ que indican la cantidad de regiones, $S$  indican el valor IoU de cada una de las regiones, por ultimo recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
 %https://www.vision.ee.ethz.ch/publications/papers/proceedings/eth_biwi_01126.pdf
 %D es un acumulador de bboxes
 \begin{algorithm}[H]\caption{Non-Maxima Suppression}\label{alg:nms}
