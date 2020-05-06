@@ -117,22 +117,14 @@ La predicción del modelo final tendrá como respuesta un conjunto de regiones (
 
 \section{Recolección de datos}\label{sec:recoleccion}
 
-En este capítulo se describirá  los pasos que se llevaron a cabo para obtener los datos de la tesis. Se  desarrollara de manera mas detallada como se obtuvo el dataset y que configuraciones de bandas se usaron para la construcción de las imágenes.
+En esta sección se describirá  cuales fueron los pasos que se llevaron a cabo para obtener el conjunto de imagenes de entrenamiento y validación; se   describirá de manera mas detallada como se obtuvieron los datasets y que configuraciones de bandas se utilizaron para la construcción de las imágenes.
 
 
-\subsection{Imágenes satelitales}
+\subsection{Imágenes satelitales}\label{sub:nivelesdeprocesamiento}
 
-Una imagen satelital se la puede definir como la representación visual de información capturada por un sensor montado en un satélite artificial (Sec:\ref{sub:imagen_satelital}). Estos sensores recogen la información reflejada por la superficie de la tierra que luego es enviada para su posterior procesamiento.
+Una imagen satelital se la puede definir como la representación visual de información capturada por un sensor montado en un satélite artificial (sec:\ref{sub:imagen_satelital}). Estos sensores recogen la información reflejada por la superficie de la tierra que luego es enviada para su posterior procesamiento. El uso de imágenes satelitales constituye una excelente herramienta para el conocimiento y monitoreo de los territorios y recursos; hoy en día disfrutamos de la oportunidad de aprovechar estas imágenes satelitales para una gran variedad de aplicaciones como: desarrollo y planificación urbana, infraestructura, recursos naturales, investigación, alerta temprana de catástrofes, asuntos militares, entre otras.
 
-El uso de imágenes satelitales constituye una excelente herramienta para el conocimiento y monitoreo de los territorios y recursos; hoy en día disfrutamos de la oportunidad de aprovechar estas imágenes satelitales para una gran variedad de aplicaciones como: desarrollo y planificación urbana, infraestructura, recursos naturales, investigación, alerta temprana de catástrofes, asuntos militares, entre otras.
-
-Una imagen satelital debe pasar por diferentes niveles de procesamiento dependiendo el tipo de uso que se le quiera dar, en la siguiente sección (Sec:\ref{sub:nivelesdeprocesamiento}) se desarrolla mas en detalle.
-
-\subsubsection{Niveles de procesamiento}\label{sub:nivelesdeprocesamiento}
-
-En el campo de la teledeteccion (Sec:\ref{sub:teledeteccion}) cuando hablamos de niveles de procesamiento nos referimos a los diversos procesos que son aplicados a una imagen satelital. Dependiendo de la agencia espacial existe una nomenclatura para determinar que niveles de procesamiento fueron aplicados.
-
-En este trabajo se utilizo la nomenclatura propuesta por \ac{nasa}:
+Una imagen satelital debe pasar por diferentes niveles de procesamiento dependiendo el tipo de uso que se le quiera dar. En el campo de la teledeteccion (sec:\ref{sub:teledeteccion}) cuando hablamos de niveles de procesamiento nos referimos a los diversos procesos que son aplicados a una imagen satelital, dependiendo de la agencia espacial existe una nomenclatura para determinar que niveles de procesamiento fueron aplicados. En este trabajo se utilizo la nomenclatura propuesta por \ac{nasa}:
 \begin{itemize}
 	\item \textbf{Nivel 0}: La información científica recogida está a máxima resolución, ordenada temporalmente y con errores de transmisión, artefactos y duplicados eliminados.
  	\item \textbf{Nivel 1a}: La información esta ordenada cronológicamente y datos auxiliares como coeficientes de calibración y parámetros de referencia.
@@ -142,19 +134,11 @@ En este trabajo se utilizo la nomenclatura propuesta por \ac{nasa}:
  	\item \textbf{Nivel 4}: Resultados de los análisis de los niveles anteriores
 \end{itemize}
 
+Las imagenes utilizadas para el desarrollo de los experimentos fueron descargadas por medio del catalogo  publicado en el sitio oficial de \ac{conae} \footnote{Fuente: http://catalogos.conae.gov.ar/catalogo/catalogo-de-imagenes.html} de acceso gratuito para el publico. Se debe señalar además que se trabajó con imágenes correspondiente a los años 2017 y 2018 con una ventana de tiempo desde Abril del 2017 a Marzo del 2018; estas imágenes son de naturaleza óptica con un nivel de procesamiento \textbf{1a}, de acuerdo a las nomenclaturas utilizadas por \ac{nasa}.
 
-\subsection{Datos raw}\label{sec:datosutilizados}
+De acuerdo a las característica del proyecto y tomando como fundamentación lo expuesto en la sección (sec:\ref{sec:fundamentacion}), se utilizaron imágenes que se asemejan a las características del \ac{fs} \ac{conae} detalladas en los requerimientos formales del mismo, estas imágenes fueron adquiridas por el instrumento \ac{viirs}. El instrumento \ac{viirs} fue lanzado a bordo del satélite Suomi-NPP el 28 de octubre de 2011; posee 5 canales de alta resolución (I-bands), 16 canales de resolución moderada (M-bands) y un canal de baja luz (Day/Night Band, DNB).  
 
-Los datos utilizados para el desarrollo de los experimentos fueron descargadas por medio del catalogo  publicado en el sitio oficial de \ac{conae} \footnote{Fuente: http://catalogos.conae.gov.ar/catalogo/catalogo-de-imagenes.html} de acceso gratuito para el publico. Se debe señalar además que se trabajó con imágenes correspondiente a los años 2017 y 2018 con una ventana de tiempo desde Abril del 2017 a Marzo del 2018; estas imágenes son de naturaleza óptica con un nivel de procesamiento \textbf{1a}, de acuerdo a las nomenclaturas utilizadas en la sección (Sec:\ref{sub:nivelesdeprocesamiento}).
-
-De acuerdo a las característica del proyecto y tomando como fundamentación lo expuesto en la sección (Sec:\ref{sec:fundamentacion}), se utilizaron imágenes que se asemejan a las características del \ac{fs} \ac{conae} detalladas en los requerimientos formales del mismo; estas imágenes fueron adquiridas por el instrumento \ac{viirs} (Sec:\ref{sub:viirs}) a bordo del satélite Suomi-NPP.
-
-
-Para la realización de diversos experimentos se utilizaron en total 29 combinaciones de bandas \ref{tab:combinacion_banda}, contando con 50 imágenes por cada combinación de bandas que se realizo.
-
-
-\subsubsection{Instrumento VIIRS}\label{sub:viirs}
-El instrumento \ac{viirs} fue lanzado a bordo del satélite Suomi-NPP el 28 de octubre de 2011. Este instrumento posee 5 canales de alta resolución (I-bands), 16 canales de resolución moderada (M-bands) y un canal de baja luz (Day/Night Band, DNB).  En el siguiente cuadro se detallan las diferentes longitudes de onda y los rangos de onda de las bandas, junto con resolución geométrica apuntando a Nadir (tabla:\ref{tab:viirs}).
+En el siguiente cuadro se detallan las diferentes longitudes de onda y los rangos de onda de las bandas, junto con resolución geométrica apuntando a Nadir (tabla:\ref{tab:viirs}).
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|c||c|c|c|}
@@ -176,13 +160,17 @@ El instrumento \ac{viirs} fue lanzado a bordo del satélite Suomi-NPP el 28 de o
 
 \subsection{Generación de datos - etiquetado}\label{sub:generacion_datos_etiquetado}
 
-Dado en que estamos por entrenando un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región. Para poder crear el datasets debemos tener identificado nuestras regiones de interés es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés, como se menciona en la sección (Sec:\ref{sec:obj_general}), son el \textit{Golfo de San Matias} y la \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se marco utilizando la librería \textit{Labelme} \footnote{Funte: https://github.com/wkentaro/labelme}, este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para compararse con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
+Dado en que estamos entrenando un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región. Para poder crear el datasets debemos tener identificado nuestras regiones de interés es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés, como se menciona en la sección (sec:\ref{sec:obj_general}), son el \textit{Golfo de San Matias} y  \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se etiqueto utilizando la librería \textit{Labelme} \footnote{Funte: https://github.com/wkentaro/labelme}, este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para compararse con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
+
+El proceso de etiquetado sera el siguiente: calculando los \ac{rp} obtendremos regiones candidatas, estas regiones candidatas serán comparadas con el ground thruth etiquetado anteriormente; para estas dos regiones se calcula la intersección sobre unión de la regiones es decir el IoU, si los valores de IoU supera un valor de umbral definido previamente, en esta tesis se utilizo $80\%$ como umbral, sera etiquetada la región como positiva, en caso contrario sera una región clasificada como negativa. Este proceso se realiza para cada una de las regiones obtenidas de cada una de las imágenes; 
 
 
-En el proceso de etiquetado debemos usar las anotaciones (polígonos) de nuestro datos etiquetados y los \ac{rp} obtenidos por algunos de los métodos mencionados anteriormente; con estas dos regiones se calcula \textit{IoU}, intersección sobre unión, si el valor del \textit{IoU} superaba el $80\%$ entonces esa región se la identifica como clase positiva, en caso contrario se marca la región como clase negativa, este proceso se realizo por cada una de las regiones obtenidas de cada una de las imágenes. Cada uno de los datos etiquetados están relacionado a uno de los vectores de característica extraído, luego de realizar todo el proceso de extracción y etiquetado ya tenemos los datasets con el que vamos a entrenar el modelo.
+todos los datos etiquetados estarán ademas relacionado a uno de los vectores de característica extraído por las redes neuronales. Luego de realizar todo el proceso de extracción y etiquetado ya tenemos los datasets con el que vamos a entrenar el modelo.
+
+
 
 \begin{figure}[H] \centering
-  \includegraphics[scale=0.15,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
+  \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
   \caption{Ground Thruth - etiquetado}\label{Fig:labelme-etiquetado}
 \end{figure}
 
