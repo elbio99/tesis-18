@@ -4,14 +4,14 @@ En los capítulos anteriores se explicaron diferentes métodos de algoritmos de 
 
 \section{Datos de entrenamiento}\label{sec:datos_entrenamiento}
 
-Para la construcción del modelo de detección se dividió el datasets en datos de entrenamiento y datos de test para cada datesets de imágenes creado,  para el cual se dividió en 40 imágenes de entrenamiento y 10 imágenes para test. Cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado  en la sección (Sec:\ref{sec: pipeline}); en promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el datasets final de entrenamiento fue de $60000$ y el de test de $15000$ regiones en promedio dependiendo de las características de las imágenes procesadas por combinaciones de bandas. 
+Para la construcción del modelo de detección se dividió el datasets en datos de entrenamiento y datos de test para cada banda de imágenes seleccionadas,  para el cual se dividió en 40 imágenes de entrenamiento y 10 imágenes para test. Cada una de las imágenes obtenidas se calculo sus bounding boxes correspondientes  siguiendo el esquema de procesamiento desarrollado  en la sección (sec:\ref{sec: pipeline}); en promedio se obtuvieron $1500$ bounding boxes por cada una de las imágenes procesadas por lo que el datasets final de entrenamiento es de $60000$ regiones y el de test es de $15000$ regiones en promedio dependiendo de las características de las imágenes procesadas por combinaciones de bandas. 
 
 \subsection{Combinaciones de bandas en canales RGB}\label{sub:comb_de_banda} 
 %http://www.gisandbeers.com/combinacion-de-imagenes-satelite-landsat-sentinel-rgb/
 
 %Las redes neuronales que vamos a utilizar para la construcción de esta tesis son redes neuronales pre-entrenadas (Sec:\ref{sub:cnn}), estas redes neuronales necesitan como entrada imágenes ópticas con tres canales correspondiente a \textit{RGB} (rojo, verde y azul), los canales RGB se emplean para representar distintos colores a partir de la mezcla de cada uno de estos.
 
-Las combinaciones de bandas en imágenes satelitales nos ayudan a analizar y diferenciar diferentes elementos dentro de la imagen, para esto utilizamos diversas combinaciones de bandas en base a los canales RGB que nos permiten visualizar diferentes elementos de acuerdo a la banda que estamos utilizando. El paso de cada banda por un canal RGB especifico permitirá teñir de colores los elementos que ofrezcan mayor o menor reflexión de longitudes de onda; como por ejemplo, la vegetación, focos de incendios, agua, brindando diferentes fuentes de información para ser explotada. El conjunto de bandas seleccionadas para los experimentos son las de resolución moderada (M-bands) (\ref{tab:viirs}).
+Las combinaciones de bandas en imágenes satelitales nos ayudan a analizar y diferenciar diferentes elementos dentro de la imagen, para esto utilizamos diversas combinaciones de bandas en base a los canales RGB que nos permiten visualizar diferentes elementos de acuerdo a la banda que estamos utilizando. El paso de cada banda por un canal RGB especifico permitirá teñir de colores los elementos que ofrezcan mayor o menor reflexión de longitudes de onda; como por ejemplo vegetación, focos de incendios, agua, brindando diferentes fuentes de información para ser explotada. El conjunto de bandas seleccionadas para los experimentos son las de resolución moderada (M-bands) (\ref{tab:viirs}).
  
 Para la construcción del dataset final se utilizaron las bandas impares (\ref{tab:viirs})  mas las bandas que corresponden al color verdadero. En total se obtuvieron 29 datasets con combinaciones de bandas diferentes para realizar la evaluación experimental; en el siguiente cuadro  \ref{tab:combinacion_banda} se puede ver todas las combinaciones de bandas utilizadas para la construcción final del los dataset.
 
@@ -34,15 +34,15 @@ Para la construcción del dataset final se utilizaron las bandas impares (\ref{t
 14  &  	M7-M11-M9  			& 29  & 	M11-M12.M13\\ \hline
 15  & 	M7-M9-M11  			& -& -\\ \hline      	
 \end{tabular}
-\end{center}\caption{Combinaciones de bandas utilizadas \label{tab:combinacion_banda}}
+\end{center}\caption{Combinaciones de bandas utilizadas en los canales RGB. \label{tab:combinacion_banda}}
 \end{table}
 
-En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las imágenes que se utilizo; en este caso corresponde  a las combinaciones de bandas M5, M4, M3 conocidas como color verdadero, \textit{true color} su nombre en ingles .
+En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las imágenes creadas al realizar las combinaciones de bandas, en este caso corresponde  a las combinaciones de bandas M5, M4, M3 conocidas como color verdadero, \textit{true color} por su nombre en ingles.
 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/recoleccion/img-543.png}
-  \caption{Combinación de bandas M5, M4 y M3}
+  \caption{Combinación de bandas M5, M4 y M3.}
 	\label{Fig: bandas543}
 \end{figure}
 
@@ -50,26 +50,24 @@ En la siguiente figura \ref{Fig: bandas543} podemos visualizar unas de las imág
 
 \section{Protocolo experimental}\label{sec:entrenamiento}
 
-Siguiendo el pipeline desarrollado en la sección (Sec: \ref{sec: pipeline}) ya con los datos de entrenamiento se desarrollo la experimentación de los modelos de detección.
+Siguiendo el pipeline desarrollado en la sección (sec: \ref{sec: pipeline}) ya con los datos creado de entrenamiento como de test se desarrollo la experimentación de los modelos de detección.
 
 \subsection*{Clasificación - entrenamiento}\label{sub:entr_class}
 
-Para la clasificación y construcción del modelo se utilizo \ac{svm} (Sec: \ref{sub:clasificadores}), cada conjunto de entrenamiento se realizo utilizando regiones positivas y negativas de cada una de las imágenes obtenidas.
+Para la clasificación y construcción del modelo se utilizo \ac{svm} (sec: \ref{sub:clasificadores}), cada conjunto de entrenamiento se realizo utilizando regiones positivas y negativas de cada una de las imágenes obtenidas de combinaciones de bandas desarrolladas anteriormente.
 
-En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, estos  parámetros se los llama \textit{hiperparámetros}, una de las técnicas mas usada para la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de parámetros del modelo. La técnica \textit{Grid Search} busca por fuerza bruta los parámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximice alguna de las métricas previamente definida, por ejemplo accuracy. 
-
-En nuestro caso como estamos utilizando \ac{svm} (Sec: \ref{sub:clasificadores}) los hiperparámetros que debemos optimizar son \textit{C} y $\gamma$. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos, con valores grandes de \textit{C}  elegirá un hiperplano de menor margen, el objetivo es encontrar el equilibrio entre "no demasiado estricto" y  "no demasiado relajado". El otro hiperparámetro a  optimizar es el de  $\gamma$ este hiperparámetro es la inversa de la desviación estándar de un kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
-El rango de hiperparámetros utilizados para entrenar el modelo con \textit{Grid Search} fueron los siguientes: \textit{Tipos de kernel}: lineal y RBF (gaussiano); para rango de valores de \textit{C}: $(10^{3}, 10^{2}, 10^{1}, 10^{0}, 10^{-1},10^{-2}, 10^{-3}, 10^{-4})$
+En los algoritmos de aprendizaje automático tenemos parámetros que nos permiten optimizar el modelo que estamos entrenando, estos  parámetros se los llama \textit{hiperparámetros}, una de las técnicas mas usada para la optimización de hiperparámetros es la conocida como \textit{Grid Search}, esta técnica nos ayuda a encontrar una combinación óptima de parámetros del modelo. La técnica grid search busca por fuerza bruta los parámetros definidos previamente y evalúa cada una de las combinaciones posibles entre los mismos logrando obtener la combinación óptima que maximice alguna de las métricas previamente definida, por ejemplo accuracy.  En nuestro caso como estamos utilizando clasificadores \ac{svm} los hiperparámetros que debemos optimizar son \textit{C} y $\gamma$. El valor de \textit{C} controla el costo del error en la clasificación, \textit{miss classification} en ingles, dado un valor de \textit{C} pequeño hará que el optimizador busque un hiperplano de separación de mayor margen, incluso si ese hiperplano clasifica erróneamente más puntos; con valores grandes de \textit{C}  elegirá un hiperplano de menor margen, el objetivo es encontrar el equilibrio entre "no demasiado estricto y  no demasiado relajado". El otro hiperparámetro a  optimizar es el de  $\gamma$ este hiperparámetro es la inversa de la desviación estándar de un kernel \textit{RBF} (función gaussiana), que se utiliza como medida de similitud entre dos puntos.
+El rango de hiperparámetros utilizados para entrenar el modelo con grid search fueron los siguientes: \textit{tipos de kernel}: lineal y RBF (gaussiano); para rango de valores de \textit{C}: $(10^{3}, 10^{2}, 10^{1}, 10^{0}, 10^{-1},10^{-2}, 10^{-3}, 10^{-4})$
     y para rango de valores de $\gamma$: $(1,0,10^{-1}, 10^{-2},10^{-3},10^{-4}. 10^{-5})$
     
-Para evitar el overfitting (Sec:\ref{sub:problema_deteccion}) se utilizo \textit{k-fold cross-validation} (Sec:\ref{sub:validacion-modelo}) que en conjunto con \textit{Grid Search} para cada  iteración realizada por la técnica de \textit{Grid Search} se toma un subconjunto de los datos para realizar su validación; en todos los experimentos que se realizaron se utilizo un valor de $K = 5$.
+Para evitar el overfitting (sec:\ref{sub:problema_deteccion}) se utilizo \textit{k-fold cross-validation} (sec:\ref{sub:validacion-modelo}) que en conjunto con grid search para cada  iteración realizada se toma un subconjunto de los datos para realizar su validación; en todos los experimentos que se realizaron se utilizo un valor de $K = 5$.
 
 
 \subsection*{Evaluación del modelo}\label{sub:evaluacion_class}
 
-Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (Sec: \ref{sub:evaluación-modelo}) estas son: \textit{precisión}, medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; otra de las métricas desarrolladas para evaluar el modelo es a través de las \textit{curvas ROC}, esta curva nos representa la capacidad que tiene modelo entrenado en discriminar entre clases positivas y negativas.
+Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (sec: \ref{sub:evaluación-modelo}) estas son: \textit{precisión}, medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; otra de las métricas desarrolladas para evaluar el modelo es a través de las \textit{curvas ROC}, esta curva nos representa la capacidad que tiene modelo entrenado en discriminar entre clases positivas y negativas.
 
-El dataset utilizado para evaluar los modelos entrenados  consta de 10 imágenes, considerando el conjunto de imágenes con la combinación de banda correspondiente, cada una con un promedio de 1500 bounding boxes por imágenes repartidas en regiones tanto negativas como positivas.
+El dataset utilizado para evaluar los modelos entrenados  consta de 10 imágenes, considerando el conjunto de imágenes con la combinación de banda correspondiente, cada una de las imágenes consta en promedio de $1500$ bounding boxes por imágenes repartidas en regiones tanto negativas como positivas.
 
 
 En el siguiente cuadro \ref{tab:entrenam-result} se expone los resultados obtenidos de la validación de los modelos entrenados. En la columna \textit{bandas} describe la combinación de banda usada para el experimento; las columnas  de los hiperparámetros nos muestra los valores óptimos encontrados en el entrenamiento a través de algoritmo \textit{Grid Search} y \textit{k-fold cross-validation} , por ultimo tenemos las columnas relacionadas a las métricas finales obtenida en la validación de cada uno de los experimentos ejecutados.

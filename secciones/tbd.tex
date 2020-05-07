@@ -158,19 +158,19 @@ En el siguiente cuadro se detallan las diferentes longitudes de onda y los rango
 \end{center}\caption{Característica de bandas,\ac{viirs} \label{tab:viirs}}
 \end{table}
 
-\subsection{Generación de datos - etiquetado}\label{sub:generacion_datos_etiquetado}
+\subsection{Generación de datos etiquetado}\label{sub:generacion_datos_etiquetado}
 
-Dado en que estamos entrenando un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región. Para poder crear el datasets debemos tener identificado nuestras regiones de interés es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés, como se menciona en la sección (sec:\ref{sec:obj_general}), son el \textit{Golfo de San Matias} y  \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se etiqueto utilizando la librería \textit{Labelme} \footnote{Funte: https://github.com/wkentaro/labelme}, este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para compararse con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
+Para entrenar un algoritmo de aprendizaje supervisado debemos tener las etiqueta de cada región, crear el datasets consiste en tener identificada las regiones de interés, es decir el \textit{ground thruth} que vamos a utilizar. Las regiones de interés en esta tesis como se menciona en la sección (sec:\ref{sec:obj_general}) son el \textit{Golfo de San Matias} y  \textit{Laguna de Mar Chiquita}; la locación de cada región de interés se etiqueto utilizando la librería \textit{Labelme} \footnote{Funte: https://github.com/wkentaro/labelme}, este es un proceso manual que se debe realizar con cada unas de las imágenes marcando con polígonos las regiones, como se puede ver en la siguiente imagen \ref{Fig:labelme-etiquetado}. El polígono de la región de interés es almacenado en un formato \textit{json}, que luego sera utilizado para computar el IoU con las regiones candidatas obtenidas por algunos de los métodos de regiones propuestas. 
 
-El proceso de etiquetado sera el siguiente: calculando los \ac{rp} obtendremos regiones candidatas, estas regiones candidatas serán comparadas con el ground thruth etiquetado anteriormente; para estas dos regiones se calcula la intersección sobre unión de la regiones es decir el IoU, si los valores de IoU supera un valor de umbral definido previamente, en esta tesis se utilizo $80\%$ como umbral, sera etiquetada la región como positiva, en caso contrario sera una región clasificada como negativa. Este proceso se realiza para cada una de las regiones obtenidas de cada una de las imágenes; 
+El proceso de etiquetado sera el siguiente: calculando los \ac{rp} obtendremos regiones candidatas, estas regiones candidatas serán comparadas con el ground thruth etiquetado; para estas dos regiones se calcula la intersección sobre unión de la regiones es decir el IoU, si los valores de IoU supera un valor de umbral definido previamente, en esta tesis se utilizo $80\%$ como umbral, sera etiquetada la región como positiva en caso contrario sera una región clasificada como negativa. Este proceso se realiza para cada una de las regiones obtenidas de cada una de las imágenes. 
 
 
-todos los datos etiquetados estarán ademas relacionado a uno de los vectores de característica extraído por las redes neuronales. Luego de realizar todo el proceso de extracción y etiquetado ya tenemos los datasets con el que vamos a entrenar el modelo.
+Los datos etiquetados estarán ademas relacionado a uno de los vectores de característica extraído por las redes neuronales, luego de realizar todo el proceso de extracción y etiquetado ya tenemos los datasets con el que vamos a entrenar el modelo.
 
 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.2,keepaspectratio=true,clip=true]{imagenes/tbd/labelme1.png}
-  \caption{Ground Thruth - etiquetado}\label{Fig:labelme-etiquetado}
+  \caption{Region de interes etiquetada.}\label{Fig:labelme-etiquetado}
 \end{figure}
 
