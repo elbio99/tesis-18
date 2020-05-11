@@ -66,12 +66,12 @@ Luego de las $N$ iteraciones realizadas por grid search nos quedamos con aquel m
 
 \subsection*{Evaluación del modelo}\label{sub:evaluacion_class}
 
-Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (sec: \ref{sub:evaluación-modelo}) estas son: \textit{precisión}, medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; otra de las métricas desarrolladas para evaluar el modelo es a través de las \textit{curvas ROC}, esta curva nos representa la capacidad que tiene modelo entrenado en discriminar entre clases positivas y negativas.
+Para cuantificar la performance de un modelo de detección debemos evaluarlo usando las métricas desarrolladas en la sección (sec: \ref{sub:evaluación-modelo}) estas son: \textit{precisión}, medida de cuantas predicciones positivas fueron verdaderas; \textit{recall}, nos indica la cobertura en la que el modelo predijo como positivo; \textit{accuracy}, obtenemos la exactitud del modelo; \textit{curvas ROC} representa la capacidad que tiene modelo entrenado en discriminar entre clases positivas y negativas, \textit{average precision} métrica de detección para cada clase.
 
-El dataset utilizado para evaluar los modelos entrenados  consta de 10 imágenes, considerando el conjunto de imágenes con la combinación de banda correspondiente, cada una de las imágenes consta en promedio de $1500$ bounding boxes por imágenes repartidas en regiones tanto negativas como positivas.
+El dataset de test utilizado para evaluar los modelos entrenados consta de 10 imágenes, considerando cada conjunto de imágenes con su combinación de banda correspondiente, cada una de las imágenes consta en promedio de $1500$ bounding boxes por imágenes repartidas en regiones tanto negativas como positivas.
 
 
-En el siguiente cuadro \ref{tab:entrenam-result} se expone los resultados obtenidos de la validación de los modelos entrenados. En la columna \textit{bandas} describe la combinación de banda usada para el experimento; las columnas  de los hiperparámetros nos muestra los valores óptimos encontrados en el entrenamiento a través de algoritmo \textit{Grid Search} y \textit{k-fold cross-validation} , por ultimo tenemos las columnas relacionadas a las métricas finales obtenida en la validación de cada uno de los experimentos ejecutados.
+En el siguiente cuadro \ref{tab:entrenam-result} se expone los resultados obtenidos de la validación de los modelos entrenados. En la columna bandas describe la combinación de banda usada para el experimento, las columnas  de los hiperparámetros nos muestra los valores óptimos encontrados en el entrenamiento a través de algoritmo grid search y k-fold cross-validation , por ultimo tenemos las columnas relacionadas a las métricas finales obtenida en la validación de cada uno de los experimentos ejecutados.
 
 
 \begin{table}[H]
@@ -134,7 +134,7 @@ Por ultimo analizamos la combinación de bandas \textbf{10-7-5} (c) (Fig:\ref{fi
 Para realizar un análisis mas detallado de la performance de los modelos entrenados se seleccionaron aquellos que tienen mejores métricas con respecto al resto analizando las \textit{curvas ROC} esta permite ver la capacidad del modelo entrenado en discriminar las diferentes clases. En el grafico \ref{fig:Average_precision} se puede visualizar para todas las curvas ROC a medida que aumenta el valor de \textit{recall} va disminuyendo la \textit{precision}. El objetivo es identificar aquel valor que aumente el recall sin perder la precision.
 \newpage
 
-Para las bandas 1-5-3 (Fig: \ref{fig:Average_precision} (a)) el valor optimo se da cuando la precision esta en $0.9$ y $0.2$ en recall, esto nos indica que el modelo entrenado tiene un porcentaje alto de precision a la hora de clasificar una nueva imagen pero un recall bajo ya que no captura todas las regiones dentro de la imagen de igual manera para las bandas 9-7-11 (Fig:\ref{fig:Average_precision} (b)) el valor observado optimo esta dado entre la precision $0.9$ y recall $0.4$, siendo este ultimo valor mas optimo en relación a las bandas 1-5-3. Por ultimo las bandas 10-7-5 (Fig: \ref{fig:Average_precision} (c)) se puede observar que el modelo generalizo de manera optima logrando capturar las características de las imágenes es por esto que se obtuvo una precision de $0.9$ y recall  de $0.8$, siendo este el modelo entrenado mas óptimo. 
+Para las bandas 1-5-3 (fig: \ref{fig:Average_precision} (a)) el valor optimo se da cuando la precision esta en $0.9$ y $0.2$ en recall, esto nos indica que el modelo entrenado tiene un porcentaje alto de precision a la hora de clasificar una nueva imagen pero un recall bajo ya que no captura todas las regiones dentro de la imagen de igual manera para las bandas 9-7-11 (fig:\ref{fig:Average_precision} (b)) el valor observado optimo esta dado entre la precision $0.9$ y recall $0.4$, siendo este ultimo valor mas optimo en relación a las bandas 1-5-3. Por ultimo las bandas 10-7-5 (fig: \ref{fig:Average_precision} (c)) se puede observar que el modelo generalizo de manera optima logrando capturar las características de las imágenes es por esto que se obtuvo una precision de $0.9$ y recall  de $0.8$, siendo este el modelo entrenado mas óptimo. 
 
 \begin{figure}[htbp]
 \centering
@@ -151,10 +151,10 @@ Como se observo en los diferentes experimentos realizados, las imágenes constru
   \caption{Combinación de bandas 1-1-1} \label{Fig:imagen_banda_111}
 \end{figure}
  
-Para finalizar la evaluación experimental se predijo a modo de ejemplo una imagen nunca vista por los modelos entrenados, en este caso utilizamos el modelo entrenado con las bandas \textbf{9-7-11} para realizar la predicción, en la figura siguiente  \ref{Fig: TP} se pude visualizar el resultado de la misma.
+Para finalizar la evaluación experimental se predijo a modo de ejemplo una imagen nunca vista por los modelos entrenados, en este caso utilizamos el modelo entrenado con las bandas \textbf{9-7-11} para realizar la predicción, en la figura siguiente  \ref{Fig: TP} se pude visualizar los bounding box detectados en color rojo, como se puede observar detectan las regiones buscada que son el objetivo de esta tesis.
 
 \begin{figure}[H]\centering
-  \includegraphics[scale=0.05,keepaspectratio=true,clip=true]{imagenes/evaluacion/prediction-9711.png}
+  \includegraphics[scale=0.07,keepaspectratio=true,clip=true]{imagenes/evaluacion/prediction-9711.png}
   \caption{Predicción modelo - bandas 9-7-11} \label{Fig: TP}
 \end{figure}
 
