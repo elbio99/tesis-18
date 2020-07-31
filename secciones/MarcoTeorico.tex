@@ -1,10 +1,10 @@
 \chapter{Marco Teórico} \label{chap:marcoteorico}
 
-En este capitulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como el sensado remoto,  aprendizaje automático y redes neuronales.
+En este capítulo se desarrollará las bases teóricas y los conocimientos necesarios para poder entender las diferentes terminologías utilizadas en el trabajo de investigación realizado. Se tratará de dar un enfoque simplificado de temas como el sensado remoto,  aprendizaje automático y redes neuronales.
 
 \section{Sensado remoto}\label{sec:sensadoremoto}
 
-En esta sección vamos a realizar una introducción del proceso llevado a cabo para la obtención de una imagen satelital. Comenzaremos desarrollando desde como formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
+En esta sección vamos a realizar una introducción del proceso llevado a cabo para la obtención de una imagen satelital. Comenzaremos desarrollando desde cómo formamos una imagen satelital, cuales son los rango de bandas, que instrumento se utiliza y los datos en el cual se trabaja.
 
 \subsection{Teledetección}\label{sub:teledeteccion}
 
@@ -23,16 +23,15 @@ realizados por el hombre que refleja el sensor como por ejemplo construcciones; 
 Los tipos de sensores existentes son los  \textit{sensores pasivos}, son aquellos que reciben las señales emitidas naturalmente que fueron reflejadas por los objetos. Sensores como ASTER, MODIS, VIIRS, LandSat son sensores pasivos en la cual la señal se produce por medio de la radiación solar. A su vez existen los \textit{sensores activos} que son aquellos que emiten radiación dirigida hacia un objetivo específico, esta radiación reflejada del objeto es detectada y medida por el sensor. Ejemplo: Radar, Sonar.
 
 Otras de las características de los sensores son el tipo de imagen que proporciona; estas características vienen definidas por el tipo de resolución; estas resoluciones la podemos definir de la siguiente manera: \textit{resolución espacial}: distancia que corresponde a la unidad mínima de información incluida en un píxel, a menor tamaño de píxel mayor será la resolución espacial esto quiere decir que el sensor tendrá mayor detalle de los objetos como se puede observar en la figura (a) \ref{Fig:resoluciones};  
-\textit{resolución espectral}: la resolución espectral especifica el número y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (fig: (c) \ref{Fig:resoluciones}); \textit{resolución radiométrica}: indica el número de bits utilizados para expresar los datos recogidos por el sensor (fig: (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por último tenemos la \textit{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra, es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura está en función del tipo de órbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
+\textit{resolución espectral}: la resolución espectral especifica el número y la anchura de las bandas espectrales que puede ser discriminadas por el sensor (fig.  \ref{Fig:espectro-electromagnetico}); \textit{resolución radiométrica}: indica el número de bits utilizados para expresar los datos recogidos por el sensor (fig. (b) \ref{Fig:resoluciones}), mayormente cuando es mas grande el número de niveles mayor es el detalle con la cual se podrá expresar dicha información por ejemplo los sensores Landsat (5 y 7) utilizan 8 bits lo que da 2**8= 256 niveles de energía que pueden ser captados; por último tenemos la \textit{resolución temporal}: es el tiempo necesario que tarda el satélite en volver a visitar la misma zona de la Tierra, es decir la periodicidad con la que éste adquiere la misma imagen, este ciclo de cobertura está en función del tipo de órbita de la plataforma así como del sensor (alta resolución temporal (< 1 día - 3 días), media resolución temporal (4 - 16 días), baja resolución temporal (> 16 días)).
 
 
 \begin{figure}[htbp]
 \centering
 \subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion.png}}
 \subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/resolucion_radiometrica.png}}
-\subfigure[]{\includegraphics[width=6.6cm,height=5.2cm]{imagenes/MarcoTeorico/resolucion_espectral.jpg}}
 
-\caption{(a) resolución espacial, (b) resolución radiométrica, (c) resolución espectral}\label{Fig:resoluciones}
+\caption{(a) resolución espacial, (b) resolución radiométrica}\label{Fig:resoluciones}
 \end{figure}
 
 
@@ -72,25 +71,24 @@ Como se desarrolló en el primer capítulo, el objetivo de esta tesis es lograr 
 
 \section{Aprendizaje automático}\label{sec:machinelaerning}
 
-Aprendizaje automático (\ac{ml} por sus siglas en ingles) es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que ayuden a las computadoras aprender determinado comportamiento a partir de los datos de entrada, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos. Los algoritmos de \ac{ml} juegan un rol importante en diversos campos como \textit{minería de datos}, \textit{reconocimiento de imagen} entre otros dominios, por medio de modelos predictivos nos permite realizar inferencias sobre valores nuevos. 
+Aprendizaje automático (\ac{ml} por sus siglas en inglés) es una rama de la inteligencia artificial que tiene como objetivo desarrollar técnicas que permitan modelar determinado comportamiento a partir de las muestras de entrenamiento, con el uso de \ac{ml} abordamos tareas que son muy difíciles de resolver con programas escritos y diseñados por seres humanos. Los algoritmos de \ac{ml} juegan un rol importante en diversos campos como \textit{minería de datos}, \textit{reconocimiento de imagen} entre otros dominios.
 
 El principal objetivo de este aprendizaje es desarrollar la capacidad de generalizar y asociar a partir de los datos. Los algoritmos de  \ac{ml} se dividen en dos grandes categorías que son \textit{Aprendizaje supervisado} y \textit{Aprendizaje no supervisado},  en esta tesis desarrollaremos la primer categoría.  El aprendizaje supervisado los datos deben estar previamente etiquetado, es decir que deberá haber una etiqueta por cada característica que deseamos aprender por ejemplo color, tamaño, forma, etc. En un algoritmo de \ac{ml} los datos que usamos para que aprenda y generalice se los llama \textit{datasets de entrenamiento} o \textit{conjunto de entrenamiento}.
 
-Partiendo de los datos de entrenamiento mencionado previamente un algoritmo de \ac{ml} debe aprender una función  $ f(X)$, donde $ X$ representa nuestro conjunto de entrenamiento, la función aprendida por el algoritmo la llamaremos modelo  que retornará un valor $(y)$ tal que se asemeje a la salida que estamos esperando. Para poder llevar a cabo esta tarea el algoritmo debe aprender los parámetros de la función que permita realizar esta aproximación 
+Partiendo de los datos de entrenamiento mencionado previamente un algoritmo de \ac{ml} debe aprender una función  $ f$, que permita a partir de un conjunto de entrenamiento retornar un valor $y$ tal que se asemeje a la salida que estamos esperando. Para poder llevar a cabo esta tarea el algoritmo debe aprender los parámetros que se estiman a partir de un conjunto de de datos.
 
-El método que nos permite realizar esta aproximación es la \textit{función de costo} (sec.\ref{sub:funcion_costo}), la cual va a  determinar el error de la salida con respecto a los valores esperado de  $y$, esta etapa la llamamos \textit{entrenamiento de modelo}, su propósito es generar valores lo suficientemente \textit{cercanos} a la respuesta correcta minimizando el error en la predicción medido por la función de costo. Los algoritmo de \ac{ml} son métodos iterativos por lo que en cada iteración debemos minimizar el error obtenido, para poder lograrlo debemos buscar valores óptimos que permitan disminuir el error,estos algoritmos se los conoce como métodos de optimización (sec.\ref{sub:gradient-desc}) y son muy fundamentales en el campo de \ac{ml}. Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que nunca vio el modelo y poder asociar las etiquetas aprendidas de manera automática. 
+El método que nos permite realizar esta aproximación es la \textit{función de costo} (sec.\ref{sub:funcion_costo}), la cual va a  determinar el error de la salida con respecto a los valores esperado de  $y$, esta etapa la llamamos \textit{entrenamiento de modelo}, su propósito es generar valores lo suficientemente \textit{cercanos} a la respuesta correcta minimizando el error en la predicción medido por la función de costo. Los algoritmo de \ac{ml} son métodos iterativos por lo que en cada iteración debemos minimizar el error obtenido, para poder lograrlo debemos buscar valores óptimos que permitan disminuir este error;  estos algoritmos se los conoce como métodos de optimización (sec.\ref{sub:gradient-desc}) y son una parte fundamental en el campo de \ac{ml}. Una vez obtenido un valor de error definido previamente el modelo aprendido debe ser capaz de recibir un nuevo dato que nunca vio el modelo y poder asociar las etiquetas aprendidas de manera automática. 
 
-En esta tesis se abordará los algoritmos de aprendizaje supervisado, en secciones siguientes vamos a desarrollar con más detalle el proceso de aprendizaje centrándonos principalmente en el problema de clasificación, desarrollando los tipos de clasificadores existentes, la función de costo y el algoritmo de optimización \textit{gradient descent} \citep{cnns}, finalizando con métodos de validación de modelos en \ac{ml}.
+En esta tesis se abordará los algoritmos de aprendizaje supervisado, en secciones siguientes vamos a desarrollar con más detalle el proceso de aprendizaje centrándonos principalmente en el problema de clasificación, desarrollando los tipos de clasificadores existentes, la función de costo y el algoritmo de optimización \textit{descenso de gradiente} \citep{cnns}, finalizando con métodos de validación de modelos en \ac{ml}.
 
 \subsection{Aprendizaje supervisado y el problema de la clasificación}\label{sub:aprendizaje_supervisado}
 % http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Seventh%20Printing.pdf
 
-Cómo se desarrolló anteriormente en este trabajo se abordará un problema de clasificación con aprendizaje supervisado. Definimos  el aprendizaje supervisado como una de las tareas más frecuente en sistemas de \ac{ml}, el aprendizaje supervisado permite a partir de datos conocidos aprender el comportamiento de los mismos, es decir por cada observación de los datos tenemos asociado un valor (etiqueta) que identifica la respuesta correcta que toma nuestros datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento. 
+Cómo se desarrolló anteriormente en este trabajo se abordará un problema de clasificación con aprendizaje supervisado.Definimos  el aprendizaje supervisado como una de las tareas más frecuente en sistemas de \ac{ml}, en algoritmos de aprendizaje supervisado se debe contener las etiquetas asociadas a las clases que deseamos aprender, es decir por cada observación de los datos recolectados tenemos que tener asociado un valor (etiqueta) que identifica la respuesta correcta que toma los datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento para poder predecir valores nunca visto.
 
+Entrenar un modelo de aprendizaje supervisado requiere al menos tres conjunto de datos:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe aprender, el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir siguiendo el ejemplo anterior para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a qué clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es tener una función de costo (\ref{sub:funcion_costo}) que nos permita calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir obtener el error entre la salida esperada y los valores que el modelo predijo. A modo de ejemplo en la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación donde se  genera una frontera que separa los datos rojos y verdes, la línea punteada en este caso será la función que el modelo deberá aprender.
 
-Entrenar un modelo de clasificación supervisado requiere al menos tres valores:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe aprender, el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir siguiendo el ejemplo anterior para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a qué clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es tener una función de costo (\ref{sub:funcion_costo}) que nos permita calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir obtener el error entre la salida esperada y los valores que el modelo predijo.
-
-Siguiendo con lo mencionado en el párrafo anterior los algoritmos de clasificación calculan la probabilidad de cada clase y luego esas probabilidades se mapean y  clasifican las observaciones, a modo de ejemplo en la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación donde se  genera una frontera que separa los datos rojos y verdes, la línea punteada en este caso será la función que el modelo deberá aprender. El proceso de entrenamiento implica los siguiente pasos, dado un conjunto de imágenes de entradas $X$ y uno de salidas esperadas $Y$ (etiquetas de la clase) se cuenta con un conjunto de $N$ pares anotados ${(x_i, y_i)}_{i=1,..,N}$  que a través de un algoritmo de aprendizaje debemos encontrar una relación de una función que se aproxime a los datos etiquetados de la siguiente forma: $f(X) ≈ Y$. La función $f(X)$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir dado un modelo paramétrico como por ejemplo uno lineal de la forma $y_i = w^t x_i + \epsilon_i$ en donde $\epsilon_i$ es el error del modelo e $Y$ puede tomar valores $(-1,1)$ para un problema de clasificación binaria, lo que se busca es por medio de un modelo de aprendizaje encontrar los valores de  $w$ que se aproxime a los valores $y_i$.
+El proceso de entrenamiento implica los siguiente pasos, dado un conjunto de pares de entrenamiento, del tipo $\{(x_i, y_i), i=1,..,N\}$, a través de un algoritmo de aprendizaje debemos encontrar una función que se aproxime a los datos etiquetados de la siguiente forma: $f(x) ≈ y$. La función $f$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir dado un modelo paramétrico como por ejemplo uno lineal de la forma $y_i = w^t x_i$ e $y$ puede tomar valores $\{-1,1\}$ en un problema de clasificación binaria, lo que se busca es por medio de un modelo de aprendizaje encontrar los valores de  $w$ que se aproxime a los valores $y_i$.
 
 En el estado del arte existen diversos algoritmos para resolver el problema de clasificación utilizando \ac{ml}, en la siguiente sección se desarrollará en más detalle, en esta tesis nos enfocaremos en los clasificadores llamados máquina de vectores de soporte. 
 
@@ -107,17 +105,18 @@ En el estado del arte existen diversos algoritmos para resolver el problema de c
 En base a lo desarrollado en la sección anterior (sec.\ref{sub:aprendizaje_supervisado}) podemos definir diferentes algoritmos de clasificación que se utilizan en la actualidad.
 
 %LOG_reg https://medium.com/datos-y-ciencia/aprendizaje-supervisado-introducci%C3%B3n-a-la-clasificaci%C3%B3n-y-principales-algoritmos-dadee99c9407
-\par \textbf{Regresión Logística}: describe y estima la relación entre una variable binaria dependiente y variables independiente. El objetivo de este método es encontrar un modelo que describa la relación entre la respuesta del modelo con las variables independientes (variables predictivas o explicativas). En un modelo de clasificación por regresión logística el valor $z$ de la ecuación \ref {ecu:rg} es una combinación lineal de los pesos y las característica $x_i$, definido como $z=w^t x_i$. 
+\par \textbf{Regresión Logística}: describe y estima la relación entre una variable binaria dependiente y variables independiente. El objetivo de este método es encontrar un modelo que describa la relación entre la respuesta del modelo con las variables independientes (variables predictivas o explicativas). En un modelo de clasificación por regresión logística el valor $z$ de la ecuación \ref {ecu:rg} es una combinación lineal de los pesos y las característica $x_i$, definido como $z=w^t x_i$ 
    
 
 \begin{equation}\label{ecu:rg}
 \phi(z) = \frac{1}{1+e^{-z}}.
 \end{equation}
 
-La salida de la función sigmoide $\phi(z)$ (\ref {ecu:rg}) se interpreta como la probabilidad de que un valor determinado pertenezca a una de las clases, es decir:
+La salida de la función sigmoide $\phi(z)$ (\ref {ecu:rg}) modela la probabilidad condicional $p(y=+1|x)$ donde la salida de la función para un problema de clasificación binaria puede tomar la siguiente forma:
+
 \begin{equation}\label{ecu:f_sig_class}
-\hat{y} = \left \{\begin{matrix} 1 & \mbox{si }\phi(z) \ge 0
-\\ 0 & \mbox{si }\phi(z) < 0 \end{matrix}\right. 
+\hat{y} = \left \{\begin{matrix} 1 & \mbox{si }\phi(z) \ge 0.5
+\\ 0 & \mbox{si }\phi(z) < 0.5 \end{matrix}\right. 
 \end{equation}
 
 
@@ -131,7 +130,7 @@ La salida de la función sigmoide $\phi(z)$ (\ref {ecu:rg}) se interpreta como l
 
 \par \textbf{Árboles de decisión}: Estos tipos de clasificadores se forman a partir de  un conjunto finito de valores  que toman la forma/estructura de un árbol desglosando el conjunto de datos de entrada en subconjuntos más pequeños. El resultado final es un árbol con nodos de decisión y nodos de hoja en donde un nodo de decisión tiene dos o más ramas y un nodo hoja representa una clasificación o decisión. 
 
-Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables de decisión $ X, Y, W, Z$, dado un valor  de entrada en este caso numérico se tomará una decisión en este caso creando dos grupos  si $ X$  es menor a 10 o si es mayor o igual a 10 segmentando el conjunto de datos en dos, de la misma manera las decisiones se tomarán en los nodos $ Y, W, Z$, hasta llegar a la hoja que será la decisión que debemos tomar. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
+Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables de decisión $ x, y, w, z$, dado un valor  de entrada en este caso numérico se tomará una decisión en este caso creando dos grupos  si $ x$  es menor a 10 o si es mayor o igual a 10 segmentando el conjunto de datos en dos, de la misma manera las decisiones se tomarán en los nodos $ y, w, z$, hasta llegar a la hoja que será la decisión que debemos tomar. Los árboles de decisión pueden manejar tanto datos categóricos como numéricos.
 
   
 \begin{figure}[H]
@@ -142,9 +141,9 @@ Para dar mas detalle en la figura \ref{Fig: decision-tree} tenemos 4 variables d
 \end{figure}
 
 
-\par \textbf{Bosques Aleatorios, (RF por su denominación en inglés)}: Este  algoritmo combina diferentes algoritmos de igual o diferentes tipos para realizar la clasificación, son llamados algoritmos de ensamble. Por ejemplo, ejecutar la predicción sobre un algoritmo de \textit{máquina de vectores de soporte} o  \textit{árboles de decisión} y luego tomar el voto para la consideración final de la clase del objeto que se está evaluando.  
+\par \textbf{Bosques Aleatorios, (RF por su denominación en inglés)}: Este  algoritmo es un caso particular de ensambles donde combina diferentes arboles de decisiones para poder realizar la clasificación.
 
-En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{RF} donde se crea tres \textit{árboles de decisiones} independientes  inicializado aleatoriamente para cada uno de esto tendrá su correspondiente decisión como se describió en el ítem anterior, la proporción de árboles que toman una misma respuesta se interpreta como la probabilidad de la misma.
+En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{RF} donde se crea tres \textit{árboles de decisiones} independientes  inicializado aleatoriamente, para cada uno de esto tendrá su correspondiente decisión, la proporción de árboles que toman una misma respuesta se interpreta como la probabilidad final del algoritmo.
 
 \begin{figure}[H]
  \centering
@@ -154,7 +153,7 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
   \label{Fig: random_forest}
 \end{figure}
 
-\par \textbf{Máquina de vectores de soporte (SVM por su siglas en inglés)}: son otro tipo de clasificadores lineales,  el objetivo de un algoritmo \ac{svm} es construir un hiperplano (\ref{Fig: svm_margen_hiperplano} (a)) en un espacio de $n$ dimensiones que permita separar de manera óptima los datos de una clase con respecto a la otra. La característica fundamental de \ac{svm} es encontrar el hiperplano que tenga la máxima distancia, \textit{margen} , entre los puntos que estén más cerca de el mismo. El margen se define como la distancia perpendicular entre el límite de decisión y el punto de datos más cercano, como se muestra en la figura \ref{Fig: svm_margen_hiperplano} (b)}. La ubicación de este límite está determinada por un subconjunto de los puntos de datos, conocidos como vectores de soporte \citep{bishop}.
+\par \textbf{Máquina de vectores de soporte (SVM por su siglas en inglés)}: son otro tipo de clasificadores lineales,  el objetivo de un algoritmo \ac{svm} es construir un hiperplano (\ref{Fig: svm_margen_hiperplano} (a)) en un espacio de $n$ dimensiones que permita separar de manera óptima los datos de una clase con respecto a la otra. La característica fundamental de \ac{svm} es encontrar el hiperplano que logre obtener el mayor margen entre los puntos más cercanos. El margen se define como la distancia perpendicular entre el límite de decisión y el punto de datos más cercano, como se muestra en la figura \ref{Fig: svm_margen_hiperplano} (b)}. La ubicación de este límite está determinada por un subconjunto de datos conocidos como vectores de soporte \citep{bishop}.
 
 
 % http://bibing.us.es/proyectos/abreproy/70448/fichero/05_Capitulo4.pdf
@@ -172,13 +171,13 @@ En la figura \ref{Fig: random_forest} se da un ejemplo de un algoritmo \textit{R
 \caption{(a) Hiperplanos de separación (b) margen de separación del hiperplano.}\label{Fig: svm_margen_hiperplano}
 \end{figure}
 
-Para un problema de clasificación binaria en el que necesitamos separar dos clases, existen muchos hiperplanos posibles \ref{Fig: svm_margen_hiperplano} (a), cómo se desarrolló anteriormente el objetivo es encontrar un plano que logre el margen máximo entre dos puntos de datos de ambas clases; vamos a dar considerar un modelo de clasificación lineal con etiquetas $t_n \in\{1, -1 \}$ y datos de entrenamiento de $N$ vectores de entrada $x_i,..., x_n$ \eqref{eq: modelo-lineal}.
+Para un problema de clasificación binaria en el que necesitamos separar dos clases, existen muchos hiperplanos posibles \ref{Fig: svm_margen_hiperplano} (a), cómo se desarrolló anteriormente el objetivo es encontrar un plano que logre el margen máximo entre ambas clases. Considerando a modo de ejemplo un modelo de clasificación lineal \eqref{eq: modelo-lineal} con etiquetas $t_n \in\{1, -1 \}$.
 
 \begin{equation}\label{eq: modelo-lineal}
     y(x) = w^{\rm T} f(x) + b.
 \end{equation}
 
-Dado este conjunto de datos asumimos que son linealmente separables por lo que al menos existe un conjunto de parámetros $w$ y $b$ de modo, $y(x_n) > 0 $ para puntos $t_n = 1 $ y $y(x_n) < 0$ para datos con etiqueta $t_n = -1$. En diversos casos existen $ n$ hiperplanos de separación (a)  \ref{Fig: svm_margen_hiperplano} que permita lograr una solución al problema.  El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos. Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuán alejado está el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
+Asumiendo que las clases son linealmente separables, al menos existe un conjunto de parámetros $w$ y $b$ de modo, $y(x_n) > 0 $ para puntos $t_n = 1 $ y $y(x_n) < 0$ para datos con etiqueta $t_n = -1$. En diversos casos existen $ n$ hiperplanos de separación (a)  \ref{Fig: svm_margen_hiperplano} que permita lograr una solución al problema.  El algoritmo de \ac{svm} trata de resolver este problema calculando el margen de separación entre los datos. Para obtener el hiperplano con mayor margen óptimo se  debe calcular la distancias de cada observaciones a un determinado hiperplano. La menor de estas distancias, conocidas como margen, determina cuán alejado está el hiperplano de las observaciones, la distancia de un punto al hiperplano viene dada por la siguiente expresión (ec.\eqref{eq: distancia-margen}):
 
 \begin{equation}\label{eq: distancia-margen}
    \frac{t_n y(x)}{ \|w \|}  = \frac{t_n(w^{\rm T} f(x_n) + b)}{ \|w \|}.
@@ -190,34 +189,35 @@ El margen viene dado por la distancia perpendicular al punto más cercano  $x_n$
 \argmax_{w, b} \left\{ \frac{1}{\|w \|} \min_{n} [t_n(w^{\rm T} f(x_n) + b)]  \right\}
 \end{equation}
 
-Como podemos ver encontrar un hiperplano óptimo es un problema de optimización, la solución directa de este problema de optimización sería muy compleja, entonces podemos convertirlo a un problema equivalente que sea mucho más fácil de resolver reescalado $w \to kw$ y $b \to kb$ entonces la distancia desde cualquier punto $X_n$ hasta la frontera de decisión esta dada por $ t_n y(x_n) / \|w \|$ no cambia, podemos usar esto para establecer en el punto más cercano:
+Como podemos ver encontrar un hiperplano óptimo es un problema de optimización. Para resolver este problema asumimos que todos los puntos de datos tendrán las siguiente restricción:
 
-\begin{equation}\label{eq: margen-maximo_2}
-t_n(w^{\rm T} f(x) + b) = 1.
-\end{equation}
-Para todos los puntos de datos tendrán las siguiente restricción:
+% la solución directa de este problema de optimización sería muy compleja, entonces podemos convertirlo a un problema equivalente que sea mucho más fácil de resolver reescalado $w \to kw$ y $b \to kb$ entonces la distancia desde cualquier punto $X_n$ hasta la frontera de decisión esta dada por $ t_n y(x_n) / \|w \|$ no cambia, podemos usar esto para establecer en el punto más cercano:
+
+%\begin{equation}\label{eq: margen-maximo_2}
+%t_n(w^{\rm T} f(x) + b) = 1.
+%\end{equation}
 
 \begin{equation}\label{eq: margen-maximo_3}
 t_n(w^{\rm T} f(x) + b) \geq 1.
 \end{equation}
 
-Para este problema de optimización se requiere maximizar $\|w \|^{-1}$, que es equivalente a minimizar $\|w \|^{2}$, por lo que nos queda la siguiente ecuación:
+Este problema de optimización requiere maximizar $\|w \|^{-1}$, que es equivalente a minimizar $\|w \|^{2}$, por lo que nos queda la siguiente ecuación:
 
 \begin{equation}\label{eq: margen-maximo_optimizacion}
 \argmin_{w, b}  \frac{1}{2}} \|w \|^{2}.
 \end{equation}
 
-La resolución del problema utilizamos los multiplicadores de Lagrange  \citep{bishop} con valores de $a_n \geq 0$, la función Lagrangiana tendrá la siguiente forma:
+Para la resolución utilizamos los multiplicadores de Lagrange  \citep{bishop} con valores de $a_n \geq 0$, la función Lagrangiana tendrá la siguiente forma:
 
 \begin{equation}\label{eq: lagrange}
 L(w, b, a) = \frac{1}{2}} \|w \|^{2} - \sum_{n=1}^{N} a_n \left\{ t_n(w^{\rm T} f(x) + b)- 1 \right\}.
 \end{equation}
 
 
-En la gran mayoría de casos, los datos no se pueden separar linealmente de forma perfecta, por lo que no existe un hiperplano de separación y no puede obtenerse un margen máximo de manera simple. Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es expandir las dimensiones del espacio, esto se logra transformando o modificando alguna de sus dimensiones. La manera de realizar esta tarea a por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
+En la gran mayoría de casos los datos no se pueden separar linealmente de forma perfecta, es decir que no puede obtenerse un margen máximo de manera simple. Una de las estrategias usadas al momento de trabajar con conjuntos de datos no lineales es por medio de la función  \textit{kernel}, esta función permite proyectar un espacio $ X$ a un espacio de mayor dimensionalidad. Existen diversos tipos de \textit{kernel} en la literatura como son los \textit{kernel lineal}, \textit{kernel polinómico}, \textit{kernel gaussiano RBF}, entre otros \citep{SVM}. 
 
+Las ventajas que se puede atribuir a estos clasificadores es que ofrecen una gran precisión en la predicción ademas de ser mas rápido en realizar las predicciones en comparación con otros algoritmos, otras de las ventajas que le podemos atribuir es el consumo de memoria ya que utilizan subconjunto de datos en el entrenamiento. Como desventaja podemos decir que estos algoritmos no son adecuados para grandes dimensiones de datos y para conjuntos de datos que no son linealmente separables son ineficientes.
 
-Las ventajas de estos clasificadores son: eficaz para grandes espacios dimensionales, efectivo en casos en los que el número de dimensiones es mayor que el número de muestras, se pueden especificar diferentes funciones del kernel para la función de decisión, el proceso de entrenamiento es más rápido en comparación con otros tipo de clasificadores, sobre todo para cuando tenemos un conjunto de entrenamientos grandes.
 %http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1684-18592016000300008
 
 \subsection{Función de costo}\label{sub:funcion_costo}
@@ -241,10 +241,10 @@ Como se desarrollo anteriormente un algoritmo de \ac{ml} deberá minimizar la fu
 %https://stxlearning.com/2018/03/25/optimizacion-deep-learning-y-complejidad-computacional/
 En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la función de costo como se mencionó previamente, este es un problema de optimización ya que si encontramos la solución podemos encontrar esos parámetros que disminuyen el error.
 
-La mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros, es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia más típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico y método de Newton Rawson de 2 orden.
+La mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros, es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia más típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico.
 
 \subsubsection{Descenso de gradiente}\label{sub:gradient-desc}
-Descenso de gradiente, \textit{gradient descent} en inglés, es un algoritmo de optimización que busca encontrar el mínimo local o global de una función convexa.  En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
+Descenso de gradiente, \textit{gradient descent} en inglés, es un algoritmo de optimización que busca encontrar el mínimo local o global, si la función es convexa el mínimo local=global. En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
 
 \begin{equation}
@@ -270,15 +270,24 @@ El algoritmo de descenso de gradiente es un método iterativo del cual comenzamo
 \textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)}).
 \end{equation}
 
-Donde $ \alpha > 0$, dado que el gradiente apunta en  dirección a la mayor aumento de $\mathcal{L}$ alrededor de $w^{(t)}$, el algoritmo da pequeños paso en la dirección opuesta, disminuyendo así el valor de la función $\mathcal{L}$. El resultado final podría ser el último valor obtenido $w^{(t)}$ o o el valor que genero mejor rendimiento $\arg\min_{t}\mathcal{L}(\textbf{w}^{(t)})$ \citep{gradient_des}.
+Donde $ \alpha > 0$, dado que el gradiente apunta en  dirección a la mayor aumento de $\mathcal{L}$ alrededor de $w^{(t)}$, el algoritmo da pequeños paso en la dirección opuesta, disminuyendo así el valor de la función $\mathcal{L}$. El resultado final podría ser el último valor obtenido $w^{(t)}$ o o el valor que genero el mejor rendimiento $\arg\min_{t}\mathcal{L}(\textbf{w}^{(t)})$ \citep{gradient_des}.
 
 % PONEMOS BACKPROPAGATION, LEARNING RATE
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
+% SE ELIMINA EL SIGUIENTE EJEMPLO XQ esta de mas
 
-En un modelo de aprendizaje automático lo que se busca es encontrar una relación entre los datos de entradas y las salidas deseadas como se menciona anteriormente, por ejemplo para un modelo de la forma $y= mx+b$ (regresión lineal) depende de los parámetros  $m$ y $b$;  estos dos valores los representamos usando la notación $\theta$, de tal forma que buscamos encontrar $\mathcal{L}_{\theta} (X) \approx Y$. Es decir que la función $\mathcal{L}$ con los parámetros $\theta$ de tal forma que para todos los valores $X$ de entrada aproxime a los valores de salida $Y$ correspondientes. 
+%En un modelo de aprendizaje automático lo que se busca es encontrar una relación entre los datos de entradas y las salidas deseadas como se menciona anteriormente, por ejemplo para un modelo de la %forma $y= mx+b$ (regresión lineal) depende de los parámetros  $m$ y $b$;  estos dos valores los representamos usando la notación $\theta$, de tal forma que buscamos encontrar $\mathcal{L}_{\theta} %%(X) \approx Y$. Es decir que la función $\mathcal{L}$ con los parámetros $\theta$ de tal forma que para todos los valores $X$ de entrada aproxime a los valores de salida $Y$ correspondientes. 
 
-Para validar que tan bien nuestros parámetros definen a nuestra salida podemos definir una función de costo $J(\theta)$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo. El valor $\hat\theta$ es una nueva posición para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}_\theta(X)$ aproxime mejor a $Y$. El algoritmo para el cómputo del descenso de gradiente tiene la siguiente forma:
+Para validar que tan bien nuestros parámetros definen a nuestra salida definimos una función de costo $J(\theta)$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo. 
+
+
+El valor $\hat\theta$ será la actualización 
+
+para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}_\theta(X)$ aproxime mejor a $Y$. 
+
+
+El algoritmo para el cómputo del descenso de gradiente tiene la siguiente forma:
 
 %\begin{algorithm}[H] %\caption{Descenso de Gradiente}\label{euclid}
 %\begin{algorithmic}[1]
@@ -304,7 +313,7 @@ Para validar que tan bien nuestros parámetros definen a nuestra salida podemos 
 \begin{algorithmic}[1]
 \State \textbf{INPUT} $\gets$ ($\mathcal{L}$, $\theta$, threshold or iters, $\alpha$)
 \While {True}
-\If {$\theta_{1} - \theta_{0}$  $>$ threshold or iters }
+\If {$J(\theta$  $>$ threshold or iters }
 	\State	break
 \Else
 	\State \texttt{$\hat\theta$ := $\hat\theta$ - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
@@ -322,17 +331,15 @@ Existen diversas variantes de descenso por gradiente como \textit{Batch gradient
 
 En algoritmos de \ac{ml} debemos hacer que nuestro modelo generalice para nuevos valores de entrada desconocidos es por esto que debemos evaluarlo para determinar su comportamiento en base a nuevos datos. Uno de los principales motivos por el cual tenemos que validar nuestro modelo es para obtener una medida de cuán erróneo pueden llegar a ser nuestros resultados en la predicción, esta causa está dada por dos términos muy importante que debemos tener en cuenta es el \textit{sobreajuste} (overfitting en inglés) y \textit{sub ajuste} (underfitting en inglés). El valor de overfitting y underfitting son dos grandes problemas en \ac{ml} que influye en la predicción dado un nuevo valor de entrada y es el que debemos atacar. 
 
-El overfitting ocurre cuando un modelo aprende en detalle junto al ruido en los datos de entrenamiento afectando negativamente el rendimiento del modelo en los nuevos datos a predecir, esto significa que el ruido o las fluctuaciones aleatorias en los datos de entrenamiento son aprendidos como conceptos por el modelo. El problema es que estos conceptos no se aplican a los nuevos datos e impactan negativamente en la capacidad de generalización de los modelos.
+El overfitting ocurre cuando un modelo aprende en detalle los datos de entrenamiento afectando el rendimiento del modelo en los nuevos datos a predecir, esto significa que aprende las particularidades del conjunto de entrenamiento impactando negativamente en la capacidad del modelo en poder generalizar para nuevos datos. Opuesto al overfitting está el  underfitting, este concepto hace referencia a aquellos modelos que no logran aprender las características de los datos de entrenamiento. En la figura \ref{Fig:overUnder} podemos apreciar de manera visual los enfoques mencionados.
 
-Como parte opuesta al overfitting está el  underfitting, este concepto hace referencia a aquellos modelos que no pueden generalizar nuevos datos de entrenamiento de manera correcta. Mayormente en problemas de underfitting se necesita mayores características de los datos para la construcción de los modelos. En la figura \ref{Fig: overUnder} podemos apreciar los enfoques mencionados anteriormente.
-
-\begin{figure}[h]
- \centering
-  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/OverFUnderF.png}
-  \caption{Ejemplo de overfitting (izquierda), modelo óptimo (centro) y underfitting (derecha) }%\\(Adaptado de: https://medium.com/deep-learning-neuroevolution-extreme-learning-machines)}
-	\label{Fig: overUnder}
+\begin{figure}[htbp]
+\centering
+\subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/sobreajuste.png}}
+\subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/underfitting.png}}
+\subfigure[]{\includegraphics[width=5cm, height=5.1cm]{imagenes/MarcoTeorico/modelo_optimo.png}}
+\caption{(a) sobreajuste, (b) sub ajuste, (c) valor óptimo}\label{Fig:overUnder}
 \end{figure}
-
 
 
 \subsubsection{Estrategias de aprendizaje para evitar el sobreajuste}
