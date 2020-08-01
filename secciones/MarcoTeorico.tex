@@ -431,14 +431,22 @@ recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}
 
 \subsubsection*{Métricas de detección}\label{sub:metricas_de_deteccion}
 % https://biblioteca.unirioja.es/tfe_e/TFE004595.pdf
-Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se está realizando, además de las métricas mencionadas anteriormente para evaluar el rendimiento un modelo de detección de objeto utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en inglés), esta medida nos da la precisión de un detector de objeto en un conjunto de datos etiquetados. Dado un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
+Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se está realizando, además de las métricas mencionadas anteriormente para evaluar el rendimiento un modelo de detección de objeto utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en inglés). La medida IoU nos permite obtener el solapamiento, en localización y escala, entre las bounding boxes (bbox) anotadas y los bbox	 predichos.
+
+Un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
 \begin{equation}
-IOU = \frac{area\;de\;interseccion\;entre\;region\;etiquetada\;y\;prediccion}{area\;de\;union\;entre\;region\;etiquetada\;y\;region\;que\;se\;predijo}.
+IOU = \frac{bbox\;etiquetada \cap bbox\;predicha}{bbox\;etiquetada \cup bbox\;predicha}.
 \end{equation}
 
 Cuando evaluamos un modelo de detección de objeto queremos saber a que clase pertenece, la métrica de evaluación IOU no tiene en cuenta la clase por lo que no se puede utilizar directamente; para esto definimos la métrica mAP (mean Average Precision), esta métrica calcula el valor de precisión promedio para el valor de recall de 0 a 1.
 
-En base a los datos etiquetados tenemos un conjunto de objetos de una clase $c \in C$, decimos que un objeto es detectado correctamente si el modelo entrenado realiza una predicción tal que el valor de IOU sea mayor a un valor definido previamente, $0.5$ (valor tomado normalmente), y $c$ es igual a la clase predicha. Para cada una de las imágenes obtenemos la precision de la clase $C$ de la siguiente forma:
+En base a los datos etiquetados tenemos un conjunto de objetos de una clase $c \in C$, decimos que un objeto es detectado correctamente si el modelo entrenado realiza una predicción tal que el valor de IoU sea mayor a un valor definido previamente, por ejemplo el $0.5$ valor a considerar correcta una predicción, este umbral puede variar.
+
+
+
+
+
+ $0.5$ (valor tomado normalmente), y $c$ es igual a la clase predicha. Para cada una de las imágenes obtenemos la precision de la clase $C$ de la siguiente forma:
 \begin{equation}
 Precision_c = \frac{numero\;de\;detecciones\;de\;la\;clase\;C\;en\;una\;imagen}{numero\;de\;objetos\;de\;la\;clase\;C\;en\;una\;imagen}.
 \end{equation}
