@@ -344,12 +344,12 @@ El overfitting ocurre cuando un modelo aprende en detalle los datos de entrenami
 
 \subsubsection{Estrategias de aprendizaje para evitar el sobreajuste}
 
-Existen diferentes técnicas para evitar los problemas mencionados en la sección anterior, una de ellas es por  \textit{validación cruzada} (cross validation en inglés). La validación cruzada es una técnica que evalúa los resultados de un análisis estadístico y garantiza de que sean independientes de la partición de los datos de entrenamiento y prueba. 
+Existen diferentes técnicas para evitar el sobreajuste de modelos de \ac{ml}, una de ellas es \textit{validación cruzada} (cross validation en inglés). La validación cruzada es una técnica que se emplea para evaluar los modelos mediante el entrenamiento de varios modelos de  \ac{ml} dividiendo los datos en subconjuntos.
 
 Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
 
-\par \textbf{Validación cruzada de K vueltas}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. Existe un $k-1 $ valor que es el de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. Para finalizar se utilizar aquel subconjunto de datos que posea mayor generalidad.
+\par \textbf{Validación cruzada de K vueltas}: consiste en dividir el conjunto de datos en \textit{k} subconjuntos. El valor $k-1 $ es el que utilizaremos de validación, es decir, se toma uno de los subconjunto y se los utiliza como validación y el resto como entrenamiento.  Este proceso se repite durante $k $ iteraciones con cada uno de los subconjunto de dato de validación. El resultado de este proceso iterativo será aquellos parámetros que obtuvieron mejores métricas en el entrenamiento.
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/crossvalidat.png}
@@ -357,7 +357,10 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 	\label{Fig: crossvalidation}
 \end{figure}
 
-\par \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada, tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para validar. La ventaja de este método es que usamos todo los datos para realizar el entrenamiento.
+\par \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada; el método consiste en utilizar todas las observaciones excepto una que se la utiliza como test y se calcula el error, el proceso se repite tantas veces como el número de observaciones disponible. La ventaja de este método es reducir la variabilidad que se origina si se divide aleatoriamente en grupos; la principal desventaja es el costo computacional debido a que requiere que el modelo sea reajustado tantas veces como observaciones disponibles.
+
+% https://www.cienciadedatos.net/documentos/30_cross-validation_oneleaveout_bootstrap
+tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para validar. La ventaja de este método es que usamos todo los datos para realizar el entrenamiento.
 
 \begin{figure}[H]
  \centering
@@ -382,7 +385,7 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 
 Cuando entrenamos modelos en \ac{ml} debemos medir la efectividad del mismo, es decir, cual es la capacidad de generalizar dado un conjunto de valores desconocidos. Para poder determinar esta efectividad existen métodos de evaluación que nos permiten obtener el grado de error que hay en el modelo creado.
 
-La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. Las métricas de evaluación que utilizamos en esta tesis serán las siguientes \textit{Matriz de confusión}, \textit{accuracy}, \textit{precisión}, \textit{recall} y \textit{curvas ROC}.
+La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. Las métricas de evaluación que utilizamos en esta tesis serán las siguientes \textit{Matriz de confusión}, \textit{exactitud}, \textit{precisión}, \textit{recall} y \textit{curvas ROC}.
 
 La matriz de confusión contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la siguiente forma \ref{tab: confusion-matrix}.
 
@@ -403,9 +406,9 @@ Cada valor de las celdas está dado por: \textit{positivos (P)}, observaciones p
 
 Con los valores obtenidos de la matriz de confusión anterior podemos extraer las siguientes métricas:
 
-\textbf{Accuracy}: Proporción de todas las predicciones que son correctas, nos da una medida de que tan bueno es el modelo.
+\textbf{Exactitud}: Proporción de todas las predicciones que son correctas, nos da una medida de que tan bueno es el modelo.
 \begin{equation}
-accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}.
+exactitud = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}.
 \end{equation}
 
 \textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son verdaderas.
@@ -413,16 +416,17 @@ accuracy = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;
 precisión=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}.
 \end{equation}
 
-\textbf{Recall}: Nos da la proporción de la observaciones reales positivas que son correcta, es decir nos da la precisión de cuantas observaciones positivas verdaderas se obtuvo correctamente.
+\textbf{Recall}: Es la proporción de la observaciones reales positivas que son correcta, es decir, proporción de observaciones positivas verdaderas se obtuvo correctamente.
 \begin{equation}
 recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} .
 \end{equation}
 
-\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas. Un área que obtengamos  como resultado igual a 1 representará un modelo que hizo perfectamente todas las predicciones como se visualiza en la figura \ref{Fig: roc}.
+\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas, el área que obtengamos  como resultado igual a 1 representará un modelo que hizo perfectamente todas las predicciones. En la siguiente figura \ref{Fig: roc} se visualiza como se grafica la curva, el eje $x$ representa el \textit{razón o ratio de falsos positivos}, FPR por sus siglas en inglés, mientras que el eje $y$ es \textit{razón o ratio de verdaderos positivos}, TPR por sus siglas en inglés.
+
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ROC.png}
-  \caption{Curva ROC, la línea punteada indica un clasificador aleatorio, mientras que la linea color amarilla nos idica como varia un clasificador en relación a los falsos positivos e verdaderos positivo.} \label{Fig: roc}
+  \caption{Curva ROC, la línea punteada indica un clasificador aleatorio, mientras que la linea color amarilla nos idica como varía un clasificador en relación a los falsos positivos e verdaderos positivo.} \label{Fig: roc}
 \end{figure}
 
 \subsubsection*{Métricas de detección}\label{sub:metricas_de_deteccion}
@@ -596,7 +600,7 @@ Como se puede ver en la imagen anterior \ref{Fig:inception} se diseñó módulos
 
 En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50, ResNet101, GoogleNet(InceptionV1, InceptionV3), entre otras. 
 
-En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite{Analysis_deep_network} en donde se compara la complejidad de las arquitecturas existentes en relación a su \textit{accuracy}, los círculos en el gráfico representan la cantidad de parámetros de cada red, como se puede ver las redes \textit{VGG} son mucho más costosas en relación a los costos computacionales como a la cantidad de parámetros que se debe entrenar. Por otro lado podemos ver con las demás arquitecturas tienden a mejorar su \textit{accuracy} a mayor costo computacional y número de parámetros.
+En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite{Analysis_deep_network} en donde se compara la complejidad de las arquitecturas existentes en relación a su \textit{exactitud}, los círculos en el gráfico representan la cantidad de parámetros de cada red, como se puede ver las redes \textit{VGG} son mucho más costosas en relación a los costos computacionales como a la cantidad de parámetros que se debe entrenar. Por otro lado podemos ver con las demás arquitecturas tienden a mejorar su \textit{exactitud} a mayor costo computacional y número de parámetros.
 %https://www.deeplearningitalia.com/guia-para-arquitecturas-de-redes-profundas/
 
 \begin{figure}[H]
