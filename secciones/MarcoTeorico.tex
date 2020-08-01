@@ -381,81 +381,6 @@ tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para 
 %IMPORTANTE: https://sebastianraschka.com/pdf/manuscripts/model-eval.pdf
 %https://dzone.com/articles/machine-learning-validation-techniques
 
-\subsection{Evaluación de modelos}\label{sub:evaluación-modelo}
-
-Cuando entrenamos modelos en \ac{ml} debemos medir la efectividad del mismo, es decir, cual es la capacidad de generalizar dado un conjunto de valores desconocidos. Para poder determinar esta efectividad existen métodos de evaluación que nos permiten obtener el grado de error que hay en el modelo creado.
-
-La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. Las métricas de evaluación que utilizamos en esta tesis serán las siguientes \textit{Matriz de confusión}, \textit{exactitud}, \textit{precisión}, \textit{recall} y \textit{curvas ROC}.
-
-La matriz de confusión contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la siguiente forma \ref{tab: confusion-matrix}.
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|ll}
-\cline{1-3}
-\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\textbf{Clase}\\  \textbf{Actual}\end{tabular}} & \multicolumn{2}{c|}{\textbf{Clase Predicha}} &  &  \\ \cline{2-3}
-                                                                         & \textbf{Positivo}         & \textbf{Negativo}         &  &  \\ \cline{1-3}
-\textbf{Positivo}                                                                  & TP               & FN               &  &  \\ \cline{1-3}
-\textbf{Negativo}                                                                 & FP               & TN               &  &  \\ \cline{1-3}
-\end{tabular} \caption{Matriz de Confusión}
-	\label{tab: confusion-matrix}
-\end{table}
-
-
-Cada valor de las celdas está dado por: \textit{positivos (P)}, observaciones positivas; \textit{verdadero positivo (TP)} la observación es positiva y la predicción también, \textit{falso negativo (FN)} la observación es positiva pero la predicción es negativa,  \textit{falso positivo (FP)} la observación es negativa pero la predicción es positiva y \textit{verdadero negativo (TN)} la observación es negativa y también la predicción negativa.
-
-Con los valores obtenidos de la matriz de confusión anterior podemos extraer las siguientes métricas:
-
-\textbf{Exactitud}: Proporción de todas las predicciones que son correctas, nos da una medida de que tan bueno es el modelo.
-\begin{equation}
-exactitud = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}.
-\end{equation}
-
-\textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son verdaderas.
-\begin{equation}
-precisión=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}.
-\end{equation}
-
-\textbf{Recall}: Es la proporción de la observaciones reales positivas que son correcta, es decir, proporción de observaciones positivas verdaderas se obtuvo correctamente.
-\begin{equation}
-recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} .
-\end{equation}
-
-\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas, el área que obtengamos  como resultado igual a 1 representará un modelo que hizo perfectamente todas las predicciones. En la siguiente figura \ref{Fig: roc} se visualiza como se grafica la curva, el eje $x$ representa el \textit{razón o ratio de falsos positivos}, FPR por sus siglas en inglés, mientras que el eje $y$ es \textit{razón o ratio de verdaderos positivos}, TPR por sus siglas en inglés.
-
-\begin{figure}[H]
- \centering
-  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ROC.png}
-  \caption{Curva ROC, la línea punteada indica un clasificador aleatorio, mientras que la linea color amarilla nos idica como varía un clasificador en relación a los falsos positivos e verdaderos positivo.} \label{Fig: roc}
-\end{figure}
-
-\subsubsection*{Métricas de detección}\label{sub:metricas_de_deteccion}
-% https://biblioteca.unirioja.es/tfe_e/TFE004595.pdf
-Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se está realizando, además de las métricas mencionadas anteriormente para evaluar el rendimiento un modelo de detección de objeto utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en inglés). La medida IoU nos permite obtener el solapamiento, en localización y escala, entre las bounding boxes (bbox) anotadas y los bbox	 predichos.
-
-Un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
-\begin{equation}
-IOU = \frac{bbox\;etiquetada \cap bbox\;predicha}{bbox\;etiquetada \cup bbox\;predicha}.
-\end{equation}
-
-Cuando evaluamos un modelo de detección de objeto queremos saber a que clase pertenece, la métrica de evaluación IOU no tiene en cuenta la clase por lo que no se puede utilizar directamente; para esto definimos la métrica mAP (mean Average Precision), esta métrica calcula el valor de precisión promedio para el valor de recall de 0 a 1.
-
-En base a los datos etiquetados tenemos un conjunto de objetos de una clase $c \in C$, decimos que un objeto es detectado correctamente si el modelo entrenado realiza una predicción tal que el valor de IoU sea mayor a un valor definido previamente, por ejemplo el $0.5$ valor a considerar correcta una predicción, este umbral puede variar.
-
-
-
-
-
- $0.5$ (valor tomado normalmente), y $c$ es igual a la clase predicha. Para cada una de las imágenes obtenemos la precision de la clase $C$ de la siguiente forma:
-\begin{equation}
-Precision_c = \frac{numero\;de\;detecciones\;de\;la\;clase\;C\;en\;una\;imagen}{numero\;de\;objetos\;de\;la\;clase\;C\;en\;una\;imagen}.
-\end{equation}
-
-Para evaluar el modelo debemos tomar el conjunto de imágenes definido como $I$, el \textit{average precision} se define como:
-\begin{equation}
-Average Precision_c = \frac{\sum Precision_c}{I\;con\;objetos\;que\;pertenece\;a\;la\;clase\;C}.
-\end{equation}
-
 
 
 \section{Redes convolucionales y el problema de detección de objetos}\label{sec:compueter-vision}
@@ -715,3 +640,76 @@ El siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo p
 \State $\textbf{END}$
 \end{algorithmic}
 \end{algorithm}
+
+\subsection{Evaluación de modelos}\label{sub:evaluación-modelo}
+
+Cuando entrenamos modelos en \ac{ml} debemos medir la efectividad del mismo, es decir, cual es la capacidad de generalizar dado un conjunto de valores desconocidos. Para poder determinar esta efectividad existen métodos de evaluación que nos permiten obtener el grado de error que hay en el modelo creado.
+
+La forma de validar modelos en \ac{ml} es a través de métricas, la elección de la métrica depende de cada tarea a realizar, es importante revisar este conjunto de métricas para tener la certeza de que nuestro modelo tiene un buen rendimiento. Las métricas de evaluación que utilizamos en esta tesis serán las siguientes \textit{Matriz de confusión}, \textit{exactitud}, \textit{precisión}, \textit{recall} y \textit{curvas ROC}.
+
+La matriz de confusión contiene información sobre clasificaciones realizadas por el predictor y las etiquetadas, el rendimiento  se evalúa comúnmente utilizando los datos de la matriz que tiene la siguiente forma \ref{tab: confusion-matrix}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|ll}
+\cline{1-3}
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\textbf{Clase}\\  \textbf{Actual}\end{tabular}} & \multicolumn{2}{c|}{\textbf{Clase Predicha}} &  &  \\ \cline{2-3}
+                                                                         & \textbf{Positivo}         & \textbf{Negativo}         &  &  \\ \cline{1-3}
+\textbf{Positivo}                                                                  & TP               & FN               &  &  \\ \cline{1-3}
+\textbf{Negativo}                                                                 & FP               & TN               &  &  \\ \cline{1-3}
+\end{tabular} \caption{Matriz de Confusión}
+	\label{tab: confusion-matrix}
+\end{table}
+
+
+Cada valor de las celdas está dado por: \textit{positivos (P)}, observaciones positivas; \textit{verdadero positivo (TP)} la observación es positiva y la predicción también, \textit{falso negativo (FN)} la observación es positiva pero la predicción es negativa,  \textit{falso positivo (FP)} la observación es negativa pero la predicción es positiva y \textit{verdadero negativo (TN)} la observación es negativa y también la predicción negativa.
+
+Con los valores obtenidos de la matriz de confusión anterior podemos extraer las siguientes métricas:
+
+\textbf{Exactitud}: Proporción de todas las predicciones que son correctas, nos da una medida de que tan bueno es el modelo.
+\begin{equation}
+exactitud = \frac{FP+FN}{FP+FN+TP+TN}=\frac{predicciones\;correctas}{todas\;las\;predicciones}.
+\end{equation}
+
+\textbf{Precisión}: Proporción de todas las predicciones positivas que son correctas. La precisión es una medida de cuántas predicciones positivas son verdaderas.
+\begin{equation}
+precisión=\frac{TP}{TP+FP}= \frac{predicciones\;correctamente\;positivas}{todas\;las\;predicciones\;positivas}.
+\end{equation}
+
+\textbf{Recall}: Es la proporción de la observaciones reales positivas que son correcta, es decir, proporción de observaciones positivas verdaderas se obtuvo correctamente.
+\begin{equation}
+recall = \frac{TP}{TP+FN} = \frac{TP}{P} = \frac{predicciones\;a\;ser\;positiva}{todas\;la\;observaciones\;positivas} .
+\end{equation}
+
+\textbf{Curvas ROC}: Representa la capacidad de un modelo para discriminar entre clases positivas y negativas, el área que obtengamos  como resultado igual a 1 representará un modelo que hizo perfectamente todas las predicciones. En la siguiente figura \ref{Fig: roc} se visualiza como se grafica la curva, el eje $x$ representa el \textit{razón o ratio de falsos positivos}, FPR por sus siglas en inglés, mientras que el eje $y$ es \textit{razón o ratio de verdaderos positivos}, TPR por sus siglas en inglés.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[scale=0.5,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/ROC.png}
+  \caption{Curva ROC, la línea punteada indica un clasificador aleatorio, mientras que la linea color amarilla nos idica como varía un clasificador en relación a los falsos positivos e verdaderos positivo.} \label{Fig: roc}
+\end{figure}
+
+\subsubsection*{Métricas de detección}\label{sub:metricas_de_deteccion}
+% https://biblioteca.unirioja.es/tfe_e/TFE004595.pdf
+Elegir o diseñar una medida apropiada para un modelo de detección es una tarea compleja. La métrica de evaluación debería proporcionar información relevante con la tarea que se está realizando, además de las métricas mencionadas anteriormente para evaluar el rendimiento un modelo de detección de objeto utiliza la métrica conocida como intersección sobre unión (IOU, por sus siglas en inglés). La medida IoU nos permite obtener el solapamiento, en localización y escala, entre las bounding boxes (bbox) anotadas y los bbox	 predichos.
+
+Un rectángulo que representa la región de interés etiquetada y otro rectángulo que representa la predicción del modelo, se define IOU de la siguiente manera:
+\begin{equation}
+IOU = \frac{bbox\;etiquetada \cap bbox\;predicha}{bbox\;etiquetada \cup bbox\;predicha}.
+\end{equation}
+
+Cuando evaluamos un modelo de detección de objeto queremos saber a que clase pertenece, la métrica de evaluación IOU no tiene en cuenta la clase por lo que no se puede utilizar directamente; para esto definimos la métrica mAP (mean Average Precision), esta métrica calcula el valor de precisión promedio para el valor de recall de 0 a 1.
+
+En base a los datos etiquetados tenemos un conjunto de objetos de una clase $c \in C$, decimos que un objeto es detectado correctamente si el modelo entrenado realiza una predicción tal que el valor de IoU sea mayor a un valor definido previamente, por ejemplo el $0.5$ valor a considerar correcta una predicción este umbral puede variar.
+
+
+Para cada una de las imágenes obtenemos la precision de la clase $C$ de la siguiente forma:
+\begin{equation}
+Precision_c = \frac{numero\;de\;detecciones\;de\;la\;clase\;C\;en\;una\;imagen}{numero\;de\;objetos\;de\;la\;clase\;C\;en\;una\;imagen}.
+\end{equation}
+
+Para evaluar el modelo debemos tomar el conjunto de imágenes definido como $I$, el \textit{average precision} se define como:
+\begin{equation}
+Average Precision_c = \frac{\sum Precision_c}{I\;con\;objetos\;que\;pertenece\;a\;la\;clase\;C}.
+\end{equation}
+
