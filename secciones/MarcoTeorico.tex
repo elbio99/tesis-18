@@ -385,16 +385,16 @@ tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para 
 
 \section{Redes convolucionales y el problema de detección de objetos}\label{sec:compueter-vision}
 
-En esta sección desarrollaremos el concepto de redes neuronales, más precisamente el tipo de  redes neuronales conocidas como redes neuronales convolucionales. Las redes neuronales son una poderosa herramienta que en la actualidad se utiliza para la resolución de diferentes problemas como por ejemplo el reconocimiento de patrones dentro de una imagen, estas redes consiguen aprender las diferentes características que se encuentran en la imagen a partir de los datos que recibe como entrada. El proceso de aprendizaje es un proceso iterativo en el cual por cada iteración vamos calculando el nivel de error que existen con respecto a la salida esperada, el modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. 
+En esta sección desarrollaremos el modelo de redes neuronales, más precisamente el tipo de  redes neuronales conocidas como redes neuronales convolucionales. Las redes neuronales son una poderosa herramienta que en la actualidad se utiliza para la resolución de diferentes problemas como por ejemplo el reconocimiento de patrones dentro de una imagen, estas redes consiguen aprender las diferentes características que se encuentran en la imagen a partir de los datos que recibe como entrada. El proceso de aprendizaje es un proceso iterativo en el cual por cada iteración vamos calculando el nivel de error que existen con respecto a la salida esperada, el modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. 
 
 En el reconocimiento de imagen  hacemos uso de redes neuronales convolucionales (sec. \ref{sub:cnn}), como se nombro anteriormente son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica dentro de la imagen. En las secciones siguientes vamos a desarrollar más en detalle qué son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
 
 
 \subsection{Redes convolucionales}\label{sub:cnn}
 
-Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicanal, su principal ventaja es que cada parte de la red se entrena para realizar una tarea, esto reduce significativamente el número de capas, por lo que el entrenamiento es más rápido. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes debido a que son capaces de detectar características simples, como por ejemplo detección de bordes, líneas, etc y componer en características más complejas. Las \ac{cnn} trabajan modelando de forma consecutiva pequeñas piezas de información (subregiones) de la imagen combinando esta información de salida en las capas más profundas, tales características puede ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}. El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características}, una capa convolucional completa está compuesta de varios mapas de características de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
+Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicapa; se compone de neuronas que tienen pesos que se deben aprender. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes, trabajan modelando de forma consecutiva pequeñas piezas de información (sub regiones) de la imagen combinando esta información de salida en las capas más profundas, tales características puede ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}. El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características}, una capa convolucional completa está compuesta de varios mapas de características de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
 
-El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}: \textit{depth} (profundidad): corresponde al número de filtros usados para la operación de convolución como veremos más adelante (sec. \ref{sub:convolucion}), por ejemplo la primera capa toma la imagen original que luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc. El parámetro \textit{stride} (paso) es un valor que indica el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada, tener un stride grande producirá mapas de características más pequeños. Por último tenemos el parámetro \textit{zero-padding} (cero-relleno), a menudo es conveniente rellenar la matriz de entrada con ceros alrededor del borde de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada; una buena característica de cero relleno es que nos permite controlar el tamaño de los mapas de características.
+El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}: \textit{depth} (profundidad): corresponde al número de filtros usados para la operación de convolución como veremos más adelante (sec. \ref{sub:convolucion}), por ejemplo la primera capa toma la imagen original que luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc. El parámetro \textit{stride} (paso) es un valor que indica el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada, tener un stride grande producirá mapas de características más pequeños. Por último tenemos el parámetro \textit{zero-padding} (cero-relleno), a menudo es conveniente rellenar la matriz de entrada con ceros alrededor del borde de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada; esta técnica que nos permite preservar el tamaño de entrada original.
 
 La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolución} (sec. \ref{sub:convolucion}),  \textit{pooling} (sec. \ref{sub:pooling}) seguidas de las últimas capas \textit{fully connected} (sec. \ref{sub:fully_connected}), en las próximas secciones se abordará en más detalle. 
 
@@ -410,7 +410,7 @@ La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la
 
 \subsubsection{Convolución}\label{sub:convolucion}
 %https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-1-convolution-operation
-Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ec. \eqref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n$ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar. En imágenes nos interesa usar la operación de convolución sobre más de un eje,  si tenemos una imagen $I$ y un kernel $K$ de dos dimensiones podemos definir como:
+Las principales operaciones de una \ac{cnn} están basadas en operaciones de convolución (ec. \eqref{eq:conv2}), la convolución son operaciones de producto y sumas entre las capas y los $n$ filtros (kernel) que generan  un mapa de característica como se mencionó anteriormente. La ventaja es que el mismo filtro permite extraer la misma característica en cualquier parte de la entrada, con esto se consigue reducir el número de conexiones y el número de parámetros a entrenar. En imágenes utilizamos la operación de convolución de la siguiente forma; dada una imagen $I$ y un kernel $K$ de dos dimensiones se puede definir la siguiente ecuación:
 
 \begin{equation}\label{eq:conv2}
     G(i, j) = (I ∗ K)(i, j) = \sum_{m} \sum_{n} I(m, n) K(i - m, j - n).
@@ -421,7 +421,7 @@ $G$ será la matriz de salida denominada mapa de característica, para los valor
 % NOTA https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html, 
 
 
-En la figura (a) \ref{Fig:filter} tenemos de ejemplo una matriz de entrada y un filtro también denominado \textit{kernel}, en este caso un kernel (filtro) es de $3x3$ que se aplica a la matriz de entrada. La operación de convolución se realiza deslizando el kernel sobre la matriz de entrada del cual para cada ubicación realizamos una multiplicación de matrices y sumamos, el resultado de la suma será nuestro nuevo \textit{mapa de característica} como se muestra (b) \ref{Fig:filter}.
+En la figura (a) \ref{Fig:filter} tenemos de ejemplo una matriz de entrada y un filtro también denominado \textit{kernel}, en este caso un kernel (filtro) es de $3x3$ que se aplica a la matriz de entrada. La operación de convolución se realiza deslizando el kernel sobre la matriz de entrada en donde cada pixel de salida será una combinación lineal de los pixeles de entrada, el resultado será nuestro nuevo \textit{mapa de característica} como se muestra (b) \ref{Fig:filter}.
 
 \begin{figure}[htbp]
 \centering
@@ -431,15 +431,16 @@ En la figura (a) \ref{Fig:filter} tenemos de ejemplo una matriz de entrada y un 
 \caption{(a) Matriz de entrada y filtro de convolución (b) Resultado de la operación de convolución.}\label{Fig:filter}
 \end{figure}
 
+# AGREGAR ALGO MAS A ESTA SECCIÓN
 
-Las \ac{cnn} desarrollan detectores de múltiples características y las utilizan para desarrollar varios mapas de características que se conocen como capas convolucionales, a través de estos mapas de característica la red determina que  considera importantes para poder escanear imágenes y clasificarlas con mayor precisión.
+
 %https://www.scribd.com/document/271869018/Convolucion-con-CNN
 \subsubsection{Pooling}\label{sub:pooling}
 
 %https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
 Luego de las operaciones de convolución (sec. \ref{sub:convolucion}) usualmente utilizamos una capa llamada \textit{pooling}, esta capa se utiliza para reducir la dimensionalidad. La reducción de dimensionalidad nos permite reducir el número de parámetros que por consiguiente nos hará disminuir el tiempo de entrenamiento.
 
-El tipo de técnica más común utilizada es \textit{max pooling} que toma el valor máximo de la ventana permitiendo reducir el tamaño del \textit{mapa de característica} sin perder información, en la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
+El tipo de técnica más común utilizada es \textit{max pooling} que toma el valor máximo de la ventana permitiendo reducir el tamaño del \textit{mapa de característica}, en la figura siguiente \ref{Fig:Pooling} se visualiza a modo de ejemplo el resultado de usar \textit{max pooling} de 2x2 con un \textit{stride} de 2.
 
 \begin{figure}[H]
  \centering
@@ -558,9 +559,9 @@ Luego de generar las regiones propuestas extraemos las características de la im
 
 
 
-\subsubsection{Regions proposal} \label{sub:regions-proposal}
+\subsubsection{Regions proposals} \label{sub:regions-proposal}
 
-Regions proposal son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como contorno, color, etc. El proceso metodológico básico es el siguiente: dada una imagen de entrada por medio de algún método se busca generar un conjunto de regiones candidatas que serán localizadas en un bounding box, el bounding box es la región de interés que probablemente contengan algunos objetos de interés para la detección (fig: \ref{Fig: propsalregion}); estos métodos permiten tener bounding box de diferentes escalas los que nos ayuda a poder localizar objetos de diferentes tamaños, los objetos de interés detectados serán los que posteriormente vamos a utilizar para realizar la clasificación; como podemos observar en la figura de ejemplo \ref{Fig: propsalregion} cómo se generan los bounding boxes en la imagen.
+Regions proposals son un conjunto de métodos que permiten extraer regiones dentro de la imagen siguiendo algunas características similares como contorno, color, etc. El proceso metodológico básico es el siguiente: dado una imagen de entrada se busca generar un conjunto de regiones candidatas que serán localizadas en un bounding box; este bounding box es la región de interés que probablemente contengan algunos objetos de interés para la detección (fig: \ref{Fig: propsalregion}), los bounding box tienen diferentes escalas que nos ayuda a poder localizar objetos de diferentes tamaños; los objetos de interés detectados serán los que posteriormente vamos a utilizar para realizar la clasificación, como podemos observar en la figura de ejemplo \ref{Fig: propsalregion} cómo se generan los bounding boxes en la imagen.
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/regionProposal.png}
@@ -568,11 +569,10 @@ Regions proposal son un conjunto de métodos que permiten extraer regiones dentr
 	\label{Fig: propsalregion}
 \end{figure}
 
-En el estado del arte existen diversas técnicas para obtener las regiones candidatas \citep{proposal}, en esta tesis  sólo se realizaron pruebas con los  los métodos de: \textit{Edges Boxes} y \textit{Selective Search}. El método de Edges Boxes  \citep{edges} es un método para la generación de regiones candidatas a partir de los bordes detectados; utilizando estructuras de datos eficientes se pueden evaluar millones de boxes (cajas) candidatas en una fracción de segundo en donde los bordes proporcionan una representación simplificada pero informativa de una imagen. Los algoritmos para la detección de bordes tradicionales utilizan una variedad de métodos para calcular gradientes de color, en el caso de los nuevos enfoques además utilizan múltiples características como entrada incluyendo brillo, color, textura y  escalas de la imagen. Este método evalúa las cajas candidatas utilizando un enfoque de ventana deslizante, similar a la detección de objetos tradicionales \textit{sliding windows} en el cual para cada posición del objeto evaluamos, escala y relación generando una puntuación (score) que indica la probabilidad de que un objeto esté presente en el bounding box.
-
+En el estado del arte existen diversas técnicas para obtener las regiones candidatas \citep{proposal}, en esta tesis  sólo se realizaron pruebas con los  los métodos de: \textit{Edges Boxes} y \textit{Selective Search}. El método de Edges Boxes  \citep{edges} es un método para la generación de regiones candidatas a partir de la detección de bordes en la imagen; utilizando estructuras de datos eficientes se pueden evaluar millones de boxes (cajas) candidatas en una fracción de segundo en donde los bordes proporcionan una representación simplificada pero informativa de una imagen. Los algoritmos para la detección de bordes tradicionales utilizan una variedad de métodos para calcular gradientes de color, en el caso de los nuevos enfoques además utilizan múltiples características como entrada incluyendo brillo, color, textura y  escalas de la imagen. Estos métodos generar una puntuación (score) que indica la probabilidad de que un objeto esté presente en el bounding box.
 
 El método de \textit{Selective Search} \citep{selectivesearch} es un método de \ac{rp} que  permite obtener regiones candidatas realizando una búsqueda exhaustiva aplicando segmentación sobre la imagen. La segmentación  en procesamiento de imágenes consiste en dividirla en grupo de píxeles u objeto. El objetivo es simplificar la representación logrando que sea más significativa, fácil de analizar y capturar todas las ubicaciones de objetos posibles; en lugar de una sola técnica para generar ubicaciones diversifica la  búsqueda y usa  una variedad de particiones de imágenes complementarias para tratar con tantas condiciones de imagen como sea posible.
-Las estrategias usadas en este método es \textit{capturar todas las escalas}: los objetos pueden estar en cualquier escala de la imagen, es por esto que se toma en cuenta todas las escalas, \textit{diversificación}: No existe una sola estrategia sino que una región puede formar un objeto solo por color o textura y \textit{cómputo rápido}: Esta es una de las estrategias principales debido a que el objetivo es producir un conjunto de regiones propuesta de manera eficiente y sin un costo computacional alto.
+Las estrategias usadas en este método son \textit{capturar todas las escalas}: los objetos pueden estar en cualquier escala de la imagen, \textit{diversificación}: no existe una sola estrategia sino que una región puede formar un objeto solo por color o textura; \textit{cómputo rápido}: es una de las ventajas principales debido a que el objetivo es producir un conjunto de regiones 	 de manera eficiente y sin un costo computacional alto.
 
 \begin{figure}[H]
  \centering
@@ -614,7 +614,7 @@ En un pipeline de detección las técnicas de \ac{nms}  se utilizan para elimina
   \caption{\ac{nms} aplicado a una imagen, \citep{nms2}.}\label{Fig: nonmaximumsuppression}
 \end{figure}
 
-El siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo por \ac{nms} en la eliminación de regiones redundantes.  El algoritmo  recibe como entrada un conjunto de datos $\beta$ qué indican la cantidad de regiones, $S$  indican el valor IoU de cada una de las regiones, por último recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
+El siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo por \ac{nms} en la eliminación de regiones redundantes.  El algoritmo  recibe como entrada un conjunto de datos $\beta$ qué indican la cantidad de regiones, $S$  son los scores de la detección de cada una de las regiones, por último recibe un valor $N$ que  referencia el umbral utilizado para la  eliminación de las detecciones redundantes. 
 %https://www.vision.ee.ethz.ch/publications/papers/proceedings/eth_biwi_01126.pdf
 %D es un acumulador de bboxes
 \begin{algorithm}[H]\caption{Non-Maxima Suppression}\label{alg:nms}
@@ -630,7 +630,7 @@ El siguiente algoritmo  \eqref{alg:nms} se visualiza el proceso llevado a cabo p
     \State $ m\gets  \argmax S $
     \State $ M \gets b_m $
     \State $ D \gets D \cup M; B \gets B - M $
-    \For {$b_i$ to $\beta$}
+    \For {$b_i$ in $\beta$}
         \If {$IoU(M, b_i) \geq N_t$}
             \State $ B \gets B - b_i; S \gets S - s_i $
 \EndIf
