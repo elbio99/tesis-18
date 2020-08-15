@@ -466,24 +466,28 @@ La principal ventaja de usar la función ReLU sobre otras funciones de activaci�
 
 
 \subsubsection{Capas totalmente conectadas}\label{sub:fully_connected}
-%https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/
 % https://www.oreilly.com/library/view/tensorflow-for-deep/9781491980446/ch04.html
 
 En las \ac{cnn} luego de las combinación de capas de convolución, ReLU y pooling agregamos capas llamadas totalmente conectadas, por su nombre en inglés \textit{fully connected}.
-Las fully connected son las capas más básicas ya que todas las neuronas de entrada están conectadas a cada neurona de salida, una capa fully connected  es aquella en donde cada dimensión de salida  depende del valor de entrada a la red, esta red se basan en una combinación lineal (ec.\eqref{eq:fully-conected2}) de las variables de entrada que se transforma mediante una función de activación no lineal.
+Las fully connected son las capas más básicas ya que todas las neuronas de entrada están conectadas a cada neurona de salida, esta red se basan en una combinación lineal (ec.\eqref{eq:fully-conected2}) de las variables de entrada que se transforma mediante una función de activación no lineal.
 
 
 \begin{equation}\label{eq:fully-conected2}
 a_j = \sum_{i=1}^D w_{ji}  x_i + w_{j0}.
 \end{equation}
-$ a_j$  se conoce como capa de activación para los pesos $w_{ji}$ y dado los valores de entrada ${x_1,...,x_d}$, en esta red hay  $ D$ entradas como $M$ unidades ocultas. La activación de la unidad  $ a_j$ se obtiene luego de la suma de la transformación lineal usando una función de activación $ g(.)$, ReLU por ejemplo, esto nos da que la salida de una \textit{fully connected} tendrá la forma de  \eqref{eq:output-fully-conected}.
+$ a_j$  se conoce como activación de la neurona j-esima de la capa que se considera para los pesos $w_{ji}$ y dado los valores de entrada ${x_1,...,x_d}$, en esta red hay  $ D$ entradas. La salida de la unidad  $ a_j$ se obtiene luego de la suma de la transformación lineal usando una función de activación $ g(.)$, ReLU por ejemplo. La salida de una \textit{fully connected} tendrá la forma de  \eqref{eq:output-fully-conected}.
 
 \begin{equation}\label{eq:output-fully-conected}
 z_j = g(a_j).
 \end{equation}
 
-Básicamente, una capa \textit{fully connected} observa características de alto nivel que se relacionan con una clase en particular y tiene pesos particulares para que cuando al calcular los productos entre los pesos y la capa anterior obtendrá las probabilidades correctas para las diferentes clases. Las capas fully connected desempeñan  la tarea de clasificación mientras que las capas convolucionales actúan como extractores de características.
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/fully_conected_3.png}
+  \caption{Ejemplo capas totalmente conectadas.} 
+  \label{Fig:relu}
+\end{figure}
 %https://ahmedbesbes.com/understanding-deep-convolutional-neural-networks-with-a-practical-use-case-in-tensorflow-and-keras.html
 
 
@@ -492,13 +496,13 @@ Básicamente, una capa \textit{fully connected} observa características de alto
 %https://www.researchgate.net/publication/%309455781_Comparacion_de_Arquitecturas_de_Redes_Neuronales_Convolucionales_para_la_Clasificacion_de_Imagenes_de_Ojos
 La arquitectura de una red neuronal es la forma en que se organizan  las neuronas en su interior, estas neuronas se agrupan formando capas que pueden llegar a tener diferentes características. Partiendo de los conceptos visto en la sección anterior (sec. \ref{sub:cnn})  vamos a entrar en detalle de diferentes modelos de arquitectura que existen actualmente.
 
-\par \textbf{LeNet5} \citep{lenet} Fue una de las primeras \ac{cnn} que impulsó el campo de \ac{dl}, la principal idea de esta red es que determinadas característica se distribuyen sobre toda la imagen, de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen en múltiples locación. LeNet5 está formada por 3 capas usando la capa de convolución para extraer las características espaciales de la imagen, en general esta red fue el origen de muchas de las arquitecturas modernas.
+\par \textbf{LeNet5} \citep{lenet} Fue una de las primeras arquitecturas \ac{cnn},l a principal idea parte de que determinadas característica se distribuyen sobre toda la imagen, de esta manera convoluciones con los mismos parámetros pueden extraer de manera eficiente esas mismas características en toda la imagen en múltiples locación. La arquitectura de LeNet5 cuenta con 3 capas convolucionales, 2 capas totalmente conectadas y 2 capas de pooling.
 
 \par \textbf{AlexNet} \citep{alexnet}: Esta arquitectura surgió en el 2012 ganadora de la competición \textit{ImageNet}\footnote{http://www.image-net.org/challenges/LSVRC/}. El problema resuelto en la competición era poder clasificar una imagen dentro de 1000 categorías. Cuenta con 60 millones de parámetros y 650.000 neuronas, AlexNet consta de 5 capas convolucionales con diferentes kernel que extraen diversas característica de la imagen  y 3 capas fully connected. Una importante característica es el uso de la función ReLU,  AlexNet demostró que al usar la no linealidad ReLU,  podrían entrenarse mucho más rápido que  funciones de activación como  tanh o sigmoide.
 
 \begin{figure}[H]
  \centering
-  \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
+  \includegraphics[scale=0.3,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/AlexNet-1.png}
   \caption{Arquitectura AlexNet \citep{alexnet}.}
 	\label{Fig:alexnet}
 \end{figure}
@@ -513,6 +517,7 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 	\label{Fig:vgg}
 \end{figure}
 
+% INFO : https://core.ac.uk/download/pdf/159812337.pdf
 \par \textbf{GoogleNet} \citep{googlenet} El principal objetivo de esta arquitectura desarrollada es mejorar la utilización de recursos computacionales, esto lo logra definiendo módulos llamados, \textit{módulos inception}, y aumentando la profundidad y el ancho de la red. 
 \begin{figure}[H]
  \centering
@@ -522,17 +527,17 @@ La arquitectura de una red neuronal es la forma en que se organizan  las neurona
 \end{figure}
 Como se puede ver en la imagen anterior \ref{Fig:inception} se diseñó módulos para luego agruparlos uno arriba de otro, GoogleNet usa un nuevo término llamado \textit{Bottleneck layer} que permite reducir el número de características y sus operaciones 
 
-\par \textbf{ResNet} \citep{resnet_a} Es otro tipo de arquitectura nombrada \textit{"Deep Residual Learning"}, a partir de mapeo subyacentes de $x y H (x)$, es posible aprender la diferencia entre los dos, que es el \textit{residuo} y, posteriormente ajustar el último a la entrada siendo el residuo $F(x) = H(x) - x$.
+\par \textbf{ResNet} \citep{resnet_a} Es otro tipo de arquitectura nombrada \textit{"Deep Residual Learning"}, creada en el año 2015, como se visualiza en la figura \ref{Fig:resnet} consta de básicamente dos capas convolucionales conectadas que agrega los datos de entrada directamente a la salida de la forma $H(x) = F(x) + x$ en donde $x$ es la entrada y $F(x)$ es una función residual aprendida por las capas convolucionales.
 
 \begin{figure}[H]
  \centering
   \includegraphics[scale=0.6,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/resnet.png}
   \caption{ResNet: \textit{Residual block \citep{resnet_a}.}}
-	\label{Fig:inception}
+	\label{Fig:resnet}
 \end{figure}
 
 
-En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50, ResNet101, GoogleNet(InceptionV1, InceptionV3), entre otras. 
+En el estado del arte actual existen diferentes variantes que parten de la idea principal de cada arquitectura mencionada anteriormente como: ResNet50 y ResNet101 \citep{resnet_a} y GoogleNet(InceptionV1, InceptionV3) \citep{googlenet} . 
 
 En la  figura \ref{Fig:cnn-analisis} se muestra un análisis realizado por \cite{Analysis_deep_network} en donde se compara la complejidad de las arquitecturas existentes en relación a su \textit{exactitud}, los círculos en el gráfico representan la cantidad de parámetros de cada red, como se puede ver las redes \textit{VGG} son mucho más costosas en relación a los costos computacionales como a la cantidad de parámetros que se debe entrenar. Por otro lado podemos ver con las demás arquitecturas tienden a mejorar su \textit{exactitud} a mayor costo computacional y número de parámetros.
 %https://www.deeplearningitalia.com/guia-para-arquitecturas-de-redes-profundas/
@@ -556,7 +561,7 @@ Las redes neuronales convolucionales cómo se desarrolló previamente nos permit
 \subfigure[]{\includegraphics[width=6.5cm, height=4.5cm]{imagenes/MarcoTeorico/sw.png}}
 \subfigure[]{\includegraphics[width=6.5cm, height=4cm]{imagenes/MarcoTeorico/escala.png}}
 
-\caption{(a) ejemplo de sliding windows en donde el bboxs (recuadro en color rojo) recorre la imagen de izquierda a derecha y desde arriba a abajo dando pasos de $N$ píxeles, (b) ejemplo de piramide de resolución}\label{Fig:sliding}
+\caption{(a) ejemplo de sliding windows en donde el bounding box (recuadro en color rojo) recorre la imagen de izquierda a derecha y desde arriba a abajo dando pasos de $N$ píxeles, (b) ejemplo de piramide de resolución.}\label{Fig:sliding}
 \end{figure}
 
 
