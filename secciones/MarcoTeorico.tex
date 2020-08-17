@@ -289,34 +289,17 @@ para los parámetros que se acercan más al mínimo, es decir que hacen que $\ma
 
 El algoritmo para el cómputo del descenso de gradiente tiene la siguiente forma:
 
-%\begin{algorithm}[H] %\caption{Descenso de Gradiente}\label{euclid}
-%\begin{algorithmic}[1]
-
-%\State $\textbf{INPUT} \gets (X, Y, \theta,iteraciones, \alpha)$
-%\State $\textbf{OUTPUT} \gets \theta $
-%\State \textbf{i} = 0
-%\While {\textbf{i} <  iteraciones}{
-%\State i++
-%\State	error = \textit{Función\_Costo}(X, Y, \theta)
-
-%\If {error < min\_error}
-%	\State	break
-%\Else
-%	\State \texttt{\theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
-	
-%\EndIf
-%\EndWhile
-%\end{algorithmic}
-%\end{algorithm}
 
 \begin{algorithm}[H] \caption{Descenso de Gradiente}\label{euclid}
 \begin{algorithmic}[1]
-\State \textbf{INPUT} $\gets$ ($\mathcal{L}$, $\theta$, threshold or iters, $\alpha$)
+\State \textbf{INPUT} $\gets$ (X, $\mathcal{L}$, $\theta$, threshold or iters, $\alpha$)
 \While {True}
-\If {$J(\theta$  $>$ threshold or iters }
+\If {$J(\theta)$  $>$ threshold or iters }
 	\State	break
 \Else
-	\State \texttt{$\hat\theta$ := $\hat\theta$ - \alpha \frac{\partial}{\partial \theta} J(\theta_{1}, \theta_{0})}
+	\State h = \texttt{$\mathcal{L}$($X$, $\theta$)}
+
+	\State \texttt{$\hat\theta$ := $\hat\theta$ - \alpha \frac{\partial}{\partial \theta} J(\theta,h)}
 	
 \EndIf
 \State iters += 1
@@ -325,7 +308,9 @@ El algoritmo para el cómputo del descenso de gradiente tiene la siguiente forma
 \end{algorithm}
 
 
-Existen diversas variantes de descenso por gradiente como \textit{Batch gradient descent}, \textit{Stochastic gradient descent} y \textit{Mini-batch gradient descent} \citep{variants_gd}.
+Existen diversas variantes de descenso de gradiente \citep{variants_gd} estas son: descenso de gradiente por lotes, \textit{Batch gradient descent} en inglés, calcula el error para cada ejemplo del conjunto de entrenamiento pero solo actualiza el modelo luego de que se hayan evaluados todos los ejemplo de entrenamiento, su principal ventaja es que produce menos actualizaciones y tiene como resultado un gradiente mas estable y puede resultar a una convergencia más estable para algunos problemas, su principal desventaja reside en que puede resultar en una convergencia prematura del modelo. El descenso de gradiente estocástico (\textit{SGD}, por sus siglas en ingles), calcula el error y actualiza el modelo en cada ejemplo dentro del conjunto de datos de entrenamiento esto nos da una idea inmediata del rendimiento del modelo, su principal desventaja es el costo computacional que acarrea debido a la frecuencia de actualización. Para finalizar tenemos el descenso por gradiente por mini-lotes, \textit{Mini-batch gradient descent} en ingles, divide el conjunto de datos en sub conjuntos (lotes) que se utilizan para calcular el error y calcular los coeficientes del modelo, este algoritmo busca encontrar un punto intermedio entre el descenso de gradiente estocástico y el descenso de gradiente por lotes.
+
+% INFO: https://machinelearningmastery.com/gentle-introduction-mini-batch-gradient-descent-configure-batch-size/
 
 \subsection{El problema de sobreajuste}\label{sub:validacion-modelo}
 
@@ -357,10 +342,9 @@ Hay diversos tipos de validación cruzada de las cuales podemos nombrar:
 	\label{Fig: crossvalidation}
 \end{figure}
 
-\par \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada; el método consiste en utilizar todas las observaciones excepto una que se la utiliza como test y se calcula el error, el proceso se repite tantas veces como el número de observaciones disponible. La ventaja de este método es reducir la variabilidad que se origina si se divide aleatoriamente en grupos; la principal desventaja es el costo computacional debido a que requiere que el modelo sea reajustado tantas veces como observaciones disponibles.
+\par \textbf{Leave-One-Out Cross-Validation (LOOCV)}: Es un caso particular de validación cruzada, el método consiste en utilizar todas las observaciones excepto una que se la utiliza como test y se calcula el error, el proceso se repite tantas veces como el número de observaciones disponible. La ventaja de este método es reducir la variabilidad que se origina si se divide aleatoriamente en grupos; la principal desventaja es el costo computacional debido a que requiere que el modelo sea reajustado tantas veces como observaciones disponibles.
 
 % https://www.cienciadedatos.net/documentos/30_cross-validation_oneleaveout_bootstrap
-tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para validar. La ventaja de este método es que usamos todo los datos para realizar el entrenamiento.
 
 \begin{figure}[H]
  \centering
@@ -385,16 +369,18 @@ tomamos todos los datos que poseemos y utilizamos solo uno del subconjunto para 
 
 \section{Redes convolucionales y el problema de detección de objetos}\label{sec:compueter-vision}
 
-En esta sección desarrollaremos el modelo de redes neuronales, más precisamente el tipo de  redes neuronales conocidas como redes neuronales convolucionales. Las redes neuronales son una poderosa herramienta que en la actualidad se utiliza para la resolución de diferentes problemas como por ejemplo el reconocimiento de patrones dentro de una imagen, estas redes consiguen aprender las diferentes características que se encuentran en la imagen a partir de los datos que recibe como entrada. El proceso de aprendizaje es un proceso iterativo en el cual por cada iteración vamos calculando el nivel de error que existen con respecto a la salida esperada, el modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. 
+En esta sección desarrollaremos el modelo de redes neuronales, más precisamente el tipo de  redes neuronales conocidas como redes neuronales convolucionales. Las redes neuronales son una poderosa herramienta que en la actualidad se utiliza para la resolución de diferentes problemas como por ejemplo el reconocimiento de patrones dentro de una imagen, estas redes consiguen aprender las diferentes características que se encuentran en la imagen a partir de los datos que recibe como entrada. 
+
+El proceso de aprendizaje de una red neuronal es un proceso iterativo en el cual por cada iteración vamos calculando el nivel de error que existen con respecto a la salida esperada, el modelo obtenido debe aprender a generalizar el comportamiento de modo que al pasar un dato nunca visto lo prediga de manera correcta. 
 
 En el reconocimiento de imagen  hacemos uso de redes neuronales convolucionales (sec. \ref{sub:cnn}), como se nombro anteriormente son un tipo de red donde su operación principal es la convolución que permite extraer de manera eficiente característica dentro de la imagen. En las secciones siguientes vamos a desarrollar más en detalle qué son las redes neuronales convolucionales y los tipos de arquitecturas que existen. 
 
 
-\subsection{Redes convolucionales}\label{sub:cnn}
+\subsection{Redes neuronales convolucionales}\label{sub:cnn}
 
 Las \ac{cnn} son una clase de redes neuronales  similares a las redes neuronales multicapa; se compone de neuronas que tienen pesos que se deben aprender. Las redes neuronales convolucionales son muy potentes para el análisis de imágenes, trabajan modelando de forma consecutiva pequeñas piezas de información (sub regiones) de la imagen combinando esta información de salida en las capas más profundas, tales características puede ser fusionada pre-procesando con el fin de detectar características de mayor orden \citep{murphy}. El conjunto de salidas de las neuronas en un plano se denomina \textit{mapa de características}, una capa convolucional completa está compuesta de varios mapas de características de modo que se pueden extraer múltiples características en cada ubicación \citep{cnns}.
 
-El tamaño del mapa de características se controla mediante tres parámetros \citep{cnnsarticle}: \textit{depth} (profundidad): corresponde al número de filtros usados para la operación de convolución como veremos más adelante (sec. \ref{sub:convolucion}), por ejemplo la primera capa toma la imagen original que luego diferentes neuronas a partir de la profundidad de la red se activa realizando operaciones como puede ser detección de bordes, color, etc. El parámetro \textit{stride} (paso) es un valor que indica el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada, tener un stride grande producirá mapas de características más pequeños. Por último tenemos el parámetro \textit{zero-padding} (cero-relleno), a menudo es conveniente rellenar la matriz de entrada con ceros alrededor del borde de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada; esta técnica que nos permite preservar el tamaño de entrada original.
+En los mapas de características se tiene en cuenta lo siguiente \citep{cnnsarticle}: núcleo (kernel): filtro aplicado para extraer características importantes en la imagen; profundidad (depth): números de filtros utilizados en la operación de convolución como veremos más adelante (sec. \ref{sub:convolucion}), por ejemplo la primera capa toma la imagen original que luego en  diferentes neuronas a partir de la profundidad de la red se activa realizando diversas operaciones como detección de bordes, color, etc. El parámetro paso  (stride) es un valor que indica el número de píxeles por los que se desliza nuestra matriz de filtro sobre la matriz de entrada, tener un stride grande producirá mapas de características más pequeños; por último tenemos el parámetro cero-relleno (zero-padding), a menudo es conveniente rellenar la matriz de entrada con ceros alrededor del borde de modo que podamos aplicar el filtro a los elementos fronterizos de nuestra matriz de imagen de entrada; esta técnica que nos permite preservar el tamaño de entrada original.
 
 La mayoría de las \ac{cnn} tienen arquitecturas similares como se muestra en la figura \ref{Fig:cnn_network}, donde hay una operación de entrada de una imagen, una serie de operaciones de  \textit{convolución} (sec. \ref{sub:convolucion}),  \textit{pooling} (sec. \ref{sub:pooling}) seguidas de las últimas capas \textit{fully connected} (sec. \ref{sub:fully_connected}), en las próximas secciones se abordará en más detalle. 
 
@@ -431,8 +417,7 @@ En la figura (a) \ref{Fig:filter} tenemos de ejemplo una matriz de entrada y un 
 \caption{(a) Matriz de entrada y filtro de convolución (b) Resultado de la operación de convolución.}\label{Fig:filter}
 \end{figure}
 
-# AGREGAR ALGO MAS A ESTA SECCIÓN
-
+En las \ac{cnn} se tiene diferentes tipos de filtros convolucionales ya que cada filtro es capaz de extraer solo una característica de manera que nos interesa  combinar varios de estos filtros.
 
 %https://www.scribd.com/document/271869018/Convolucion-con-CNN
 \subsubsection{Pooling}\label{sub:pooling}
@@ -453,7 +438,9 @@ En las arquitecturas \ac{cnn} (sec. \ref{sub:arquitecturacnn}) normalmente la ca
 \subsubsection{Función de activación}\label{sub:relu}
 %https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
 %https://www.analyticsvidhya.com/blog/2017/10/fundamentals-deep-learning-activation-functions-when-to-use-them/
-Las funciones de activación es una característica  importante de las \ac{cnn}, estas funciones básicamente deciden si una neurona debe ser activada o no, es decir si la información que la neurona está recibiendo es relevante para la operación dada o si se debe ignorar. Una vez que los \textit{mapas de característica} se extraen de la capa de convolución el siguiente paso es moverlos a una capa de activación. Existen diversos métodos que cumplen esta tarea, la más utilizada en  \ac{cnn} son las capas de activación ReLU (Rectified Linear Unit), las  ReLU son operaciones punto a punto, las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo, en la figura  \ref{Fig:relu} vemos la forma que toma la función.
+Las funciones de activación es una característica  importante de las \ac{cnn}, la función de activación retorna una salida que será generada por una o varias neuronas de entradas. Las funciones de activación son transformaciones no-lineales de los scores producidos en cada neurona. 
+
+Existen diversos funciones que cumplen esta tarea, la más utilizada en  \ac{cnn} son las funciones de activación ReLU (Rectified Linear Unit), las  ReLU son operaciones punto a punto, las capas ReLU generalmente se acoplan con capas convolución. La función ReLU retorna 0 si existe un valor negativo de entrada mientras que retorna el mismo valor para cada valor positivo, en la figura  \ref{Fig:relu} vemos la forma que toma la función.
 
 \begin{figure}[H]
  \centering
@@ -563,11 +550,6 @@ Las redes neuronales convolucionales cómo se desarrolló previamente nos permit
 
 \caption{(a) ejemplo de sliding windows en donde el bounding box (recuadro en color rojo) recorre la imagen de izquierda a derecha y desde arriba a abajo dando pasos de $N$ píxeles, (b) ejemplo de piramide de resolución.}\label{Fig:sliding}
 \end{figure}
-
-
-
-
-
 
 
 El principal inconveniente de sliding windows es el costo computacional que conlleva ya que debe recorrer toda la imagen para encontrar el objeto de interés, generalmente los objetos no se presentan de un tamaño fijo en toda la imagen al aplicar esta técnica puede suceder que la ventana no coincida con el tamaño de ventana definido previamente, entonces se debe crear imágenes en pirámide para poder resolver el problema de escala como se menciona anteriormente; para dar un ejemplo en una imagen de $640 x 480$ píxeles con tamaño de ventana de $ 3 x 3$ y un salto de $2$ se deberían evaluar mas de $70000$ ventanas.

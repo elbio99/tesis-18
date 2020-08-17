@@ -5,11 +5,6 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[var(2018)]{variants_gd}
-variants-of-gradient-descent, Dec 2018.
-\newblock URL
-  \url{https://medium.com/@sunil.jangir07/variants-of-gradient-descent-5f5464c82f28}.
-
 \bibitem[Babawuro y Beiji(2012)]{usman}
 Usman Babawuro y Zou Beiji.
 \newblock Satellite imagery cadastral features extractions using image
@@ -105,6 +100,12 @@ J.~Iounousse, E.~Salah, E.~Ahmed, y C.~Hassan.
 \newblock Using an unsupervised approach of probabilistic neural network (pnn)
   for land use classification from multitemporal satellite images.
 \newblock 2013.
+
+\bibitem[J.Sunil(2018)]{variants_gd}
+Kumar J.Sunil.
+\newblock variants-of-gradient-descent, Dec 2018.
+\newblock URL
+  \url{https://medium.com/@sunil.jangir07/variants-of-gradient-descent-5f5464c82f28}.
 
 \bibitem[Karn(2016)]{cnnsarticle}
 Ujjwal Karn.
