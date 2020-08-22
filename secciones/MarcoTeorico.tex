@@ -86,11 +86,11 @@ En esta tesis se abordará los algoritmos de aprendizaje supervisado, en seccion
 
 Cómo se desarrolló anteriormente en este trabajo se abordará un problema de clasificación con aprendizaje supervisado.Definimos  el aprendizaje supervisado como una de las tareas más frecuente en sistemas de \ac{ml}, en algoritmos de aprendizaje supervisado se debe contener las etiquetas asociadas a las clases que deseamos aprender, es decir por cada observación de los datos recolectados tenemos que tener asociado un valor (etiqueta) que identifica la respuesta correcta que toma los datos, a partir de estos pares de datos el algoritmo debe modelar su comportamiento para poder predecir valores nunca visto.
 
-Entrenar un modelo de aprendizaje supervisado requiere al menos tres conjunto de datos:  \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe aprender, el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir siguiendo el ejemplo anterior para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a qué clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es tener una función de costo (\ref{sub:funcion_costo}) que nos permita calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir obtener el error entre la salida esperada y los valores que el modelo predijo. A modo de ejemplo en la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación donde se  genera una frontera que separa los datos rojos y verdes, la línea punteada en este caso será la función que el modelo deberá aprender.
+Entrenar un modelo de aprendizaje supervisado requiere: un \textit{datos de entrada}, \textit{salida esperada} y una \textit{función de costo}.  Los datos de entrada son aquellos ejemplos que el algoritmo debe aprender, el objetivo es crear un modelo que generalice para nuevos datos que nunca vio, los datos de entrada deberán ser representativo del mundo real, por ejemplo para una tarea de clasificación entre perros y gatos los datos de entrada deben ser imágenes que pertenezcan a las categorías mencionadas; para resolver un problema de reconocimiento de voz los datos de entrada deben ser audio de personas hablando. Los datos de salida son los valores etiquetados dado un valor de entrada es decir siguiendo el ejemplo anterior para un problema de clasificación entre perros y gatos debemos tener etiquetada cada imagen para saber a qué clase pertenece la misma, en reconocimiento de voz cada audio debe tener una transcripción del mismo. El tercer punto es tener una función de costo (\ref{sub:funcion_costo}) que nos permita calcular y evaluar  los resultados de la predicciones obtenidas por los modelo, es decir obtener el error entre la salida esperada y los valores que el modelo predijo. A modo de ejemplo en la figura \ref{Fig:clasificacion} se visualiza un modelo de clasificación donde se  genera una frontera que separa los datos rojos y verdes, la línea punteada en este caso será la función que el modelo deberá aprender.
 
 El proceso de entrenamiento implica los siguiente pasos, dado un conjunto de pares de entrenamiento, del tipo $\{(x_i, y_i), i=1,..,N\}$, a través de un algoritmo de aprendizaje debemos encontrar una función que se aproxime a los datos etiquetados de la siguiente forma: $f(x) ≈ y$. La función $f$ es un modelo paramétrico que a partir de un conjunto finitos de parámetros permite realizar la predicción de un valor dado, es decir dado un modelo paramétrico como por ejemplo uno lineal de la forma $y_i = w^t x_i$ e $y$ puede tomar valores $\{-1,1\}$ en un problema de clasificación binaria, lo que se busca es por medio de un modelo de aprendizaje encontrar los valores de  $w$ que se aproxime a los valores $y_i$.
 
-En el estado del arte existen diversos algoritmos para resolver el problema de clasificación utilizando \ac{ml}, en la siguiente sección se desarrollará en más detalle, en esta tesis nos enfocaremos en los clasificadores llamados máquina de vectores de soporte. 
+En el estado del arte existen diversos algoritmos para resolver el problema de clasificación utilizando \ac{ml}, en la siguiente sección se desarrollará en más detalle. En esta tesis nos enfocaremos en los clasificadores llamados máquina de vectores de soporte. 
 
 \begin{figure}[H] \centering
   \includegraphics[scale=0.4,keepaspectratio=true,clip=true]{imagenes/MarcoTeorico/classification.jpg}
@@ -236,15 +236,15 @@ Como se desarrollo anteriormente un algoritmo de \ac{ml} deberá minimizar la fu
 
 %https://stats.stackexchange.com/questions/154879/a-list-of-cost-functions-used-in-neural-networks-alongside-applications
 
-\subsubsection{Optimización de la función de costo} 
+\subsubsection{Optimización de la función de costo} \label{sub:gradient-desc}
 %https://hackernoon.com/gradient-descent-aynk-7cbe95a778da
 %https://stxlearning.com/2018/03/25/optimizacion-deep-learning-y-complejidad-computacional/
 En modelos de \ac{ml} debemos encontrar aquellos parámetros que minimizan la función de costo como se mencionó previamente, este es un problema de optimización ya que si encontramos la solución podemos encontrar esos parámetros que disminuyen el error.
 
-La mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros, es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia más típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico.
+La mayoría de los algoritmos de \ac{ml} deben aprender mas de un parámetro, en algunos casos hasta decenas de millones de parámetros, es por esto que todos los algoritmos  son métodos de optimización ya que se busca aprender los parámetros de manera eficiente. La estrategia más típica para problemas de optimización son los llamados métodos de descenso; dentro de estos se encuentran: descenso de gradiente, descenso de gradiente estocástico entre otros.
 
-\subsubsection{Descenso de gradiente}\label{sub:gradient-desc}
-Descenso de gradiente, \textit{gradient descent} en inglés, es un algoritmo de optimización que busca encontrar el mínimo local o global, si la función es convexa el mínimo local=global. En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
+\subsubsection*{Descenso de gradiente}\label{sub:gradient-desc}
+Descenso de gradiente, \textit{gradient descent} en inglés, es un algoritmo de optimización que busca encontrar el mínimo local o global, si la función es convexa el mínimo local sera igual al global. En \ac{ml} usamos descenso de gradiente para encontrar los parámetros de nuestro modelo que mejor definen nuestro conjunto de entrenamiento. Este algoritmo es un método iterativo que utiliza el gradiente para definir la dirección que el modelo debe seguir para reducir el error, en cada iteración gradualmente converge hacia un mínimo optimizando los parámetros que minimizan la función de costo. 
 
 
 \begin{equation}
@@ -270,40 +270,26 @@ El algoritmo de descenso de gradiente es un método iterativo del cual comenzamo
 \textbf{w}^{(t-1)} = \textbf{w}^{(t)} - \alpha \nabla \mathcal{L}(\textbf{w}^{(t)}).
 \end{equation}
 
-Donde $ \alpha > 0$, dado que el gradiente apunta en  dirección a la mayor aumento de $\mathcal{L}$ alrededor de $w^{(t)}$, el algoritmo da pequeños paso en la dirección opuesta, disminuyendo así el valor de la función $\mathcal{L}$. El resultado final podría ser el último valor obtenido $w^{(t)}$ o o el valor que genero el mejor rendimiento $\arg\min_{t}\mathcal{L}(\textbf{w}^{(t)})$ \citep{gradient_des}.
+Donde $ \alpha > 0$, dado que el gradiente apunta en  dirección a la mayor aumento de $\mathcal{L}$ alrededor de $w^{(t)}$, el algoritmo da pequeños paso en la dirección opuesta, disminuyendo así el valor de la función $\mathcal{L}$. El resultado final podría ser el último valor obtenido $w^{(t)}$ o el valor que genero el mejor rendimiento $\arg\min_{t}\mathcal{L}(\textbf{w}^{(t)})$ \citep{gradient_des}.
 
-% PONEMOS BACKPROPAGATION, LEARNING RATE
 %http://ruder.io/optimizing-gradient-descent/
 %https://turing.iimas.unam.mx/~ivanvladimir/posts/gradient_descent/
-% SE ELIMINA EL SIGUIENTE EJEMPLO XQ esta de mas
 
-%En un modelo de aprendizaje automático lo que se busca es encontrar una relación entre los datos de entradas y las salidas deseadas como se menciona anteriormente, por ejemplo para un modelo de la %forma $y= mx+b$ (regresión lineal) depende de los parámetros  $m$ y $b$;  estos dos valores los representamos usando la notación $\theta$, de tal forma que buscamos encontrar $\mathcal{L}_{\theta} %%(X) \approx Y$. Es decir que la función $\mathcal{L}$ con los parámetros $\theta$ de tal forma que para todos los valores $X$ de entrada aproxime a los valores de salida $Y$ correspondientes. 
-
-Para validar que tan bien nuestros parámetros definen a nuestra salida definimos una función de costo $J(\theta)$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo. 
-
-
-El valor $\hat\theta$ será la actualización 
-
-para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}_\theta(X)$ aproxime mejor a $Y$. 
-
-
-El algoritmo para el cómputo del descenso de gradiente tiene la siguiente forma:
+Para validar que tan bien nuestros parámetros definen a nuestra salida definimos una función de costo $J$ que mida la diferencia entre las salidas esperadas y las salidas producidas por el modelo.  El valor $\hat\theta$ será la actualización  para los parámetros que se acercan más al mínimo, es decir que hacen que $\mathcal{L}(X,\theta ))$ se aproxime mejor a $Y$.  El algoritmo para el cómputo del descenso de gradiente tiene la siguiente forma:
 
 
 \begin{algorithm}[H] \caption{Descenso de Gradiente}\label{euclid}
 \begin{algorithmic}[1]
-\State \textbf{INPUT} $\gets$ (X, $\mathcal{L}$, $\theta$, threshold or iters, $\alpha$)
-\While {True}
-\If {$J(\theta)$  $>$ threshold or iters }
-	\State	break
-\Else
-	\State h = \texttt{$\mathcal{L}$($X$, $\theta$)}
+\State \textbf{INPUT} $\gets$ (X, y, $\mathcal{L}$, $\theta$, $num\_iter$, $\alpha$)
+\State $m$ = cantidad de datos de entrenamiento
+ \For{$i \gets 1$ to $num\_iter$}   
 
-	\State \texttt{$\hat\theta$ := $\hat\theta$ - \alpha \frac{\partial}{\partial \theta} J(\theta,h)}
-	
-\EndIf
-\State iters += 1
-\EndWhile
+	\State $h$ := \texttt{$\mathcal{L}$($X$, $\theta$)}
+	\State $\nabla$ $J$ := $\frac{1}{m}$ $X^{(t)}$ $(h-y)$
+	\State $\hat{\theta}$ := $\theta$ - $\alpha$ $\nabla$ $J$
+\EndFor
+      	% \State J = \frac{-1}{m} x ({y}^{(t)} . log(h) + {(1-y)}^{(t)} . log(1 -h))
+
 \end{algorithmic}
 \end{algorithm}
 
